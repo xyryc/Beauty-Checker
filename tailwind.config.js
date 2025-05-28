@@ -4,7 +4,19 @@ module.exports = {
   content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   presets: [require("nativewind/preset")],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#333333",
+        accent: "#767676",
+        link: "#137cec",
+      },
+      borderColor: {
+        primary: "#A1A1A1",
+      },
+      fontFamily: {
+        poppins: ["Poppins-Regular"],
+      },
+    },
   },
   plugins: [],
 };
