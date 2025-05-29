@@ -54,9 +54,12 @@ const SignIn = () => {
             </View>
 
             <View className="mt-5">
-              <Text className="text-link text-center font-poppins">
+              <Link
+                href="/forgot-password"
+                className="text-link text-center font-poppins"
+              >
                 Forgot Password?
-              </Text>
+              </Link>
             </View>
           </View>
 
@@ -108,7 +111,7 @@ const SignIn = () => {
               end={{ x: 1, y: 0 }}
               className="rounded-2xl"
             >
-              <Text className="text-white py-[14.5px] text-lg font-medium text-center">
+              <Text className="text-white py-[14.5px] text-lg font-medium text-center font-poppins">
                 Sign In
               </Text>
             </LinearGradient>
@@ -116,8 +119,8 @@ const SignIn = () => {
 
           {/* Sign up link */}
           <View className="flex flex-row mt-6 justify-center gap-1">
-            <Text className="text-sm">Don't Have An Account?</Text>
-            <Link href="/signup" className="text-sm text-link">
+            <Text className="text-sm font-poppins">Don't Have An Account?</Text>
+            <Link href="/signup" className="text-sm text-link font-poppins">
               Sign Up
             </Link>
           </View>

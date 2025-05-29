@@ -99,7 +99,7 @@ const SignUp = () => {
               end={{ x: 1, y: 0 }}
               className="rounded-2xl"
             >
-              <Text className="text-white py-[14.5px] text-lg font-medium text-center">
+              <Text className="text-white py-[14.5px] text-lg font-medium text-center font-poppins">
                 Sign Up
               </Text>
             </LinearGradient>
@@ -107,9 +107,11 @@ const SignUp = () => {
 
           {/* Sign up link */}
           <View className="flex flex-row mt-6 justify-center gap-1">
-            <Text className="text-sm">Already Have An Account?</Text>
+            <Text className="text-sm font-poppins">
+              Already Have An Account?
+            </Text>
             <TouchableOpacity onPress={() => router.back()}>
-              <Text className="text-sm text-link">Sign In</Text>
+              <Text className="text-sm text-link font-poppins">Sign In</Text>
             </TouchableOpacity>
           </View>
         </View>
