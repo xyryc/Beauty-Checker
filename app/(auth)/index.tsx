@@ -102,7 +102,7 @@ const SignIn = () => {
         </View>
 
         {/* Bottom container */}
-        <View className="mb-5">
+        <View className="mb-16">
           {/* Sign in button */}
           <TouchableOpacity className="rounded-2xl overflow-hidden">
             <LinearGradient

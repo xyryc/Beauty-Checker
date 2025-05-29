@@ -1,27 +1,25 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import React from "react";
-import {
-  SafeAreaView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 
-const ForgotPassword = () => {
+const VerifyCode = () => {
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 justify-between px-5">
-        {/* Email fields */}
-        <View className="mt-11">
-          <Text className="text-lg font-medium mb-2 text-primary font-poppins">
-            Email
-          </Text>
-          <TextInput
-            className="font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent "
-            placeholder="Enter Your Email"
-          />
+        {/* Top container */}
+        <View>
+          <View className="mt-9 mb-2.5">
+            <Text className="text-2xl font-medium font-poppins mb-2 text-center">
+              Check Your Email
+            </Text>
+            <Text className="text-sm font-poppins text-center text-accent">
+              We Sent A Reset Link To contact@gmail.com
+            </Text>
+            <Text className="text-sm font-poppins text-center text-accent">
+              Please Enter The 6 Digit Code
+            </Text>
+          </View>
         </View>
 
         {/* Bottom container */}
@@ -35,7 +33,9 @@ const ForgotPassword = () => {
               className="rounded-2xl"
             >
               <Text className="text-white py-[14.5px] text-lg font-medium text-center font-poppins">
-                <Link href="/(auth)/verify-code">Send The Code</Link>
+                <Link href="/(auth)/change-password" className="font-poppins">
+                  Verify Code
+                </Link>
               </Text>
             </LinearGradient>
           </TouchableOpacity>
@@ -45,4 +45,4 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default VerifyCode;
