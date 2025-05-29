@@ -1,5 +1,6 @@
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
+import { Link } from "expo-router";
 import React from "react";
 import {
   SafeAreaView,
@@ -24,7 +25,7 @@ const SignIn = () => {
               Welcome Back To BEAUTYCHECKER
             </Text>
             <Text className="text-sm text-accent font-poppins">
-              Please Sign Up To Continue
+              Please Sign In To Continue
             </Text>
           </View>
 
@@ -36,7 +37,7 @@ const SignIn = () => {
                 Email
               </Text>
               <TextInput
-                className="font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent"
+                className="font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent "
                 placeholder="Enter Your Email"
               />
             </View>
@@ -116,7 +117,9 @@ const SignIn = () => {
           {/* Sign up link */}
           <View className="flex flex-row mt-6 justify-center gap-1">
             <Text className="text-sm">Don't Have An Account?</Text>
-            <Text className="text-sm text-link">Sign Up</Text>
+            <Link href="/signup" className="text-sm text-link">
+              Sign Up
+            </Link>
           </View>
         </View>
       </View>
