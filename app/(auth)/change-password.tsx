@@ -1,4 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import React from "react";
 import {
   SafeAreaView,
@@ -9,6 +10,8 @@ import {
 } from "react-native";
 
 const ChangePassword = () => {
+  const router = useRouter();
+
   return (
     <SafeAreaView className="flex-1 bg-white">
       <View className="flex-1 justify-between px-5">
@@ -36,7 +39,7 @@ const ChangePassword = () => {
             </Text>
             <TextInput
               className="font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent"
-              placeholder="Confirm Your Password"
+              placeholder="Enter Your Password"
             />
           </View>
         </View>
@@ -44,7 +47,10 @@ const ChangePassword = () => {
         {/* Bottom container */}
         <View className="mb-16">
           {/* Sign in button */}
-          <TouchableOpacity className="rounded-2xl overflow-hidden">
+          <TouchableOpacity
+            onPress={() => router.replace("/(auth)")}
+            className="rounded-2xl overflow-hidden"
+          >
             <LinearGradient
               colors={["#B78AF7", "#612AC3"]}
               start={{ x: 0, y: 0 }}
