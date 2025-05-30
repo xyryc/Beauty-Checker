@@ -9,6 +9,7 @@ module.exports = {
         primary: "#333333",
         accent: "#767676",
         link: "#137cec",
+        purplePrimary: "##6200EE"
       },
       borderColor: {
         primary: "#A1A1A1",
