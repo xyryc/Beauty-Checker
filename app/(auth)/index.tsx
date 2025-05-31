@@ -1,14 +1,15 @@
-import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from "expo-router";
 import React from "react";
 import {
+  Platform,
   SafeAreaView,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import SocialLogin from "../../components/SocialLogin";
 
 const SignIn = () => {
   return (
@@ -37,7 +38,9 @@ const SignIn = () => {
                 Email
               </Text>
               <TextInput
-                className="font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent "
+                className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+                  Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
+                }`}
                 placeholder="Enter Your Email"
               />
             </View>
@@ -48,7 +51,9 @@ const SignIn = () => {
                 Password
               </Text>
               <TextInput
-                className="font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent"
+                className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+                  Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
+                }`}
                 placeholder="Enter Your Password"
               />
             </View>
@@ -64,41 +69,7 @@ const SignIn = () => {
           </View>
 
           {/* social login */}
-          <View className="mt-8">
-            <Text className="text-primary mb-6 text-lg font-medium font-poppins">
-              Sign In With
-            </Text>
-
-            <View className="flex flex-row justify-center gap-4">
-              {/* Google */}
-              <View className="border-[0.5px] border-primary w-[88px] h-[88px] rounded-2xl items-center">
-                <View className="mt-6">
-                  <Image
-                    source={require("../../assets/images/google.png")}
-                    contentFit="cover"
-                    style={{ width: 24, height: 24 }}
-                  />
-                </View>
-                <Text className="text-sm font-normal mt-2.5 text-accent font-poppins">
-                  Google
-                </Text>
-              </View>
-
-              {/* Apple */}
-              <View className="border-[0.5px] border-primary w-[88px] h-[88px] rounded-2xl items-center">
-                <View className="mt-6">
-                  <Image
-                    source={require("../../assets/images/apple.png")}
-                    contentFit="cover"
-                    style={{ width: 24, height: 24 }}
-                  />
-                </View>
-                <Text className="text-sm font-normal mt-2.5 text-accent font-poppins">
-                  Apple
-                </Text>
-              </View>
-            </View>
-          </View>
+          <SocialLogin />
         </View>
 
         {/* Bottom container */}

@@ -2,6 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
+  Platform,
   SafeAreaView,
   Text,
   TextInput,
@@ -21,7 +22,9 @@ const ForgotPassword = () => {
             Email
           </Text>
           <TextInput
-            className="font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent "
+            className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+              Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
+            }`}
             placeholder="Enter Your Email"
           />
         </View>

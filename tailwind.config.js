@@ -10,13 +10,17 @@ module.exports = {
         accent: "#767676",
         link: "#137cec",
         purplePrimary: "#6200EE",
-        purpleAccent: "#AB67BC"
+        purpleAccent: "#AB67BC",
       },
       borderColor: {
         primary: "#A1A1A1",
       },
       fontFamily: {
         poppins: ["Poppins-Regular", "sans-serif"],
+      },
+      boxShadow: {
+        ios: "0px 1px 2px rgba(0, 0, 0, 0.16)",
+        android: "0px 1px 4px rgba(0, 0, 0, 0.50)",
       },
     },
   },
