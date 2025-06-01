@@ -20,7 +20,7 @@ module.exports = {
       },
       boxShadow: {
         ios: "0px 1px 2px rgba(0, 0, 0, 0.16)",
-        android: "0px 1px 4px rgba(0, 0, 0, 0.50)",
+        android: "0px 1px 4px rgba(0, 0, 0, 0.40)",
       },
     },
   },
