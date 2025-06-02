@@ -114,7 +114,10 @@ const SignUp = () => {
             {/* Bottom container */}
             <View className="pt-16 pb-5">
               {/* Sign in button */}
-              <TouchableOpacity className="rounded-2xl overflow-hidden">
+              <TouchableOpacity
+                onPress={() => router.push("/(tabs)")}
+                className="rounded-2xl overflow-hidden"
+              >
                 <LinearGradient
                   colors={["#B78AF7", "#612AC3"]}
                   start={{ x: 0, y: 0 }}

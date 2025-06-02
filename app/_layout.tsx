@@ -6,8 +6,8 @@ import "./globals.css";
 
 export default function RootLayout() {
   const router = useRouter();
-  const isSignedIn = false;
-  const inAuthScreen = false;
+  const isSignedIn = true;
+  const inAuthScreen = true;
 
   useEffect(() => {
     requestAnimationFrame(() => {

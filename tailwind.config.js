@@ -11,6 +11,7 @@ module.exports = {
         link: "#137cec",
         purplePrimary: "#6200EE",
         purpleAccent: "#AB67BC",
+        customBlack: "#111111",
       },
       borderColor: {
         primary: "#A1A1A1",

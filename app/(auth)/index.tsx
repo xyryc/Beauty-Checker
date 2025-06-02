@@ -1,6 +1,6 @@
 import SocialLogin from "@/components/SocialLogin";
 import { LinearGradient } from "expo-linear-gradient";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   KeyboardAvoidingView,
@@ -15,6 +15,8 @@ import {
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const router = useRouter();
 
   const handleSignIn = () => {};
 
@@ -91,7 +93,10 @@ const SignIn = () => {
           {/* Bottom container */}
           <View className="mb-16">
             {/* Sign in button */}
-            <TouchableOpacity className="rounded-2xl overflow-hidden">
+            <TouchableOpacity
+              onPress={() => router.push("/(tabs)")}
+              className="rounded-2xl overflow-hidden"
+            >
               <LinearGradient
                 colors={["#B78AF7", "#612AC3"]}
                 start={{ x: 0, y: 0 }}
