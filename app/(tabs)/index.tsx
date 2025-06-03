@@ -8,10 +8,8 @@ import { Image } from "expo-image";
 import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useVideoPlayer, VideoView } from "expo-video";
-
 import React, { useState } from "react";
 import {
-  Dimensions,
   Modal,
   Pressable,
   ScrollView,
@@ -22,31 +20,31 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const videoHeight = Dimensions.get("screen").height;
+const POST_HEIGHT = 553;
 
-const Discover = () => {
-  const POST_HEIGHT = 753;
-
-  const post = {
-    type: "video", // or "image"
+const posts = [
+  {
+    type: "video",
     url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     username: "anik.dev",
     userImage:
-      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?cs=srgb&dl=pexels-creationhill-1681010.jpg&fm=jpg",
+      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     caption: "Enjoying the vibes!",
     time: "2 hours ago",
-  };
+  },
+  {
+    type: "image",
+    url: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    username: "puran.exe",
+    userImage:
+      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    caption: "Nature is healing 🌿",
+    time: "5 hours ago",
+  },
+];
 
-  const isVideo = post.type === "video";
-
-  // Video player setup
-  const player = useVideoPlayer(post.url, (player) => {
-    player.loop = true;
-    player.play(); // start playback
-  });
-
+const Discover = () => {
   const [visible, setVisible] = useState(false);
-
   const navigation = useNavigation<any>();
 
   const handleNavigate = (screen: string) => {
@@ -56,7 +54,7 @@ const Discover = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-customBlack">
-      <StatusBar style="light" backgroundColor="#111111" />
+      <StatusBar style="light" />
 
       {/* Top Bar */}
       <View className="bg-customBlack px-5 py-2 mb-6 flex-row justify-between">
@@ -71,150 +69,225 @@ const Discover = () => {
         <FontAwesome6 name="sliders" size={20} color="#FEFEFE" />
       </View>
 
-      {/* for you modal */}
+      {/* For You Modal */}
       <Modal transparent visible={visible} animationType="fade">
         <Pressable className="flex-1" onPress={() => setVisible(false)}>
           <View className="absolute top-16 left-5 w-48 bg-white rounded-2xl p-4 shadow-lg space-y-4">
-            {/* For You */}
-            <TouchableOpacity
-              className="flex-row items-center space-x-2"
-              onPress={() => handleNavigate("ForYou")}
-            >
-              <FontAwesome6 name="tv" size={16} color="#9333EA" />
-              <Text className="text-[#9333EA] font-semibold text-base">
-                For You
-              </Text>
-            </TouchableOpacity>
-
-            {/* Saved */}
-            <TouchableOpacity
-              className="flex-row items-center space-x-2"
-              onPress={() => handleNavigate("Saved")}
-            >
-              <FontAwesome6 name="bookmark" size={16} color="#111" />
-              <Text className="text-black text-base">Saved</Text>
-            </TouchableOpacity>
-
-            {/* History */}
-            <TouchableOpacity
-              className="flex-row items-center space-x-2"
-              onPress={() => handleNavigate("History")}
-            >
-              <FontAwesome6 name="clock-rotate-left" size={16} color="#111" />
-              <Text className="text-black text-base">History</Text>
-            </TouchableOpacity>
+            {[
+              {
+                label: "For You",
+                icon: "tv",
+                color: "#9333EA",
+                screen: "ForYou",
+              },
+              { label: "Saved", icon: "bookmark", screen: "Saved" },
+              {
+                label: "History",
+                icon: "clock-rotate-left",
+                screen: "History",
+              },
+            ].map((item) => (
+              <TouchableOpacity
+                key={item.label}
+                className="flex-row items-center space-x-2"
+                onPress={() => handleNavigate(item.screen)}
+              >
+                <FontAwesome6
+                  name={item.icon as any}
+                  size={16}
+                  color={item.color || "#111"}
+                />
+                <Text
+                  className={`text-base font-semibold ${
+                    item.color ? "text-[#9333EA]" : "text-black"
+                  }`}
+                >
+                  {item.label}
+                </Text>
+              </TouchableOpacity>
+            ))}
           </View>
         </Pressable>
       </Modal>
 
-      {/* Scrollable Content */}
-      <ScrollView
-        className="flex-1"
-        contentContainerStyle={{ paddingBottom: 80 }}
-      >
-        {/* Post */}
-        <View className="mb-6">
-          <View
-            className="w-full overflow-hidden relative"
-            style={{ height: POST_HEIGHT }}
-          >
-            {isVideo ? (
-              <>
-                <VideoView
-                  style={styles.video}
-                  player={player}
-                  contentFit="cover"
-                />
+      {/* Posts */}
+      <ScrollView>
+        {posts.map((post, index) => {
+          const isVideo = post.type === "video";
+          const player = isVideo
+            ? useVideoPlayer(post.url, (player) => {
+                player.loop = true;
+                player.play();
+              })
+            : null;
 
-                {/* Overlay -> like, comment, share, save */}
-                <View className="absolute bottom-24 right-0 z-10 px-5">
-                  <View className="items-center p-2.5 mb-2.5">
-                    <Ionicons name="heart" size={32} color="white" />
-                    <Text className="text-xs font-poppins text-white">32</Text>
-                  </View>
+          return (
+            <View
+              key={index}
+              style={{ height: POST_HEIGHT, width: "100%", overflow: "hidden" }}
+            >
+              {isVideo ? (
+                <>
+                  <VideoView
+                    style={styles.video}
+                    player={player!}
+                    contentFit="cover"
+                    nativeControls={false}
+                  />
 
-                  <View className="items-center p-2.5 mb-2.5">
-                    <MaterialCommunityIcons
-                      name="comment-processing"
-                      size={32}
-                      color="white"
-                    />
-                    <Text className="text-xs font-poppins text-white">22</Text>
-                  </View>
-
-                  <View className="items-center p-2.5 mb-2.5">
-                    <FontAwesome name="send" size={32} color="white" />
-                    <Text className="text-xs font-poppins text-white">18</Text>
-                  </View>
-
-                  <View className="items-center p-2.5 mb-2.5">
-                    <FontAwesome name="bookmark" size={32} color="white" />
-                    <Text className="text-xs font-poppins text-white">6</Text>
-                  </View>
-                </View>
-
-                {/* Overlay on video */}
-                <View className="absolute bottom-0 left-0 right-0 px-5">
-                  <View className="flex-row justify-between items-center">
-                    <View className="flex-row gap-2 items-center">
-                      <Image
-                        source={{ uri: post.userImage }}
-                        style={{ height: 40, width: 40, borderRadius: 50 }}
-                        contentFit="cover"
-                      />
-                      <Text className="text-xl font-medium font-poppins text-white">
-                        {post.username}
+                  <View className="absolute bottom-24 right-0 z-10 px-5">
+                    {/* Heart */}
+                    <View className="items-center p-2.5 mb-2.5">
+                      <TouchableOpacity>
+                        <Ionicons name="heart" size={32} color="white" />
+                      </TouchableOpacity>
+                      <Text className="text-xs font-poppins text-white">
+                        32
                       </Text>
                     </View>
 
-                    <TouchableOpacity className="py-2 px-11 bg-[#ffffff1A] border-white border rounded">
-                      <Text className="font-medium font-poppins text-white">
-                        Book
+                    {/* Comment Processing */}
+                    <View className="items-center p-2.5 mb-2.5">
+                      <TouchableOpacity>
+                        <MaterialCommunityIcons
+                          name="comment-processing"
+                          size={32}
+                          color="white"
+                        />
+                      </TouchableOpacity>
+                      <Text className="text-xs font-poppins text-white">
+                        22
                       </Text>
-                    </TouchableOpacity>
+                    </View>
+
+                    {/* Send */}
+                    <View className="items-center p-2.5 mb-2.5">
+                      <TouchableOpacity>
+                        <FontAwesome name="send" size={32} color="white" />
+                      </TouchableOpacity>
+                      <Text className="text-xs font-poppins text-white">8</Text>
+                    </View>
+
+                    {/* Bookmark */}
+                    <View className="items-center p-2.5 mb-2.5">
+                      <TouchableOpacity>
+                        <FontAwesome name="bookmark" size={32} color="white" />
+                      </TouchableOpacity>
+                      <Text className="text-xs font-poppins text-white">6</Text>
+                    </View>
                   </View>
 
-                  <View className="flex-row gap-2 my-2">
-                    <Text className="text-white font-poppins">
-                      Lorem ipsum dolor sit, ipsum dolor sit amet.
-                    </Text>
-                    <Text className="text-purpleAccent font-poppins">
-                      See More
-                    </Text>
+                  <View className="absolute bottom-0 left-0 right-0 px-5">
+                    <View className="flex-row justify-between items-center">
+                      <View className="flex-row gap-2 items-center">
+                        <Image
+                          source={{ uri: post.userImage }}
+                          style={{ height: 40, width: 40, borderRadius: 50 }}
+                          contentFit="cover"
+                        />
+                        <Text className="text-xl font-medium font-poppins text-white">
+                          {post.username}
+                        </Text>
+                      </View>
+                      <TouchableOpacity className="py-2 px-11 bg-[#ffffff1A] border-white border rounded">
+                        <Text className="font-medium font-poppins text-white">
+                          Book
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View className="flex-row gap-2 my-2">
+                      <Text className="text-white font-poppins">
+                        {post.caption}
+                      </Text>
+                      <Text className="text-purpleAccent font-poppins">
+                        See More
+                      </Text>
+                    </View>
                   </View>
-                </View>
-              </>
-            ) : (
-              <>
-                <Image
-                  source={{ uri: post.url }}
-                  className="w-full h-full"
-                  style={{ height: "100%" }}
-                  contentFit="cover"
-                />
-                {/* Overlay for image */}
-                <View className="absolute bottom-0 left-0 right-0 p-4 bg-white/80">
-                  <View>
-                    <Image
-                      source={{ uri: post.url }}
-                      style={{ height: 40, width: 40 }}
-                      contentFit="cover"
-                    />
-                    <Text className="text-xl font-medium font-poppins">
-                      {post.username}
-                    </Text>
+                </>
+              ) : (
+                <>
+                  <Image
+                    source={{ uri: post.url }}
+                    style={{ height: "82%", width: "100%" }}
+                    contentFit="cover"
+                  />
+
+                  <View className="absolute bottom-24 right-0 z-10 px-5">
+                    {/* Heart */}
+                    <View className="items-center p-2.5 mb-2.5">
+                      <TouchableOpacity>
+                        <Ionicons name="heart" size={32} color="white" />
+                      </TouchableOpacity>
+                      <Text className="text-xs font-poppins text-white">
+                        32
+                      </Text>
+                    </View>
+
+                    {/* Comment Processing */}
+                    <View className="items-center p-2.5 mb-2.5">
+                      <TouchableOpacity>
+                        <MaterialCommunityIcons
+                          name="comment-processing"
+                          size={32}
+                          color="white"
+                        />
+                      </TouchableOpacity>
+                      <Text className="text-xs font-poppins text-white">
+                        22
+                      </Text>
+                    </View>
+
+                    {/* Send */}
+                    <View className="items-center p-2.5 mb-2.5">
+                      <TouchableOpacity>
+                        <FontAwesome name="send" size={32} color="white" />
+                      </TouchableOpacity>
+                      <Text className="text-xs font-poppins text-white">8</Text>
+                    </View>
+
+                    {/* Bookmark */}
+                    <View className="items-center p-2.5 mb-2.5">
+                      <TouchableOpacity>
+                        <FontAwesome name="bookmark" size={32} color="white" />
+                      </TouchableOpacity>
+                      <Text className="text-xs font-poppins text-white">6</Text>
+                    </View>
                   </View>
-                  <Text>{post.caption}</Text>
-                  <Text className="text-gray-500 text-xs">{post.time}</Text>
-                </View>
-              </>
-            )}
-          </View>
-        </View>
+
+                  <View className="absolute bottom-0 left-0 right-0 px-5">
+                    <View className="flex-row justify-between items-center">
+                      <View className="flex-row gap-2 items-center">
+                        <Image
+                          source={{ uri: post.userImage }}
+                          style={{ height: 40, width: 40, borderRadius: 50 }}
+                          contentFit="cover"
+                        />
+                        <Text className="text-xl font-medium font-poppins text-white">
+                          {post.username}
+                        </Text>
+                      </View>
+                      <TouchableOpacity className="py-2 px-11 bg-[#ffffff1A] border-white border rounded">
+                        <Text className="font-medium font-poppins text-white">
+                          Book
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                    <View className="flex-row gap-2 my-2">
+                      <Text className="text-white font-poppins">
+                        {post.caption}
+                      </Text>
+                      <Text className="text-purpleAccent font-poppins">
+                        See More
+                      </Text>
+                    </View>
+                  </View>
+                </>
+              )}
+            </View>
+          );
+        })}
       </ScrollView>
-
-      {/* Bottom Bar */}
-      <View className="absolute bottom-0 w-full bg-customBlack py-4 px-5" />
     </SafeAreaView>
   );
 };
@@ -224,6 +297,6 @@ export default Discover;
 const styles = StyleSheet.create({
   video: {
     width: "100%",
-    height: videoHeight,
+    height: "100%",
   },
 });
