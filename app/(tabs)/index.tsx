@@ -1,4 +1,5 @@
 import {
+  Entypo,
   FontAwesome,
   FontAwesome6,
   Ionicons,
@@ -72,40 +73,43 @@ const Discover = () => {
       {/* For You Modal */}
       <Modal transparent visible={visible} animationType="fade">
         <Pressable className="flex-1" onPress={() => setVisible(false)}>
-          <View className="absolute top-16 left-5 w-48 bg-white rounded-2xl p-4 shadow-lg space-y-4">
-            {[
-              {
-                label: "For You",
-                icon: "tv",
-                color: "#9333EA",
-                screen: "ForYou",
-              },
-              { label: "Saved", icon: "bookmark", screen: "Saved" },
-              {
-                label: "History",
-                icon: "clock-rotate-left",
-                screen: "History",
-              },
-            ].map((item) => (
-              <TouchableOpacity
-                key={item.label}
-                className="flex-row items-center space-x-2"
-                onPress={() => handleNavigate(item.screen)}
-              >
-                <FontAwesome6
-                  name={item.icon as any}
-                  size={16}
-                  color={item.color || "#111"}
-                />
-                <Text
-                  className={`text-base font-semibold ${
-                    item.color ? "text-[#9333EA]" : "text-black"
-                  }`}
-                >
-                  {item.label}
-                </Text>
-              </TouchableOpacity>
-            ))}
+          <View className="absolute top-16 left-5 w-48 bg-white/60 rounded-2xl p-4 space-y-4">
+            {/* For You */}
+            <TouchableOpacity
+              className="flex-row items-center space-x-1"
+              onPress={() => handleNavigate("ForYou")}
+            >
+              <View className="p-2.5">
+                <Entypo name="video" size={16} color="#9333EA" />
+              </View>
+              <Text className="text-base font-semibold text-[#9333EA]">
+                For You
+              </Text>
+            </TouchableOpacity>
+
+            {/* Saved */}
+            <TouchableOpacity
+              className="flex-row items-center space-x-1"
+              onPress={() => handleNavigate("Saved")}
+            >
+              <View className="p-2.5">
+                <FontAwesome name="bookmark" size={16} color="#111" />
+              </View>
+              <Text className="text-base font-semibold text-black">Saved</Text>
+            </TouchableOpacity>
+
+            {/* History */}
+            <TouchableOpacity
+              className="flex-row items-center space-x-1"
+              onPress={() => handleNavigate("History")}
+            >
+              <View className="p-2.5">
+                <FontAwesome6 name="clock-rotate-left" size={16} color="#111" />
+              </View>
+              <Text className="text-base font-semibold text-black">
+                History
+              </Text>
+            </TouchableOpacity>
           </View>
         </Pressable>
       </Modal>
