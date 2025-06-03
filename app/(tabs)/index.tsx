@@ -1,3 +1,4 @@
+import ShareModal from "@/components/ShareModal";
 import {
   Entypo,
   FontAwesome,
@@ -45,8 +46,9 @@ const posts = [
 ];
 
 const Discover = () => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState<boolean>(false);
   const navigation = useNavigation<any>();
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const handleNavigate = (screen: string) => {
     setVisible(false);
@@ -59,14 +61,14 @@ const Discover = () => {
 
       {/* Top Bar */}
       <View className="bg-customBlack px-5 py-2 mb-6 flex-row justify-between">
-        <View className="flex-row items-center gap-2">
-          <TouchableOpacity onPress={() => setVisible(true)}>
+        <TouchableOpacity onPress={() => setVisible(true)}>
+          <View className="flex-row items-center gap-2">
             <FontAwesome6 name="bars" size={20} color="#FEFEFE" />
-          </TouchableOpacity>
-          <Text className="text-white text-xl font-medium font-poppins">
-            For You
-          </Text>
-        </View>
+            <Text className="text-white text-xl font-medium font-poppins">
+              For You
+            </Text>
+          </View>
+        </TouchableOpacity>
         <FontAwesome6 name="sliders" size={20} color="#FEFEFE" />
       </View>
 
@@ -166,7 +168,7 @@ const Discover = () => {
 
                     {/* Send */}
                     <View className="items-center p-2.5 mb-2.5">
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <FontAwesome name="send" size={32} color="white" />
                       </TouchableOpacity>
                       <Text className="text-xs font-poppins text-white">8</Text>
@@ -244,7 +246,7 @@ const Discover = () => {
 
                     {/* Send */}
                     <View className="items-center p-2.5 mb-2.5">
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <FontAwesome name="send" size={32} color="white" />
                       </TouchableOpacity>
                       <Text className="text-xs font-poppins text-white">8</Text>
@@ -292,6 +294,11 @@ const Discover = () => {
           );
         })}
       </ScrollView>
+
+      <ShareModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      />
     </SafeAreaView>
   );
 };
