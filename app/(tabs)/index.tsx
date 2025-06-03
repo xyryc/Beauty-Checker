@@ -1,4 +1,9 @@
-import { FontAwesome6 } from "@expo/vector-icons";
+import {
+  FontAwesome,
+  FontAwesome6,
+  Ionicons,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { StatusBar } from "expo-status-bar";
 import { useVideoPlayer, VideoView } from "expo-video";
@@ -54,7 +59,7 @@ const Discover = () => {
 
       {/* Scrollable Content */}
       <ScrollView
-        className="flex-1 bg-white"
+        className="flex-1"
         contentContainerStyle={{ paddingBottom: 80 }}
       >
         {/* Post */}
@@ -70,6 +75,34 @@ const Discover = () => {
                   player={player}
                   contentFit="cover"
                 />
+
+                {/* Overlay -> like, comment, share, save */}
+                <View className="absolute bottom-24 right-0 z-10 px-5">
+                  <View className="items-center p-2.5 mb-2.5">
+                    <Ionicons name="heart" size={32} color="white" />
+                    <Text className="text-xs font-poppins text-white">32</Text>
+                  </View>
+
+                  <View className="items-center p-2.5 mb-2.5">
+                    <MaterialCommunityIcons
+                      name="comment-processing"
+                      size={32}
+                      color="white"
+                    />
+                    <Text className="text-xs font-poppins text-white">22</Text>
+                  </View>
+
+                  <View className="items-center p-2.5 mb-2.5">
+                    <FontAwesome name="send" size={32} color="white" />
+                    <Text className="text-xs font-poppins text-white">18</Text>
+                  </View>
+
+                  <View className="items-center p-2.5 mb-2.5">
+                    <FontAwesome name="bookmark" size={32} color="white" />
+                    <Text className="text-xs font-poppins text-white">6</Text>
+                  </View>
+                </View>
+
                 {/* Overlay on video */}
                 <View className="absolute bottom-0 left-0 right-0 px-5">
                   <View className="flex-row justify-between items-center">
