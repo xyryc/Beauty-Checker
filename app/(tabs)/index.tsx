@@ -5,12 +5,15 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useVideoPlayer, VideoView } from "expo-video";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   Dimensions,
+  Modal,
+  Pressable,
   ScrollView,
   StyleSheet,
   Text,
@@ -42,6 +45,15 @@ const Discover = () => {
     player.play(); // start playback
   });
 
+  const [visible, setVisible] = useState(false);
+
+  const navigation = useNavigation<any>();
+
+  const handleNavigate = (screen: string) => {
+    setVisible(false);
+    navigation.navigate(screen);
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-customBlack">
       <StatusBar style="light" backgroundColor="#111111" />
@@ -49,13 +61,51 @@ const Discover = () => {
       {/* Top Bar */}
       <View className="bg-customBlack px-5 py-2 mb-6 flex-row justify-between">
         <View className="flex-row items-center gap-2">
-          <FontAwesome6 name="bars" size={20} color="#FEFEFE" />
+          <TouchableOpacity onPress={() => setVisible(true)}>
+            <FontAwesome6 name="bars" size={20} color="#FEFEFE" />
+          </TouchableOpacity>
           <Text className="text-white text-xl font-medium font-poppins">
             For You
           </Text>
         </View>
         <FontAwesome6 name="sliders" size={20} color="#FEFEFE" />
       </View>
+
+      {/* for you modal */}
+      <Modal transparent visible={visible} animationType="fade">
+        <Pressable className="flex-1" onPress={() => setVisible(false)}>
+          <View className="absolute top-16 left-5 w-48 bg-white rounded-2xl p-4 shadow-lg space-y-4">
+            {/* For You */}
+            <TouchableOpacity
+              className="flex-row items-center space-x-2"
+              onPress={() => handleNavigate("ForYou")}
+            >
+              <FontAwesome6 name="tv" size={16} color="#9333EA" />
+              <Text className="text-[#9333EA] font-semibold text-base">
+                For You
+              </Text>
+            </TouchableOpacity>
+
+            {/* Saved */}
+            <TouchableOpacity
+              className="flex-row items-center space-x-2"
+              onPress={() => handleNavigate("Saved")}
+            >
+              <FontAwesome6 name="bookmark" size={16} color="#111" />
+              <Text className="text-black text-base">Saved</Text>
+            </TouchableOpacity>
+
+            {/* History */}
+            <TouchableOpacity
+              className="flex-row items-center space-x-2"
+              onPress={() => handleNavigate("History")}
+            >
+              <FontAwesome6 name="clock-rotate-left" size={16} color="#111" />
+              <Text className="text-black text-base">History</Text>
+            </TouchableOpacity>
+          </View>
+        </Pressable>
+      </Modal>
 
       {/* Scrollable Content */}
       <ScrollView
