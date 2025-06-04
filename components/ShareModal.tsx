@@ -10,7 +10,7 @@ const ShareModal: React.FC<ShareModalProps> = ({ visible, onClose }) => {
         className="flex-1 justify-end bg-black/50 rounded-t-[32px]"
         onPress={onClose}
       >
-        <View className="bg-neutral-800 rounded-t-2xl px-6 pt-4 pb-10">
+        <View className="bg-[#444444CC] rounded-t-2xl px-6 pt-4 pb-10">
           {/* Drag Handle */}
           <View className="items-center mb-6">
             <View className="w-14 h-1.5 rounded-full bg-white" />
