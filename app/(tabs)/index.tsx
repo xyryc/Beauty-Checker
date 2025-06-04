@@ -7,7 +7,7 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { useNavigation } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useVideoPlayer, VideoView } from "expo-video";
 import React, { useState } from "react";
@@ -49,6 +49,7 @@ const Discover = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const navigation = useNavigation<any>();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const router = useRouter();
 
   const handleNavigate = (screen: string) => {
     setVisible(false);
@@ -77,10 +78,7 @@ const Discover = () => {
         <Pressable className="flex-1" onPress={() => setVisible(false)}>
           <View className="absolute top-16 left-5 w-48 bg-white/60 rounded-2xl p-4 space-y-4">
             {/* For You */}
-            <TouchableOpacity
-              className="flex-row items-center space-x-1"
-              onPress={() => handleNavigate("ForYou")}
-            >
+            <TouchableOpacity className="flex-row items-center space-x-1">
               <View className="p-2.5">
                 <Entypo name="video" size={16} color="#9333EA" />
               </View>
@@ -92,7 +90,7 @@ const Discover = () => {
             {/* Saved */}
             <TouchableOpacity
               className="flex-row items-center space-x-1"
-              onPress={() => handleNavigate("Saved")}
+              onPress={() => router.push("/screens/saved")}
             >
               <View className="p-2.5">
                 <FontAwesome name="bookmark" size={16} color="#111" />
@@ -103,7 +101,7 @@ const Discover = () => {
             {/* History */}
             <TouchableOpacity
               className="flex-row items-center space-x-1"
-              onPress={() => handleNavigate("History")}
+              onPress={() => handleNavigate("history")}
             >
               <View className="p-2.5">
                 <FontAwesome6 name="clock-rotate-left" size={16} color="#111" />
