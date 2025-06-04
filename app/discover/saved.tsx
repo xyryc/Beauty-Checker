@@ -4,7 +4,6 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { Text, TouchableOpacity, View } from "react-native";
-0;
 
 const SavedScreen = () => {
   const router = useRouter();

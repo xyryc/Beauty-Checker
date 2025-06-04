@@ -1,3 +1,4 @@
+import CommentModal from "@/components/CommentModal";
 import ShareModal from "@/components/ShareModal";
 import {
   Entypo,
@@ -49,6 +50,7 @@ const Discover = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const navigation = useNavigation<any>();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [commentVisible, setCommentVisible] = useState<boolean>(false);
   const router = useRouter();
 
   const handleNavigate = (screen: string) => {
@@ -158,7 +160,7 @@ const Discover = () => {
 
                     {/* Comment Processing */}
                     <View className="items-center p-2.5 mb-2.5">
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => setCommentVisible(true)}>
                         <MaterialCommunityIcons
                           name="comment-processing"
                           size={32}
@@ -314,21 +316,33 @@ const Discover = () => {
                           style={{ height: 40, width: 40, borderRadius: 50 }}
                           contentFit="cover"
                         />
-                        <Text className="text-xl font-medium text-white"   style={{ fontFamily: "Poppins" }}>
+                        <Text
+                          className="text-xl font-medium text-white"
+                          style={{ fontFamily: "Poppins" }}
+                        >
                           {post.username}
                         </Text>
                       </View>
                       <TouchableOpacity className="py-2 px-11 bg-[#ffffff1A] border-white border rounded">
-                        <Text className="font-medium text-white"   style={{ fontFamily: "Poppins" }}>
+                        <Text
+                          className="font-medium text-white"
+                          style={{ fontFamily: "Poppins" }}
+                        >
                           Book
                         </Text>
                       </TouchableOpacity>
                     </View>
                     <View className="flex-row gap-2 my-2">
-                      <Text className="text-white"   style={{ fontFamily: "Poppins" }}>
+                      <Text
+                        className="text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
                         {post.caption}
                       </Text>
-                      <Text className="text-purpleAccent"   style={{ fontFamily: "Poppins" }}>
+                      <Text
+                        className="text-purpleAccent"
+                        style={{ fontFamily: "Poppins" }}
+                      >
                         See More
                       </Text>
                     </View>
@@ -343,6 +357,11 @@ const Discover = () => {
       <ShareModal
         visible={modalVisible}
         onClose={() => setModalVisible(false)}
+      />
+
+      <CommentModal
+        visible={commentVisible}
+        onClose={() => setCommentVisible(false)}
       />
     </SafeAreaView>
   );
