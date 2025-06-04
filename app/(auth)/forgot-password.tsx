@@ -18,13 +18,17 @@ const ForgotPassword = () => {
       <View className="flex-1 justify-between px-5">
         {/* Email fields */}
         <View className="mt-11">
-          <Text className="text-lg font-medium mb-2 text-primary font-poppins">
+          <Text
+            className="text-lg font-medium mb-2 text-primary"
+            style={{ fontFamily: "Poppins" }}
+          >
             Email
           </Text>
           <TextInput
-            className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+            className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
               Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
             }`}
+            style={{ fontFamily: "Poppins" }}
             placeholder="Enter Your Email"
           />
         </View>
@@ -42,7 +46,10 @@ const ForgotPassword = () => {
               end={{ x: 1, y: 0 }}
               className="rounded-2xl"
             >
-              <Text className="text-white py-[14.5px] text-lg font-medium text-center font-poppins">
+              <Text
+                className="text-white py-[14.5px] text-lg font-medium text-center"
+                style={{ fontFamily: "Poppins" }}
+              >
                 Send The Code
               </Text>
             </LinearGradient>

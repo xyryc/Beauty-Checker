@@ -12,13 +12,22 @@ const VerifyCode = () => {
         {/* Top container */}
         <View>
           <View className="mt-9 mb-2.5">
-            <Text className="text-2xl font-medium font-poppins mb-2 text-center">
+            <Text
+              className="text-2xl font-medium mb-2 text-center"
+              style={{ fontFamily: "Poppins" }}
+            >
               Check Your Email
             </Text>
-            <Text className="text-sm font-poppins text-center text-accent">
+            <Text
+              className="text-sm text-center text-accent"
+              style={{ fontFamily: "Poppins" }}
+            >
               We Sent A Reset Link To contact@gmail.com
             </Text>
-            <Text className="text-sm font-poppins text-center text-accent">
+            <Text
+              className="text-sm text-center text-accent"
+              style={{ fontFamily: "Poppins" }}
+            >
               Please Enter The 6 Digit Code
             </Text>
           </View>
@@ -37,7 +46,10 @@ const VerifyCode = () => {
               end={{ x: 1, y: 0 }}
               className="rounded-2xl"
             >
-              <Text className="text-white py-[14.5px] text-lg font-medium text-center font-poppins">
+              <Text
+                className="text-white py-[14.5px] text-lg font-medium text-center"
+                style={{ fontFamily: "Poppins" }}
+              >
                 Verify Code
               </Text>
             </LinearGradient>

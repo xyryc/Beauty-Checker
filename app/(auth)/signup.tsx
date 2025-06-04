@@ -28,13 +28,22 @@ const SignUp = () => {
             <View className="mt-[27px]">
               {/* header text */}
               <View className="items-center mb-8">
-                <Text className="text-2xl font-medium mb-2 text-primary font-poppins">
+                <Text
+                  className="text-2xl font-medium mb-2 text-primary"
+                  style={{ fontFamily: "Poppins" }}
+                >
                   Hello!
                 </Text>
-                <Text className="text-sm text-accent font-poppins">
+                <Text
+                  className="text-sm text-accent"
+                  style={{ fontFamily: "Poppins" }}
+                >
                   Welcome To Beaty Checker.
                 </Text>
-                <Text className="text-sm text-accent font-poppins">
+                <Text
+                  className="text-sm text-accent"
+                  style={{ fontFamily: "Poppins" }}
+                >
                   Please Sign Up To Continue.
                 </Text>
               </View>
@@ -43,65 +52,85 @@ const SignUp = () => {
               <View>
                 {/* Full name */}
                 <View className="mb-6">
-                  <Text className="text-lg font-medium mb-2 text-primary font-poppins">
+                  <Text
+                    className="text-lg font-medium mb-2 text-primary"
+                    style={{ fontFamily: "Poppins" }}
+                  >
                     Full Name
                   </Text>
                   <TextInput
-                    className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+                    className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
                       Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
                     }`}
+                    style={{ fontFamily: "Poppins" }}
                     placeholder="Enter Your Full Name"
                   />
                 </View>
 
                 {/* email */}
                 <View className="mb-6">
-                  <Text className="text-lg font-medium mb-2 text-primary font-poppins">
+                  <Text
+                    className="text-lg font-medium mb-2 text-primary"
+                    style={{ fontFamily: "Poppins" }}
+                  >
                     Email
                   </Text>
                   <TextInput
-                    className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+                    className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
                       Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
                     }`}
+                    style={{ fontFamily: "Poppins" }}
                     placeholder="Enter Your Email"
                   />
                 </View>
 
                 {/* phone */}
                 <View className="mb-6">
-                  <Text className="text-lg font-medium mb-2 text-primary font-poppins">
+                  <Text
+                    className="text-lg font-medium mb-2 text-primary"
+                    style={{ fontFamily: "Poppins" }}
+                  >
                     Phone Number
                   </Text>
                   <TextInput
-                    className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+                    className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
                       Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
                     }`}
+                    style={{ fontFamily: "Poppins" }}
                     placeholder="Enter Your Phone Number"
                   />
                 </View>
 
                 {/* password */}
                 <View className="mb-6">
-                  <Text className="text-lg font-medium mb-2 text-primary font-poppins">
+                  <Text
+                    className="text-lg font-medium mb-2 text-primary"
+                    style={{ fontFamily: "Poppins" }}
+                  >
                     Password
                   </Text>
                   <TextInput
-                    className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+                    className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
                       Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
                     }`}
+                    style={{ fontFamily: "Poppins" }}
                     placeholder="Enter Your Password"
                   />
                 </View>
 
                 {/* confirm password */}
                 <View>
-                  <Text className="text-lg font-medium mb-2 text-primary font-poppins">
+                  <Text
+                    className="text-lg font-medium mb-2 text-primary"
+                    style={{ fontFamily: "Poppins" }}
+                  >
                     Confirm Password
                   </Text>
                   <TextInput
-                    className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+                    className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
                       Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
                     }`}
+                    style={{ fontFamily: "Poppins" }}
                     placeholder="Confirm Your Password"
                   />
                 </View>
@@ -124,7 +153,10 @@ const SignUp = () => {
                   end={{ x: 1, y: 0 }}
                   className="rounded-2xl"
                 >
-                  <Text className="text-white py-[14.5px] text-lg font-medium text-center font-poppins">
+                  <Text
+                    className="text-white py-[14.5px] text-lg font-medium text-center"
+                    style={{ fontFamily: "Poppins" }}
+                  >
                     Sign Up
                   </Text>
                 </LinearGradient>
@@ -132,11 +164,14 @@ const SignUp = () => {
 
               {/* Sign up link */}
               <View className="flex flex-row mt-6 justify-center gap-1">
-                <Text className="text-sm font-poppins">
+                <Text className="text-sm" style={{ fontFamily: "Poppins" }}>
                   Already Have An Account?
                 </Text>
                 <TouchableOpacity onPress={() => router.back()}>
-                  <Text className="text-sm text-link font-poppins">
+                  <Text
+                    className="text-sm text-link"
+                    style={{ fontFamily: "Poppins" }}
+                  >
                     Sign In
                   </Text>
                 </TouchableOpacity>

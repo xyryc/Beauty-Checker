@@ -65,7 +65,10 @@ const Discover = () => {
         <TouchableOpacity onPress={() => setVisible(true)}>
           <View className="flex-row items-center gap-2">
             <FontAwesome6 name="bars" size={20} color="#FEFEFE" />
-            <Text className="text-white text-xl font-medium font-poppins">
+            <Text
+              className="text-white text-xl font-medium"
+              style={{ fontFamily: "Poppins" }}
+            >
               For You
             </Text>
           </View>
@@ -145,7 +148,10 @@ const Discover = () => {
                       <TouchableOpacity>
                         <Ionicons name="heart" size={32} color="white" />
                       </TouchableOpacity>
-                      <Text className="text-xs font-poppins text-white">
+                      <Text
+                        className="text-xs text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
                         32
                       </Text>
                     </View>
@@ -159,7 +165,10 @@ const Discover = () => {
                           color="white"
                         />
                       </TouchableOpacity>
-                      <Text className="text-xs font-poppins text-white">
+                      <Text
+                        className="text-xs text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
                         22
                       </Text>
                     </View>
@@ -169,7 +178,12 @@ const Discover = () => {
                       <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <FontAwesome name="send" size={32} color="white" />
                       </TouchableOpacity>
-                      <Text className="text-xs font-poppins text-white">8</Text>
+                      <Text
+                        className="text-xs text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        8
+                      </Text>
                     </View>
 
                     {/* Bookmark */}
@@ -177,7 +191,12 @@ const Discover = () => {
                       <TouchableOpacity>
                         <FontAwesome name="bookmark" size={32} color="white" />
                       </TouchableOpacity>
-                      <Text className="text-xs font-poppins text-white">6</Text>
+                      <Text
+                        className="text-xs text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        6
+                      </Text>
                     </View>
                   </View>
 
@@ -189,21 +208,33 @@ const Discover = () => {
                           style={{ height: 40, width: 40, borderRadius: 50 }}
                           contentFit="cover"
                         />
-                        <Text className="text-xl font-medium font-poppins text-white">
+                        <Text
+                          className="text-xl font-medium text-white"
+                          style={{ fontFamily: "Poppins" }}
+                        >
                           {post.username}
                         </Text>
                       </View>
                       <TouchableOpacity className="py-2 px-11 bg-[#ffffff1A] border-white border rounded">
-                        <Text className="font-medium font-poppins text-white">
+                        <Text
+                          className="font-medium text-white"
+                          style={{ fontFamily: "Poppins" }}
+                        >
                           Book
                         </Text>
                       </TouchableOpacity>
                     </View>
                     <View className="flex-row gap-2 my-2">
-                      <Text className="text-white font-poppins">
+                      <Text
+                        className="text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
                         {post.caption}
                       </Text>
-                      <Text className="text-purpleAccent font-poppins">
+                      <Text
+                        className="text-purpleAccent"
+                        style={{ fontFamily: "Poppins" }}
+                      >
                         See More
                       </Text>
                     </View>
@@ -223,7 +254,10 @@ const Discover = () => {
                       <TouchableOpacity>
                         <Ionicons name="heart" size={32} color="white" />
                       </TouchableOpacity>
-                      <Text className="text-xs font-poppins text-white">
+                      <Text
+                        className="text-xs text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
                         32
                       </Text>
                     </View>
@@ -237,7 +271,10 @@ const Discover = () => {
                           color="white"
                         />
                       </TouchableOpacity>
-                      <Text className="text-xs font-poppins text-white">
+                      <Text
+                        className="text-xs text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
                         22
                       </Text>
                     </View>
@@ -247,7 +284,12 @@ const Discover = () => {
                       <TouchableOpacity onPress={() => setModalVisible(true)}>
                         <FontAwesome name="send" size={32} color="white" />
                       </TouchableOpacity>
-                      <Text className="text-xs font-poppins text-white">8</Text>
+                      <Text
+                        className="text-xs text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        8
+                      </Text>
                     </View>
 
                     {/* Bookmark */}
@@ -255,7 +297,12 @@ const Discover = () => {
                       <TouchableOpacity>
                         <FontAwesome name="bookmark" size={32} color="white" />
                       </TouchableOpacity>
-                      <Text className="text-xs font-poppins text-white">6</Text>
+                      <Text
+                        className="text-xs text-white"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        6
+                      </Text>
                     </View>
                   </View>
 
@@ -267,21 +314,21 @@ const Discover = () => {
                           style={{ height: 40, width: 40, borderRadius: 50 }}
                           contentFit="cover"
                         />
-                        <Text className="text-xl font-medium font-poppins text-white">
+                        <Text className="text-xl font-medium text-white"   style={{ fontFamily: "Poppins" }}>
                           {post.username}
                         </Text>
                       </View>
                       <TouchableOpacity className="py-2 px-11 bg-[#ffffff1A] border-white border rounded">
-                        <Text className="font-medium font-poppins text-white">
+                        <Text className="font-medium text-white"   style={{ fontFamily: "Poppins" }}>
                           Book
                         </Text>
                       </TouchableOpacity>
                     </View>
                     <View className="flex-row gap-2 my-2">
-                      <Text className="text-white font-poppins">
+                      <Text className="text-white"   style={{ fontFamily: "Poppins" }}>
                         {post.caption}
                       </Text>
-                      <Text className="text-purpleAccent font-poppins">
+                      <Text className="text-purpleAccent"   style={{ fontFamily: "Poppins" }}>
                         See More
                       </Text>
                     </View>

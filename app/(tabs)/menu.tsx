@@ -18,7 +18,10 @@ const Menu = () => {
       <View className="px-5 mt-6">
         {/* account */}
         <View>
-          <Text className="text-2xl font-medium font-poppins text-primary mb-4">
+          <Text
+            className="text-2xl font-medium text-primary mb-4"
+            style={{ fontFamily: "Poppins" }}
+          >
             Account
           </Text>
 
@@ -34,7 +37,10 @@ const Menu = () => {
                 source="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
               />
 
-              <Text className="text-primary font-poppins text-xl font-medium">
+              <Text
+                className="text-primary text-xl font-medium"
+                style={{ fontFamily: "Poppins" }}
+              >
                 Julian Assange
               </Text>
             </View>
@@ -48,7 +54,9 @@ const Menu = () => {
             <View className="flex-row items-center gap-4">
               <Feather name="settings" size={24} color="#6200EE" />
 
-              <Text className="text-accent font-poppins">Settings</Text>
+              <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
+                Settings
+              </Text>
             </View>
 
             <View className="p-2">
@@ -59,7 +67,10 @@ const Menu = () => {
 
         {/* help and support */}
         <View className="mt-8">
-          <Text className="text-2xl font-medium font-poppins text-primary mb-4">
+          <Text
+            className="text-2xl font-medium text-primary mb-4"
+            style={{ fontFamily: "Poppins" }}
+          >
             Help & Support
           </Text>
 
@@ -67,7 +78,9 @@ const Menu = () => {
             <View className="flex-row items-center gap-4">
               <SimpleLineIcons name="question" size={24} color="#6200EE" />
 
-              <Text className="text-accent font-poppins">FAQs</Text>
+              <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
+                FAQs
+              </Text>
             </View>
 
             <View className="p-2">
@@ -83,7 +96,9 @@ const Menu = () => {
                 color="#6200EE"
               />
 
-              <Text className="text-accent font-poppins">Privacy Policy</Text>
+              <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
+                Privacy Policy
+              </Text>
             </View>
 
             <View className="p-2">
@@ -95,7 +110,7 @@ const Menu = () => {
             <View className="flex-row items-center gap-4">
               <Feather name="file-text" size={24} color="#6200EE" />
 
-              <Text className="text-accent font-poppins">
+              <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
                 Terms & Conditions
               </Text>
             </View>

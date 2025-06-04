@@ -17,7 +17,8 @@ module.exports = {
         primary: "#A1A1A1",
       },
       fontFamily: {
-        poppins: ["Poppins-Regular", "sans-serif"],
+        // poppins: ["Poppins-Regular", "sans-serif"],
+        edu: ["EduQLDHand-Regular"],
       },
       boxShadow: {
         ios: "0px 1px 2px rgba(0, 0, 0, 0.16)",

@@ -51,14 +51,19 @@ const Profile = () => {
 
       {/* profile name, stats, bio */}
       <View className="pt-16 px-5">
-        <Text className="text-primary font-medium text-2xl font-poppins">
+        <Text
+          className="text-primary font-medium text-2xl"
+          style={{ fontFamily: "Poppins" }}
+        >
           Julian Assange
         </Text>
 
         <View className="flex flex-row items-center gap-2 my-2">
           <Octicons name="people" size={20} color="#333333" />
           <View>
-            <Text className="font-poppins text-primary">15k Followers</Text>
+            <Text className="text-primary" style={{ fontFamily: "Poppins" }}>
+              15k Followers
+            </Text>
           </View>
         </View>
 
@@ -72,7 +77,10 @@ const Profile = () => {
           >
             <View className="flex-row items-center justify-center gap-2 py-2">
               <Octicons name="pencil" size={20} color="#ffffff" />
-              <Text className="text-white font-medium text-center font-poppins">
+              <Text
+                className="text-white font-medium text-center"
+                style={{ fontFamily: "Poppins" }}
+              >
                 Edit Profile
               </Text>
             </View>
@@ -81,11 +89,16 @@ const Profile = () => {
 
         {/* bio */}
         <View className="mb-8">
-          <Text className="font-poppins">
+          <Text style={{ fontFamily: "Poppins" }}>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis,
             cumque. Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Velit modi vero temporibus...
-            <Text className="text-purpleAccent">See More</Text>
+            <Text
+              className="text-purpleAccent"
+              style={{ fontFamily: "Poppins" }}
+            >
+              See More
+            </Text>
           </Text>
         </View>
 

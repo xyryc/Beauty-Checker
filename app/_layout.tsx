@@ -1,3 +1,4 @@
+import { useFonts } from "expo-font";
 import { Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
@@ -15,6 +16,15 @@ export default function RootLayout() {
       else if (isSignedIn && inAuthScreen) router.replace("/(tabs)");
     });
   }, []);
+
+  const [fontsLoaded] = useFonts({
+    "EduQLDHand-Regular": require("../assets/fonts/EduQLDHand-Regular.ttf"),
+    Poppins: require("../assets/fonts/Poppins-Regular.ttf"),
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
 
   return (
     <SafeAreaProvider>

@@ -21,13 +21,17 @@ const SavedScreen = () => {
             <Ionicons name="arrow-back" size={24} color="white" />
           </TouchableOpacity>
 
-          <Text className="absolute left-0 right-0 text-center text-xl font-poppins font-medium text-white">
+          <Text
+            className="absolute left-0 right-0 text-center text-xl font-medium text-white"
+            style={{ fontFamily: "Poppins" }}
+          >
             Saved
           </Text>
         </View>
 
         {/* Content */}
         <View
+          className="justify-center items-center"
           style={{
             padding: 16,
             borderColor: "#A1A1A1",
@@ -44,16 +48,27 @@ const SavedScreen = () => {
           />
 
           <View className="flex-1">
-            <Text className="font-poppins text-white mb-2">
+            <Text className="text-white mb-2" style={{ fontFamily: "Poppins" }}>
               The Day Straw hats will Fulfill their True Dreams!...
-              <Text className="font-poppins text-purpleAccent">See More</Text>
+              <Text
+                className="text-purpleAccent"
+                style={{ fontFamily: "Poppins" }}
+              >
+                See More
+              </Text>
             </Text>
 
             <View>
-              <Text className="text-xs text-white font-poppins">
+              <Text
+                className="text-xs text-white"
+                style={{ fontFamily: "Poppins" }}
+              >
                 Post by: Motin Mia
               </Text>
-              <Text className="text-xs text-white font-poppins">
+              <Text
+                className="text-xs text-white"
+                style={{ fontFamily: "Poppins" }}
+              >
                 Saved 3d ago
               </Text>
             </View>
@@ -62,6 +77,7 @@ const SavedScreen = () => {
 
         {/* Content */}
         <View
+          className="justify-center items-center"
           style={{
             padding: 16,
             borderColor: "#A1A1A1",
@@ -78,16 +94,27 @@ const SavedScreen = () => {
           />
 
           <View className="flex-1">
-            <Text className="font-poppins text-white mb-2">
+            <Text className="text-white mb-2" style={{ fontFamily: "Poppins" }}>
               The Day Straw hats will Fulfill their True Dreams!...
-              <Text className="font-poppins text-purpleAccent">See More</Text>
+              <Text
+                className="text-purpleAccent"
+                style={{ fontFamily: "Poppins" }}
+              >
+                See More
+              </Text>
             </Text>
 
             <View>
-              <Text className="text-xs text-white font-poppins">
+              <Text
+                className="text-xs text-white"
+                style={{ fontFamily: "Poppins" }}
+              >
                 Post by: Motin Mia
               </Text>
-              <Text className="text-xs text-white font-poppins">
+              <Text
+                className="text-xs text-white"
+                style={{ fontFamily: "Poppins" }}
+              >
                 Saved 3d ago
               </Text>
             </View>

@@ -17,7 +17,10 @@ const ShareModal: React.FC<ShareModalProps> = ({ visible, onClose }) => {
           </View>
 
           {/* Title */}
-          <Text className="text-white text-xl font-medium font-poppins mb-4">
+          <Text
+            className="text-white text-xl font-medium mb-4"
+            style={{ fontFamily: "Poppins" }}
+          >
             Share By
           </Text>
 

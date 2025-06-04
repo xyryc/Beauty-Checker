@@ -18,32 +18,43 @@ const ChangePassword = () => {
       <View className="flex-1 justify-between px-5">
         {/* Top container */}
         <View className="mt-9">
-          <Text className="text-primary text-2xl font-bold font-poppins text-center mb-10">
+          <Text
+            className="text-primary text-2xl font-bold text-center mb-10"
+            style={{ fontFamily: "Poppins" }}
+          >
             Set a new password
           </Text>
 
           {/* password */}
           <View className="mb-6">
-            <Text className="text-lg font-medium mb-2 text-primary font-poppins">
+            <Text
+              className="text-lg font-medium mb-2 text-primary"
+              style={{ fontFamily: "Poppins" }}
+            >
               Password
             </Text>
             <TextInput
-              className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+              className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
                 Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
               }`}
+              style={{ fontFamily: "Poppins" }}
               placeholder="Enter Your Password"
             />
           </View>
 
           {/* confirm password */}
           <View>
-            <Text className="text-lg font-medium mb-2 text-primary font-poppins">
+            <Text
+              className="text-lg font-medium mb-2 text-primary"
+              style={{ fontFamily: "Poppins" }}
+            >
               Confirm Password
             </Text>
             <TextInput
-              className={`font-poppins py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+              className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm text-accent bg-white ${
                 Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
               }`}
+              style={{ fontFamily: "Poppins" }}
               placeholder="Enter Your Password"
             />
           </View>
@@ -62,7 +73,10 @@ const ChangePassword = () => {
               end={{ x: 1, y: 0 }}
               className="rounded-2xl"
             >
-              <Text className="text-white py-[14.5px] text-lg font-medium text-center font-poppins">
+              <Text
+                className="text-white py-[14.5px] text-lg font-medium text-center"
+                style={{ fontFamily: "Poppins" }}
+              >
                 Change Password
               </Text>
             </LinearGradient>

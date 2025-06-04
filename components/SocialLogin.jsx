@@ -5,9 +5,12 @@ import appleIcon from "../assets/images/apple.png"
 import googleIcon from "../assets/images/google.png"
 
 const SocialLogin = () => {
+
+
+
   return (
-    <View className="mt-8">
-    <Text className="text-primary mb-6 text-lg font-medium font-poppins">
+    <View className="mt-8" >
+    <Text className="text-primary mb-6 text-lg font-medium" style={{fontFamily: 'Poppins'}}>
       Continue With
     </Text>
 
@@ -18,7 +21,7 @@ const SocialLogin = () => {
                       }`}>
         <Image source={googleIcon} style={{ width: 24, height: 24 }} />
 
-        <Text className='text-accent text-sm'>Google</Text>
+        <Text className='text-accent text-sm' style={{fontFamily: 'Poppins'}}>Google</Text>
       </View>
 
       {/* apple login */}
@@ -27,7 +30,7 @@ const SocialLogin = () => {
                       }`}>
         <Image source={appleIcon} style={{ width: 24, height: 24 }} />
 
-        <Text className='text-accent text-sm'>Apple</Text>
+        <Text className='text-accent text-sm' style={{fontFamily: 'Poppins'}}>Apple</Text>
       </View>
     </View>
   </View>
