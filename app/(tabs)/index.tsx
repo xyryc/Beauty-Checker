@@ -63,7 +63,7 @@ const Discover = () => {
       <StatusBar style="light" />
 
       {/* Top Bar */}
-      <View className="bg-customBlack px-5 py-2 mb-6 flex-row justify-between">
+      <View className="bg-customBlack px-5 py-2 my-3 flex-row justify-between">
         <TouchableOpacity onPress={() => setVisible(true)}>
           <View className="flex-row items-center gap-2">
             <FontAwesome6 name="bars" size={20} color="#FEFEFE" />
@@ -95,7 +95,7 @@ const Discover = () => {
             {/* Saved */}
             <TouchableOpacity
               className="flex-row items-center space-x-1"
-              onPress={() => router.push("/screens/saved")}
+              onPress={() => router.push("/discover/saved")}
             >
               <View className="p-2.5">
                 <FontAwesome name="bookmark" size={16} color="#111" />

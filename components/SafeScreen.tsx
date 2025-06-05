@@ -10,7 +10,12 @@ const SafeScreen = ({ children }: SafeScreenProps) => {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
+    <View
+      style={[
+        styles.container,
+        { paddingTop: insets.top, paddingBottom: insets.bottom },
+      ]}
+    >
       {children}
     </View>
   );

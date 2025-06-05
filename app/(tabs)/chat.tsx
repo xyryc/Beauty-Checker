@@ -1,5 +1,5 @@
-import searchLogo from "@/assets/images/search.png";
 import { Image } from "expo-image";
+import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
@@ -9,10 +9,10 @@ const Chat = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <SafeAreaView className="flex-1">
-      <StatusBar style="dark" />
+    <SafeAreaView className="flex-1 bg-white">
+      <StatusBar style="dark" backgroundColor="#ffffff" />
 
-      <View className="px-5 shadow-black bg-white py-3 shadow-inner">
+      <View className="px-5 bg-white py-3">
         {/* title and search */}
         <View>
           <Text
@@ -24,7 +24,10 @@ const Chat = () => {
 
           {/* search bar */}
           <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
-            <Image source={searchLogo} style={{ width: 24, height: 24 }} />
+            <Image
+              source={require("@/assets/images/search.png")}
+              style={{ width: 24, height: 24 }}
+            />
 
             {/* Purple icon */}
             <TextInput
@@ -40,77 +43,31 @@ const Chat = () => {
 
       <ScrollView className="px-5 mt-6">
         {/* chatlist */}
-        <View className="flex-row gap-3 items-center border-b border-primary pb-2 mb-4">
-          <Image
-            className="rounded-full"
-            source="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
-            style={{ width: 62, height: 62, borderRadius: 50 }}
-          />
+        <Link href="/chat/chatScreen">
+          <View className="w-full flex-row gap-3 items-center border-b border-primary pb-2 mb-4">
+            <Image
+              className="rounded-full"
+              source="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
+              style={{ width: 62, height: 62, borderRadius: 50 }}
+            />
 
-          <View>
-            <Text
-              className="text-xl font-medium mb-1"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Alex Jones
-            </Text>
+            <View>
+              <Text
+                className="text-xl font-medium mb-1"
+                style={{ fontFamily: "Poppins" }}
+              >
+                Alex Jones
+              </Text>
 
-            <Text
-              className="text-sm font-medium text-accent"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Hey, How are you doing?
-            </Text>
+              <Text
+                className="text-sm font-medium text-accent"
+                style={{ fontFamily: "Poppins" }}
+              >
+                Hey, How are you doing?
+              </Text>
+            </View>
           </View>
-        </View>
-
-        <View className="flex-row gap-3 items-center border-b border-primary pb-2 mb-4">
-          <Image
-            className="rounded-full"
-            source="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
-            style={{ width: 62, height: 62, borderRadius: 50 }}
-          />
-
-          <View>
-            <Text
-              className="text-xl font-medium mb-1"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Alex Jones
-            </Text>
-
-            <Text
-              className="text-sm font-medium text-accent"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Hey, How are you doing?
-            </Text>
-          </View>
-        </View>
-
-        <View className="flex-row gap-3 items-center border-b border-primary pb-2 mb-4">
-          <Image
-            className="rounded-full"
-            source="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
-            style={{ width: 62, height: 62, borderRadius: 50 }}
-          />
-
-          <View>
-            <Text
-              className="text-xl font-medium mb-1"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Alex Jones
-            </Text>
-
-            <Text
-              className="text-sm font-medium text-accent"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Hey, How are you doing?
-            </Text>
-          </View>
-        </View>
+        </Link>
       </ScrollView>
     </SafeAreaView>
   );
