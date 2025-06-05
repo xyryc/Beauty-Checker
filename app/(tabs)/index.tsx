@@ -266,7 +266,7 @@ const Discover = () => {
 
                     {/* Comment Processing */}
                     <View className="items-center p-2.5 mb-2.5">
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => setCommentVisible(true)}>
                         <MaterialCommunityIcons
                           name="comment-processing"
                           size={32}
