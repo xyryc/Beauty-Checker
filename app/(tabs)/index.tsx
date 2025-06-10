@@ -28,21 +28,31 @@ const POST_HEIGHT = 553;
 const posts = [
   {
     type: "video",
-    url: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    username: "anik.dev",
+    url: "https://videos.pexels.com/video-files/7815883/7815883-hd_1080_1920_25fps.mp4",
+    username: "Adam",
     userImage:
       "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     caption: "Enjoying the vibes!",
     time: "2 hours ago",
   },
+
   {
     type: "image",
     url: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
-    username: "puran.exe",
+    username: "Joseph",
     userImage:
       "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     caption: "Nature is healing 🌿",
     time: "5 hours ago",
+  },
+  {
+    type: "video",
+    url: "https://videos.pexels.com/video-files/7525920/7525920-hd_1080_1920_30fps.mp4",
+    username: "David",
+    userImage:
+      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    caption: "Enjoying the vibes!",
+    time: "3 hours ago",
   },
 ];
 

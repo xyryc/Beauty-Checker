@@ -10,7 +10,7 @@ const SavedScreen = () => {
 
   return (
     <SafeScreen>
-      <View className="h-12 bg-[#111111]" />
+      <View className="bg-[#111111]" />
       <StatusBar style="dark" />
 
       <View className="flex-1 bg-customBlack">

@@ -25,7 +25,7 @@ const ChatScreenModal: React.FC<ChatScreenModalProps> = ({
           {/* delete */}
           <TouchableOpacity className="flex-row items-center pb-4 gap-2">
             <Image
-              source={require("../assets/images/delete.svg")}
+              source={require("@/assets/images/delete.svg")}
               contentFit="cover"
               style={{ width: 24, height: 24 }}
             />

@@ -9,7 +9,7 @@ const Chat = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView className="flex-1">
       <StatusBar style="dark" />
 
       <View className="px-5 bg-white py-3">
@@ -25,7 +25,7 @@ const Chat = () => {
           {/* search bar */}
           <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
             <Image
-              source={require("@/assets/images/search.png")}
+              source={require("@/assets/images/search.svg")}
               style={{ width: 24, height: 24 }}
             />
 

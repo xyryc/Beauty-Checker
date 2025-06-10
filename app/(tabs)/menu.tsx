@@ -26,7 +26,7 @@ const Menu = () => {
           </Text>
 
           <TouchableOpacity
-            onPress={() => router.push("/menu/profile")}
+            onPress={() => router.push("/menu/ProfileScreen")}
             className="flex-row items-center justify-between py-2 mb-4"
           >
             <View className="flex-row items-center gap-2">
