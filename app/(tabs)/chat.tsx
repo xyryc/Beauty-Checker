@@ -10,7 +10,7 @@ const Chat = () => {
 
   return (
     <SafeAreaView className="flex-1 bg-white">
-      <StatusBar style="dark" backgroundColor="#ffffff" />
+      <StatusBar style="dark" />
 
       <View className="px-5 bg-white py-3">
         {/* title and search */}
@@ -43,7 +43,7 @@ const Chat = () => {
 
       <ScrollView className="px-5 mt-6">
         {/* chatlist */}
-        <Link href="/chat/chatScreen">
+        <Link href="/chat/ChatScreen">
           <View className="w-full flex-row gap-3 items-center border-b border-primary pb-2 mb-4">
             <Image
               className="rounded-full"

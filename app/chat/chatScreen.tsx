@@ -1,3 +1,4 @@
+import ChatScreenModal from "@/components/ChatScreenModal";
 import SafeScreen from "@/components/SafeScreen";
 import { Entypo, Feather, FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
@@ -15,7 +16,8 @@ import {
 } from "react-native";
 
 const ChatScreen = () => {
-  const [message, setMessage] = useState("");
+  const [visible, setVisible] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>("");
   const router = useRouter();
 
   return (
@@ -45,9 +47,15 @@ const ChatScreen = () => {
                 </Text>
               </View>
             </View>
-            <TouchableOpacity className="p-2">
+
+            <TouchableOpacity onPress={() => setVisible(true)} className="p-2">
               <Entypo name="dots-three-vertical" size={24} />
             </TouchableOpacity>
+
+            <ChatScreenModal
+              visible={visible}
+              onClose={() => setVisible(false)}
+            />
           </View>
 
           {/* Messages */}
@@ -200,7 +208,7 @@ const ChatScreen = () => {
 
           {/* Input Bar */}
           <View className="flex-row items-center gap-2 rounded-full py-2 mt-3">
-            <TouchableOpacity className="border border-l-purpleAccent p-2.5 rounded-full">
+            <TouchableOpacity className="border border-purpleAccent p-2.5 rounded-full">
               <Ionicons name="image-outline" size={24} color="#A855F7" />
             </TouchableOpacity>
 

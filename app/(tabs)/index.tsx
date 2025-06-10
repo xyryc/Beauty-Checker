@@ -95,7 +95,7 @@ const Discover = () => {
             {/* Saved */}
             <TouchableOpacity
               className="flex-row items-center space-x-1"
-              onPress={() => router.push("/discover/saved")}
+              onPress={() => router.push("/discover/SavedScreen")}
             >
               <View className="p-2.5">
                 <FontAwesome name="bookmark" size={16} color="#111" />
