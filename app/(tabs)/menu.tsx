@@ -18,10 +18,7 @@ const Menu = () => {
     <SafeScreen>
       <View className="px-5 mt-6">
         {/* profile image and name */}
-        <TouchableOpacity
-          onPress={() => router.push("/menu/ProfileScreen")}
-          className="mx-auto"
-        >
+        <TouchableOpacity className="mx-auto">
           <Image
             style={{
               width: 150,
@@ -53,7 +50,10 @@ const Menu = () => {
               Account
             </Text>
 
-            <TouchableOpacity className="flex-row items-center justify-between py-2">
+            <TouchableOpacity
+              onPress={() => router.push("/menu/ProfileScreen")}
+              className="flex-row items-center justify-between py-2"
+            >
               <View className="flex-row items-center gap-4">
                 <AntDesign name="user" size={24} color="#767676" />
 
@@ -67,7 +67,10 @@ const Menu = () => {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity className="flex-row items-center justify-between py-2">
+            <TouchableOpacity
+              onPress={() => router.push("/menu/SettingsScreen")}
+              className="flex-row items-center justify-between py-2"
+            >
               <View className="flex-row items-center gap-4">
                 <Feather name="settings" size={24} color="#767676" />
 
