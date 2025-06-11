@@ -92,7 +92,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
         <View className="w-[20%] flex-grow items-center justify-center gap-8 flex-row rounded-tl-[40px] pb-5 pt-2 h-[90px]">
           {/* Booking */}
           <TouchableOpacity
-            onPress={() => navigation.navigate("booking")}
+            onPress={() => navigation.navigate("booked")}
             className="items-center gap-1.5 flex"
           >
             <Feather
