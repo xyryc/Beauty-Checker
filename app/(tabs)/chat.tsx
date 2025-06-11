@@ -1,5 +1,5 @@
+import ChatListItem from "@/components/ChatListItem";
 import { Image } from "expo-image";
-import { Link } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
@@ -42,32 +42,12 @@ const Chat = () => {
       </View>
 
       <ScrollView className="px-5 mt-6">
-        {/* chatlist */}
-        <Link href="/chat/ChatScreen">
-          <View className="w-full flex-row gap-3 items-center border-b border-primary pb-2 mb-4">
-            <Image
-              className="rounded-full"
-              source="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
-              style={{ width: 62, height: 62, borderRadius: 50 }}
-            />
+        {/* chatlist item */}
+        <ChatListItem />
 
-            <View>
-              <Text
-                className="text-xl font-medium mb-1"
-                style={{ fontFamily: "Poppins" }}
-              >
-                Alex Jones
-              </Text>
+        <ChatListItem />
 
-              <Text
-                className="text-sm font-medium text-accent"
-                style={{ fontFamily: "Poppins" }}
-              >
-                Hey, How are you doing?
-              </Text>
-            </View>
-          </View>
-        </Link>
+        <ChatListItem />
       </ScrollView>
     </SafeAreaView>
   );
