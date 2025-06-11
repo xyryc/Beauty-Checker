@@ -12,7 +12,6 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
     <View className="relative">
       {/* Background Image */}
       <Image
-        className="bg-black"
         source={require("@/assets/images/menu.png")}
         contentFit="cover"
         style={{
