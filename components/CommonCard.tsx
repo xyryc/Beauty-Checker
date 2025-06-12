@@ -10,10 +10,7 @@ const CommonCard = ({ item }: any) => {
 
   return (
     <TouchableOpacity
-      onPress={() => {
-        router.push("/(tabs)/booked-details");
-        console.log("Pressed");
-      }}
+      onPress={() => router.push("/(tabs)/booked-details")}
       className="relative w-[48%] h-[312px] rounded-xl overflow-hidden border border-gray-200 shadow-md bg-white mb-4"
     >
       <Image

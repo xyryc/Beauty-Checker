@@ -1,7 +1,8 @@
 import SafeScreen from "@/components/SafeScreen";
-import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { useNavigation } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
@@ -13,20 +14,24 @@ import {
 } from "react-native";
 
 const BookedDetailsScreen = () => {
-  const navigation = useNavigation();
+  const router = useRouter();
 
   const images = [
     {
-      uri: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+      uri: "https://images.pexels.com/photos/3089849/pexels-photo-3089849.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-      uri: "https://images.pexels.com/photos/789822/pexels-photo-789822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      uri: "https://images.pexels.com/photos/9743963/pexels-photo-9743963.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-      uri: "https://images.pexels.com/photos/7964423/pexels-photo-7964423.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      uri: "https://images.pexels.com/photos/32498668/pexels-photo-32498668/free-photo-of-stunning-woman-applying-lip-gloss-against-red-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
     {
-      uri: "https://images.pexels.com/photos/5717512/pexels-photo-5717512.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      uri: "https://images.pexels.com/photos/8990700/pexels-photo-8990700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    },
+
+    {
+      uri: "https://images.pexels.com/photos/9218719/pexels-photo-9218719.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
   ];
 
@@ -37,24 +42,44 @@ const BookedDetailsScreen = () => {
       <StatusBar style="dark" />
 
       {/* Header */}
-      <View className="flex-row items-center px-5 py-2">
-        <TouchableOpacity onPress={() => navigation.goBack()} className="pr-4">
+      <View
+        className="flex-row items-center px-5 py-3 bg-white"
+        style={{
+          shadowColor: "#fefefe", // slightly darker for natural shadow
+          shadowOffset: {
+            width: 0,
+            height: 4, // ↓ downwards only
+          },
+          shadowOpacity: 0.1,
+          shadowRadius: 8,
+          elevation: 2, // Android fallback
+          zIndex: 1,
+        }}
+      >
+        <TouchableOpacity
+          onPress={() => router.push("/(tabs)/booked")}
+          className="z-10"
+        >
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
-        <Text className="text-xl font-medium absolute left-0 right-0 text-center">
+
+        <Text
+          className="text-xl font-medium absolute left-0 right-0 text-center"
+          style={{ fontFamily: "Poppins" }}
+        >
           Service Details
         </Text>
       </View>
 
       {/* Main Content */}
-      <View style={{ alignItems: "center" }}>
+      <View className="mt-6 mx-5 p-4 border-[0.5px] border-primary rounded-[18px]">
         <Image
           source={mainImage}
-          style={{ width: 300, height: 300, borderRadius: 10 }}
+          style={{ width: "100%", height: 250, borderRadius: 10 }}
           contentFit="cover"
         />
 
-        <ScrollView horizontal style={{ marginTop: 15 }}>
+        <ScrollView horizontal className="mt-2 mb-4">
           {images.map((img, idx) => (
             <TouchableOpacity key={idx} onPress={() => setMainImage(img)}>
               <Image
@@ -68,7 +93,94 @@ const BookedDetailsScreen = () => {
             </TouchableOpacity>
           ))}
         </ScrollView>
+
+        {/* profile name */}
+        <View className="flex-row items-center justify-between">
+          <View className="flex-row items-center gap-[10px]">
+            <Image
+              source="https://images.pexels.com/photos/2661256/pexels-photo-2661256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+              style={{ width: 48, height: 48, borderRadius: 100 }}
+            />
+
+            <View className="flex mt-1">
+              <Text
+                className="text-lg font-medium"
+                style={{ fontFamily: "Poppins" }}
+              >
+                Julian Assange
+              </Text>
+
+              <View className="flex-row items-center">
+                <Text
+                  className="text-[10px] text-primary"
+                  style={{ fontFamily: "Poppins" }}
+                >
+                  Makeup Artist
+                </Text>
+
+                <View className="flex-row items-center bg-purple-600 px-2 py-0.5 rounded-md ml-2">
+                  <Text className="text-xs font-semibold mr-1 text-white">
+                    4.6
+                  </Text>
+                  <FontAwesome name="star" size={10} color="#fff" />
+                </View>
+              </View>
+            </View>
+          </View>
+
+          <FontAwesome className="p-1" color="#612AC3" name="send" size={24} />
+        </View>
+
+        {/* service name and price */}
+        <View className="mt-4">
+          <View className="flex-row justify-between items-center">
+            <Text
+              className="text-lg font-medium text-primary"
+              style={{ fontFamily: "Poppins" }}
+            >
+              Celeste Beauty
+            </Text>
+
+            <Text
+              className="text-purplePrimary text-lg font-medium"
+              style={{ fontFamily: "Poppins" }}
+            >
+              $36.00
+            </Text>
+          </View>
+
+          {/* description */}
+          <Text className="text-accent mt-1" style={{ fontFamily: "Poppins" }}>
+            Lorem ipsum, dolor sit amet consectetur adicing elit. Asperiores,
+            rem? Lorem, ipsum....
+            <Text
+              className="text-purplePrimary"
+              style={{ fontFamily: "Poppins" }}
+            >
+              See More
+            </Text>
+          </Text>
+        </View>
       </View>
+
+      <TouchableOpacity
+        onPress={() => router.push("/(tabs)")}
+        className="rounded-2xl overflow-hidden mx-5 mt-8"
+      >
+        <LinearGradient
+          colors={["#B78AF7", "#612AC3"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          className="rounded-2xl"
+        >
+          <Text
+            className="text-white py-[14.5px] text-lg font-medium text-center"
+            style={{ fontFamily: "Poppins" }}
+          >
+            Give A Review
+          </Text>
+        </LinearGradient>
+      </TouchableOpacity>
     </SafeScreen>
   );
 };

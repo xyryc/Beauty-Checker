@@ -16,7 +16,7 @@ const SavedScreen = () => {
       <View className="flex-1 bg-customBlack">
         {/* Custom Header */}
         <View className="flex-row items-center justify-between p-4 bg-customBlack relative">
-          <TouchableOpacity onPress={() => router.back()}>
+          <TouchableOpacity onPress={() => router.back()} className="z-10">
             <Ionicons name="arrow-back" size={24} color="white" />
           </TouchableOpacity>
 
