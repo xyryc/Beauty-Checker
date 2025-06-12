@@ -23,10 +23,11 @@ const Chat = () => {
           </Text>
 
           {/* search bar */}
-          <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
+          <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2">
             <Image
-              source={require("@/assets/images/search.svg")}
+              source={require("@/assets/images/search_purple.svg")}
               style={{ width: 24, height: 24 }}
+              contentFit="cover"
             />
 
             {/* Purple icon */}

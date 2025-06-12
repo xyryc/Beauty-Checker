@@ -164,7 +164,7 @@ const BookedDetailsScreen = () => {
       </View>
 
       <TouchableOpacity
-        onPress={() => router.push("/(tabs)")}
+        onPress={() => router.push("/(tabs)/booked")}
         className="rounded-2xl overflow-hidden mx-5 mt-8"
       >
         <LinearGradient
