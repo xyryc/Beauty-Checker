@@ -1,18 +1,27 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 const CommonCard = ({ item }: any) => {
+  const router = useRouter();
+
   return (
-    <TouchableOpacity className="relative w-[48%] h-[312px] rounded-xl overflow-hidden border border-gray-200 shadow-md bg-white mb-4">
+    <TouchableOpacity
+      onPress={() => {
+        router.push("/(tabs)/booked-details");
+        console.log("Pressed");
+      }}
+      className="relative w-[48%] h-[312px] rounded-xl overflow-hidden border border-gray-200 shadow-md bg-white mb-4"
+    >
       <Image
         className="absolute"
         source={item.image}
         style={{ width: "100%", height: "100%", borderRadius: 12 }}
         contentFit="cover"
-        transition={500}
+        transition={50}
       />
 
       <LinearGradient
