@@ -1,6 +1,6 @@
 import { ServiceCategory } from "@/types/types";
 import { Image } from "expo-image";
-import { Text, View } from "react-native";
+import { Platform, Text, View } from "react-native";
 
 type CategoryCardProps = {
   category: ServiceCategory;
@@ -8,16 +8,23 @@ type CategoryCardProps = {
 
 const CategoryCard = ({ category }: CategoryCardProps) => {
   return (
-    <View className="mr-4">
-      <Image
-        className="shadow-ios bg-white "
-        style={{ width: 80, height: 80, borderRadius: 8 }}
-        source={category.img_url}
-        contentFit="cover"
-      />
+    <View className={`mr-4 `}>
+      <View
+        className={`${
+          Platform.OS === "ios"
+            ? "shadow-ios-quaternary"
+            : "shadow-android-quaternary"
+        }`}
+      >
+        <Image
+          style={{ width: 80, height: 80, borderRadius: 8 }}
+          source={category.img_url}
+          contentFit="cover"
+        />
+      </View>
 
       <Text
-        className="font-medium text-xs text-accent text-center mt-2"
+        className="font-medium text-xs text-accent text-center mt-2 shadow-none"
         style={{ fontFamily: "Poppins" }}
       >
         {category.service_name}

@@ -121,7 +121,7 @@ const Booked = () => {
         </View>
 
         {/* Tab Content */}
-        <View className="bg-[#e7e7e7] h-full">
+        <View className="h-full">
           {activeTab === "Pending" && <PendingCards />}
           {activeTab === "Completed" && <CompletedCards />}
           {activeTab === "Cancelled" && <CancelledCards />}

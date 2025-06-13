@@ -123,6 +123,7 @@ const Search = () => {
       </View>
 
       <FlatList
+        className="bg-white"
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
