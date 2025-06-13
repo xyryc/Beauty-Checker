@@ -105,7 +105,7 @@ const Booked = () => {
 
         {/* Tabs */}
         <View
-          className="flex-row justify-between mt-6 px-5 bg-white"
+          className="flex-row justify-between pt-6 px-5 bg-white"
           style={{
             shadowColor: "#111111",
             shadowOffset: {
@@ -121,7 +121,7 @@ const Booked = () => {
         </View>
 
         {/* Tab Content */}
-        <View className="pt-6 bg-[#e7e7e7] h-full">
+        <View className="bg-[#e7e7e7] h-full">
           {activeTab === "Pending" && <PendingCards />}
           {activeTab === "Completed" && <CompletedCards />}
           {activeTab === "Cancelled" && <CancelledCards />}

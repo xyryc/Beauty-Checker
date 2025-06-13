@@ -1,15 +1,15 @@
 import ChatListItem from "@/components/ChatListItem";
+import SafeScreen from "@/components/SafeScreen";
 import { Image } from "expo-image";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ScrollView, Text, TextInput, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const Chat = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeScreen>
       <StatusBar style="dark" />
 
       <View className="px-5 bg-white py-3">
@@ -42,7 +42,7 @@ const Chat = () => {
         </View>
       </View>
 
-      <ScrollView className="px-5 mt-6">
+      <ScrollView className="px-5 pt-6 h-full">
         {/* chatlist item */}
         <ChatListItem />
 
@@ -50,7 +50,7 @@ const Chat = () => {
 
         <ChatListItem />
       </ScrollView>
-    </SafeAreaView>
+    </SafeScreen>
   );
 };
 

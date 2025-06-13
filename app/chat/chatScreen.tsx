@@ -24,10 +24,9 @@ const ChatScreen = () => {
     <SafeScreen>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{ flex: 1 }}
         keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 25}
       >
-        <View className="flex-1 px-5 pt-3 pb-2 bg-white">
+        <View className="px-5 h-full">
           {/* Header */}
           <View className="flex-row justify-between items-center mb-4">
             <View className="flex-row gap-2.5 items-center">
@@ -207,7 +206,7 @@ const ChatScreen = () => {
           </ScrollView>
 
           {/* Input Bar */}
-          <View className="flex-row items-center gap-2 rounded-full py-2 mt-3">
+          <View className="flex-row items-center gap-2 rounded-full py-2">
             <TouchableOpacity className="border border-purpleAccent p-2.5 rounded-full">
               <Ionicons name="image-outline" size={24} color="#A855F7" />
             </TouchableOpacity>
