@@ -10,7 +10,7 @@ const CancelledCards = () => {
       subtitle: "Makeup Artist",
       rating: "4.5",
       image:
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+        "https://images.pexels.com/photos/8214085/pexels-photo-8214085.jpeg",
     },
     {
       id: "2",
@@ -18,23 +18,7 @@ const CancelledCards = () => {
       subtitle: "Makeup Artist",
       rating: "4.5",
       image:
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
-    },
-    {
-      id: "3",
-      title: "Service Name....",
-      subtitle: "Makeup Artist",
-      rating: "4.5",
-      image:
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
-    },
-    {
-      id: "4",
-      title: "Service Name....",
-      subtitle: "Makeup Artist",
-      rating: "4.5",
-      image:
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+        "https://images.pexels.com/photos/8990708/pexels-photo-8990708.jpeg",
     },
   ];
 

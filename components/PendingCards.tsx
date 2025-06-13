@@ -10,7 +10,7 @@ const PendingCards = () => {
       subtitle: "Makeup Artist",
       rating: "4.5",
       image:
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+        "https://images.pexels.com/photos/3762663/pexels-photo-3762663.jpeg",
     },
     {
       id: "2",
@@ -18,7 +18,7 @@ const PendingCards = () => {
       subtitle: "Makeup Artist",
       rating: "4.5",
       image:
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+        "https://images.pexels.com/photos/8990728/pexels-photo-8990728.jpeg",
     },
     {
       id: "3",
@@ -26,7 +26,15 @@ const PendingCards = () => {
       subtitle: "Makeup Artist",
       rating: "4.5",
       image:
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+        "https://images.pexels.com/photos/8214085/pexels-photo-8214085.jpeg",
+    },
+    {
+      id: "4",
+      title: "Service Name....",
+      subtitle: "Makeup Artist",
+      rating: "4.5",
+      image:
+        "https://images.pexels.com/photos/8990708/pexels-photo-8990708.jpeg",
     },
   ];
 

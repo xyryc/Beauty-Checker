@@ -38,7 +38,7 @@ const posts = [
 
   {
     type: "image",
-    url: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    url: "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
     username: "Joseph",
     userImage:
       "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",

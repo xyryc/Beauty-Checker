@@ -12,3 +12,9 @@ export type ChatScreenModalProps = {
   visible: boolean;
   onClose: () => void;
 };
+
+export type ServiceCategory = {
+  id: number;
+  service_name: string;
+  img_url: any;
+};
