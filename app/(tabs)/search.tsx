@@ -127,7 +127,7 @@ const Search = () => {
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <CommonCard location="booked-details" item={item} />
+          <CommonCard location="/search/service-details" item={item} />
         )}
         numColumns={2}
         columnWrapperStyle={{

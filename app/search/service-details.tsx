@@ -1,5 +1,5 @@
 import SafeScreen from "@/components/SafeScreen";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { FontAwesome, FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
@@ -13,7 +13,7 @@ import {
   View,
 } from "react-native";
 
-const BookedDetailsScreen = () => {
+const ServiceDetails = () => {
   const router = useRouter();
 
   const images = [
@@ -170,12 +170,15 @@ const BookedDetailsScreen = () => {
           end={{ x: 1, y: 0 }}
           className="rounded-2xl flex-row items-center justify-center"
         >
-          <Text
-            className="text-white py-[14.5px] text-lg font-medium text-center"
-            style={{ fontFamily: "Poppins" }}
-          >
-            Give A Review
-          </Text>
+          <View className="flex-row justify-center items-center gap-4">
+            <FontAwesome6 name="calendar-days" size={24} color="#fff" />
+            <Text
+              className="text-white py-[14.5px] text-lg font-medium text-center"
+              style={{ fontFamily: "Poppins" }}
+            >
+              Book Now
+            </Text>
+          </View>
         </LinearGradient>
       </TouchableOpacity>
     </SafeScreen>
@@ -195,4 +198,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BookedDetailsScreen;
+export default ServiceDetails;
