@@ -5,20 +5,24 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-const CommonCard = ({ item }: any) => {
+type CommonCardProps = {
+  item: any;
+  location: string;
+};
+
+const CommonCard = ({ item, location }: CommonCardProps) => {
   const router = useRouter();
 
   return (
     <TouchableOpacity
-      onPress={() => router.push("/(tabs)/booked-details")}
-      className="relative w-[48%] h-[312px] rounded-xl overflow-hidden border border-gray-200 shadow-md bg-white mb-4"
+      onPress={() => router.push(location as any)}
+      className="relative w-[48%] h-[312px] rounded-xl overflow-hidden border border-gray-200 bg-white mb-4"
     >
       <Image
         className="absolute"
         source={item.image}
         style={{ width: "100%", height: "100%", borderRadius: 12 }}
         contentFit="cover"
-        transition={50}
       />
 
       <LinearGradient

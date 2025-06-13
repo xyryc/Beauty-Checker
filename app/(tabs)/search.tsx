@@ -81,11 +81,10 @@ const Search = () => {
 
   return (
     <SafeScreen>
-      {/* header */}
       <StatusBar style="dark" />
 
+      {/* Header section */}
       <View className="px-5 bg-[#EFE6FD]">
-        {/* name and profile */}
         <View className="py-3 flex-row justify-between items-center">
           <Text
             className="text-xl font-medium"
@@ -93,7 +92,6 @@ const Search = () => {
           >
             Julian Assange
           </Text>
-
           <Image
             className="rounded-full"
             source="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
@@ -101,7 +99,6 @@ const Search = () => {
           />
         </View>
 
-        {/* search bar */}
         <View className="flex-row gap-4 items-center mt-4 mb-3">
           <View className="flex-1 flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
             <Image
@@ -109,8 +106,6 @@ const Search = () => {
               style={{ width: 24, height: 24 }}
               contentFit="cover"
             />
-
-            {/* Purple icon */}
             <TextInput
               placeholder="Which beauty service you look for?"
               placeholderTextColor="#888"
@@ -118,7 +113,6 @@ const Search = () => {
               style={{ fontFamily: "Poppins" }}
             />
           </View>
-
           <LinearGradient
             colors={["#B78AF7", "#612AC3"]}
             style={{ padding: 8, borderRadius: 8 }}
@@ -128,80 +122,82 @@ const Search = () => {
         </View>
       </View>
 
-      {/* main content */}
-      <ScrollView className="mt-6">
-        {/* top services */}
-        <View className="flex-row px-5 justify-between">
-          <Text
-            className="text-primary text-2xl"
-            style={{ fontFamily: "Poppins" }}
-          >
-            Top Services
-          </Text>
+      <FlatList
+        data={data}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => (
+          <CommonCard location="booked-details" item={item} />
+        )}
+        numColumns={2}
+        columnWrapperStyle={{
+          justifyContent: "space-between",
+          paddingHorizontal: 16,
+        }}
+        showsVerticalScrollIndicator={false}
+        ListHeaderComponent={
+          <>
+            {/* Top Services Section */}
+            <View className="flex-row px-5 justify-between pt-6">
+              <Text
+                className="text-primary text-2xl"
+                style={{ fontFamily: "Poppins" }}
+              >
+                Top Services
+              </Text>
+              <TouchableOpacity className="flex-row gap-1.5 items-center">
+                <Text
+                  className="text-sm font-medium text-accent"
+                  style={{ fontFamily: "Poppins" }}
+                >
+                  See All
+                </Text>
+                <FontAwesome
+                  name="angle-right"
+                  size={16}
+                  color="#767676"
+                  style={{ padding: 4 }}
+                />
+              </TouchableOpacity>
+            </View>
 
-          <TouchableOpacity className="flex-row gap-1.5 items-center">
-            <Text
-              className="text-sm font-medium text-accent"
-              style={{ fontFamily: "Poppins" }}
+            {/* Categories Scroll */}
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              className="mt-4 mb-7 pl-5 flex-row"
             >
-              See All
-            </Text>
-            <FontAwesome
-              className="p-1"
-              name="angle-right"
-              size={16}
-              color="#767676"
-            />
-          </TouchableOpacity>
-        </View>
+              {categories.map((category) => (
+                <CategoryCard key={category.id} category={category} />
+              ))}
+            </ScrollView>
 
-        {/* service category cards */}
-        <ScrollView horizontal className="mt-4 mb-7 pl-5 flex-row">
-          {categories.map((category) => (
-            <CategoryCard category={category} />
-          ))}
-        </ScrollView>
-
-        {/* top provider */}
-        <View className="flex-row px-5 justify-between">
-          <Text
-            className="text-primary text-2xl"
-            style={{ fontFamily: "Poppins" }}
-          >
-            Top Provider
-          </Text>
-
-          <TouchableOpacity className="flex-row gap-1.5 items-center">
-            <Text
-              className="text-sm font-medium text-accent"
-              style={{ fontFamily: "Poppins" }}
-            >
-              See All
-            </Text>
-            <FontAwesome
-              className="p-1"
-              name="angle-right"
-              size={16}
-              color="#767676"
-            />
-          </TouchableOpacity>
-        </View>
-
-        {/* provider cards */}
-
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <CommonCard item={item} />}
-          numColumns={2}
-          columnWrapperStyle={{
-            justifyContent: "space-between",
-            paddingHorizontal: 16,
-          }}
-          contentContainerStyle={{ paddingVertical: 20 }}
-          showsVerticalScrollIndicator={false}
-        />
-      </ScrollView>
+            {/* Top Providers Heading */}
+            <View className="flex-row px-5 justify-between pb-6">
+              <Text
+                className="text-primary text-2xl"
+                style={{ fontFamily: "Poppins" }}
+              >
+                Top Provider
+              </Text>
+              <TouchableOpacity className="flex-row gap-1.5 items-center">
+                <Text
+                  className="text-sm font-medium text-accent"
+                  style={{ fontFamily: "Poppins" }}
+                >
+                  See All
+                </Text>
+                <FontAwesome
+                  name="angle-right"
+                  size={16}
+                  color="#767676"
+                  style={{ padding: 4 }}
+                />
+              </TouchableOpacity>
+            </View>
+          </>
+        }
+        contentContainerStyle={{ paddingBottom: 20 }}
+      />
     </SafeScreen>
   );
 };

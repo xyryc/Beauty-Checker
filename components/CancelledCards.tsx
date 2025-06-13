@@ -26,7 +26,9 @@ const CancelledCards = () => {
     <FlatList
       data={data}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <CommonCard item={item} />}
+      renderItem={({ item }) => (
+        <CommonCard location="booked-details" item={item} />
+      )}
       numColumns={2}
       columnWrapperStyle={{
         justifyContent: "space-between",

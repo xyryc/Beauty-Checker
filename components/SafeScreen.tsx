@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 type SafeScreenProps = {
@@ -10,21 +10,10 @@ const SafeScreen = ({ children }: SafeScreenProps) => {
   const insets = useSafeAreaInsets();
 
   return (
-    <View
-      style={[
-        styles.container,
-        { paddingTop: insets.top, paddingBottom: insets.bottom },
-      ]}
-    >
+    <View style={[{ paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       {children}
     </View>
   );
 };
 
 export default SafeScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
