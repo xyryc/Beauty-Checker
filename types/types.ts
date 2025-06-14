@@ -22,3 +22,9 @@ export type ServiceCategory = {
 export type HeaderProps = {
   text: string;
 };
+
+export type ButtonSmallProps = {
+  icon?: React.ReactElement;
+  text: string;
+  onPress?: () => void;
+};

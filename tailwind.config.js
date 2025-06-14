@@ -11,6 +11,7 @@ module.exports = {
         link: "#137cec",
         purplePrimary: "#6200EE",
         purpleAccent: "#AB67BC",
+        purpleButton: "#9654F4",
         customBlack: "#111111",
       },
       borderColor: {

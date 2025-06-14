@@ -16,8 +16,8 @@ import {
 } from "react-native";
 
 const ServiceDetails = () => {
-  const router = useRouter();
   const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const router = useRouter();
 
   const images = [
     {
@@ -73,18 +73,26 @@ const ServiceDetails = () => {
         {/* profile name */}
         <View className="flex-row items-center justify-between">
           <View className="flex-row items-center gap-[10px]">
-            <Image
-              source="https://images.pexels.com/photos/2661256/pexels-photo-2661256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              style={{ width: 48, height: 48, borderRadius: 100 }}
-            />
+            <TouchableOpacity
+              onPress={() => router.push("/search/service-profile")}
+            >
+              <Image
+                source="https://images.pexels.com/photos/2661256/pexels-photo-2661256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                style={{ width: 48, height: 48, borderRadius: 100 }}
+              />
+            </TouchableOpacity>
 
             <View className="flex mt-1">
-              <Text
-                className="text-lg font-medium"
-                style={{ fontFamily: "Poppins" }}
+              <TouchableOpacity
+                onPress={() => router.push("/search/service-profile")}
               >
-                Julian Assange
-              </Text>
+                <Text
+                  className="text-lg font-medium"
+                  style={{ fontFamily: "Poppins" }}
+                >
+                  Julian Assange
+                </Text>
+              </TouchableOpacity>
 
               <View className="flex-row items-center">
                 <Text
