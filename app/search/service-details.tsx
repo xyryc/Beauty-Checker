@@ -1,7 +1,8 @@
 import BookingSection from "@/components/BookingSection";
+import Header from "@/components/Header";
 import SafeScreen from "@/components/SafeScreen";
 import ShareModal from "@/components/ShareModal";
-import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -43,32 +44,8 @@ const ServiceDetails = () => {
     <SafeScreen>
       <StatusBar style="dark" />
 
-      {/* Header */}
-      <View
-        className="flex-row items-center px-5 py-3 bg-white"
-        style={{
-          shadowColor: "#fefefe", // slightly darker for natural shadow
-          shadowOffset: {
-            width: 0,
-            height: 4, // ↓ downwards only
-          },
-          shadowOpacity: 0.1,
-          shadowRadius: 8,
-          elevation: 2, // Android fallback
-          zIndex: 1,
-        }}
-      >
-        <TouchableOpacity onPress={() => router.back()} className="z-10">
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </TouchableOpacity>
-
-        <Text
-          className="text-xl font-medium absolute left-0 right-0 text-center"
-          style={{ fontFamily: "Poppins" }}
-        >
-          Service Details
-        </Text>
-      </View>
+      {/* header */}
+      <Header text="Service Details" />
 
       {/* Main Content */}
       <View className="mt-6 mx-5 p-4 border-[0.5px] border-primary rounded-[18px]">

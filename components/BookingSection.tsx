@@ -2,6 +2,7 @@
 import { FontAwesome6 } from "@expo/vector-icons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 
@@ -9,6 +10,7 @@ const BookingSection = () => {
   const [bookingStarted, setBookingStarted] = useState(false);
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
+  const router = useRouter();
 
   const handleBookNow = () => {
     setBookingStarted(true);
@@ -65,7 +67,10 @@ const BookingSection = () => {
 
           {/* confirm */}
           <TouchableOpacity
-            onPress={handleBookNow}
+            onPress={() => {
+              handleConfirm();
+              router.push("/search/stripe");
+            }}
             className="rounded-2xl overflow-hidden mx-5 mt-4"
           >
             <LinearGradient

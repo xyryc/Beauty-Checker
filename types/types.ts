@@ -18,3 +18,7 @@ export type ServiceCategory = {
   service_name: string;
   img_url: any;
 };
+
+export type HeaderProps = {
+  text: string;
+};
