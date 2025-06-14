@@ -56,10 +56,7 @@ const BookedDetailsScreen = () => {
           zIndex: 1,
         }}
       >
-        <TouchableOpacity
-          onPress={() => router.push("/(tabs)/booked")}
-          className="z-10"
-        >
+        <TouchableOpacity onPress={() => router.back()} className="z-10">
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
 

@@ -1,7 +1,8 @@
+import BookingSection from "@/components/BookingSection";
 import SafeScreen from "@/components/SafeScreen";
-import { FontAwesome, FontAwesome6, Ionicons } from "@expo/vector-icons";
+import ShareModal from "@/components/ShareModal";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
@@ -15,6 +16,7 @@ import {
 
 const ServiceDetails = () => {
   const router = useRouter();
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const images = [
     {
@@ -56,10 +58,7 @@ const ServiceDetails = () => {
           zIndex: 1,
         }}
       >
-        <TouchableOpacity
-          onPress={() => router.push("/(tabs)/booked")}
-          className="z-10"
-        >
+        <TouchableOpacity onPress={() => router.back()} className="z-10">
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
 
@@ -128,7 +127,14 @@ const ServiceDetails = () => {
             </View>
           </View>
 
-          <FontAwesome className="p-1" color="#612AC3" name="send" size={24} />
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <FontAwesome
+              className="p-1"
+              color="#612AC3"
+              name="send"
+              size={24}
+            />
+          </TouchableOpacity>
         </View>
 
         {/* service name and price */}
@@ -163,24 +169,12 @@ const ServiceDetails = () => {
         </View>
       </View>
 
-      <TouchableOpacity className="rounded-2xl overflow-hidden mx-5 mt-8">
-        <LinearGradient
-          colors={["#B78AF7", "#612AC3"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          className="rounded-2xl flex-row items-center justify-center"
-        >
-          <View className="flex-row justify-center items-center gap-4">
-            <FontAwesome6 name="calendar-days" size={24} color="#fff" />
-            <Text
-              className="text-white py-[14.5px] text-lg font-medium text-center"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Book Now
-            </Text>
-          </View>
-        </LinearGradient>
-      </TouchableOpacity>
+      <BookingSection />
+
+      <ShareModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      />
     </SafeScreen>
   );
 };
@@ -194,7 +188,7 @@ const styles = StyleSheet.create({
   },
   selectedThumbnail: {
     borderWidth: 2,
-    borderColor: "#9333ea", // purple
+    borderColor: "#9333ea",
   },
 });
 

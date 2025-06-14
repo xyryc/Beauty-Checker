@@ -5,7 +5,7 @@ import { Modal, Pressable, Text, TouchableOpacity, View } from "react-native";
 
 const ShareModal: React.FC<ShareModalProps> = ({ visible, onClose }) => {
   return (
-    <Modal transparent animationType="slide" visible={visible}>
+    <Modal transparent animationType="fade" visible={visible}>
       <Pressable
         className="flex-1 justify-end bg-black/50 rounded-t-[32px]"
         onPress={onClose}
