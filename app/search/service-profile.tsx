@@ -1,3 +1,4 @@
+import AboutCard from "@/components/AboutCard";
 import ButtonSmall from "@/components/ButtonSmall";
 import ButtonSmallOutline from "@/components/ButtonSmallOutline";
 import CancelledCards from "@/components/CancelledCards";
@@ -53,6 +54,25 @@ const ServiceProfile = () => {
       </TouchableOpacity>
     );
   };
+
+  const item = [
+    {
+      id: "1",
+      title: "Service Name....",
+      subtitle: "Makeup Artist",
+      rating: "4.5",
+      image:
+        "https://images.pexels.com/photos/3762663/pexels-photo-3762663.jpeg",
+    },
+    {
+      id: "2",
+      title: "Service Name....",
+      subtitle: "Makeup Artist",
+      rating: "4.5",
+      image:
+        "https://images.pexels.com/photos/8990728/pexels-photo-8990728.jpeg",
+    },
+  ];
 
   return (
     <View style={{ marginTop: offset }} className="bg-white">
@@ -165,10 +185,16 @@ const ServiceProfile = () => {
         }
         renderItem={() => (
           <>
-            {activeTab === "Services" && <PendingCards />}
+            <View className="px-5">
+              {activeTab === "Services" && <PendingCards />}
+            </View>
+
             {activeTab === "Videos" && <CompletedCards />}
             {activeTab === "Photos" && <CancelledCards />}
-            {activeTab === "About" && <PendingCards />}
+
+            <View className="px-5 mt-2">
+              {activeTab === "About" && <AboutCard />}
+            </View>
           </>
         )}
       />
