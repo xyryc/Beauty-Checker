@@ -40,7 +40,7 @@ export interface Post {
   time: string;
 }
 
-export interface VideoPostProps {
+export interface PostProps {
   post: Post;
   player: VideoPlayer | null;
   commentVisible: boolean;

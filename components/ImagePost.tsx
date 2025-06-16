@@ -5,11 +5,10 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { VideoView } from "expo-video";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
-const VideoPost = ({
+const ImagePost = ({
   post,
   player,
   commentVisible,
@@ -19,11 +18,10 @@ const VideoPost = ({
 }: PostProps) => {
   return (
     <View>
-      <VideoView
-        style={styles.video}
-        player={player!}
+      <Image
+        source={{ uri: post.url }}
+        style={{ height: "100%", width: "100%" }}
         contentFit="cover"
-        nativeControls={false}
       />
 
       <View className="absolute bottom-28 right-0 z-10 px-5">
@@ -121,11 +119,4 @@ const VideoPost = ({
   );
 };
 
-export default VideoPost;
-
-const styles = StyleSheet.create({
-  video: {
-    width: "100%",
-    height: "100%",
-  },
-});
+export default ImagePost;
