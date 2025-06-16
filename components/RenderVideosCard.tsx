@@ -98,10 +98,7 @@ const RenderVideosCard = () => {
 
           return (
             <View key={idx} className="mx-[0.5px] my-[0.5px]">
-              <TouchableOpacity
-                className="border"
-                style={{ width: imageSize, height: imageSize }}
-              >
+              <TouchableOpacity style={{ width: imageSize, height: imageSize }}>
                 <VideoView
                   style={{ width: "100%", height: "100%" }}
                   player={player}

@@ -1,5 +1,8 @@
 import CommentModal from "@/components/CommentModal";
+import SafeScreen from "@/components/SafeScreen";
 import ShareModal from "@/components/ShareModal";
+import VideoPost from "@/components/VideoPost";
+import { Post } from "@/types/types";
 import {
   Entypo,
   FontAwesome,
@@ -10,22 +13,23 @@ import {
 import { Image } from "expo-image";
 import { useNavigation, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { useVideoPlayer, VideoView } from "expo-video";
+import { useVideoPlayer } from "expo-video";
 import React, { useState } from "react";
 import {
+  Dimensions,
   Modal,
   Pressable,
   ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-const POST_HEIGHT = 553;
+const { height } = Dimensions.get("window");
 
-const posts = [
+const POST_HEIGHT = (height * 77) / 100;
+
+const posts: Post[] = [
   {
     type: "video",
     url: "https://videos.pexels.com/video-files/7815883/7815883-hd_1080_1920_25fps.mp4",
@@ -58,8 +62,8 @@ const posts = [
 const Discover = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const navigation = useNavigation<any>();
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [commentVisible, setCommentVisible] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const router = useRouter();
 
   const handleNavigate = (screen: string) => {
@@ -68,11 +72,11 @@ const Discover = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-customBlack">
-      <StatusBar style="light" />
+    <SafeScreen>
+      <StatusBar style="dark" />
 
       {/* Top Bar */}
-      <View className="bg-customBlack px-5 py-2 my-3 flex-row justify-between">
+      <View className="bg-customBlack px-5 py-5 flex-row justify-between">
         <TouchableOpacity onPress={() => setVisible(true)}>
           <View className="flex-row items-center gap-2">
             <FontAwesome6 name="bars" size={20} color="#FEFEFE" />
@@ -146,110 +150,14 @@ const Discover = () => {
             >
               {isVideo ? (
                 <>
-                  <VideoView
-                    style={styles.video}
-                    player={player!}
-                    contentFit="cover"
-                    nativeControls={false}
+                  <VideoPost
+                    post={post}
+                    player={player}
+                    commentVisible={commentVisible}
+                    setCommentVisible={setCommentVisible}
+                    modalVisible={modalVisible}
+                    setModalVisible={setModalVisible}
                   />
-
-                  <View className="absolute bottom-24 right-0 z-10 px-5">
-                    {/* Heart */}
-                    <View className="items-center p-2.5 mb-2.5">
-                      <TouchableOpacity>
-                        <Ionicons name="heart" size={32} color="white" />
-                      </TouchableOpacity>
-                      <Text
-                        className="text-xs text-white"
-                        style={{ fontFamily: "Poppins" }}
-                      >
-                        32
-                      </Text>
-                    </View>
-
-                    {/* Comment Processing */}
-                    <View className="items-center p-2.5 mb-2.5">
-                      <TouchableOpacity onPress={() => setCommentVisible(true)}>
-                        <MaterialCommunityIcons
-                          name="comment-processing"
-                          size={32}
-                          color="white"
-                        />
-                      </TouchableOpacity>
-                      <Text
-                        className="text-xs text-white"
-                        style={{ fontFamily: "Poppins" }}
-                      >
-                        22
-                      </Text>
-                    </View>
-
-                    {/* Send */}
-                    <View className="items-center p-2.5 mb-2.5">
-                      <TouchableOpacity onPress={() => setModalVisible(true)}>
-                        <FontAwesome name="send" size={32} color="white" />
-                      </TouchableOpacity>
-                      <Text
-                        className="text-xs text-white"
-                        style={{ fontFamily: "Poppins" }}
-                      >
-                        8
-                      </Text>
-                    </View>
-
-                    {/* Bookmark */}
-                    <View className="items-center p-2.5 mb-2.5">
-                      <TouchableOpacity>
-                        <FontAwesome name="bookmark" size={32} color="white" />
-                      </TouchableOpacity>
-                      <Text
-                        className="text-xs text-white"
-                        style={{ fontFamily: "Poppins" }}
-                      >
-                        6
-                      </Text>
-                    </View>
-                  </View>
-
-                  <View className="absolute bottom-0 left-0 right-0 px-5">
-                    <View className="flex-row justify-between items-center">
-                      <View className="flex-row gap-2 items-center">
-                        <Image
-                          source={{ uri: post.userImage }}
-                          style={{ height: 40, width: 40, borderRadius: 50 }}
-                          contentFit="cover"
-                        />
-                        <Text
-                          className="text-xl font-medium text-white"
-                          style={{ fontFamily: "Poppins" }}
-                        >
-                          {post.username}
-                        </Text>
-                      </View>
-                      <TouchableOpacity className="py-2 px-11 bg-[#ffffff1A] border-white border rounded">
-                        <Text
-                          className="font-medium text-white"
-                          style={{ fontFamily: "Poppins" }}
-                        >
-                          Book
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                    <View className="flex-row gap-2 my-2">
-                      <Text
-                        className="text-white"
-                        style={{ fontFamily: "Poppins" }}
-                      >
-                        {post.caption}
-                      </Text>
-                      <Text
-                        className="text-purpleAccent"
-                        style={{ fontFamily: "Poppins" }}
-                      >
-                        See More
-                      </Text>
-                    </View>
-                  </View>
                 </>
               ) : (
                 <>
@@ -372,15 +280,8 @@ const Discover = () => {
         visible={commentVisible}
         onClose={() => setCommentVisible(false)}
       />
-    </SafeAreaView>
+    </SafeScreen>
   );
 };
 
 export default Discover;
-
-const styles = StyleSheet.create({
-  video: {
-    width: "100%",
-    height: "100%",
-  },
-});

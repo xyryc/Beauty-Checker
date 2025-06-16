@@ -85,7 +85,6 @@ const RenderPhotosCard = () => {
 
   // Get screen width for responsiveness
   const { width } = Dimensions.get("window");
-
   const imageSize = width / 3 - 1;
 
   return (
