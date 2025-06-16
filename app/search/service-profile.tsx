@@ -1,9 +1,9 @@
 import AboutCard from "@/components/AboutCard";
 import ButtonSmall from "@/components/ButtonSmall";
 import ButtonSmallOutline from "@/components/ButtonSmallOutline";
-import CompletedCards from "@/components/CompletedCards";
 import PendingCards from "@/components/PendingCards";
-import PhotoCards from "@/components/PhotoCards";
+import RenderPhotosCard from "@/components/RenderPhotosCard";
+import RenderVideosCard from "@/components/RenderVideosCard";
 import { Feather, FontAwesome, Octicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import React, { useState } from "react";
@@ -189,8 +189,8 @@ const ServiceProfile = () => {
               {activeTab === "Services" && <PendingCards />}
             </View>
 
-            {activeTab === "Videos" && <CompletedCards />}
-            {activeTab === "Photos" && <PhotoCards />}
+            {activeTab === "Videos" && <RenderVideosCard />}
+            {activeTab === "Photos" && <RenderPhotosCard />}
 
             <View className="px-5 mt-2">
               {activeTab === "About" && <AboutCard />}

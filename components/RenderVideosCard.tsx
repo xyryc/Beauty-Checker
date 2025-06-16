@@ -1,9 +1,8 @@
-import { MaterialIcons } from "@expo/vector-icons";
-import { Image } from "expo-image";
+import { useVideoPlayer, VideoView } from "expo-video";
 import React from "react";
 import { Dimensions, TouchableOpacity, View } from "react-native";
 
-const PhotoCards = () => {
+const RenderVideosCard = () => {
   const posts = [
     {
       type: "video",
@@ -85,32 +84,36 @@ const PhotoCards = () => {
 
   // Get screen width for responsiveness
   const { width } = Dimensions.get("window");
-
   const imageSize = width / 3 - 1;
 
   return (
     <View className="flex-row flex-wrap items-center justify-start">
       {posts
-        .filter((post) => post.type === "image") // Only render image posts
-        .map((post, idx) => (
-          <View key={idx} className="relative mx-[0.5px] my-[0.5px]">
-            <TouchableOpacity style={{ width: imageSize, height: imageSize }}>
-              <Image
-                source={{ uri: post.url }}
+        .filter((post) => post.type === "video") // Only render video posts
+        .map((post, idx) => {
+          const player = useVideoPlayer(post.url, (player) => {
+            player.loop = true;
+            player.pause();
+          });
+
+          return (
+            <View key={idx} className="mx-[0.5px] my-[0.5px]">
+              <TouchableOpacity
+                className="border"
                 style={{ width: imageSize, height: imageSize }}
-                className="rounded-lg"
-                contentFit="cover"
-              />
-              {post.userImage.length > 1 && (
-                <View className="absolute top-2 right-2  bg-opacity-50 rounded-full p-2">
-                  <MaterialIcons name="photo-library" size={18} color="white" />
-                </View>
-              )}
-            </TouchableOpacity>
-          </View>
-        ))}
+              >
+                <VideoView
+                  style={{ width: "100%", height: "100%" }}
+                  player={player}
+                  contentFit="cover"
+                  nativeControls={false}
+                />
+              </TouchableOpacity>
+            </View>
+          );
+        })}
     </View>
   );
 };
 
-export default PhotoCards;
+export default RenderVideosCard;
