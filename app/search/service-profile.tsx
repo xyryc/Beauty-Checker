@@ -1,9 +1,9 @@
 import AboutCard from "@/components/AboutCard";
 import ButtonSmall from "@/components/ButtonSmall";
 import ButtonSmallOutline from "@/components/ButtonSmallOutline";
-import CancelledCards from "@/components/CancelledCards";
 import CompletedCards from "@/components/CompletedCards";
 import PendingCards from "@/components/PendingCards";
+import PhotoCards from "@/components/PhotoCards";
 import { Feather, FontAwesome, Octicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import React, { useState } from "react";
@@ -184,18 +184,18 @@ const ServiceProfile = () => {
           </>
         }
         renderItem={() => (
-          <>
+          <View className="h-screen-safe">
             <View className="px-5">
               {activeTab === "Services" && <PendingCards />}
             </View>
 
             {activeTab === "Videos" && <CompletedCards />}
-            {activeTab === "Photos" && <CancelledCards />}
+            {activeTab === "Photos" && <PhotoCards />}
 
             <View className="px-5 mt-2">
               {activeTab === "About" && <AboutCard />}
             </View>
-          </>
+          </View>
         )}
       />
     </View>

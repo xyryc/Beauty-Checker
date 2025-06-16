@@ -35,7 +35,6 @@ const posts = [
     caption: "Enjoying the vibes!",
     time: "2 hours ago",
   },
-
   {
     type: "image",
     url: "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
