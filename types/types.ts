@@ -32,8 +32,9 @@ export type ButtonSmallProps = {
 };
 
 export interface Post {
+  id: number;
   type: "video" | "image";
-  url: string;
+  url: string[];
   username: string;
   userImage: string;
   caption: string;
@@ -42,9 +43,9 @@ export interface Post {
 
 export interface PostProps {
   post: Post;
-  player: VideoPlayer | null;
-  commentVisible: boolean;
+  player?: VideoPlayer | null;
+  commentVisible?: boolean;
   setCommentVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  modalVisible: boolean;
+  modalVisible?: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }

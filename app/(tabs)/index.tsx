@@ -1,8 +1,8 @@
-import ImagePost from "@/app/discover/ImagePost";
-import VideoPost from "@/app/discover/VideoPost";
 import CommentModal from "@/components/CommentModal";
+import ImagePost from "@/components/ImagePost";
 import SafeScreen from "@/components/SafeScreen";
 import ShareModal from "@/components/ShareModal";
+import VideoPost from "@/components/VideoPost";
 import { Post } from "@/types/types";
 import { Entypo, FontAwesome, FontAwesome6 } from "@expo/vector-icons";
 import { useNavigation, useRouter } from "expo-router";
@@ -25,8 +25,11 @@ const POST_HEIGHT = (height * 77) / 100;
 
 const posts: Post[] = [
   {
+    id: 1,
     type: "video",
-    url: "https://videos.pexels.com/video-files/7815883/7815883-hd_1080_1920_25fps.mp4",
+    url: [
+      "https://videos.pexels.com/video-files/7815883/7815883-hd_1080_1920_25fps.mp4",
+    ],
     username: "Adam",
     userImage:
       "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
@@ -34,8 +37,12 @@ const posts: Post[] = [
     time: "2 hours ago",
   },
   {
+    id: 2,
     type: "image",
-    url: "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
+    url: [
+      "https://images.pexels.com/photos/2533038/pexels-photo-2533038.jpeg",
+      "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
+    ],
     username: "Joseph",
     userImage:
       "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
@@ -43,13 +50,59 @@ const posts: Post[] = [
     time: "5 hours ago",
   },
   {
+    id: 3,
     type: "video",
-    url: "https://videos.pexels.com/video-files/7525920/7525920-hd_1080_1920_30fps.mp4",
+    url: [
+      "https://videos.pexels.com/video-files/7525920/7525920-hd_1080_1920_30fps.mp4",
+    ],
     username: "David",
     userImage:
       "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     caption: "Enjoying the vibes!",
     time: "3 hours ago",
+  },
+  {
+    id: 4,
+    type: "image",
+    url: [
+      "https://images.pexels.com/photos/5125328/pexels-photo-5125328.jpeg",
+      "https://images.pexels.com/photos/9218727/pexels-photo-9218727.jpeg",
+    ],
+    username: "Joseph",
+    userImage:
+      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    caption: "Nature is healing 🌿",
+    time: "5 hours ago",
+  },
+  {
+    id: 5,
+    type: "image",
+    url: ["https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg"],
+    username: "Joseph",
+    userImage:
+      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    caption: "Nature is healing 🌿",
+    time: "5 hours ago",
+  },
+  {
+    id: 6,
+    type: "image",
+    url: ["https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg"],
+    username: "Joseph",
+    userImage:
+      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    caption: "Nature is healing 🌿",
+    time: "5 hours ago",
+  },
+  {
+    id: 7,
+    type: "image",
+    url: ["https://images.pexels.com/photos/9218727/pexels-photo-9218727.jpeg"],
+    username: "Joseph",
+    userImage:
+      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    caption: "Nature is healing 🌿",
+    time: "5 hours ago",
   },
 ];
 
@@ -131,9 +184,9 @@ const Discover = () => {
         {posts.map((post, index) => {
           const isVideo = post.type === "video";
           const player = isVideo
-            ? useVideoPlayer(post.url, (player) => {
+            ? useVideoPlayer(post.url[0], (player) => {
                 player.loop = true;
-                player.play();
+                player.pause();
               })
             : null;
 
@@ -157,10 +210,7 @@ const Discover = () => {
                 <>
                   <ImagePost
                     post={post}
-                    player={player}
-                    commentVisible={commentVisible}
                     setCommentVisible={setCommentVisible}
-                    modalVisible={modalVisible}
                     setModalVisible={setModalVisible}
                   />
                 </>

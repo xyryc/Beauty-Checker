@@ -197,7 +197,7 @@ const Search = () => {
             </View>
           </>
         }
-        contentContainerStyle={{ paddingBottom: 20 }}
+        contentContainerStyle={{ paddingBottom: 120 }}
       />
     </SafeScreen>
   );

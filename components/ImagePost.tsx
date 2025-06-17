@@ -5,25 +5,67 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Dimensions,
+  FlatList,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-const ImagePost = ({
-  post,
-  player,
-  commentVisible,
-  setCommentVisible,
-  modalVisible,
-  setModalVisible,
-}: PostProps) => {
+// Get screen width for responsive layout
+const { width, height } = Dimensions.get("window");
+
+const ImagePost = ({ post, setCommentVisible, setModalVisible }: PostProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Handle image swipe change
+  const handleImageSwipe = (index: number) => {
+    setCurrentIndex(index);
+  };
+
+  // Render each image in the FlatList
+  const renderItem = ({ item }: { item: string }) => (
+    <Image
+      source={{ uri: item }}
+      style={{ width: width, height: height }}
+      contentFit="cover"
+    />
+  );
+
   return (
-    <View>
-      <Image
-        source={{ uri: post.url }}
-        style={{ height: "100%", width: "100%" }}
-        contentFit="cover"
+    <View className="relative">
+      {/* FlatList for swiping images */}
+      <FlatList
+        data={post.url} // `post.url` should be an array of image URLs
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index.toString()}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onMomentumScrollEnd={(e) => {
+          const contentOffsetX = e.nativeEvent.contentOffset.x;
+          const currentPage = Math.floor(
+            contentOffsetX / e.nativeEvent.layoutMeasurement.width
+          );
+          setCurrentIndex(currentPage);
+        }}
       />
 
+      {/* Image Indicator */}
+      <View className="absolute bottom-5 left-0 right-0 flex-row justify-center items-center">
+        {post.url.map((_, index) => (
+          <View
+            key={index}
+            className={`w-2 h-2 mx-1 rounded-full ${
+              currentIndex === index ? "bg-white" : "bg-gray-500"
+            }`}
+          />
+        ))}
+      </View>
+
+      {/* Post Action Bar */}
       <View className="absolute bottom-28 right-0 z-10 px-5">
         {/* Heart */}
         <View className="items-center p-2.5 mb-2.5">

@@ -7,6 +7,7 @@ import { Dimensions, TouchableOpacity, View } from "react-native";
 const RenderPhotosCard = () => {
   const posts = [
     {
+      id: 1,
       type: "video",
       url: "https://videos.pexels.com/video-files/7815883/7815883-hd_1080_1920_25fps.mp4",
       username: "Adam",
@@ -16,6 +17,7 @@ const RenderPhotosCard = () => {
       time: "2 hours ago",
     },
     {
+      id: 2,
       type: "image",
       url: "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
       username: "Joseph",
@@ -28,6 +30,7 @@ const RenderPhotosCard = () => {
       time: "5 hours ago",
     },
     {
+      id: 3,
       type: "video",
       url: "https://videos.pexels.com/video-files/7525920/7525920-hd_1080_1920_30fps.mp4",
       username: "David",
@@ -37,6 +40,7 @@ const RenderPhotosCard = () => {
       time: "3 hours ago",
     },
     {
+      id: 4,
       type: "image",
       url: "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
       username: "Joseph",
@@ -47,18 +51,7 @@ const RenderPhotosCard = () => {
       time: "5 hours ago",
     },
     {
-      type: "image",
-      url: "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
-      username: "Joseph",
-      userImage: [
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
-        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
-      ],
-      caption: "Nature is healing 🌿",
-      time: "5 hours ago",
-    },
-    {
+      id: 5,
       type: "image",
       url: "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
       username: "Joseph",
@@ -71,6 +64,20 @@ const RenderPhotosCard = () => {
       time: "5 hours ago",
     },
     {
+      id: 6,
+      type: "image",
+      url: "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
+      username: "Joseph",
+      userImage: [
+        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+        "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+      ],
+      caption: "Nature is healing 🌿",
+      time: "5 hours ago",
+    },
+    {
+      id: 7,
       type: "image",
       url: "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg",
       username: "Joseph",
@@ -89,17 +96,17 @@ const RenderPhotosCard = () => {
   const imageSize = width / 3 - 1;
 
   const router = useRouter();
+  console.log(router);
 
   return (
-    <TouchableOpacity
-      onPress={() => router.push("/discover/ImagePost")}
-      className="flex-row flex-wrap items-center justify-start"
-    >
+    <TouchableOpacity className="flex-row flex-wrap items-center justify-start">
       {posts
         .filter((post) => post.type === "image") // Only render image posts
-        .map((post, idx) => (
-          <View key={idx} className="relative mx-[0.5px] my-[0.5px]">
-            <TouchableOpacity style={{ width: imageSize, height: imageSize }}>
+        .map((post) => (
+          <View key={post.id} className="relative mx-[0.5px] my-[0.5px]">
+            <TouchableOpacity
+              onPress={() => router.push(`/search/photo-post/${post.id}`)}
+            >
               <Image
                 source={{ uri: post.url }}
                 style={{ width: imageSize, height: imageSize }}
