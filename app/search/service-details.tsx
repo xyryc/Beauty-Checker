@@ -1,5 +1,6 @@
 import BookingSection from "@/components/BookingSection";
 import Header from "@/components/Header";
+import ImageSlider from "@/components/ImageSlider";
 import SafeScreen from "@/components/SafeScreen";
 import ShareModal from "@/components/ShareModal";
 import { FontAwesome } from "@expo/vector-icons";
@@ -7,38 +8,11 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const ServiceDetails = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const router = useRouter();
-
-  const images = [
-    {
-      uri: "https://images.pexels.com/photos/3089849/pexels-photo-3089849.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      uri: "https://images.pexels.com/photos/9743963/pexels-photo-9743963.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      uri: "https://images.pexels.com/photos/32498668/pexels-photo-32498668/free-photo-of-stunning-woman-applying-lip-gloss-against-red-background.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      uri: "https://images.pexels.com/photos/8990700/pexels-photo-8990700.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-
-    {
-      uri: "https://images.pexels.com/photos/9218719/pexels-photo-9218719.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-  ];
-
-  const [mainImage, setMainImage] = useState(images[0]);
 
   return (
     <SafeScreen>
@@ -49,26 +23,8 @@ const ServiceDetails = () => {
 
       {/* Main Content */}
       <View className="mt-6 mx-5 p-4 border-[0.5px] border-primary rounded-[18px]">
-        <Image
-          source={mainImage}
-          style={{ width: "100%", height: 250, borderRadius: 10 }}
-          contentFit="cover"
-        />
-
-        <ScrollView horizontal className="mt-2 mb-4">
-          {images.map((img, idx) => (
-            <TouchableOpacity key={idx} onPress={() => setMainImage(img)}>
-              <Image
-                source={img}
-                style={[
-                  styles.thumbnail,
-                  mainImage.uri === img.uri && styles.selectedThumbnail,
-                ]}
-                contentFit="cover"
-              />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
+        {/* image slider */}
+        <ImageSlider />
 
         {/* profile name */}
         <View className="flex-row items-center justify-between">
@@ -102,12 +58,15 @@ const ServiceDetails = () => {
                   Makeup Artist
                 </Text>
 
-                <View className="flex-row items-center bg-purple-600 px-2 py-0.5 rounded-md ml-2">
+                <TouchableOpacity
+                  onPress={() => router.push("/search/service-review/[id]")}
+                  className="flex-row items-center bg-purple-600 px-2 py-0.5 rounded-md ml-2"
+                >
                   <Text className="text-xs font-semibold mr-1 text-white">
                     4.6
                   </Text>
                   <FontAwesome name="star" size={10} color="#fff" />
-                </View>
+                </TouchableOpacity>
               </View>
             </View>
           </View>
@@ -163,18 +122,5 @@ const ServiceDetails = () => {
     </SafeScreen>
   );
 };
-
-const styles = StyleSheet.create({
-  thumbnail: {
-    width: 60,
-    height: 60,
-    borderRadius: 6,
-    marginHorizontal: 5,
-  },
-  selectedThumbnail: {
-    borderWidth: 2,
-    borderColor: "#9333ea",
-  },
-});
 
 export default ServiceDetails;
