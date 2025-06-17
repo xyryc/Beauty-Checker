@@ -1,5 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React from "react";
 import { Dimensions, TouchableOpacity, View } from "react-native";
 
@@ -87,8 +88,13 @@ const RenderPhotosCard = () => {
   const { width } = Dimensions.get("window");
   const imageSize = width / 3 - 1;
 
+  const router = useRouter();
+
   return (
-    <View className="flex-row flex-wrap items-center justify-start">
+    <TouchableOpacity
+      onPress={() => router.push("/discover/ImagePost")}
+      className="flex-row flex-wrap items-center justify-start"
+    >
       {posts
         .filter((post) => post.type === "image") // Only render image posts
         .map((post, idx) => (
@@ -108,7 +114,7 @@ const RenderPhotosCard = () => {
             </TouchableOpacity>
           </View>
         ))}
-    </View>
+    </TouchableOpacity>
   );
 };
 

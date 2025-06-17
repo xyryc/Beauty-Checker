@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { useVideoPlayer, VideoView } from "expo-video";
 import React from "react";
 import { Dimensions, TouchableOpacity, View } from "react-native";
@@ -85,9 +86,13 @@ const RenderVideosCard = () => {
   // Get screen width for responsiveness
   const { width } = Dimensions.get("window");
   const imageSize = width / 3 - 1;
+  const router = useRouter();
 
   return (
-    <View className="flex-row flex-wrap items-center justify-start">
+    <TouchableOpacity
+      onPress={() => router.push("/discover/VideoPost")}
+      className="flex-row flex-wrap items-center justify-start"
+    >
       {posts
         .filter((post) => post.type === "video") // Only render video posts
         .map((post, idx) => {
@@ -109,7 +114,7 @@ const RenderVideosCard = () => {
             </View>
           );
         })}
-    </View>
+    </TouchableOpacity>
   );
 };
 
