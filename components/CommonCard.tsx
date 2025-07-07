@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
+import ButtonSecondary from "./ButtonSecondary";
 
 type CommonCardProps = {
   item: any;
@@ -24,7 +25,6 @@ const CommonCard = ({ item, location }: CommonCardProps) => {
     >
       <View className="m-1">
         <Image
-          className="absolute"
           source={item.image}
           style={{ width: "100%", height: "100%", borderRadius: 6 }}
           contentFit="cover"
@@ -43,42 +43,56 @@ const CommonCard = ({ item, location }: CommonCardProps) => {
           className="p-1 overflow-hidden"
         />
 
-        <View className="absolute bottom-0 p-3">
-          <Text className="text-white text-base font-semibold">
-            {item.title}
+        <View className="absolute bottom-0 p-3 w-full">
+          <Text
+            className="text-white font-medium"
+            style={{ fontFamily: "Poppins" }}
+          >
+            {item.company}
           </Text>
 
-          <View className="flex-row items-center mt-1">
-            <Text className="text-white text-xs">{item.subtitle}</Text>
+          <View className="flex-row items-center justify-between mt-1">
+            <Text
+              className="text-white font-medium"
+              style={{ fontFamily: "Poppins" }}
+            >
+              ${item.price}.00
+            </Text>
 
             <View className="flex-row items-center bg-purple-600 px-2 py-0.5 rounded-md ml-2">
-              <Text className="text-white text-xs font-semibold mr-1">
+              <Text
+                className="text-white text-xs mr-1"
+                style={{ fontFamily: "Poppins" }}
+              >
                 {item.rating}
               </Text>
               <FontAwesome name="star" size={10} color="#fff" />
+              <Text
+                className="text-white text-xs ml-1"
+                style={{ fontFamily: "Poppins" }}
+              >
+                (99)
+              </Text>
             </View>
           </View>
 
           <Text
-            className="text-white text-xs mt-2"
+            className="text-[#FEFEFE] text-xs mt-1"
             style={{ fontFamily: "Poppins" }}
           >
-            Lorem Ipsum Is Simply Dummy Text Of...
-            <Text
-              className="text-purple-300 text-[10px]"
-              style={{ fontFamily: "Poppins" }}
-            >
-              {" "}
-              See More
-            </Text>
+            {item.service_name}
           </Text>
-        </View>
 
-        <View className="absolute top-0 right-0 p-3 z-10">
-          <Image
-            source={require("@/assets/images/bookmark.svg")}
-            style={{ width: 20, height: 24 }}
-          />
+          <Text
+            className="text-[#FEFEFE] text-xs mt-1"
+            style={{ fontFamily: "Poppins" }}
+          >
+            {item.city}
+          </Text>
+
+          <View className="mt-2 ">
+            <ButtonSecondary />
+          </View>
         </View>
       </View>
     </TouchableOpacity>

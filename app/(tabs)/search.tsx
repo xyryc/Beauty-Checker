@@ -47,35 +47,47 @@ const Search = () => {
   const data = [
     {
       id: "1",
-      title: "Service Name....",
+      company: "Beautiful Heaven",
+      service_name: "Makeup Basic",
       subtitle: "Makeup Artist",
       rating: "4.5",
       image:
         "https://images.pexels.com/photos/3762663/pexels-photo-3762663.jpeg",
+      price: 50,
+      city: "Dublin, Ireland",
     },
     {
       id: "2",
-      title: "Service Name....",
+      company: "Beautiful Heaven",
+      service_name: "Makeup Basic",
       subtitle: "Makeup Artist",
       rating: "4.5",
       image:
         "https://images.pexels.com/photos/8990728/pexels-photo-8990728.jpeg",
+      price: 50,
+      city: "Dublin, Ireland",
     },
     {
       id: "3",
-      title: "Service Name....",
+      company: "Beautiful Heaven",
+      service_name: "Makeup Basic",
       subtitle: "Makeup Artist",
       rating: "4.5",
       image:
         "https://images.pexels.com/photos/8214085/pexels-photo-8214085.jpeg",
+      price: 50,
+      city: "Dublin, Ireland",
     },
     {
       id: "4",
-      title: "Service Name....",
+      company: "Beautiful Heaven",
+      service_name: "Makeup Basic",
       subtitle: "Makeup Artist",
       rating: "4.5",
       image:
         "https://images.pexels.com/photos/8990708/pexels-photo-8990708.jpeg",
+      price: 50,
+      city: "Dublin, Ireland",
     },
   ];
 
