@@ -5,7 +5,7 @@ import { Text, View } from "react-native";
 
 const ChatListItem = () => {
   return (
-    <Link href="/chat/ChatScreen" className="mb-4">
+    <Link href="/chat/chatScreen" className="mb-4">
       <View className="w-full flex-row gap-3 items-center border-b border-primary pb-2 mb-4">
         <Image
           className="rounded-full"
