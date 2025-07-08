@@ -4,8 +4,10 @@ import ButtonSmallOutline from "@/components/ButtonSmallOutline";
 import PendingCards from "@/components/PendingCards";
 import RenderPhotosCard from "@/components/RenderPhotosCard";
 import RenderVideosCard from "@/components/RenderVideosCard";
-import { Feather, FontAwesome, Octicons } from "@expo/vector-icons";
+import { AntDesign, Feather, FontAwesome, Octicons } from "@expo/vector-icons";
+import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -83,22 +85,38 @@ const ServiceProfile = () => {
         ListHeaderComponent={
           <>
             {/* profile section top */}
-            <View style={{ position: "relative", width: "100%", height: 248 }}>
+            <View className="relative w-full h-[248px]">
+              {/* Image Component */}
               <Image
-                style={{ width: "100%", height: 260 }}
-                source="https://thevendry.com/cdn-cgi/image/height=1920,width=1920,fit=contain,metadata=none/https%3A%2F%2Fs3.amazonaws.com%2Fuploads.thevendry.co%2F23052%2F1661181797046_HairMakeUp_08_IMG_7090_1_2_A.jpg"
+                style={{ width: "100%", height: "100%", position: "absolute" }}
+                source={{
+                  uri: "https://thevendry.com/cdn-cgi/image/height=1920,width=1920,fit=contain,metadata=none/https%3A%2F%2Fs3.amazonaws.com%2Fuploads.thevendry.co%2F23052%2F1661181797046_HairMakeUp_08_IMG_7090_1_2_A.jpg",
+                }}
                 placeholder={{ blurhash }}
                 contentFit="cover"
-                transition={1000}
+                transition={100}
               />
 
+              {/* Linear Gradient */}
+              <LinearGradient
+                colors={["#000000", "rgba(0, 0, 0, 0)"]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 0, y: 1 }}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                }}
+              />
               <Image
                 style={{
                   width: 150,
                   height: 150,
                   position: "absolute",
                   bottom: -45,
-                  left: "25%",
+                  left: "22%",
                   transform: [{ translateX: -75 }],
                   borderRadius: 75,
                   borderWidth: 2,
@@ -107,8 +125,12 @@ const ServiceProfile = () => {
                 source="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
                 placeholder={{ blurhash }}
                 contentFit="cover"
-                transition={1000}
+                transition={100}
               />
+
+              <View className="absolute top-0 left-0 z-20">
+                <AntDesign name="arrowleft" size={24} color="white" />
+              </View>
             </View>
 
             {/* profile name, stats, bio */}
@@ -120,6 +142,7 @@ const ServiceProfile = () => {
                 Julian Assange
               </Text>
 
+              {/* stats */}
               <View className="flex flex-row items-center gap-2 my-2">
                 <Octicons name="people" size={20} color="#333333" />
                 <View>
@@ -138,7 +161,8 @@ const ServiceProfile = () => {
                 </View>
               </View>
 
-              <View className="mb-2 flex-row flex-wrap justify-between gap-4">
+              {/* buttons */}
+              <View className="mb-2 mr-5 flex-row justify-between gap-4 items-center">
                 <ButtonSmall
                   icon={<Feather name="user-plus" color="#fff" size={20} />}
                   text="Follow"
@@ -150,7 +174,7 @@ const ServiceProfile = () => {
               </View>
 
               {/* bio */}
-              <View className="mb-8">
+              <View>
                 <Text style={{ fontFamily: "Poppins" }}>
                   Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                   Omnis, cumque. Lorem ipsum dolor sit amet consectetur
@@ -163,11 +187,25 @@ const ServiceProfile = () => {
                   </Text>
                 </Text>
               </View>
+
+              {/* location */}
+              <View className="mt-4 mb-8 flex-row items-center gap-2.5">
+                <View className="h-8 w-8 rounded-full bg-[#F7F0F8] justify-center items-center">
+                  <SimpleLineIcons
+                    name="location-pin"
+                    size={18}
+                    color="black"
+                  />
+                </View>
+                <Text className="text-primary">
+                  3517 W. Gray St. Utica, Pennsylvania 57867
+                </Text>
+              </View>
             </View>
 
             {/* tab switches */}
             <View
-              className="flex-row justify-between pt-6 bg-white px-5"
+              className="flex-row justify-between bg-white px-5"
               style={{
                 shadowColor: "#111111",
                 shadowOffset: {

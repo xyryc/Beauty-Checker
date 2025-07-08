@@ -6,7 +6,7 @@ const ButtonSmallOutline = ({ icon, text, onPress }: ButtonSmallProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="rounded-[4px] overflow-hidden w-[48%] border border-purpleButton"
+      className="rounded-[4px] overflow-hidden w-1/2 border border-purpleButton"
     >
       <View className="flex-row items-center justify-center gap-2.5 py-2">
         {/* <LinearGradient

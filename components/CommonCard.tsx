@@ -23,6 +23,13 @@ const CommonCard = ({ item, location }: CommonCardProps) => {
           : "shadow-android-tertiary"
       }`}
     >
+      <View className="absolute top-0 right-0 p-3 z-10">
+        <Image
+          source={require("@/assets/images/bookmark.svg")}
+          style={{ width: 20, height: 24 }}
+        />
+      </View>
+
       <View className="m-1">
         <Image
           source={item.image}

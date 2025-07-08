@@ -7,7 +7,7 @@ const ButtonSmall = ({ icon, text, onPress }: ButtonSmallProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="rounded-[4px] overflow-hidden w-[48%]"
+      className="rounded-[4px] overflow-hidden w-1/2"
     >
       <LinearGradient
         colors={["#B78AF7", "#612AC3"]}
