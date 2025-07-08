@@ -62,10 +62,13 @@ const ServiceDetails = () => {
                   onPress={() => router.push("/search/service-review/[id]")}
                   className="flex-row items-center bg-purple-600 px-2 py-0.5 rounded-md ml-2"
                 >
-                  <Text className="text-xs font-semibold mr-1 text-white">
-                    4.6
-                  </Text>
+                  <Text className="text-[10px] mr-1 text-white">4.6</Text>
+
                   <FontAwesome name="star" size={10} color="#fff" />
+
+                  <Text className="text-[10px] ml-1 text-white">
+                    (450 People)
+                  </Text>
                 </TouchableOpacity>
               </View>
             </View>
