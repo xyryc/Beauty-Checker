@@ -1,13 +1,14 @@
 import CategoryCard from "@/components/CategoryCard";
 import CommonCard from "@/components/CommonCard";
 import SafeScreen from "@/components/SafeScreen";
-import { FontAwesome, FontAwesome6 } from "@expo/vector-icons";
+import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import {
   FlatList,
+  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -95,43 +96,84 @@ const Search = () => {
     <SafeScreen>
       <StatusBar style="dark" />
 
-      {/* Header section */}
-      <View className="px-5 bg-[#EFE6FD]">
-        <View className="py-3 flex-row justify-between items-center">
-          <Text
-            className="text-xl font-medium"
-            style={{ fontFamily: "Poppins" }}
-          >
-            Julian Assange
-          </Text>
-          <Image
-            className="rounded-full"
-            source="https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg"
-            style={{ width: 40, height: 40, borderRadius: 50 }}
-          />
-        </View>
+      {/* header */}
+      <View
+        style={{
+          borderRadius: 16,
+          overflow: "hidden",
+        }}
+      >
+        <LinearGradient
+          className="overflow-hidden"
+          colors={["rgba(97, 42, 195, 0.5)", "#FFFFFF"]}
+          start={{ x: 0, y: 1 }}
+          end={{ x: 0, y: 0 }}
+          style={{
+            borderBottomLeftRadius: 16,
+            borderBottomRightRadius: 16,
+          }}
+        >
+          <View className="px-5">
+            {/* name and profile */}
+            <View className="py-3 flex-row justify-between items-center">
+              <Text
+                className="text-xl font-medium"
+                style={{ fontFamily: "Poppins" }}
+              >
+                Julian Assange
+              </Text>
+              <Image
+                className="rounded-full"
+                source={{
+                  uri: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+                }}
+                style={{ width: 40, height: 40, borderRadius: 50 }}
+              />
+            </View>
 
-        <View className="flex-row gap-4 items-center mt-4 mb-3">
-          <View className="flex-1 flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
-            <Image
-              source={require("@/assets/images/search_purple.svg")}
-              style={{ width: 24, height: 24 }}
-              contentFit="cover"
-            />
-            <TextInput
-              placeholder="Which beauty service you look for?"
-              placeholderTextColor="#888"
-              className="ml-2 flex-1 text-base text-accent"
-              style={{ fontFamily: "Poppins" }}
-            />
+            {/* search bar */}
+            <View className="flex-row gap-4 items-center mt-4 mb-3">
+              <LinearGradient
+                colors={["#B78AF7", "#612AC3"]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={{ padding: 10, borderRadius: 8 }}
+              >
+                <MaterialIcons
+                  name="keyboard-arrow-down"
+                  size={20}
+                  color="white"
+                />
+              </LinearGradient>
+
+              <View
+                className="flex-1 flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white"
+                style={{
+                  height: 40, // Explicit height for consistent size
+                }}
+              >
+                <Image
+                  source={require("@/assets/images/search_purple.svg")}
+                  style={{ width: 20, height: 20 }}
+                  contentFit="cover"
+                />
+                <TextInput
+                  placeholder="Which beauty service you look for?"
+                  placeholderTextColor="#888"
+                  className="ml-2 flex-1 text-base text-accent"
+                  style={{
+                    height: 40,
+                    paddingVertical: 0,
+                    marginTop: Platform.OS === "ios" ? 0 : 16,
+                    textAlignVertical: "center",
+                    textAlign: "center",
+                    fontFamily: "Poppins",
+                  }}
+                />
+              </View>
+            </View>
           </View>
-          <LinearGradient
-            colors={["#B78AF7", "#612AC3"]}
-            style={{ padding: 8, borderRadius: 8 }}
-          >
-            <FontAwesome6 name="sliders" size={24} color="#fff" />
-          </LinearGradient>
-        </View>
+        </LinearGradient>
       </View>
 
       <FlatList
@@ -177,7 +219,7 @@ const Search = () => {
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
-              className="mt-4 mb-7 pl-5 flex-row"
+              className="pt-4 mb-7 pl-5 flex-row"
             >
               {categories.map((category) => (
                 <CategoryCard key={category.id} category={category} />
