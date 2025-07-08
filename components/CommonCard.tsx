@@ -1,3 +1,4 @@
+import { CommonCardProps } from "@/types/types";
 import { FontAwesome } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -5,11 +6,6 @@ import { useRouter } from "expo-router";
 import React from "react";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 import ButtonSecondary from "./ButtonSecondary";
-
-type CommonCardProps = {
-  item: any;
-  location: string;
-};
 
 const CommonCard = ({ item, location }: CommonCardProps) => {
   const router = useRouter();

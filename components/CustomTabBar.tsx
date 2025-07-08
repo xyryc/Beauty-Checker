@@ -82,8 +82,8 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
           >
             <Image
               source={require("@/assets/images/search.svg")}
-              contentFit="cover"
               style={{ width: 24, height: 24 }}
+              contentFit="cover"
             />
           </LinearGradient>
         </TouchableOpacity>

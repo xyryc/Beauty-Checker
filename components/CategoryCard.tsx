@@ -8,12 +8,12 @@ type CategoryCardProps = {
 
 const CategoryCard = ({ category }: CategoryCardProps) => {
   return (
-    <View className={`mr-4`}>
+    <View className="mr-4 bg-white">
       <View
         className={`${
           Platform.OS === "ios"
             ? "shadow-ios-quaternary"
-            : "shadow-md shadow-black"
+            : "shadow-2xl bg-white rounded-lg"
         }`}
       >
         <Image

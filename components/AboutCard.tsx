@@ -4,9 +4,9 @@ import { Text, View } from "react-native";
 
 const AboutCard = () => {
   return (
-    <View>
+    <View className="px-5">
       {/* item */}
-      <View className="flex-row gap-2.5 items-center py-1 mb-1">
+      <View className="flex-row gap-2.5 items-center py-1 mb-1 ">
         <Image
           source={require("@/assets/images/time.svg")}
           style={{ width: 32, height: 32 }}

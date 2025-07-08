@@ -223,16 +223,12 @@ const ServiceProfile = () => {
         }
         renderItem={() => (
           <View className="h-screen-safe">
-            <View className="px-5">
-              {activeTab === "Services" && <PendingCards />}
-            </View>
+            {activeTab === "Services" && <PendingCards />}
 
             {activeTab === "Videos" && <RenderVideosCard />}
             {activeTab === "Photos" && <RenderPhotosCard />}
 
-            <View className="px-5 mt-2">
-              {activeTab === "About" && <AboutCard />}
-            </View>
+            {activeTab === "About" && <AboutCard />}
           </View>
         )}
       />

@@ -49,3 +49,8 @@ export interface PostProps {
   modalVisible?: boolean;
   setModalVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export type CommonCardProps = {
+  item: any;
+  location: string;
+};

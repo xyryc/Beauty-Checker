@@ -1,15 +1,13 @@
-import CategoryCard from "@/components/CategoryCard";
 import CommonCard from "@/components/CommonCard";
 import SafeScreen from "@/components/SafeScreen";
+import TopServices from "@/components/TopServices";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useState } from "react";
 import {
   FlatList,
-  Platform,
-  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -17,33 +15,7 @@ import {
 } from "react-native";
 
 const Search = () => {
-  const categories = [
-    {
-      id: 1,
-      service_name: "Hair Saloon",
-      img_url: require("@/assets/images/hair_saloon.png"),
-    },
-    {
-      id: 2,
-      service_name: "Nail Saloon",
-      img_url: require("@/assets/images/nail_saloon.png"),
-    },
-    {
-      id: 3,
-      service_name: "Makeup Artist",
-      img_url: require("@/assets/images/makeup.png"),
-    },
-    {
-      id: 4,
-      service_name: "Skincare",
-      img_url: require("@/assets/images/skincare.png"),
-    },
-    {
-      id: 5,
-      service_name: "Skincare",
-      img_url: require("@/assets/images/skincare.png"),
-    },
-  ];
+  const [toggle, setToggle] = useState(true);
 
   const data = [
     {
@@ -132,45 +104,130 @@ const Search = () => {
             </View>
 
             {/* search bar */}
-            <View className="flex-row gap-4 items-center mt-4 mb-3">
-              <LinearGradient
-                colors={["#B78AF7", "#612AC3"]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={{ padding: 10, borderRadius: 8 }}
-              >
-                <MaterialIcons
-                  name="keyboard-arrow-down"
-                  size={20}
-                  color="white"
-                />
-              </LinearGradient>
-
-              <View
-                className="flex-1 flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white"
-                style={{
-                  height: 40, // Explicit height for consistent size
+            <View className="flex-row justify-start gap-4 mt-4 mb-3">
+              {/* toggle button */}
+              <TouchableOpacity
+                onPress={() => {
+                  setToggle(!toggle);
                 }}
               >
-                <Image
-                  source={require("@/assets/images/search_purple.svg")}
-                  style={{ width: 20, height: 20 }}
-                  contentFit="cover"
-                />
-                <TextInput
-                  placeholder="Which beauty service you look for?"
-                  placeholderTextColor="#888"
-                  className="ml-2 flex-1 text-base text-accent"
-                  style={{
-                    height: 40,
-                    paddingVertical: 0,
-                    marginTop: Platform.OS === "ios" ? 0 : 16,
-                    textAlignVertical: "center",
-                    textAlign: "center",
-                    fontFamily: "Poppins",
-                  }}
-                />
-              </View>
+                {toggle ? (
+                  <LinearGradient
+                    colors={["#B78AF7", "#612AC3"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    style={{ padding: 10, borderRadius: 8 }}
+                  >
+                    <MaterialIcons
+                      name="keyboard-arrow-down"
+                      size={20}
+                      color="white"
+                    />
+                  </LinearGradient>
+                ) : (
+                  <LinearGradient
+                    colors={["#B78AF7", "#612AC3"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                    style={{ padding: 10, borderRadius: 8 }}
+                  >
+                    <MaterialIcons
+                      name="keyboard-arrow-up"
+                      size={20}
+                      color="white"
+                    />
+                  </LinearGradient>
+                )}
+              </TouchableOpacity>
+
+              {/* search bar */}
+              {toggle ? (
+                <View className="w-[85%] flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
+                  <Image
+                    source={require("@/assets/images/search_purple.svg")}
+                    style={{ width: 20, height: 20 }}
+                    contentFit="cover"
+                  />
+
+                  <TextInput
+                    placeholder="Which beauty service you look for?"
+                    placeholderTextColor="#888"
+                    className="ml-2 text-base text-accent"
+                    style={{
+                      paddingVertical: 0,
+                      marginTop: 0,
+                      textAlignVertical: "center",
+                      fontFamily: "Poppins",
+                    }}
+                  />
+                </View>
+              ) : (
+                <View className="w-[85%]">
+                  {/* searchbar */}
+                  <View className="flex-row w-full items-center border border-gray-300 rounded-lg px-4 py-2 mb-2 bg-white">
+                    <Image
+                      source={require("@/assets/images/search_purple.svg")}
+                      style={{ width: 20, height: 20 }}
+                      contentFit="cover"
+                    />
+
+                    <TextInput
+                      placeholder="What are you looking for?"
+                      placeholderTextColor="#888"
+                      className="ml-2 text-base text-accent"
+                      style={{
+                        paddingVertical: 0,
+                        marginTop: 0,
+                        textAlignVertical: "center",
+                        fontFamily: "Poppins",
+                      }}
+                    />
+                  </View>
+
+                  {/* price search */}
+                  <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 mb-2 bg-white">
+                    <Image
+                      source={require("@/assets/images/search_purple.svg")}
+                      style={{ width: 20, height: 20 }}
+                      contentFit="cover"
+                    />
+
+                    <TextInput
+                      keyboardType="numeric"
+                      placeholder="Price"
+                      placeholderTextColor="#888"
+                      className="ml-2 text-base text-accent"
+                      style={{
+                        paddingVertical: 0,
+                        marginTop: 0,
+                        textAlignVertical: "center",
+                        fontFamily: "Poppins",
+                      }}
+                    />
+                  </View>
+
+                  {/* location search */}
+                  <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
+                    <Image
+                      source={require("@/assets/images/search_purple.svg")}
+                      style={{ width: 20, height: 20 }}
+                      contentFit="cover"
+                    />
+
+                    <TextInput
+                      placeholder="Location"
+                      placeholderTextColor="#888"
+                      className="ml-2 text-base text-accent"
+                      style={{
+                        paddingVertical: 0,
+                        marginTop: 0,
+                        textAlignVertical: "center",
+                        fontFamily: "Poppins",
+                      }}
+                    />
+                  </View>
+                </View>
+              )}
             </View>
           </View>
         </LinearGradient>
@@ -191,40 +248,10 @@ const Search = () => {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <>
-            {/* Top Services Section */}
-            <View className="flex-row px-5 justify-between pt-6">
-              <Text
-                className="text-primary text-2xl"
-                style={{ fontFamily: "Poppins" }}
-              >
-                Top Services
-              </Text>
-              <TouchableOpacity className="flex-row gap-1.5 items-center">
-                <Text
-                  className="text-sm font-medium text-accent"
-                  style={{ fontFamily: "Poppins" }}
-                >
-                  See All
-                </Text>
-                <FontAwesome
-                  name="angle-right"
-                  size={16}
-                  color="#767676"
-                  style={{ padding: 4 }}
-                />
-              </TouchableOpacity>
+            {/* top services */}
+            <View className="mt-6 px-5">
+              <TopServices />
             </View>
-
-            {/* Categories Scroll */}
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              className="pt-4 mb-7 pl-5 flex-row"
-            >
-              {categories.map((category) => (
-                <CategoryCard key={category.id} category={category} />
-              ))}
-            </ScrollView>
 
             {/* Top Providers Heading */}
             <View className="flex-row px-5 justify-between pb-6">
