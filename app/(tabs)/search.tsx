@@ -150,9 +150,8 @@ const Search = () => {
                   />
 
                   <TextInput
-                    placeholder="Which beauty service you look for?"
-                    placeholderTextColor="#888"
-                    className="ml-2 text-base text-accent"
+                    placeholder="Which beauty service do you need?"
+                    className="ml-2 text-accent placeholder:text-sm sm:placeholder:text-sm"
                     style={{
                       paddingVertical: 0,
                       marginTop: 0,
@@ -174,7 +173,7 @@ const Search = () => {
                     <TextInput
                       placeholder="What are you looking for?"
                       placeholderTextColor="#888"
-                      className="ml-2 text-base text-accent"
+                      className="ml-2 text-accent"
                       style={{
                         paddingVertical: 0,
                         marginTop: 0,
@@ -187,7 +186,7 @@ const Search = () => {
                   {/* price search */}
                   <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 mb-2 bg-white">
                     <Image
-                      source={require("@/assets/images/search_purple.svg")}
+                      source={require("@/assets/images/price.svg")}
                       style={{ width: 20, height: 20 }}
                       contentFit="cover"
                     />
@@ -209,7 +208,7 @@ const Search = () => {
                   {/* location search */}
                   <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
                     <Image
-                      source={require("@/assets/images/search_purple.svg")}
+                      source={require("@/assets/images/location2.svg")}
                       style={{ width: 20, height: 20 }}
                       contentFit="cover"
                     />
@@ -248,34 +247,42 @@ const Search = () => {
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <>
-            {/* top services */}
-            <View className="mt-6 px-5">
-              <TopServices />
-            </View>
+            {toggle ? (
+              <View>
+                {/* top services */}
+                <View className="mt-6 px-5">
+                  <TopServices />
+                </View>
 
-            {/* Top Providers Heading */}
-            <View className="flex-row px-5 justify-between pb-6">
-              <Text
-                className="text-primary text-2xl"
-                style={{ fontFamily: "Poppins" }}
-              >
-                Top Provider
-              </Text>
-              <TouchableOpacity className="flex-row gap-1.5 items-center">
-                <Text
-                  className="text-sm font-medium text-accent"
-                  style={{ fontFamily: "Poppins" }}
-                >
-                  See All
-                </Text>
-                <FontAwesome
-                  name="angle-right"
-                  size={16}
-                  color="#767676"
-                  style={{ padding: 4 }}
-                />
-              </TouchableOpacity>
-            </View>
+                {/* Top Providers Heading */}
+                <View className="flex-row px-5 justify-between pb-6">
+                  <Text
+                    className="text-primary text-2xl"
+                    style={{ fontFamily: "Poppins" }}
+                  >
+                    Top Provider
+                  </Text>
+                  <TouchableOpacity className="flex-row gap-1.5 items-center">
+                    <Text
+                      className="text-sm font-medium text-accent"
+                      style={{ fontFamily: "Poppins" }}
+                    >
+                      See All
+                    </Text>
+                    <FontAwesome
+                      name="angle-right"
+                      size={16}
+                      color="#767676"
+                      style={{ padding: 4 }}
+                    />
+                  </TouchableOpacity>
+                </View>
+              </View>
+            ) : (
+              <View>
+                <Text>Hello world</Text>
+              </View>
+            )}
           </>
         }
         contentContainerStyle={{ paddingBottom: 120 }}
