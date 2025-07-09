@@ -14,7 +14,7 @@ const TabLayout = () => {
       <Tabs.Screen name="chat" />
       <Tabs.Screen name="search" />
       <Tabs.Screen name="booked" />
-      <Tabs.Screen name="menu" />
+      <Tabs.Screen name="profile" />
     </Tabs>
   );
 };

@@ -111,7 +111,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
 
           {/* Profile */}
           <TouchableOpacity
-            onPress={() => navigation.navigate("menu")}
+            onPress={() => navigation.navigate("profile")}
             className="items-center gap-1.5 flex"
           >
             <Ionicons

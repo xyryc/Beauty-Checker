@@ -279,9 +279,7 @@ const Search = () => {
                 </View>
               </View>
             ) : (
-              <View>
-                <Text>Hello world</Text>
-              </View>
+              <View></View>
             )}
           </>
         }
