@@ -46,6 +46,7 @@ const ProfileHeader = () => {
           <ButtonSmall
             icon={<FontAwesome5 name="edit" size={16} color="white" />}
             text="Edit Profile"
+            onPress={() => router.push("/profile/EditProfileScreen")}
           />
 
           <ButtonSmallOutline
