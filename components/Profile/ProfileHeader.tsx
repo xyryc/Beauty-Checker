@@ -1,11 +1,14 @@
 import { Feather, FontAwesome5, FontAwesome6 } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import ButtonSmall from "../ButtonSmall";
 import ButtonSmallOutline from "../ButtonSmallOutline";
 
 const ProfileHeader = () => {
+  const router = useRouter();
+
   return (
     <View className="mb-8">
       <View className="py-6 flex-row justify-between">
@@ -22,7 +25,12 @@ const ProfileHeader = () => {
           contentFit="cover"
         />
 
-        <FontAwesome6 name="bars" size={24} color="black" />
+        {/* drawer button */}
+        <TouchableOpacity
+          onPress={() => router.push("/profile/SettingsScreen")}
+        >
+          <FontAwesome6 name="bars" size={24} color="black" />
+        </TouchableOpacity>
       </View>
 
       <View>

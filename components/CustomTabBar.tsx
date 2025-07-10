@@ -24,7 +24,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
       />
 
       {/* Tab Bar Content */}
-      <View className="flex-row justify-center bg-transparent">
+      <View className="flex-row justify-center">
         <View className="w-[20%] flex-grow items-center justify-center gap-8 flex-row rounded-tr-[40px] pb-5 pt-2 h-[90px]">
           {/* Discover */}
           <TouchableOpacity

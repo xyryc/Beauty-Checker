@@ -9,12 +9,12 @@ const Header = ({ text }: HeaderProps) => {
 
   return (
     <View
-      className="flex-row items-center px-5 py-3 bg-white"
+      className="flex-row items-center px-5 py-3 bg-[#fefefe]"
       style={{
-        shadowColor: "#fefefe", // slightly darker for natural shadow
+        shadowColor: "3F4F4426", // slightly darker for natural shadow
         shadowOffset: {
           width: 0,
-          height: 4, // ↓ downwards only
+          height: 10, // ↓ downwards only
         },
         shadowOpacity: 0.1,
         shadowRadius: 8,
