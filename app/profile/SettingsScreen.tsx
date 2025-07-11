@@ -12,9 +12,12 @@ const SettingsScreen = () => {
 
       {/* menu */}
       <ScrollView className="px-5 pt-6 h-screen-safe">
-        {/* settings */}
+        {/* notification */}
         <View className="border-b-[0.5px] border-primary py-4">
-          <TouchableOpacity className="flex-row justify-between items-center">
+          <TouchableOpacity
+            onPress={() => router.push("/profile/NotificationScreen")}
+            className="flex-row justify-between items-center"
+          >
             <View className="flex-row items-center gap-4">
               <Octicons name="gear" size={24} color="#612AC3" />
               <Text className="text-accent">Notification</Text>
