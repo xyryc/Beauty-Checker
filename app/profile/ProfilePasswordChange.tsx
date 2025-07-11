@@ -66,7 +66,7 @@ const ProfilePasswordChange = () => {
               Confirm Password
             </Text>
             <TextInput
-              className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm placeholder:text-accent ${
+              className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm placeholder:text-primary ${
                 Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
               }`}
               style={{ fontFamily: "Poppins" }}

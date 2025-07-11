@@ -33,7 +33,7 @@ const ForgotPassword = () => {
         <View className="mb-16">
           <ButtonPrimary
             text="Send The Code"
-            onPress={() => router.push("/(auth)/verify-code")}
+            onPress={() => router.replace("/(auth)/verify-code")}
           />
         </View>
       </View>

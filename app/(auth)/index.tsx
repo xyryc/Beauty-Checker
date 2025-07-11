@@ -94,13 +94,16 @@ const SignIn = () => {
               </View>
 
               <View className="mt-5">
-                <Link
-                  href="/forgot-password"
-                  className="text-link text-center"
-                  style={{ fontFamily: "Poppins" }}
+                <TouchableOpacity
+                  onPress={() => router.push("/(auth)/forgot-password")}
                 >
-                  Forgot Password?
-                </Link>
+                  <Text
+                    className="text-link text-center"
+                    style={{ fontFamily: "Poppins" }}
+                  >
+                    Forgot Password?
+                  </Text>
+                </TouchableOpacity>
               </View>
             </View>
 

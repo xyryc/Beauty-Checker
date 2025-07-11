@@ -1,11 +1,8 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { useRouter } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
 const ButtonPrimary = ({ text, onPress }: any) => {
-  const router = useRouter();
-
   return (
     <TouchableOpacity onPress={onPress} className="rounded-2xl overflow-hidden">
       <LinearGradient
