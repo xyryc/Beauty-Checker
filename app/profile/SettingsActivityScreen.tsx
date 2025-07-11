@@ -14,7 +14,7 @@ const SettingsActivityScreen = () => {
       <Header text="Settings & Activity" />
 
       {/* menu */}
-      <ScrollView className="px-5 pt-6 h-screen">
+      <ScrollView className="px-5 pt-6 h-screen-safe">
         {/* account center */}
         <View className=" border-b-[0.5px] border-primary py-2">
           <TouchableOpacity className="flex-row justify-between items-center">

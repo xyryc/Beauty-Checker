@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import SafeScreen from "@/components/SafeScreen";
 import { Feather, Octicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 
@@ -10,7 +11,7 @@ const SettingsScreen = () => {
       <Header text="Settings" />
 
       {/* menu */}
-      <ScrollView className="px-5 pt-6 h-screen">
+      <ScrollView className="px-5 pt-6 h-screen-safe">
         {/* settings */}
         <View className="border-b-[0.5px] border-primary py-4">
           <TouchableOpacity className="flex-row justify-between items-center">
@@ -25,7 +26,10 @@ const SettingsScreen = () => {
 
         {/* password */}
         <View className="border-b-[0.5px] border-primary py-4">
-          <TouchableOpacity className="flex-row justify-between items-center">
+          <TouchableOpacity
+            onPress={() => router.push("/profile/ProfilePasswordChange")}
+            className="flex-row justify-between items-center"
+          >
             <View className="flex-row items-center gap-4">
               <Octicons name="shield-check" size={24} color="#612AC3" />
               <Text className="text-accent">Password</Text>
