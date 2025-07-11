@@ -78,7 +78,10 @@ const SettingsActivityScreen = () => {
 
         {/* terms & conditions */}
         <View className=" border-b-[0.5px] border-primary py-4">
-          <TouchableOpacity className="flex-row justify-between items-center">
+          <TouchableOpacity
+            onPress={() => router.push("/profile/TermsConditionsScreen")}
+            className="flex-row justify-between items-center"
+          >
             <View className="flex-row items-center gap-4">
               <MaterialCommunityIcons
                 name="file-sign"

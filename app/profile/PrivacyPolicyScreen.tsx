@@ -9,14 +9,6 @@ const PrivacyPolicyScreen = () => {
       <Header text="Privacy Policy" />
 
       <ScrollView className="px-5 py-6 mb-20">
-        <Text className="text-2xl font-medium text-center text-primary mb-4">
-          Privacy Policy for Beauty Checker
-        </Text>
-
-        <Text className="text-sm text-center text-accent mb-8">
-          Effective Date: July 11, 2025
-        </Text>
-
         <Text className="text-lg font-semibold text-primary mb-2">
           Introduction
         </Text>
@@ -103,8 +95,8 @@ const PrivacyPolicyScreen = () => {
           Contact Us
         </Text>
         <Text className="text-base text-accent mb-4">
-          If you have any questions, please contact us at [Insert Email
-          Address].
+          If you have any questions, please contact us at
+          contact@beautychecker.com.
         </Text>
       </ScrollView>
     </SafeScreen>
