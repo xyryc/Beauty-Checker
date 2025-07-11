@@ -59,7 +59,10 @@ const SettingsActivityScreen = () => {
 
         {/* privacy policy */}
         <View className=" border-b-[0.5px] border-primary py-4">
-          <TouchableOpacity className="flex-row justify-between items-center">
+          <TouchableOpacity
+            onPress={() => router.push("/profile/PrivacyPolicyScreen")}
+            className="flex-row justify-between items-center"
+          >
             <View className="flex-row items-center gap-4">
               <MaterialCommunityIcons
                 name="file-document-multiple-outline"

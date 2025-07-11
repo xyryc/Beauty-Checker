@@ -1,12 +1,15 @@
 import Header from "@/components/Header";
 import SafeScreen from "@/components/SafeScreen";
-import { Feather, Octicons } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, Switch, Text, TouchableOpacity, View } from "react-native";
 
 const NotificationScreen = () => {
   const router = useRouter();
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
   return (
     <SafeScreen>
@@ -18,10 +21,15 @@ const NotificationScreen = () => {
           <TouchableOpacity className="flex-row justify-between items-center">
             <View className="flex-row items-center gap-4">
               <Octicons name="gear" size={24} color="#612AC3" />
-              <Text className="text-accent">Notification</Text>
+              <Text className="text-accent">All Notification</Text>
             </View>
 
-            <Feather name="chevron-right" size={24} color="#767676" />
+            <Switch
+              trackColor={{ false: "#767577", true: "#CEB0FA" }}
+              thumbColor={isEnabled ? "#612AC3" : "#f4f3f4"}
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
           </TouchableOpacity>
         </View>
       </ScrollView>
