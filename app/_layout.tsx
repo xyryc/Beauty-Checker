@@ -1,30 +1,32 @@
 import { useFonts } from "expo-font";
-import { Stack, useRouter } from "expo-router";
+import { SplashScreen, Stack, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "./globals.css";
 
+SplashScreen.preventAutoHideAsync();
+
 export default function RootLayout() {
   const router = useRouter();
-  const isSignedIn = false;
-  const inAuthScreen = false;
+  const isSignedIn = true;
+  const inAuthScreen = true;
+
+  const [fontsLoaded] = useFonts({
+    Poppins: require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins-SemiBold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+  });
 
   useEffect(() => {
+    if (fontsLoaded) SplashScreen.hideAsync();
+
     requestAnimationFrame(() => {
       if (!isSignedIn && !inAuthScreen) router.replace("/(auth)");
       else if (isSignedIn && inAuthScreen) router.replace("/(tabs)");
     });
-  }, []);
-
-  const [fontsLoaded] = useFonts({
-    "EduQLDHand-Regular": require("../assets/fonts/EduQLDHand-Regular.ttf"),
-    Poppins: require("../assets/fonts/Poppins-Regular.ttf"),
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
+  }, [fontsLoaded]);
 
   return (
     <SafeAreaProvider>

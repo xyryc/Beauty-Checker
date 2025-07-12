@@ -36,8 +36,8 @@ const ProfileHeader = () => {
       <View>
         {/* name */}
         <Text
-          className="text-2xl font-medium"
-          style={{ fontFamily: "Poppins" }}
+          className="text-2xl"
+          style={{ fontFamily: "Poppins", fontWeight: 700 }}
         >
           Fatima Zahra
         </Text>
