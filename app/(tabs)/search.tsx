@@ -4,6 +4,7 @@ import TopServices from "@/components/TopServices";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
@@ -16,6 +17,7 @@ import {
 
 const Search = () => {
   const [toggle, setToggle] = useState(true);
+  const router = useRouter();
 
   const data = [
     {
@@ -237,7 +239,10 @@ const Search = () => {
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
-          <CommonCard location="/search/service-details" item={item} />
+          <CommonCard
+            onPress={() => router.push("/search/ServiceDetailsScreen")}
+            item={item}
+          />
         )}
         numColumns={2}
         columnWrapperStyle={{

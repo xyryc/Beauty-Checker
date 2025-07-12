@@ -52,5 +52,5 @@ export interface PostProps {
 
 export type CommonCardProps = {
   item: any;
-  location: string;
+  onPress: () => void;
 };

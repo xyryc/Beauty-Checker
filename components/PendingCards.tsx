@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import React from "react";
 import { FlatList } from "react-native";
 import CommonCard from "./CommonCard";
@@ -49,13 +50,17 @@ const PendingCards = () => {
       city: "Dublin, Ireland",
     },
   ];
+  const router = useRouter();
 
   return (
     <FlatList
       data={data}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <CommonCard location="booked-details" item={item} />
+        <CommonCard
+          onPress={() => router.push("/booked/BookedDetailsScreen")}
+          item={item}
+        />
       )}
       numColumns={2}
       columnWrapperStyle={{

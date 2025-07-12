@@ -10,7 +10,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-const ServiceDetails = () => {
+const ServiceDetailsScreen = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const router = useRouter();
 
@@ -30,7 +30,7 @@ const ServiceDetails = () => {
         <View className="flex-row items-center justify-between">
           <View className="flex-row items-center gap-[10px]">
             <TouchableOpacity
-              onPress={() => router.push("/search/service-profile")}
+              onPress={() => router.push("/search/ServiceProfileScreen")}
             >
               <Image
                 source="https://images.pexels.com/photos/2661256/pexels-photo-2661256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -40,7 +40,7 @@ const ServiceDetails = () => {
 
             <View className="flex mt-1">
               <TouchableOpacity
-                onPress={() => router.push("/search/service-profile")}
+                onPress={() => router.push("/search/ServiceProfileScreen")}
               >
                 <Text
                   className="text-lg font-medium"
@@ -126,4 +126,4 @@ const ServiceDetails = () => {
   );
 };
 
-export default ServiceDetails;
+export default ServiceDetailsScreen;

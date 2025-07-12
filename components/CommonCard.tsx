@@ -2,17 +2,14 @@ import { CommonCardProps } from "@/types/types";
 import { FontAwesome } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
-import { useRouter } from "expo-router";
 import React from "react";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 import ButtonSecondary from "./ButtonSecondary";
 
-const CommonCard = ({ item, location }: CommonCardProps) => {
-  const router = useRouter();
-
+const CommonCard = ({ item, onPress }: CommonCardProps) => {
   return (
     <TouchableOpacity
-      onPress={() => router.push(location as any)}
+      onPress={onPress}
       className={`relative w-[48%] h-[312px] border border-primary rounded-lg mb-4 bg-white ${
         Platform.OS === "ios"
           ? "shadow-ios-tertiary"

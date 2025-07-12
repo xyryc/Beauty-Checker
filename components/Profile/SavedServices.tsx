@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import React from "react";
 import { FlatList, Text, View } from "react-native";
 import CommonCard from "../CommonCard";
@@ -50,6 +51,8 @@ const SavedServices = () => {
     },
   ];
 
+  const router = useRouter();
+
   return (
     <View>
       <Text
@@ -64,7 +67,10 @@ const SavedServices = () => {
         data={data}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <CommonCard location="booked-details" item={item} />
+          <CommonCard
+            onPress={() => router.push("/booked/BookedDetailsScreen")}
+            item={item}
+          />
         )}
         numColumns={2}
         columnWrapperStyle={{
