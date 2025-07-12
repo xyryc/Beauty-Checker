@@ -1,6 +1,6 @@
-import Header from "@/components/Header";
-import SafeScreen from "@/components/SafeScreen";
+import Header from "@/components/Shared/Header";
 import ImageSliderAndService from "@/components/Shared/ImageSliderAndService";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import React from "react";

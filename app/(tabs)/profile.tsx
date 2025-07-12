@@ -1,6 +1,6 @@
 import ProfileHeader from "@/components/Profile/ProfileHeader";
 import SavedServices from "@/components/Profile/SavedServices";
-import SafeScreen from "@/components/SafeScreen";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import React from "react";
 import { FlatList } from "react-native";
 

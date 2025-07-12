@@ -1,5 +1,5 @@
-import Header from "@/components/Header";
 import ButtonPrimary from "@/components/Shared/ButtonPrimary";
+import Header from "@/components/Shared/Header";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Platform, SafeAreaView, Text, TextInput, View } from "react-native";

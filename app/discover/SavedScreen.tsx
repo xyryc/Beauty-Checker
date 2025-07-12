@@ -1,4 +1,4 @@
-import SafeScreen from "@/components/SafeScreen";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";

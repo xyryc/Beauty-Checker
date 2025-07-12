@@ -1,4 +1,4 @@
-import SocialLogin from "@/components/SocialLogin";
+import SocialLogin from "@/components/Auth/SocialLogin";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React from "react";

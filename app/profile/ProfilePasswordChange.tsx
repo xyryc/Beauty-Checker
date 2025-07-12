@@ -1,6 +1,6 @@
-import Header from "@/components/Header";
-import SafeScreen from "@/components/SafeScreen";
 import ButtonPrimary from "@/components/Shared/ButtonPrimary";
+import Header from "@/components/Shared/Header";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { useRouter } from "expo-router";
 import React from "react";
 import {

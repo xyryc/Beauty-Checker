@@ -1,5 +1,5 @@
-import ChatScreenModal from "@/components/ChatScreenModal";
-import SafeScreen from "@/components/SafeScreen";
+import ChatScreenModal from "@/components/Chat/ChatScreenModal";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { Entypo, Feather, FontAwesome6, Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";

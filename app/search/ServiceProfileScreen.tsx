@@ -1,9 +1,9 @@
-import AboutCard from "@/components/AboutCard";
-import ButtonSmall from "@/components/ButtonSmall";
-import ButtonSmallOutline from "@/components/ButtonSmallOutline";
-import PendingCards from "@/components/PendingCards";
-import RenderPhotosCard from "@/components/RenderPhotosCard";
-import RenderVideosCard from "@/components/RenderVideosCard";
+import PendingCards from "@/components/Booked/PendingCards";
+import AboutCard from "@/components/Shared/AboutCard";
+import ButtonSmall from "@/components/Shared/ButtonSmall";
+import ButtonSmallOutline from "@/components/Shared/ButtonSmallOutline";
+import RenderPhotosCard from "@/components/Shared/RenderPhotosCard";
+import RenderVideosCard from "@/components/Shared/RenderVideosCard";
 import { AntDesign, Feather, FontAwesome, Octicons } from "@expo/vector-icons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { Image } from "expo-image";
@@ -56,25 +56,6 @@ const ServiceProfileScreen = () => {
       </TouchableOpacity>
     );
   };
-
-  const item = [
-    {
-      id: "1",
-      title: "Service Name....",
-      subtitle: "Makeup Artist",
-      rating: "4.5",
-      image:
-        "https://images.pexels.com/photos/3762663/pexels-photo-3762663.jpeg",
-    },
-    {
-      id: "2",
-      title: "Service Name....",
-      subtitle: "Makeup Artist",
-      rating: "4.5",
-      image:
-        "https://images.pexels.com/photos/8990728/pexels-photo-8990728.jpeg",
-    },
-  ];
 
   return (
     <View style={{ marginTop: offset }} className="bg-white">

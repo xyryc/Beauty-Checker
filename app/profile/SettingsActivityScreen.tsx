@@ -1,5 +1,5 @@
-import Header from "@/components/Header";
-import SafeScreen from "@/components/SafeScreen";
+import Header from "@/components/Shared/Header";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { Feather, MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";

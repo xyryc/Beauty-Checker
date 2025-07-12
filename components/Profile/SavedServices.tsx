@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import React from "react";
 import { FlatList, Text, View } from "react-native";
-import CommonCard from "../CommonCard";
+import CommonCard from "../Shared/CommonCard";
 
 const SavedServices = () => {
   const data = [
@@ -50,7 +50,6 @@ const SavedServices = () => {
       city: "Dublin, Ireland",
     },
   ];
-
   const router = useRouter();
 
   return (

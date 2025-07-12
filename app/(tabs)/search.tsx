@@ -1,6 +1,6 @@
-import CommonCard from "@/components/CommonCard";
-import SafeScreen from "@/components/SafeScreen";
-import TopServices from "@/components/TopServices";
+import TopServices from "@/components/Search/TopServices";
+import CommonCard from "@/components/Shared/CommonCard";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";

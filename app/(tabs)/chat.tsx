@@ -1,5 +1,5 @@
-import ChatListItem from "@/components/ChatListItem";
-import SafeScreen from "@/components/SafeScreen";
+import ChatListItem from "@/components/Chat/ChatListItem";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { Image } from "expo-image";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";

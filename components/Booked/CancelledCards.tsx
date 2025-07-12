@@ -1,9 +1,9 @@
 import { useRouter } from "expo-router";
 import React from "react";
 import { FlatList } from "react-native";
-import CommonCard from "./CommonCard";
+import CommonCard from "../Shared/CommonCard";
 
-const PendingCards = () => {
+const CancelledCards = () => {
   const data = [
     {
       id: "1",
@@ -50,6 +50,7 @@ const PendingCards = () => {
       city: "Dublin, Ireland",
     },
   ];
+
   const router = useRouter();
 
   return (
@@ -73,4 +74,4 @@ const PendingCards = () => {
   );
 };
 
-export default PendingCards;
+export default CancelledCards;

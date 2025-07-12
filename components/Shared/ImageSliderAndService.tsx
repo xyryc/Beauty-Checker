@@ -3,8 +3,8 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import ImageSlider from "../ImageSlider";
-import ShareModal from "../ShareModal";
+import ImageSlider from "./ImageSlider";
+import ShareModal from "./ShareModal";
 
 const ImageSliderAndService = () => {
   const router = useRouter();

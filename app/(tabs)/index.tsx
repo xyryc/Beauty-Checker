@@ -1,8 +1,8 @@
-import CommentModal from "@/components/CommentModal";
-import ImagePost from "@/components/ImagePost";
-import SafeScreen from "@/components/SafeScreen";
-import ShareModal from "@/components/ShareModal";
-import VideoPost from "@/components/VideoPost";
+import CommentModal from "@/components/Discover/CommentModal";
+import ImagePost from "@/components/Shared/ImagePost";
+import SafeScreen from "@/components/Shared/SafeScreen";
+import ShareModal from "@/components/Shared/ShareModal";
+import VideoPost from "@/components/Shared/VideoPost";
 import { Post } from "@/types/types";
 import { Entypo, FontAwesome, FontAwesome6 } from "@expo/vector-icons";
 import { useNavigation, useRouter } from "expo-router";

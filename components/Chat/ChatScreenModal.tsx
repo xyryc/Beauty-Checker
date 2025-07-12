@@ -36,7 +36,7 @@ const ChatScreenModal: React.FC<ChatScreenModalProps> = ({
           {/* block */}
           <TouchableOpacity className="flex-row items-center gap-2 py-4 border-y-[0.5px] border-primary">
             <Image
-              source={require("../assets/images/block.svg")}
+              source={require("@/assets/images/block.svg")}
               contentFit="cover"
               style={{ width: 24, height: 24 }}
             />
@@ -47,7 +47,7 @@ const ChatScreenModal: React.FC<ChatScreenModalProps> = ({
           {/* report */}
           <TouchableOpacity className="flex-row items-center pt-4 gap-2">
             <Image
-              source={require("../assets/images/report.svg")}
+              source={require("@/assets/images/report.svg")}
               contentFit="cover"
               style={{ width: 24, height: 24 }}
             />

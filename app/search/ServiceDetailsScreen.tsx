@@ -1,7 +1,7 @@
-import BookingSection from "@/components/BookingSection";
-import Header from "@/components/Header";
-import SafeScreen from "@/components/SafeScreen";
+import BookingSection from "@/components/Booked/BookingSection";
+import Header from "@/components/Shared/Header";
 import ImageSliderAndService from "@/components/Shared/ImageSliderAndService";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 

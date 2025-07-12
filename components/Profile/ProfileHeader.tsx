@@ -3,8 +3,8 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import ButtonSmall from "../ButtonSmall";
-import ButtonSmallOutline from "../ButtonSmallOutline";
+import ButtonSmall from "../Shared/ButtonSmall";
+import ButtonSmallOutline from "../Shared/ButtonSmallOutline";
 
 const ProfileHeader = () => {
   const router = useRouter();

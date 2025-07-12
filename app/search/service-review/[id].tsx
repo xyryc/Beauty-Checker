@@ -1,6 +1,6 @@
-import Header from "@/components/Header";
-import ImageSlider from "@/components/ImageSlider";
-import SafeScreen from "@/components/SafeScreen";
+import Header from "@/components/Shared/Header";
+import ImageSlider from "@/components/Shared/ImageSlider";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { Image } from "expo-image";
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
