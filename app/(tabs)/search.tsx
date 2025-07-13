@@ -153,7 +153,7 @@ const Search = () => {
 
                   <TextInput
                     placeholder="Which beauty service do you need?"
-                    className="ml-2 text-accent placeholder:text-sm sm:placeholder:text-sm"
+                    className="ml-2 placeholder:text-sm sm:placeholder:text-sm placeholder:text-accent"
                     style={{
                       paddingVertical: 0,
                       marginTop: 0,
@@ -238,12 +238,16 @@ const Search = () => {
         className="bg-white"
         data={data}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <CommonCard
-            onPress={() => router.push("/search/ServiceDetailsScreen")}
-            item={item}
-          />
-        )}
+        renderItem={({ item }) =>
+          toggle ? (
+            <CommonCard
+              onPress={() => router.push("/search/ServiceDetailsScreen")}
+              item={item}
+            />
+          ) : (
+            <>{/* location based search  */}</>
+          )
+        }
         numColumns={2}
         columnWrapperStyle={{
           justifyContent: "space-between",
@@ -284,7 +288,9 @@ const Search = () => {
                 </View>
               </View>
             ) : (
-              <View></View>
+              <View>
+                <Text>Hello</Text>
+              </View>
             )}
           </>
         }
