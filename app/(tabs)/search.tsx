@@ -2,18 +2,21 @@ import TopServices from "@/components/Search/TopServices";
 import CommonCard from "@/components/Shared/CommonCard";
 import SafeScreen from "@/components/Shared/SafeScreen";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
+import Slider from "@react-native-community/slider";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
+  Dimensions,
   FlatList,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import MapView, { Circle, Marker } from "react-native-maps";
 
 const Search = () => {
   const [toggle, setToggle] = useState(true);
@@ -65,6 +68,16 @@ const Search = () => {
       city: "Dublin, Ireland",
     },
   ];
+
+  const { width } = Dimensions.get("window");
+
+  // location based states
+  const [radius, setRadius] = useState(100); // in km
+
+  const center = {
+    latitude: 23.8103, // Dhaka
+    longitude: 90.4125,
+  };
 
   return (
     <SafeScreen>
@@ -244,9 +257,8 @@ const Search = () => {
               onPress={() => router.push("/search/ServiceDetailsScreen")}
               item={item}
             />
-          ) : (
-            <>{/* location based search  */}</>
-          )
+          ) : // render nearby service or keep blank
+          null
         }
         numColumns={2}
         columnWrapperStyle={{
@@ -288,9 +300,58 @@ const Search = () => {
                 </View>
               </View>
             ) : (
-              <View>
-                <Text>Hello</Text>
-              </View>
+              <>
+                {/* location based search  */}
+                <View className="items-center p-4">
+                  <View
+                    className="rounded-2xl overflow-hidden shadow-md"
+                    style={{ width: width - 30, backgroundColor: "#fff" }}
+                  >
+                    {/* Radius Slider Container */}
+                    <LinearGradient
+                      colors={["#e0c9ff", "#f4e8ff"]}
+                      className="px-4 py-3"
+                    >
+                      <View className="flex-row justify-between mb-2">
+                        <Text className="text-purple-700 font-semibold text-base">
+                          Radius
+                        </Text>
+                        <Text className="text-purple-700 font-semibold text-base">
+                          {radius} km
+                        </Text>
+                      </View>
+                      <Slider
+                        minimumValue={1}
+                        maximumValue={200}
+                        step={1}
+                        value={radius}
+                        onValueChange={(val) => setRadius(val)}
+                        minimumTrackTintColor="#8b5cf6"
+                        maximumTrackTintColor="#ddd"
+                        thumbTintColor="#8b5cf6"
+                      />
+                    </LinearGradient>
+
+                    {/* Map */}
+                    <MapView
+                      style={{ height: 350, width: "100%" }}
+                      initialRegion={{
+                        ...center,
+                        latitudeDelta: 0.3,
+                        longitudeDelta: 0.3,
+                      }}
+                    >
+                      <Marker coordinate={center} />
+                      <Circle
+                        center={center}
+                        radius={radius * 1000}
+                        strokeColor="rgba(147, 51, 234, 0.6)"
+                        fillColor="rgba(147, 51, 234, 0.2)"
+                      />
+                    </MapView>
+                  </View>
+                </View>
+              </>
             )}
           </>
         }
