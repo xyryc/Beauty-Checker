@@ -1,8 +1,9 @@
+import LocationSearch from "@/components/Search/LocationSearch";
 import TopServices from "@/components/Search/TopServices";
+import ButtonPrimary from "@/components/Shared/ButtonPrimary";
 import CommonCard from "@/components/Shared/CommonCard";
 import SafeScreen from "@/components/Shared/SafeScreen";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
-import Slider from "@react-native-community/slider";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
@@ -16,7 +17,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import MapView, { Circle, Marker } from "react-native-maps";
 
 const Search = () => {
   const [toggle, setToggle] = useState(true);
@@ -300,58 +300,14 @@ const Search = () => {
                 </View>
               </View>
             ) : (
-              <>
+              <View className="px-5">
                 {/* location based search  */}
-                <View className="items-center p-4">
-                  <View
-                    className="rounded-2xl overflow-hidden shadow-md"
-                    style={{ width: width - 30, backgroundColor: "#fff" }}
-                  >
-                    {/* Radius Slider Container */}
-                    <LinearGradient
-                      colors={["#e0c9ff", "#f4e8ff"]}
-                      className="px-4 py-3"
-                    >
-                      <View className="flex-row justify-between mb-2">
-                        <Text className="text-purple-700 font-semibold text-base">
-                          Radius
-                        </Text>
-                        <Text className="text-purple-700 font-semibold text-base">
-                          {radius} km
-                        </Text>
-                      </View>
-                      <Slider
-                        minimumValue={1}
-                        maximumValue={200}
-                        step={1}
-                        value={radius}
-                        onValueChange={(val) => setRadius(val)}
-                        minimumTrackTintColor="#8b5cf6"
-                        maximumTrackTintColor="#ddd"
-                        thumbTintColor="#8b5cf6"
-                      />
-                    </LinearGradient>
+                <LocationSearch />
 
-                    {/* Map */}
-                    <MapView
-                      style={{ height: 350, width: "100%" }}
-                      initialRegion={{
-                        ...center,
-                        latitudeDelta: 0.3,
-                        longitudeDelta: 0.3,
-                      }}
-                    >
-                      <Marker coordinate={center} />
-                      <Circle
-                        center={center}
-                        radius={radius * 1000}
-                        strokeColor="rgba(147, 51, 234, 0.6)"
-                        fillColor="rgba(147, 51, 234, 0.2)"
-                      />
-                    </MapView>
-                  </View>
+                <View className="mt-6">
+                  <ButtonPrimary text="See The Results" />
                 </View>
-              </>
+              </View>
             )}
           </>
         }
