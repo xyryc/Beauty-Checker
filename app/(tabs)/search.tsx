@@ -305,7 +305,10 @@ const Search = () => {
                 <LocationSearch />
 
                 <View className="mt-6">
-                  <ButtonPrimary text="See The Results" />
+                  <ButtonPrimary
+                    text="See The Results"
+                    onPress={() => router.push("/search/SearchResultScreen")}
+                  />
                 </View>
               </View>
             )}
