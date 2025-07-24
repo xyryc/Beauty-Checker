@@ -64,7 +64,7 @@ const SearchResultScreen = () => {
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <CommonCard
-              onPress={() => router.push("/booked/BookedDetailsScreen")}
+              onPress={() => router.push("/search/ServiceDetailsScreen")}
               item={item}
             />
           )}
