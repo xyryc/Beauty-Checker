@@ -21,18 +21,17 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (fontsLoaded) SplashScreen.hideAsync();
-
-    requestAnimationFrame(() => {
-      if (!isSignedIn && !inAuthScreen) router.replace("/(auth)");
-      else if (isSignedIn && inAuthScreen) router.replace("/(tabs)");
-    });
   }, [fontsLoaded]);
 
   return (
     <SafeAreaProvider>
       <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="onboarding" />
+        <Stack.Screen name="role-selection" />
         <Stack.Screen name="(auth)" />
-        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="(customer)" />
+        <Stack.Screen name="(provider)" />
       </Stack>
 
       <StatusBar style="dark" />

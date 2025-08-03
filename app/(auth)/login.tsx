@@ -83,7 +83,7 @@ const SignIn = () => {
                   Password
                 </Text>
                 <TextInput
-                  className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm font-normal text-accent bg-white ${
+                  className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg text-sm placeholder:text-accent bg-white ${
                     Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
                   }`}
                   style={{ fontFamily: "Poppins" }}
