@@ -1,17 +1,18 @@
 import ButtonPrimary from "@/components/Shared/ButtonPrimary";
 import Header from "@/components/Shared/Header";
+import SafeScreen from "@/components/Shared/SafeScreen";
 import { useRouter } from "expo-router";
 import React from "react";
-import { SafeAreaView, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 const VerifyCode = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeScreen>
       <Header text="Verify Code" />
 
-      <View className="flex-1 justify-between px-5">
+      <View className="justify-between h-screen-safe px-5">
         {/* Top container */}
         <View>
           <View className="mt-9 mb-2.5">
@@ -44,7 +45,7 @@ const VerifyCode = () => {
           />
         </View>
       </View>
-    </SafeAreaView>
+    </SafeScreen>
   );
 };
 

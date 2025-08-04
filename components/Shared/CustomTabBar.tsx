@@ -1,7 +1,6 @@
 import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
@@ -19,17 +18,27 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
           width: "100%",
           height: 90,
           bottom: 0,
-          zIndex: -1,
+          zIndex: 10,
         }}
       />
 
-      {/* Tab Bar Content */}
-      <View className="flex-row justify-center">
-        <View className="w-[20%] flex-grow items-center justify-center gap-8 flex-row rounded-tr-[40px] pb-5 pt-2 h-[90px]">
-          {/* Discover */}
+      <TouchableOpacity
+        className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20"
+        onPress={() => navigation.navigate("search")}
+      >
+        <Image
+          source={require("@/assets/images/search-center.svg")}
+          style={{ width: 46, height: 46 }}
+          contentFit="cover"
+        />
+      </TouchableOpacity>
+
+      {/* Discover */}
+      <View className="absolute bottom-10 z-20 flex-row justify-between w-full px-6">
+        <View className="flex-row gap-8 justify-between w-[27%]">
           <TouchableOpacity
             onPress={() => navigation.navigate("index")}
-            className="items-center gap-1.5 flex"
+            className="items-center gap-1.5"
           >
             <FontAwesome
               name="play-circle"
@@ -46,7 +55,6 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             </Text>
           </TouchableOpacity>
 
-          {/* Chat */}
           <TouchableOpacity
             onPress={() => navigation.navigate("chat")}
             className="items-center gap-1.5 flex"
@@ -67,29 +75,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
           </TouchableOpacity>
         </View>
 
-        {/* Center Search */}
-        <TouchableOpacity
-          onPress={() => navigation.navigate("search")}
-          className="absolute -top-6 z-10"
-        >
-          <LinearGradient
-            colors={["#B78AF7", "#612AC3"]}
-            style={{
-              borderRadius: 100,
-              padding: 11,
-              backgroundColor: "transparent",
-            }}
-          >
-            <Image
-              source={require("@/assets/images/search.svg")}
-              style={{ width: 24, height: 24 }}
-              contentFit="cover"
-            />
-          </LinearGradient>
-        </TouchableOpacity>
-
-        <View className="w-[20%] flex-grow items-center justify-center gap-8 flex-row rounded-tl-[40px] pb-5 pt-2 h-[90px]">
-          {/* Booking */}
+        <View className="flex-row gap-8 justify-between w-[27%]">
           <TouchableOpacity
             onPress={() => navigation.navigate("booked")}
             className="items-center gap-1.5 flex"
@@ -109,7 +95,6 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             </Text>
           </TouchableOpacity>
 
-          {/* Profile */}
           <TouchableOpacity
             onPress={() => navigation.navigate("profile")}
             className="items-center gap-1.5 flex"

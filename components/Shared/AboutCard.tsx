@@ -1,8 +1,11 @@
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const AboutCard = () => {
+  const router = useRouter();
+
   return (
     <View className="px-5">
       {/* item */}
@@ -12,11 +15,13 @@ const AboutCard = () => {
           style={{ width: 32, height: 32 }}
         />
 
-        <View>
+        <TouchableOpacity
+          onPress={() => router.push("/provider-profile/ScheduleScreen")}
+        >
           <Text className="text-primary mb-1" style={{ fontFamily: "Poppins" }}>
             Opening & Closing Time
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
 
       {/* item */}
