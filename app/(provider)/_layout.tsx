@@ -29,7 +29,6 @@ export default function ProviderLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: "white" },
       }}
     >
       <Stack.Screen

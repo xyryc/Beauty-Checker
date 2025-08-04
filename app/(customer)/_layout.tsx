@@ -29,7 +29,6 @@ export default function CustomerLayout() {
     <Stack
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: "white" },
       }}
     >
       <Stack.Screen

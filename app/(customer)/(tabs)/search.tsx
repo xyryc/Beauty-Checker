@@ -10,7 +10,6 @@ import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
-  Dimensions,
   FlatList,
   Text,
   TextInput,
@@ -68,16 +67,6 @@ const Search = () => {
       city: "Dublin, Ireland",
     },
   ];
-
-  const { width } = Dimensions.get("window");
-
-  // location based states
-  const [radius, setRadius] = useState(100); // in km
-
-  const center = {
-    latitude: 23.8103, // Dhaka
-    longitude: 90.4125,
-  };
 
   return (
     <SafeScreen>

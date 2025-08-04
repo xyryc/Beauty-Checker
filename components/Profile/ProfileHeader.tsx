@@ -28,6 +28,7 @@ const ProfileHeader = () => {
         {/* drawer button */}
         <TouchableOpacity
           onPress={() => router.push("/profile/SettingsActivityScreen")}
+          className="p-2"
         >
           <FontAwesome6 name="bars" size={24} color="black" />
         </TouchableOpacity>
