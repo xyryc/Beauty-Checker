@@ -1,3 +1,4 @@
+import { storage } from "@/services/storage";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";
@@ -5,7 +6,8 @@ import { Text, TouchableOpacity, View } from "react-native";
 export default function RoleSelection() {
   const router = useRouter();
 
-  const selectRole = (role: "customer" | "provider") => {
+  const selectRole = async (role: "customer" | "provider") => {
+    await storage.setSelectedRole(role);
     router.replace("/(auth)/login");
   };
 
@@ -26,11 +28,13 @@ export default function RoleSelection() {
         onPress={() => selectRole("customer")}
         className="border border-[#6200EE] p-2 rounded-lg flex-row gap-3 items-center mb-4"
       >
-        <Image
-          source={require("@/assets/images/apple.png")}
-          style={{ width: 76, height: 76 }}
-          contentFit="cover"
-        />
+        <View className="p-2.5 border border-[##6200EE] rounded-sm">
+          <Image
+            source={require("@/assets/images/customer.svg")}
+            style={{ width: 76, height: 76 }}
+            contentFit="cover"
+          />
+        </View>
 
         <View className="flex-1">
           <Text
@@ -56,11 +60,13 @@ export default function RoleSelection() {
         onPress={() => selectRole("provider")}
         className="border border-[#6200EE] p-2 rounded-lg flex-row gap-3 items-center"
       >
-        <Image
-          source={require("@/assets/images/apple.png")}
-          style={{ width: 76, height: 76 }}
-          contentFit="cover"
-        />
+        <View className="p-2.5 border border-[##6200EE] rounded-sm">
+          <Image
+            source={require("@/assets/images/provider.svg")}
+            style={{ width: 76, height: 76 }}
+            contentFit="cover"
+          />
+        </View>
 
         <View className="flex-1">
           <Text

@@ -1,7 +1,8 @@
 import SocialLogin from "@/components/Auth/SocialLogin";
+import { storage } from "@/services/storage";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, useRouter } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -15,10 +16,37 @@ import {
 const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const router = useRouter();
 
-  const handleSignIn = () => {};
+  // Load the selected role when component mounts
+  useEffect(() => {
+    const loadRole = async () => {
+      const role = await storage.getSelectedRole();
+      setSelectedRole(role);
+    };
+    loadRole();
+  }, []);
+
+  console.log("Login Screen:", selectedRole);
+
+  const handleLogin = async () => {
+    try {
+      // Your login logic here...
+      // After successful login:
+      await storage.setAuthToken("your-auth-token");
+      await storage.setUserData({ email, role: selectedRole });
+
+      // Navigate based on role
+      if (selectedRole === "customer") {
+        router.replace("/(customer)/(tabs)");
+      } else {
+        router.replace("/(provider)/(tabs)");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
 
   return (
     <KeyboardAvoidingView
@@ -115,7 +143,7 @@ const SignIn = () => {
           <View className="mb-16">
             {/* Sign in button */}
             <TouchableOpacity
-              onPress={() => router.push("/(tabs)")}
+              onPress={handleLogin}
               className="rounded-2xl overflow-hidden"
             >
               <LinearGradient

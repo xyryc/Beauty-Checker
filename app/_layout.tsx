@@ -1,17 +1,13 @@
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack, useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "./globals.css";
 
+// Prevent auto hiding
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const router = useRouter();
-  const isSignedIn = true;
-  const inAuthScreen = true;
-
   const [fontsLoaded] = useFonts({
     Poppins: require("../assets/fonts/Poppins-Regular.ttf"),
     "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
@@ -33,8 +29,6 @@ export default function RootLayout() {
         <Stack.Screen name="(customer)" />
         <Stack.Screen name="(provider)" />
       </Stack>
-
-      <StatusBar style="dark" />
     </SafeAreaProvider>
   );
 }

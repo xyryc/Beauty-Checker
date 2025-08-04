@@ -1,21 +1,21 @@
 export interface User {
   id: string;
   email: string;
-  role: "employee" | "admin";
+  role: "customer" | "provider";
   name: string;
 }
 
 export interface LoginRequest {
   email: string;
   password: string;
-  role: "employee" | "admin";
+  role: "customer" | "provider";
 }
 
 export interface RegisterRequest {
   email: string;
   password: string;
   name: string;
-  role: "employee" | "admin";
+  role: "customer" | "provider";
 }
 
 export interface AuthResponse {
