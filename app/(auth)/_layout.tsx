@@ -23,7 +23,7 @@ const AuthLayout = () => {
     getRole();
   }, []);
 
-  console.log("Auth Layout:", selectedRole);
+  // console.log("Auth Layout:", selectedRole);
 
   if (loading) {
     return (

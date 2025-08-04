@@ -28,7 +28,7 @@ const SignIn = () => {
     loadRole();
   }, []);
 
-  console.log("Login Screen:", selectedRole);
+  // console.log("Login Screen:", selectedRole);
 
   const handleLogin = async () => {
     try {
