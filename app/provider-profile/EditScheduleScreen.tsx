@@ -79,7 +79,7 @@ const EditScheduleScreen = () => {
             >
               <Text
                 style={{ fontFamily: "Poppins" }}
-                className="flex-1 text-base text-gray-700"
+                className="flex-1 text-base text-primary"
               >
                 {item.day}
               </Text>

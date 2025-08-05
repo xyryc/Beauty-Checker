@@ -39,13 +39,22 @@ const ScheduleScreen = () => {
         <View className="bg-purple-100 rounded-2xl">
           {/* Table Header */}
           <View className="flex-row bg-purple-[#EFE6FD] px-4 py-4 rounded-t-2xl border-b-[0.5px] border-[#CEB0FA]">
-            <Text className="flex-1 text-base font-medium text-gray-800">
+            <Text
+              style={{ fontFamily: "Poppins-Medium" }}
+              className="flex-1 text-xl text-gray-primary"
+            >
               Day
             </Text>
-            <Text className="w-24 text-base font-medium text-gray-800 text-center">
+            <Text
+              style={{ fontFamily: "Poppins-Medium" }}
+              className="w-24 text-xl text-primary text-center"
+            >
               Opening
             </Text>
-            <Text className="w-24 text-base font-medium text-gray-800 text-center">
+            <Text
+              style={{ fontFamily: "Poppins-Medium" }}
+              className="w-24 text-xl text-primary text-center"
+            >
               Closing
             </Text>
           </View>
@@ -54,17 +63,17 @@ const ScheduleScreen = () => {
           {scheduleData.map((item, index) => (
             <View
               key={item.day}
-              className={`flex-row px-4 py-4 ${
+              className={`flex-row items-center text-primary px-4 py-4 ${
                 index !== scheduleData.length - 1
                   ? "border-b-[0.5px] border-[#CEB0FA]"
                   : ""
               }`}
             >
-              <Text className="flex-1 text-base text-gray-700">{item.day}</Text>
-              <Text className="w-24 text-base text-gray-700 text-center">
+              <Text className="flex-1 text-base text-primary">{item.day}</Text>
+              <Text className="w-24 text-base text-primary text-center">
                 {item.opening}
               </Text>
-              <Text className="w-24 text-base text-gray-700 text-center">
+              <Text className="w-24 text-base text-primary text-center">
                 {item.closing}
               </Text>
             </View>

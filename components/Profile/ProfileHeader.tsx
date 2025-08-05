@@ -27,7 +27,9 @@ const ProfileHeader = () => {
 
         {/* drawer button */}
         <TouchableOpacity
-          onPress={() => router.push("/profile/SettingsActivityScreen")}
+          onPress={() =>
+            router.push("/customer-profile/SettingsActivityScreen")
+          }
           className="p-2"
         >
           <FontAwesome6 name="bars" size={24} color="black" />
@@ -47,7 +49,7 @@ const ProfileHeader = () => {
           <ButtonSmall
             icon={<FontAwesome5 name="edit" size={16} color="white" />}
             text="Edit Profile"
-            onPress={() => router.push("/profile/EditProfileScreen")}
+            onPress={() => router.push("/customer-profile/EditProfileScreen")}
           />
 
           <ButtonSmallOutline

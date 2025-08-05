@@ -4,7 +4,12 @@ import ButtonSmall from "@/components/Shared/ButtonSmall";
 import ButtonSmallOutline from "@/components/Shared/ButtonSmallOutline";
 import RenderPhotosCard from "@/components/Shared/RenderPhotosCard";
 import RenderVideosCard from "@/components/Shared/RenderVideosCard";
-import { AntDesign, Feather, FontAwesome, Octicons } from "@expo/vector-icons";
+import {
+  AntDesign,
+  FontAwesome,
+  FontAwesome5,
+  Octicons,
+} from "@expo/vector-icons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -76,7 +81,7 @@ const ProviderProfile = () => {
                 onPress={() =>
                   router.push("/provider-profile/SettingsActivityScreen")
                 }
-                className="absolute top-20 right-5 z-10"
+                className="absolute top-[40%] right-5 z-10"
               >
                 <FontAwesome
                   className="p-3.5"
@@ -90,7 +95,7 @@ const ProviderProfile = () => {
               <Image
                 style={{ width: "100%", height: "100%", position: "absolute" }}
                 source={{
-                  uri: "https://thevendry.com/cdn-cgi/image/height=1920,width=1920,fit=contain,metadata=none/https%3A%2F%2Fs3.amazonaws.com%2Fuploads.thevendry.co%2F23052%2F1661181797046_HairMakeUp_08_IMG_7090_1_2_A.jpg",
+                  uri: "https://images.pexels.com/photos/31776332/pexels-photo-31776332.jpeg",
                 }}
                 placeholder={{ blurhash }}
                 contentFit="cover"
@@ -122,7 +127,7 @@ const ProviderProfile = () => {
                   borderWidth: 2,
                   borderColor: "#767676",
                 }}
-                source="https://plus.unsplash.com/premium_photo-1689568126014-06fea9d5d341?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
+                source="https://images.pexels.com/photos/31776332/pexels-photo-31776332.jpeg"
                 placeholder={{ blurhash }}
                 contentFit="cover"
                 transition={100}
@@ -164,12 +169,15 @@ const ProviderProfile = () => {
               {/* buttons */}
               <View className="mb-2 mr-5 flex-row justify-between gap-4 items-center">
                 <ButtonSmall
-                  icon={<Feather name="user-plus" color="#fff" size={20} />}
-                  text="Follow"
+                  onPress={() =>
+                    router.push("/provider-profile/EditProfileScreen")
+                  }
+                  icon={<FontAwesome5 name="edit" size={16} color="white" />}
+                  text="Edit Profile"
                 />
                 <ButtonSmallOutline
-                  icon={<FontAwesome name="send" color="#6200EE" size={20} />}
-                  text="Message"
+                  icon={<FontAwesome name="send" color="#6200EE" size={16} />}
+                  text="Share Profile"
                 />
               </View>
 
