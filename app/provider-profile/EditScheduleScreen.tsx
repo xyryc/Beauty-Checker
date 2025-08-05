@@ -1,13 +1,16 @@
 import ButtonPrimary from "@/components/Shared/ButtonPrimary";
 import Header from "@/components/Shared/Header";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { useRouter } from "expo-router";
-import React from "react";
-import { SafeAreaView, StatusBar, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Platform, SafeAreaView, StatusBar, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const ScheduleScreen = () => {
+const EditScheduleScreen = () => {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState(false);
 
   const scheduleData = [
     { day: "Monday", opening: "09:00AM", closing: "04:00PM" },
@@ -18,6 +21,11 @@ const ScheduleScreen = () => {
     { day: "Saturday", opening: "09:00AM", closing: "04:00PM" },
     { day: "Sunday", opening: "09:00AM", closing: "04:00PM" },
   ];
+
+  const onChange = (_event: any, selectedDate?: Date) => {
+    if (Platform.OS === "android") setShowPicker(false);
+    if (selectedDate) setDate(selectedDate);
+  };
 
   return (
     <SafeAreaView
@@ -39,13 +47,22 @@ const ScheduleScreen = () => {
         <View className="bg-purple-100 rounded-2xl">
           {/* Table Header */}
           <View className="flex-row bg-purple-[#EFE6FD] px-4 py-4 rounded-t-2xl border-b-[0.5px] border-[#CEB0FA]">
-            <Text className="flex-1 text-base font-medium text-gray-800">
+            <Text
+              style={{ fontFamily: "Poppins-Medium" }}
+              className="flex-1 text-xl text-primary"
+            >
               Day
             </Text>
-            <Text className="w-24 text-base font-medium text-gray-800 text-center">
+            <Text
+              style={{ fontFamily: "Poppins-Medium" }}
+              className="w-24 text-xl text-primary text-center"
+            >
               Opening
             </Text>
-            <Text className="w-24 text-base font-medium text-gray-800 text-center">
+            <Text
+              style={{ fontFamily: "Poppins-Medium" }}
+              className="w-24 text-xl text-primary text-center"
+            >
               Closing
             </Text>
           </View>
@@ -54,19 +71,36 @@ const ScheduleScreen = () => {
           {scheduleData.map((item, index) => (
             <View
               key={item.day}
-              className={`flex-row px-4 py-4 ${
+              className={`flex-row items-center text-primary px-4 py-4 ${
                 index !== scheduleData.length - 1
                   ? "border-b-[0.5px] border-[#CEB0FA]"
                   : ""
               }`}
             >
-              <Text className="flex-1 text-base text-gray-700">{item.day}</Text>
-              <Text className="w-24 text-base text-gray-700 text-center">
-                {item.opening}
+              <Text
+                style={{ fontFamily: "Poppins" }}
+                className="flex-1 text-base text-gray-700"
+              >
+                {item.day}
               </Text>
-              <Text className="w-24 text-base text-gray-700 text-center">
-                {item.closing}
-              </Text>
+
+              {/* opening */}
+              <DateTimePicker
+                value={date}
+                mode="time"
+                display="default"
+                onChange={onChange}
+                minimumDate={new Date()}
+              />
+
+              {/* closing */}
+              <DateTimePicker
+                value={date}
+                mode="time"
+                display="default"
+                onChange={onChange}
+                minimumDate={new Date()}
+              />
             </View>
           ))}
         </View>
@@ -75,12 +109,12 @@ const ScheduleScreen = () => {
       {/* Fixed Bottom Button */}
       <View className="mx-5 mb-4">
         <ButtonPrimary
-          text="Change Time"
-          onPress={() => router.push("/provider-profile/EditScheduleScreen")}
+          text="Save"
+          onPress={() => router.push("/provider-profile/ProfileScreen")}
         />
       </View>
     </SafeAreaView>
   );
 };
 
-export default ScheduleScreen;
+export default EditScheduleScreen;
