@@ -4,34 +4,28 @@ import ButtonSmall from "@/components/Shared/ButtonSmall";
 import ButtonSmallOutline from "@/components/Shared/ButtonSmallOutline";
 import RenderPhotosCard from "@/components/Shared/RenderPhotosCard";
 import RenderVideosCard from "@/components/Shared/RenderVideosCard";
-import {
-  AntDesign,
-  FontAwesome,
-  FontAwesome5,
-  Octicons,
-} from "@expo/vector-icons";
+import { FontAwesome, FontAwesome5, Octicons } from "@expo/vector-icons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { Image } from "expo-image";
-import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   FlatList,
-  Platform,
   StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ProviderProfile = () => {
   const blurhash =
     "|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[";
-  const offset =
-    Platform.OS === "android" ? -(StatusBar.currentHeight || 24) : -44;
+
   const TABS = ["Services", "Videos", "Photos", "About"];
   const [activeTab, setActiveTab] = useState("Services");
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   const renderTab = (tab: string) => {
     const isActive = activeTab === tab;
@@ -65,23 +59,32 @@ const ProviderProfile = () => {
   };
 
   return (
-    <View style={{ marginTop: offset }} className="bg-white">
-      <StatusBar barStyle="light-content" />
+    <View className="bg-white flex-1">
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
 
+      {/* main content */}
       <FlatList
         keyExtractor={(_, i) => i.toString()}
         data={[1]}
         ListHeaderComponentStyle={{ marginBottom: 24 }}
+        showsVerticalScrollIndicator={false}
         ListHeaderComponent={
           <>
             {/* profile section top */}
-            <View className="relative w-full h-[248px]">
+            <View
+              className="relative w-full"
+              style={{ paddingTop: insets.top + 140 }}
+            >
               {/* settings icon */}
               <TouchableOpacity
+                className="absolute bottom-24 right-5 z-10"
                 onPress={() =>
                   router.push("/provider-profile/SettingsActivityScreen")
                 }
-                className="absolute top-[40%] right-5 z-10"
               >
                 <FontAwesome
                   className="p-3.5"
@@ -91,30 +94,21 @@ const ProviderProfile = () => {
                 />
               </TouchableOpacity>
 
-              {/* Image Component */}
+              {/* cover image */}
               <Image
-                style={{ width: "100%", height: "100%", position: "absolute" }}
+                style={{
+                  width: "100%",
+                  height: 200,
+                  position: "absolute",
+                }}
                 source={{
                   uri: "https://images.pexels.com/photos/31776332/pexels-photo-31776332.jpeg",
                 }}
                 placeholder={{ blurhash }}
                 contentFit="cover"
-                transition={100}
               />
 
-              {/* Linear Gradient */}
-              <LinearGradient
-                colors={["#000000", "rgba(0, 0, 0, 0)"]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 0, y: 1 }}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                }}
-              />
+              {/* profile image */}
               <Image
                 style={{
                   width: 150,
@@ -132,10 +126,6 @@ const ProviderProfile = () => {
                 contentFit="cover"
                 transition={100}
               />
-
-              <View className="absolute top-0 left-0 z-20">
-                <AntDesign name="arrowleft" size={24} color="white" />
-              </View>
             </View>
 
             {/* profile name, stats, bio */}
@@ -240,6 +230,25 @@ const ProviderProfile = () => {
           </View>
         )}
       />
+
+      {/* add icon */}
+      <TouchableOpacity
+        onPress={() => router.push("/provider-profile/AddPost")}
+      >
+        <Image
+          style={{
+            width: 70,
+            height: 70,
+            position: "absolute",
+            bottom: 100,
+            right: 5,
+            zIndex: 20,
+          }}
+          source={require("@/assets/images/add.png")}
+          placeholder={{ blurhash }}
+          contentFit="cover"
+        />
+      </TouchableOpacity>
     </View>
   );
 };

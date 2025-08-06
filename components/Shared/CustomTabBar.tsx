@@ -22,6 +22,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
         }}
       />
 
+      {/* search */}
       <TouchableOpacity
         className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20"
         onPress={() => navigation.navigate("search")}
@@ -34,8 +35,8 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
       </TouchableOpacity>
 
       {/* Discover */}
-      <View className="absolute bottom-10 z-20 flex-row justify-between w-full px-6">
-        <View className="flex-row gap-8 justify-between w-[27%]">
+      <View className="absolute bottom-10 z-20 flex-row justify-between w-full px-10">
+        <View className="flex-row gap-8 justify-between w-[30%]">
           <TouchableOpacity
             onPress={() => navigation.navigate("index")}
             className="items-center gap-1.5"
@@ -75,7 +76,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
           </TouchableOpacity>
         </View>
 
-        <View className="flex-row gap-8 justify-between w-[27%]">
+        <View className="flex-row gap-8 justify-between w-[30%]">
           <TouchableOpacity
             onPress={() => navigation.navigate("booked")}
             className="items-center gap-1.5 flex"
