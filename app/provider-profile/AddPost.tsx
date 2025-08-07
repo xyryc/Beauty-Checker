@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
   SafeAreaView,
@@ -26,6 +26,20 @@ const AddPostScreen = () => {
   ]);
   const router = useRouter();
 
+  // Check permissions when component mounts
+  useEffect(() => {
+    (async () => {
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert(
+          "Permission required",
+          "Please enable photo library access in settings"
+        );
+      }
+    })();
+  }, []);
+
   const handleAddImage = async () => {
     try {
       const result = await ImagePicker.launchImageLibraryAsync({
@@ -35,11 +49,12 @@ const AddPostScreen = () => {
         quality: 0.8,
       });
 
-      if (!result.canceled) {
+      if (!result.canceled && result.assets && result.assets.length > 0) {
         setSelectedImages([...selectedImages, result.assets[0].uri]);
       }
     } catch (error) {
-      Alert.alert("Error", "Failed to pick image");
+      console.error("Image picker error:", error);
+      Alert.alert("Error", "Failed to pick image. Please try again.");
     }
   };
 
