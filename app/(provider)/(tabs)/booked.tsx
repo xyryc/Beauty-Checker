@@ -1,7 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -19,42 +21,7 @@ const BookingScreen = () => {
     "06.00 Pm",
     "07.00 Pm",
   ]);
-
-  // Stats data
-  const stats = [
-    {
-      title: "New Request",
-      count: 5,
-      amount: "$5200",
-      color: "bg-purple-100",
-      iconBg: "bg-purple-600",
-      icon: "document-text",
-    },
-    {
-      title: "Accepted",
-      count: 5,
-      amount: "$5200",
-      color: "bg-gray-100",
-      iconBg: "bg-gray-600",
-      icon: "checkmark-circle",
-    },
-    {
-      title: "Completed",
-      count: 15,
-      amount: "$5200",
-      color: "bg-green-100",
-      iconBg: "bg-green-600",
-      icon: "checkmark-done",
-    },
-    {
-      title: "Canceled",
-      count: 5,
-      amount: "$5200",
-      color: "bg-red-100",
-      iconBg: "bg-red-600",
-      icon: "close-circle",
-    },
-  ];
+  const router = useRouter();
 
   // Calendar data for July 2025
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -112,35 +79,91 @@ const BookingScreen = () => {
       <ScrollView
         contentContainerClassName="py-4"
         showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingBottom: 80,
+        }}
       >
         {/* Stats Cards */}
-        <View className="px-5 mb-6">
+        <View className="mx-5 my-8">
           <View className="flex-row flex-wrap justify-between">
-            {stats.map((stat, index) => (
-              <View
-                key={index}
-                className={`${stat.color} rounded-2xl p-4 mb-4 w-[48%]`}
-              >
-                <View
-                  className={`${stat.iconBg} w-10 h-10 rounded-xl items-center justify-center mb-3`}
-                >
-                  <Ionicons name={stat.icon as any} size={20} color="white" />
-                </View>
-                <Text className="text-gray-900 font-medium text-base mb-1">
-                  {stat.title}
-                </Text>
-                <Text className="text-gray-600 text-sm">
-                  {stat.count.toString().padStart(2, "0")} ({stat.amount})
-                </Text>
+            {/* New Request */}
+            <Pressable
+              onPress={() => router.push("/provider-booking/NewRequestScreen")}
+              className="bg-purple-100 rounded-2xl p-4 mb-4 w-[48%]"
+            >
+              <View className="bg-purple-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
+                <Ionicons name="document-text" size={20} color="white" />
               </View>
-            ))}
+              <Text
+                className="text-primary text-lg mb-3"
+                style={{ fontFamily: "Poppins-Medium" }}
+              >
+                New Request
+              </Text>
+              <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
+                05 ($5200)
+              </Text>
+            </Pressable>
+
+            {/* Accepted */}
+            <View className="bg-gray-100 rounded-2xl p-4 mb-4 w-[48%]">
+              <View className="bg-gray-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
+                <Ionicons name="checkmark-circle" size={20} color="white" />
+              </View>
+              <Text
+                className="text-primary text-lg mb-3"
+                style={{ fontFamily: "Poppins-Medium" }}
+              >
+                Accepted
+              </Text>
+              <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
+                05 ($5200)
+              </Text>
+            </View>
+
+            {/* Completed */}
+            <View className="bg-green-100 rounded-2xl p-4 mb-4 w-[48%]">
+              <View className="bg-green-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
+                <Ionicons name="checkmark-done" size={20} color="white" />
+              </View>
+              <Text
+                className="text-primary text-lg mb-3"
+                style={{ fontFamily: "Poppins-Medium" }}
+              >
+                Completed
+              </Text>
+              <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
+                15 ($5200)
+              </Text>
+            </View>
+
+            {/* Canceled */}
+            <View className="bg-red-100 rounded-2xl p-4 mb-4 w-[48%]">
+              <View className="bg-red-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
+                <Ionicons name="close-circle" size={20} color="white" />
+              </View>
+              <Text
+                className="text-primary text-lg mb-3"
+                style={{ fontFamily: "Poppins-Medium" }}
+              >
+                Canceled
+              </Text>
+              <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
+                05 ($5200)
+              </Text>
+            </View>
           </View>
         </View>
 
         {/* Calendar Section */}
-        <View className="mx-5 mb-6">
-          <View className="bg-purple-600 rounded-t-2xl px-4 py-3">
-            <Text className="text-white font-semibold text-lg">July, 2025</Text>
+        <View className="mx-5 mb-8">
+          <View className="bg-[#612AC3] rounded-t-2xl p-4">
+            <Text
+              className="text-white text-lg"
+              style={{ fontFamily: "Poppins-Medium" }}
+            >
+              July, 2025
+            </Text>
           </View>
 
           <View className="bg-white rounded-b-2xl p-4 shadow-sm">
@@ -149,7 +172,7 @@ const BookingScreen = () => {
               {daysOfWeek.map((day) => (
                 <Text
                   key={day}
-                  className="text-gray-600 font-medium text-sm w-10 text-center"
+                  className="text-primary text-lg w-12 text-center"
                 >
                   {day}
                 </Text>
@@ -159,7 +182,7 @@ const BookingScreen = () => {
             {/* Calendar grid */}
             <View className="flex-row flex-wrap">
               {/* Empty cells for proper alignment (assuming July 1st starts on Tuesday) */}
-              <View className="w-10 h-10" />
+              <View className="w-12 h-12" />
 
               {calendarDays.map((day) => {
                 const isSelected = day === selectedDate;
@@ -167,13 +190,14 @@ const BookingScreen = () => {
                   <TouchableOpacity
                     key={day}
                     onPress={() => setSelectedDate(day)}
-                    className={`w-10 h-10 rounded-lg items-center justify-center m-1 ${
-                      isSelected ? "bg-purple-600" : "bg-transparent"
+                    className={`w-12 h-12 rounded-lg items-center justify-center m-1 ${
+                      isSelected ? "bg-purple-700" : "bg-transparent"
                     }`}
                     activeOpacity={0.7}
                   >
                     <Text
-                      className={`text-base ${
+                      style={{ fontFamily: "Poppins-Medium" }}
+                      className={`text-lg ${
                         isSelected
                           ? "text-white font-semibold"
                           : "text-gray-900"
@@ -204,9 +228,10 @@ const BookingScreen = () => {
                     activeOpacity={0.8}
                   >
                     <Text
-                      className={`text-center font-medium ${
+                      className={`text-center ${
                         isSelected ? "text-white" : "text-gray-700"
                       }`}
+                      style={{ fontFamily: "Poppins-Medium" }}
                     >
                       {time}
                     </Text>
