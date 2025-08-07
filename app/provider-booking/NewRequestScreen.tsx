@@ -1,16 +1,10 @@
 import ButtonCancel from "@/components/Shared/ButtonCancel";
+import ButtonSmall from "@/components/Shared/ButtonSmall";
 import Header from "@/components/Shared/Header";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
-import {
-  FlatList,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { FlatList, SafeAreaView, StatusBar, Text, View } from "react-native";
 
 interface BookingRequest {
   id: string;
@@ -86,47 +80,50 @@ const NewRequestScreen = () => {
 
   const renderRequestItem = ({ item }: { item: BookingRequest }) => (
     <View className="bg-white mx-4 mb-4 rounded-2xl p-4 shadow-sm">
-      <View className="flex-row items-center justify-between mb-4">
+      <View className="flex-row justify-between mb-4 p-1">
         {/* Client Info */}
-        <View className="flex-row items-center flex-1">
+        <View className="flex-row flex-1">
           <Image
             source={{ uri: item.clientImage }}
             style={{
-              width: 60,
-              height: 60,
-              borderRadius: 30,
+              width: 80,
+              height: 80,
+              borderRadius: 100,
             }}
             contentFit="cover"
           />
 
-          <View className="ml-3 flex-1">
-            <Text className="text-gray-900 font-semibold text-base mb-1">
+          <View className="ml-4 flex-1">
+            <Text
+              className="text-primary text-lg"
+              style={{ fontFamily: "Poppins-Medium" }}
+            >
               {item.clientName}
             </Text>
-            <Text className="text-purple-600 text-sm mb-1">
+            <Text
+              className="text-purple-600 text-sm mb-2"
+              style={{ fontFamily: "Poppins-Medium" }}
+            >
               Service: {item.service}
             </Text>
-            <Text className="text-gray-500 text-sm">{item.dateTime}</Text>
+            <Text className="text-accent text-[10px]">{item.dateTime}</Text>
           </View>
         </View>
 
         {/* Amount */}
-        <Text className="text-gray-900 font-bold text-lg">${item.amount}</Text>
+        <Text
+          style={{ fontFamily: "Poppins-Medium" }}
+          className="text-primary text-lg"
+        >
+          ${item.amount}
+        </Text>
       </View>
 
       {/* Action Buttons */}
-      <View className="flex-row gap-4">
+      <View className="flex-row items-center gap-4">
         <ButtonCancel text="Cancel" onPress={() => router.back()} />
 
-        <TouchableOpacity
-          onPress={() => handleAccept(item.id)}
-          className="flex-1 bg-purple-600 rounded-xl py-3"
-          activeOpacity={0.8}
-        >
-          <Text className="text-white font-semibold text-center text-base">
-            Accept
-          </Text>
-        </TouchableOpacity>
+        <ButtonSmall text="Accept" onPress={() => router.back()} />
       </View>
     </View>
   );

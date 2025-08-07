@@ -7,19 +7,18 @@ const ButtonSmall = ({ icon, text, onPress }: ButtonSmallProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="rounded-[4px] overflow-hidden w-1/2"
+      className="rounded-[4px] overflow-hidden w-[48%]"
     >
       <LinearGradient
         colors={["#B78AF7", "#612AC3"]}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 0 }}
-        className="rounded-2xl"
       >
         <View className="flex-row items-center justify-center gap-2.5 py-2">
           {icon && icon}
           <Text
-            className="text-white font-medium text-center"
-            style={{ fontFamily: "Poppins" }}
+            className="text-white text-center"
+            style={{ fontFamily: "Poppins-Medium" }}
           >
             {text}
           </Text>
