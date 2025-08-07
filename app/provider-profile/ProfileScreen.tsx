@@ -1,4 +1,4 @@
-import PendingCards from "@/components/Booked/PendingCards";
+import PendingCards from "@/components/Booking/PendingCards";
 import AboutCard from "@/components/Shared/AboutCard";
 import ButtonSmall from "@/components/Shared/ButtonSmall";
 import ButtonSmallOutline from "@/components/Shared/ButtonSmallOutline";

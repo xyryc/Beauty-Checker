@@ -54,3 +54,21 @@ export type CommonCardProps = {
   item: any;
   onPress: () => void;
 };
+
+export interface BookingRequest {
+  id: string;
+  clientName: string;
+  service: string;
+  dateTime: string;
+  amount: number;
+  clientImage: string;
+}
+
+export interface BookingStatusProps {
+  item: BookingRequest;
+  status: string;
+  onCancel?: (id: string) => void;
+  onAccept?: (id: string) => void;
+  onMessage?: (id: string) => void;
+  onComplete?: (id: string) => void;
+}

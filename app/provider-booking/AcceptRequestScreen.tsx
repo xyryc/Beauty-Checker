@@ -4,7 +4,7 @@ import { BookingRequest } from "@/types/types";
 import React from "react";
 import { FlatList, SafeAreaView, StatusBar } from "react-native";
 
-const NewRequestScreen = () => {
+const AcceptRequestScreen = () => {
   const bookingRequests: BookingRequest[] = [
     {
       id: "1",
@@ -53,12 +53,12 @@ const NewRequestScreen = () => {
     },
   ];
 
-  const handleCancel = (requestId: string) => {
-    console.log("Cancel request:", requestId);
+  const handleMessage = (requestId: string) => {
+    console.log("Message to:", requestId);
   };
 
-  const handleAccept = (requestId: string) => {
-    console.log("Accept request:", requestId);
+  const handleComplete = (requestId: string) => {
+    console.log("Complete request:", requestId);
   };
 
   return (
@@ -74,9 +74,9 @@ const NewRequestScreen = () => {
         renderItem={({ item }) => (
           <BookingStatus
             item={item}
-            status="new"
-            onCancel={handleCancel}
-            onAccept={handleAccept}
+            status="accepted"
+            onMessage={handleMessage}
+            onComplete={handleComplete}
           />
         )}
         showsVerticalScrollIndicator={false}
@@ -89,4 +89,4 @@ const NewRequestScreen = () => {
   );
 };
 
-export default NewRequestScreen;
+export default AcceptRequestScreen;

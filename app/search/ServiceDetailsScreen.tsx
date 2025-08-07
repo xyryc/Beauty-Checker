@@ -1,4 +1,4 @@
-import BookingSection from "@/components/Booked/BookingSection";
+import BookingSection from "@/components/Booking/BookingSection";
 import Header from "@/components/Shared/Header";
 import ImageSliderAndService from "@/components/Shared/ImageSliderAndService";
 import SafeScreen from "@/components/Shared/SafeScreen";

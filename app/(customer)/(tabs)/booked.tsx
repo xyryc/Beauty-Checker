@@ -1,6 +1,6 @@
-import CancelledCards from "@/components/Booked/CancelledCards";
-import CompletedCards from "@/components/Booked/CompletedCards";
-import PendingCards from "@/components/Booked/PendingCards";
+import CancelledCards from "@/components/Booking/CancelledCards";
+import CompletedCards from "@/components/Booking/CompletedCards";
+import PendingCards from "@/components/Booking/PendingCards";
 import SafeScreen from "@/components/Shared/SafeScreen";
 import { Image } from "expo-image";
 import { StatusBar } from "expo-status-bar";
