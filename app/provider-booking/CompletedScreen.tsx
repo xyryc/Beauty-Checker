@@ -4,32 +4,19 @@ import Header from "@/components/Shared/Header";
 import React from "react";
 import { FlatList, SafeAreaView, StatusBar } from "react-native";
 
-const NewRequestScreen = () => {
-  const handleCancel = (requestId: string) => {
-    console.log("Cancel request:", requestId);
-  };
-
-  const handleAccept = (requestId: string) => {
-    console.log("Accept request:", requestId);
-  };
-
+const CompletedScreen = () => {
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
 
       {/* Header */}
-      <Header text="New Request" />
-      {/* Request List */}
+      <Header text="Completed" />
+      {/* todays appointment list */}
       <FlatList
         data={bookingRequests}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <BookingStatus
-            item={item}
-            status="new"
-            onCancel={handleCancel}
-            onAccept={handleAccept}
-          />
+          <BookingStatus item={item} status="completed" />
         )}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
@@ -41,4 +28,4 @@ const NewRequestScreen = () => {
   );
 };
 
-export default NewRequestScreen;
+export default CompletedScreen;

@@ -3,7 +3,6 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -87,7 +86,7 @@ const BookingScreen = () => {
         <View className="mx-5 my-8">
           <View className="flex-row flex-wrap justify-between">
             {/* New Request */}
-            <Pressable
+            <TouchableOpacity
               onPress={() => router.push("/provider-booking/NewRequestScreen")}
               className="bg-purple-100 rounded-2xl p-4 mb-4 w-[48%]"
             >
@@ -103,10 +102,10 @@ const BookingScreen = () => {
               <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
                 05 ($5200)
               </Text>
-            </Pressable>
+            </TouchableOpacity>
 
             {/* Accepted */}
-            <Pressable
+            <TouchableOpacity
               onPress={() =>
                 router.push("/provider-booking/AcceptRequestScreen")
               }
@@ -124,10 +123,13 @@ const BookingScreen = () => {
               <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
                 05 ($5200)
               </Text>
-            </Pressable>
+            </TouchableOpacity>
 
             {/* Completed */}
-            <View className="bg-green-100 rounded-2xl p-4 mb-4 w-[48%]">
+            <TouchableOpacity
+              onPress={() => router.push("/provider-booking/CompletedScreen")}
+              className="bg-green-100 rounded-2xl p-4 mb-4 w-[48%]"
+            >
               <View className="bg-green-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
                 <Ionicons name="checkmark-done" size={20} color="white" />
               </View>
@@ -140,10 +142,13 @@ const BookingScreen = () => {
               <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
                 15 ($5200)
               </Text>
-            </View>
+            </TouchableOpacity>
 
-            {/* Canceled */}
-            <View className="bg-red-100 rounded-2xl p-4 mb-4 w-[48%]">
+            {/* Cancelled */}
+            <TouchableOpacity
+              onPress={() => router.push("/provider-booking/CancelledScreen")}
+              className="bg-red-100 rounded-2xl p-4 mb-4 w-[48%]"
+            >
               <View className="bg-red-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
                 <Ionicons name="close-circle" size={20} color="white" />
               </View>
@@ -156,7 +161,7 @@ const BookingScreen = () => {
               <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
                 05 ($5200)
               </Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
 

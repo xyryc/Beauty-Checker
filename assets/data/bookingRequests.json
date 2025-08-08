@@ -1,0 +1,48 @@
+[
+    {
+      "id": "1",
+      "clientName": "Client Name",
+      "service": "Makeup",
+      "dateTime": "Date/Time",
+      "amount": 500,
+      "clientImage":
+        "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
+    },
+    {
+      "id": "2",
+      "clientName": "Client Name",
+      "service": "Makeup",
+      "dateTime": "Date/Time",
+      "amount": 500,
+      "clientImage":
+        "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
+    },
+    {
+      "id": "3",
+      "clientName": "Client Name",
+      "service": "Makeup",
+      "dateTime": "Date/Time",
+      "amount": 500,
+      "clientImage":
+        "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
+    },
+    {
+      "id": "4",
+      "clientName": "Client Name",
+      "service": "Makeup",
+      "dateTime": "Date/Time",
+      "amount": 500,
+      "clientImage":
+        "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
+    },
+    {
+      "id": "5",
+      "clientName": "Client Name",
+      "service": "Makeup",
+      "dateTime": "Date/Time",
+      "amount": 500,
+      "clientImage":
+        "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
+    }
+]
+  
