@@ -8,7 +8,7 @@ const NewRequestScreen = () => {
   const bookingRequests: BookingRequest[] = [
     {
       id: "1",
-      clientName: "Client Name",
+      clientName: "Julian Assange",
       service: "Makeup",
       dateTime: "Date/Time",
       amount: 500,
@@ -17,7 +17,7 @@ const NewRequestScreen = () => {
     },
     {
       id: "2",
-      clientName: "Client Name",
+      clientName: "Julian Assange",
       service: "Makeup",
       dateTime: "Date/Time",
       amount: 500,
@@ -26,7 +26,7 @@ const NewRequestScreen = () => {
     },
     {
       id: "3",
-      clientName: "Client Name",
+      clientName: "Julian Assange",
       service: "Makeup",
       dateTime: "Date/Time",
       amount: 500,
@@ -35,7 +35,7 @@ const NewRequestScreen = () => {
     },
     {
       id: "4",
-      clientName: "Client Name",
+      clientName: "Julian Assange",
       service: "Makeup",
       dateTime: "Date/Time",
       amount: 500,
@@ -44,7 +44,7 @@ const NewRequestScreen = () => {
     },
     {
       id: "5",
-      clientName: "Client Name",
+      clientName: "Julian Assange",
       service: "Makeup",
       dateTime: "Date/Time",
       amount: 500,

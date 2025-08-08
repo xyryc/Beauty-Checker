@@ -2,7 +2,7 @@ import BookingStatus from "@/components/Booking/BookingStatus";
 import Header from "@/components/Shared/Header";
 import { BookingRequest } from "@/types/types";
 import React from "react";
-import { FlatList, SafeAreaView, StatusBar } from "react-native";
+import { FlatList, SafeAreaView, StatusBar, Text } from "react-native";
 
 const AcceptRequestScreen = () => {
   const bookingRequests: BookingRequest[] = [
@@ -67,10 +67,18 @@ const AcceptRequestScreen = () => {
 
       {/* Header */}
       <Header text="New Request" />
-      {/* Request List */}
+      {/* todays appointment list */}
       <FlatList
         data={bookingRequests}
         keyExtractor={(item) => item.id}
+        ListHeaderComponent={
+          <Text
+            style={{ fontFamily: "Poppins-Medium" }}
+            className="px-5 mb-6 text-2xl"
+          >
+            Today’s Appointments
+          </Text>
+        }
         renderItem={({ item }) => (
           <BookingStatus
             item={item}
