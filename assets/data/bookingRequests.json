@@ -1,42 +1,52 @@
 [
   {
     "id": "1",
+    "clientId": "1",
     "clientName": "Sophia Carter",
+    "clientImage": "https://images.pexels.com/photos/28485892/pexels-photo-28485892.jpeg",
     "service": "Bridal Makeup",
     "dateTime": "2025-08-10T09:30:00.000Z",
     "amount": 1200,
-    "clientImage": "https://images.pexels.com/photos/28485892/pexels-photo-28485892.jpeg"
+    "status": "accepted"
   },
   {
     "id": "2",
+    "clientId": "2",
     "clientName": "Liam Johnson",
+    "clientImage": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg",
     "service": "Hair Styling",
     "dateTime": "2025-08-10T14:00:00.000Z",
     "amount": 450,
-    "clientImage": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg"
+    "status": "new"
   },
   {
     "id": "3",
+    "clientId": "3",
     "clientName": "Emma Rodriguez",
+    "clientImage": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg",
     "service": "Evening Makeup",
     "dateTime": "2025-08-09T16:45:00.000Z",
     "amount": 800,
-    "clientImage": "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg"
+    "status": "completed"
   },
   {
     "id": "4",
+    "clientId": "4",
     "clientName": "Noah Williams",
+    "clientImage": "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg",
     "service": "Beard Grooming",
     "dateTime": "2025-08-10T11:15:00.000Z",
     "amount": 300,
-    "clientImage": "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg"
+    "status": "cancelled"
   },
   {
     "id": "5",
+    "clientId": "5",
     "clientName": "Ava Martinez",
+    "clientImage": "https://images.pexels.com/photos/33272044/pexels-photo-33272044.jpeg",
     "service": "Hair Coloring",
     "dateTime": "2025-08-09T10:00:00.000Z",
     "amount": 950,
-    "clientImage": "https://images.pexels.com/photos/33272044/pexels-photo-33272044.jpeg"
+    "status": "new"
   }
 ]

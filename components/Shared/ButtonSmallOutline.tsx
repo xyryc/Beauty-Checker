@@ -2,11 +2,16 @@ import { ButtonSmallProps } from "@/types/types";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-const ButtonSmallOutline = ({ icon, text, onPress }: ButtonSmallProps) => {
+const ButtonSmallOutline = ({
+  icon,
+  text,
+  onPress,
+  className = "w-[48%]",
+}: ButtonSmallProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="rounded-[4px] overflow-hidden w-[48%] border border-purpleButton"
+      className={`rounded-[4px] overflow-hidden border border-purpleButton ${className}`}
     >
       <View className="flex-row items-center justify-center gap-2.5 py-2">
         {/* <LinearGradient

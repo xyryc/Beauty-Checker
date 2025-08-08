@@ -1,7 +1,8 @@
 import { BookingStatusProps } from "@/types/types"; // import your type
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import React from "react";
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import ButtonCancel from "../Shared/ButtonCancel";
 import ButtonSmall from "../Shared/ButtonSmall";
 import ButtonSmallOutline from "../Shared/ButtonSmallOutline";
@@ -15,22 +16,32 @@ const BookingStatus = ({
   onComplete,
   onReschedule,
 }: BookingStatusProps) => {
+  const router = useRouter();
+
   return (
     <View className="bg-white mx-4 mb-4 rounded-md p-2 shadow-sm border-[0.5px] border-primary">
       <View className="flex-row justify-between p-1">
         {/* Client Info */}
         <View className="flex-row gap-4 flex-1">
-          <Image
-            source={{ uri: item.clientImage }}
-            style={{
-              width: 80,
-              height: 80,
-              borderRadius: 100,
-            }}
-            contentFit="cover"
-          />
+          <Pressable
+            onPress={() =>
+              router.push(
+                `/provider-booking/ClientProfileScreen?clientId=${item.clientId}`
+              )
+            }
+          >
+            <Image
+              source={{ uri: item.clientImage }}
+              style={{
+                width: 80,
+                height: 80,
+                borderRadius: 100,
+              }}
+              contentFit="cover"
+            />
+          </Pressable>
 
-          <View className="ml-4 flex-1">
+          <View className="flex-1">
             <Text
               className="text-primary text-lg"
               style={{ fontFamily: "Poppins-Medium" }}

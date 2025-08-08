@@ -29,6 +29,7 @@ export type ButtonSmallProps = {
   icon?: React.ReactElement;
   text: string;
   onPress?: () => void;
+  className?: string;
 };
 
 export interface Post {
@@ -57,11 +58,13 @@ export type CommonCardProps = {
 
 export interface BookingRequest {
   id: string;
+  clientId: string;
   clientName: string;
   service: string;
   dateTime: string;
   amount: number;
   clientImage: string;
+  status: "new" | "accepted" | "completed" | "cancelled";
 }
 
 export interface BookingStatusProps {
