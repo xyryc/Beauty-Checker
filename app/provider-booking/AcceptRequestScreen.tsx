@@ -1,10 +1,36 @@
 import bookingRequests from "@/assets/data/bookingRequests.json";
 import BookingStatus from "@/components/Booking/BookingStatus";
 import Header from "@/components/Shared/Header";
-import React from "react";
-import { FlatList, SafeAreaView, StatusBar, Text } from "react-native";
+import { useRouter } from "expo-router";
+import React, { useMemo } from "react";
+import { FlatList, SafeAreaView, StatusBar, Text, View } from "react-native";
 
 const AcceptRequestScreen = () => {
+  const router = useRouter();
+
+  // Filter appointments by date
+  const { todaysAppointments, upcomingAppointments } = useMemo(() => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set to start of today
+
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1); // Start of tomorrow
+
+    const todaysAppointments = bookingRequests.filter((item) => {
+      const appointmentDate = new Date(item.dateTime);
+      appointmentDate.setHours(0, 0, 0, 0);
+      return appointmentDate.getTime() === today.getTime();
+    });
+
+    const upcomingAppointments = bookingRequests.filter((item) => {
+      const appointmentDate = new Date(item.dateTime);
+      appointmentDate.setHours(0, 0, 0, 0);
+      return appointmentDate.getTime() >= tomorrow.getTime();
+    });
+
+    return { todaysAppointments, upcomingAppointments };
+  }, []);
+
   const handleMessage = (requestId: string) => {
     console.log("Message to:", requestId);
   };
@@ -13,38 +39,104 @@ const AcceptRequestScreen = () => {
     console.log("Complete request:", requestId);
   };
 
+  const handleReschedule = (requestId: string) => {
+    router.push("/provider-booking/Reschedule");
+  };
+
+  const handleCancel = (requestId: string) => {
+    console.log("Cancel request:", requestId);
+  };
+
+  // Combine both lists for FlatList
+  const combinedData = [
+    ...(todaysAppointments.length > 0
+      ? [{ type: "today", data: todaysAppointments }]
+      : []),
+    ...(upcomingAppointments.length > 0
+      ? [{ type: "upcoming", data: upcomingAppointments }]
+      : []),
+  ];
+
+  const renderItem = ({ item, index }: { item: any; index: number }) => {
+    if (item.type === "today") {
+      return (
+        <View>
+          <Text
+            style={{ fontFamily: "Poppins-Medium" }}
+            className="px-5 mb-6 text-2xl"
+          >
+            Today's Appointments
+          </Text>
+          {item.data.map((appointment: any) => (
+            <BookingStatus
+              key={appointment.id}
+              item={appointment}
+              status="accepted"
+              onMessage={handleMessage}
+              onComplete={handleComplete}
+              onCancel={handleCancel}
+              onReschedule={handleReschedule}
+            />
+          ))}
+        </View>
+      );
+    }
+
+    if (item.type === "upcoming") {
+      return (
+        <View>
+          <Text
+            style={{ fontFamily: "Poppins-Medium" }}
+            className="px-5 mb-6 text-2xl mt-8"
+          >
+            Upcoming Appointments
+          </Text>
+          {item.data.map((appointment: any) => (
+            <BookingStatus
+              key={appointment.id}
+              item={appointment}
+              status="upcoming"
+              onMessage={handleMessage}
+              onComplete={handleComplete}
+              onCancel={handleCancel}
+              onReschedule={handleReschedule}
+            />
+          ))}
+        </View>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <SafeAreaView className="flex-1 bg-gray-50">
       <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
 
       {/* Header */}
       <Header text="Accepted" />
-      {/* todays appointment list */}
-      <FlatList
-        data={bookingRequests}
-        keyExtractor={(item) => item.id}
-        ListHeaderComponent={
+
+      {/* Appointments list */}
+      {combinedData.length > 0 ? (
+        <FlatList
+          data={combinedData}
+          keyExtractor={(item, index) => `${item.type}-${index}`}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingVertical: 32,
+          }}
+        />
+      ) : (
+        <View className="flex-1 justify-center items-center">
           <Text
             style={{ fontFamily: "Poppins-Medium" }}
-            className="px-5 mb-6 text-2xl"
+            className="text-gray-500 text-lg"
           >
-            Today’s Appointments
+            No appointments found
           </Text>
-        }
-        renderItem={({ item }) => (
-          <BookingStatus
-            item={item}
-            status="accepted"
-            onMessage={handleMessage}
-            onComplete={handleComplete}
-          />
-        )}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{
-          paddingTop: 24,
-          paddingBottom: 32,
-        }}
-      />
+        </View>
+      )}
     </SafeAreaView>
   );
 };

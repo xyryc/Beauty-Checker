@@ -3,7 +3,7 @@
       "id": "1",
       "clientName": "Client Name",
       "service": "Makeup",
-      "dateTime": "Date/Time",
+      "dateTime": "2025-08-10T16:45:00.000Z",
       "amount": 500,
       "clientImage":
         "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
@@ -12,7 +12,7 @@
       "id": "2",
       "clientName": "Client Name",
       "service": "Makeup",
-      "dateTime": "Date/Time",
+      "dateTime": "2025-08-10T16:45:00.000Z",
       "amount": 500,
       "clientImage":
         "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
@@ -21,7 +21,7 @@
       "id": "3",
       "clientName": "Client Name",
       "service": "Makeup",
-      "dateTime": "Date/Time",
+      "dateTime": "2025-08-09T16:45:00.000Z",
       "amount": 500,
       "clientImage":
         "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
@@ -30,7 +30,7 @@
       "id": "4",
       "clientName": "Client Name",
       "service": "Makeup",
-      "dateTime": "Date/Time",
+      "dateTime": "2025-08-10T16:45:00.000Z",
       "amount": 500,
       "clientImage":
         "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"
@@ -39,7 +39,7 @@
       "id": "5",
       "clientName": "Client Name",
       "service": "Makeup",
-      "dateTime": "Date/Time",
+      "dateTime": "2025-08-09T16:45:00.000Z",
       "amount": 500,
       "clientImage":
         "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg"

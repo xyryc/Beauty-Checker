@@ -71,4 +71,5 @@ export interface BookingStatusProps {
   onAccept?: (id: string) => void;
   onMessage?: (id: string) => void;
   onComplete?: (id: string) => void;
+  onReschedule?: (id: string) => void;
 }

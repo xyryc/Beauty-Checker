@@ -13,6 +13,7 @@ const BookingStatus = ({
   onAccept,
   onMessage,
   onComplete,
+  onReschedule,
 }: BookingStatusProps) => {
   return (
     <View className="bg-white mx-4 mb-4 rounded-md p-2 shadow-sm border-[0.5px] border-primary">
@@ -47,7 +48,7 @@ const BookingStatus = ({
         </View>
 
         {/* Amount */}
-        <View className="flex justify-center items-end gap-4">
+        <View className="flex items-end gap-4">
           <Text
             style={{ fontFamily: "Poppins-Medium" }}
             className="text-primary text-lg"
@@ -101,6 +102,14 @@ const BookingStatus = ({
             <ButtonSmall
               text="Complete"
               onPress={() => onComplete?.(item.id)}
+            />
+          </>
+        ) : status === "upcoming" ? (
+          <>
+            <ButtonCancel text="Cancel" onPress={() => onCancel?.(item.id)} />
+            <ButtonSmall
+              text="Reschedule"
+              onPress={() => onReschedule?.(item.id)}
             />
           </>
         ) : null}
