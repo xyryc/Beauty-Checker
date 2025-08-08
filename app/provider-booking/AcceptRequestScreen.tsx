@@ -40,7 +40,26 @@ const AcceptRequestScreen = () => {
   };
 
   const handleReschedule = (requestId: string) => {
-    router.push("/provider-booking/Reschedule");
+    // Find the booking item to pass to reschedule screen
+    const bookingItem = [...todaysAppointments, ...upcomingAppointments].find(
+      (item) => item.id === requestId
+    );
+
+    if (bookingItem) {
+      // Pass the booking data as query parameters
+      const queryParams = new URLSearchParams({
+        id: bookingItem.id,
+        clientName: bookingItem.clientName,
+        service: bookingItem.service,
+        dateTime: bookingItem.dateTime,
+        amount: bookingItem.amount.toString(),
+        clientImage: bookingItem.clientImage,
+      });
+
+      router.push(
+        `/provider-booking/RescheduleScreen?${queryParams.toString()}`
+      );
+    }
   };
 
   const handleCancel = (requestId: string) => {
@@ -74,8 +93,6 @@ const AcceptRequestScreen = () => {
               status="accepted"
               onMessage={handleMessage}
               onComplete={handleComplete}
-              onCancel={handleCancel}
-              onReschedule={handleReschedule}
             />
           ))}
         </View>
@@ -96,8 +113,6 @@ const AcceptRequestScreen = () => {
               key={appointment.id}
               item={appointment}
               status="upcoming"
-              onMessage={handleMessage}
-              onComplete={handleComplete}
               onCancel={handleCancel}
               onReschedule={handleReschedule}
             />
