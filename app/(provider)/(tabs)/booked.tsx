@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const BookingScreen = () => {
   const [selectedDate, setSelectedDate] = useState(20);
@@ -21,6 +22,7 @@ const BookingScreen = () => {
     "07.00 Pm",
   ]);
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   // Calendar data for July 2025
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -47,7 +49,15 @@ const BookingScreen = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView
+      className="flex-1 bg-gray-50"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
       <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
 
       {/* Header */}

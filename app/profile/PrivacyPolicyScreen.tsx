@@ -1,14 +1,27 @@
 import Header from "@/components/Shared/Header";
-import SafeScreen from "@/components/Shared/SafeScreen";
 import React from "react";
-import { ScrollView, Text } from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, Text } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const PrivacyPolicyScreen = () => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <SafeScreen>
+    <SafeAreaView
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
+      <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
       <Header text="Privacy Policy" />
 
-      <ScrollView className="px-5 py-6 mb-20">
+      <ScrollView
+        className="px-5 py-6"
+        contentContainerStyle={{ paddingBottom: 80 }}
+      >
         <Text className="text-lg font-semibold text-primary mb-2">
           Introduction
         </Text>
@@ -99,7 +112,7 @@ const PrivacyPolicyScreen = () => {
           contact@beautychecker.com.
         </Text>
       </ScrollView>
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 

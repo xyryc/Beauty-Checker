@@ -2,6 +2,7 @@ import bookingRequests from "@/assets/data/bookingRequests.json";
 import BookingStatus from "@/components/Booking/BookingStatus";
 import ButtonCancel from "@/components/Shared/ButtonCancel";
 import Header from "@/components/Shared/Header";
+import { BookingRequest } from "@/types/types";
 import { Ionicons } from "@expo/vector-icons";
 import { BlurView } from "expo-blur";
 import React, { useState } from "react";
@@ -14,6 +15,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const NewRequestScreen = () => {
   const [showCancelModal, setShowCancelModal] = useState(false);
@@ -21,6 +23,7 @@ const NewRequestScreen = () => {
     null
   );
   const [cancelReason, setCancelReason] = useState("");
+  const insets = useSafeAreaInsets();
 
   const handleCancel = (requestId: string) => {
     setSelectedRequestId(requestId);
@@ -39,7 +42,15 @@ const NewRequestScreen = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView
+      className="flex-1 bg-gray-50"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
       <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
 
       {/* Header */}
@@ -51,7 +62,7 @@ const NewRequestScreen = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <BookingStatus
-            item={item}
+            item={item as BookingRequest}
             status="new"
             onCancel={handleCancel}
             onAccept={handleAccept}

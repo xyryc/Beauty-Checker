@@ -1,17 +1,27 @@
 import Header from "@/components/Shared/Header";
 import ImageSlider from "@/components/Shared/ImageSlider";
-import SafeScreen from "@/components/Shared/SafeScreen";
 import { Image } from "expo-image";
 import React from "react";
-import { ScrollView, Text, View } from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ServiceReview = () => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <SafeScreen>
+    <SafeAreaView
+      className="flex-1"
+      style={{
+        paddingTop: insets.top,
+        paddingBottom: insets.bottom,
+      }}
+    >
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
       <Header text="Reviews" />
 
       {/* reviews */}
-      <ScrollView className="mx-6 py-6 ">
+      <ScrollView className="mx-6 py-6" showsVerticalScrollIndicator={false}>
         {/* first review */}
         <View className="pb-8">
           {/* review details */}
@@ -98,7 +108,7 @@ const ServiceReview = () => {
           <ImageSlider />
         </View>
       </ScrollView>
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 

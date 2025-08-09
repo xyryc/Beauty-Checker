@@ -245,6 +245,7 @@ const ProviderProfile = () => {
             zIndex: 20,
           }}
           source={require("@/assets/images/add.png")}
+          cachePolicy="memory-disk"
           placeholder={{ blurhash }}
           contentFit="cover"
         />

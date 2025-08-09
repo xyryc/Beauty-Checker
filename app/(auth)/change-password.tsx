@@ -3,12 +3,22 @@ import Header from "@/components/Shared/Header";
 import { useRouter } from "expo-router";
 import React from "react";
 import { Platform, SafeAreaView, Text, TextInput, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ChangePassword = () => {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeAreaView className="flex-1 bg-white">
+    <SafeAreaView
+      className="flex-1 bg-white"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
       <Header text="Change Password" />
 
       <View className="flex-1 justify-between px-5">

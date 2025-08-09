@@ -1,14 +1,28 @@
 import Header from "@/components/Shared/Header";
-import SafeScreen from "@/components/Shared/SafeScreen";
 import React from "react";
-import { ScrollView, Text } from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, Text } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const TermsConditionsScreen = () => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <SafeScreen>
+    <SafeAreaView
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
+      <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
+
       <Header text="Terms & Conditions" />
 
-      <ScrollView className="px-5 py-6 mb-20">
+      <ScrollView
+        className="px-5 py-6"
+        contentContainerStyle={{ paddingBottom: 80 }}
+      >
         <Text
           className="text-base text-accent mb-4"
           style={{ fontFamily: "Poppins" }}
@@ -168,7 +182,7 @@ const TermsConditionsScreen = () => {
           understood, and agreed to these Terms and Conditions.
         </Text>
       </ScrollView>
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 

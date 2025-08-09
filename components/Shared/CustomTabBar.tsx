@@ -11,8 +11,9 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
     <View className="relative">
       {/* Background Image */}
       <Image
-        source={require("@/assets/images/menu.png")}
+        source={require("@/assets/images/menu.svg")}
         contentFit="cover"
+        cachePolicy="memory-disk"
         style={{
           position: "absolute",
           width: "100%",
@@ -31,6 +32,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
           source={require("@/assets/images/search-center.svg")}
           style={{ width: 46, height: 46 }}
           contentFit="cover"
+          cachePolicy="memory-disk"
         />
       </TouchableOpacity>
 

@@ -6,10 +6,12 @@ import { Image } from "expo-image";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React from "react";
 import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const ClientProfileScreen = () => {
   const { clientId } = useLocalSearchParams();
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   // Find the booking request by clientId
   const bookingData = bookingRequests.find((item) => item.id === clientId);
@@ -39,7 +41,15 @@ const ClientProfileScreen = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView
+      className="flex-1 bg-gray-50"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
       <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
 
       <ScrollView showsVerticalScrollIndicator={false} className="flex-1">

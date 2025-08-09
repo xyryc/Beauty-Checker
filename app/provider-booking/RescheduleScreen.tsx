@@ -11,8 +11,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RescheduleScreen = () => {
+  const insets = useSafeAreaInsets();
   const [selectedDate, setSelectedDate] = useState(4); // Thursday is selected
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
 
@@ -77,7 +79,15 @@ const RescheduleScreen = () => {
   ];
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView
+      className="flex-1"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
       <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
 
       {/* Header */}

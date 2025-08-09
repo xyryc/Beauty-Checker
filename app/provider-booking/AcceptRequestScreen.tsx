@@ -4,9 +4,11 @@ import Header from "@/components/Shared/Header";
 import { useRouter } from "expo-router";
 import React, { useMemo } from "react";
 import { FlatList, SafeAreaView, StatusBar, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AcceptRequestScreen = () => {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   // Filter appointments by date
   const { todaysAppointments, upcomingAppointments } = useMemo(() => {
@@ -125,7 +127,15 @@ const AcceptRequestScreen = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-50">
+    <SafeAreaView
+      className="flex-1 bg-gray-50"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
       <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
 
       {/* Header */}
