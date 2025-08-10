@@ -82,11 +82,7 @@ const SignUp = () => {
       await storage.setUserData(userData);
 
       // Navigate based on role
-      if (selectedRole === "customer") {
-        router.replace("/(customer)/(tabs)");
-      } else {
-        router.replace("/(provider)/(tabs)");
-      }
+      if (selectedRole) router.replace("/(tabs)");
     } catch (error) {
       console.error("Signup error:", error);
       Alert.alert("Error", "Registration failed. Please try again.");

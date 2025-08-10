@@ -38,11 +38,7 @@ const SignIn = () => {
       await storage.setUserData({ email, role: selectedRole });
 
       // Navigate based on role
-      if (selectedRole === "customer") {
-        router.replace("/(customer)/(tabs)");
-      } else {
-        router.replace("/(provider)/(tabs)");
-      }
+      if (selectedRole) router.replace("/(tabs)");
     } catch (error) {
       console.error("Login error:", error);
     }

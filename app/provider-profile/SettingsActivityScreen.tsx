@@ -1,15 +1,33 @@
 import Header from "@/components/Shared/Header";
-import SafeScreen from "@/components/Shared/SafeScreen";
 import { Feather, MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SettingsActivityScreen = () => {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeScreen>
+    <SafeAreaView
+      className="flex-1"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
       <Header text="Settings & Activity" />
 
       {/* menu */}
@@ -67,7 +85,7 @@ const SettingsActivityScreen = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 

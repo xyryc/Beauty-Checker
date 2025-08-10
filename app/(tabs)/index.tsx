@@ -1,23 +1,29 @@
 import posts from "@/assets/data/posts.json";
 import CommentModal from "@/components/Discover/CommentModal";
 import ImagePost from "@/components/Shared/ImagePost";
-import SafeScreen from "@/components/Shared/SafeScreen";
 import ShareModal from "@/components/Shared/ShareModal";
 import VideoPost from "@/components/Shared/VideoPost";
-import { Entypo, FontAwesome, FontAwesome6 } from "@expo/vector-icons";
+import {
+  Entypo,
+  FontAwesome,
+  FontAwesome6,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
 import { useNavigation, useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { useVideoPlayer } from "expo-video";
 import React, { useState } from "react";
 import {
   Dimensions,
   Modal,
   Pressable,
+  SafeAreaView,
   ScrollView,
+  StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const { height } = Dimensions.get("window");
 
@@ -29,6 +35,7 @@ const Discover = () => {
   const [commentVisible, setCommentVisible] = useState<boolean>(false);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   const handleNavigate = (screen: string) => {
     setVisible(false);
@@ -36,14 +43,22 @@ const Discover = () => {
   };
 
   return (
-    <SafeScreen>
-      <StatusBar style="dark" />
+    <SafeAreaView
+      className="bg-[#000000]"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
+      <StatusBar barStyle="default" backgroundColor="#000000" />
 
       {/* Top Bar */}
-      <View className="bg-customBlack px-5 py-5 flex-row justify-between">
+      <View className="bg-[#000000] px-5 py-5 flex-row justify-between">
         <TouchableOpacity onPress={() => setVisible(true)}>
           <View className="flex-row items-center gap-2">
-            <FontAwesome6 name="bars" size={20} color="#FEFEFE" />
+            <FontAwesome6 name="bars" size={24} color="white" />
             <Text
               className="text-white text-xl font-medium"
               style={{ fontFamily: "Poppins" }}
@@ -52,7 +67,12 @@ const Discover = () => {
             </Text>
           </View>
         </TouchableOpacity>
-        <FontAwesome6 name="sliders" size={20} color="#FEFEFE" />
+
+        <MaterialCommunityIcons
+          name="bell-badge-outline"
+          size={24}
+          color="white"
+        />
       </View>
 
       {/* For You Modal */}
@@ -97,7 +117,7 @@ const Discover = () => {
       </Modal>
 
       {/* Posts */}
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {posts.map((post, index) => {
           const isVideo = post.type === "video";
           const player = isVideo
@@ -147,7 +167,7 @@ const Discover = () => {
         visible={commentVisible}
         onClose={() => setCommentVisible(false)}
       />
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 

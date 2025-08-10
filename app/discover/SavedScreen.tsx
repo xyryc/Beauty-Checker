@@ -1,16 +1,32 @@
-import SafeScreen from "@/components/Shared/SafeScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const SavedScreen = () => {
   const router = useRouter();
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeScreen>
-      <StatusBar style="dark" />
+    <SafeAreaView
+      className="bg-customBlack"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
+      <StatusBar barStyle="default" backgroundColor="#111111" />
 
       {/* Custom Header */}
       <View className="flex-row items-center justify-between p-4 bg-customBlack relative">
@@ -138,7 +154,7 @@ const SavedScreen = () => {
           </View>
         </View>
       </ScrollView>
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 

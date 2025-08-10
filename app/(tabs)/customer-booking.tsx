@@ -1,16 +1,23 @@
 import CancelledCards from "@/components/Booking/CancelledCards";
 import CompletedCards from "@/components/Booking/CompletedCards";
 import PendingCards from "@/components/Booking/PendingCards";
-import SafeScreen from "@/components/Shared/SafeScreen";
 import { Image } from "expo-image";
-import { StatusBar } from "expo-status-bar";
+
 import React, { useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import {
+  SafeAreaView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const TABS = ["Pending", "Completed", "Cancelled"];
 
-const Booked = () => {
+const CustomerBookingScreen = () => {
   const [activeTab, setActiveTab] = useState("Pending");
+  const insets = useSafeAreaInsets();
 
   const getTabColor = (tab: string) => {
     switch (tab) {
@@ -68,9 +75,16 @@ const Booked = () => {
   };
 
   return (
-    <SafeScreen>
-      {/* header */}
-      <StatusBar style="dark" />
+    <SafeAreaView
+      className="flex-1"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
 
       <View className="bg-white">
         {/* header */}
@@ -127,8 +141,8 @@ const Booked = () => {
           {activeTab === "Cancelled" && <CancelledCards />}
         </View>
       </View>
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 
-export default Booked;
+export default CustomerBookingScreen;

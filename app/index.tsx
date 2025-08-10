@@ -39,11 +39,7 @@ export default function Index() {
       }
 
       // Navigate to role-specific home
-      if (selectedRole === "customer") {
-        router.replace("/(customer)/(tabs)");
-      } else if (selectedRole === "admin") {
-        router.replace("/(provider)/(tabs)");
-      }
+      if (selectedRole) router.replace("/(tabs)");
     } catch (error) {
       console.error("Error checking app state:", error);
       router.replace("/onboarding");

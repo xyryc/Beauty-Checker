@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const BookingScreen = () => {
+const ProviderBookingScreen = () => {
   const [selectedDate, setSelectedDate] = useState(20);
   const [selectedTimeSlots, setSelectedTimeSlots] = useState([
     "12.00 Pm",
@@ -50,7 +50,7 @@ const BookingScreen = () => {
 
   return (
     <SafeAreaView
-      className="flex-1 bg-gray-50"
+      className="flex-1"
       style={[
         {
           paddingTop: insets.top,
@@ -58,7 +58,7 @@ const BookingScreen = () => {
         },
       ]}
     >
-      <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
 
       {/* Header */}
       <View
@@ -266,4 +266,4 @@ const BookingScreen = () => {
   );
 };
 
-export default BookingScreen;
+export default ProviderBookingScreen;

@@ -3,6 +3,7 @@ import {
   FontAwesome,
   Ionicons,
   MaterialCommunityIcons,
+  Octicons,
 } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { VideoView } from "expo-video";
@@ -30,7 +31,7 @@ const VideoPost = ({
         {/* Heart */}
         <View className="items-center p-2.5 mb-2.5">
           <TouchableOpacity>
-            <Ionicons name="heart" size={32} color="white" />
+            <Octicons name="heart-fill" size={32} color="white" />
           </TouchableOpacity>
           <Text
             className="text-xs text-white"
@@ -73,7 +74,7 @@ const VideoPost = ({
         {/* Bookmark */}
         <View className="items-center p-2.5 mb-2.5">
           <TouchableOpacity>
-            <FontAwesome name="bookmark" size={32} color="white" />
+            <Ionicons name="bookmark" size={32} color="white" />
           </TouchableOpacity>
           <Text
             className="text-xs text-white"

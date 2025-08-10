@@ -1,14 +1,30 @@
+import { authService } from "@/services/auth";
 import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { Image } from "expo-image";
-import React from "react";
+import { useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
 const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
   const isFocused = (index: number) => state.index === index;
+  const [role, setRole] = useState<"customer" | "provider" | null>(null);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+
+  useEffect(() => {
+    const checkRole = async () => {
+      const authStatus = await authService.checkAuthStatus();
+      if (authStatus.isAuthenticated && authStatus.user) {
+        setRole(authStatus.user.role); // Assuming role is stored in user object
+      }
+      setLoading(false);
+    };
+    checkRole();
+  }, []);
 
   return (
-    <View className="relative">
+    <View className="relative shadow-android">
       {/* Background Image */}
       <Image
         source={require("@/assets/images/menu.svg")}
@@ -80,7 +96,13 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
 
         <View className="flex-row gap-8 justify-between w-[30%]">
           <TouchableOpacity
-            onPress={() => navigation.navigate("booked")}
+            onPress={() => {
+              if (role === "customer") {
+                router.push("/customer-booking");
+              } else {
+                router.push("/provider-booking");
+              }
+            }}
             className="items-center gap-1.5 flex"
           >
             <Feather
@@ -99,7 +121,13 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate("profile")}
+            onPress={() => {
+              if (role === "customer") {
+                router.push("/customer-profile");
+              } else {
+                router.push("/provider-profile");
+              }
+            }}
             className="items-center gap-1.5 flex"
           >
             <Ionicons

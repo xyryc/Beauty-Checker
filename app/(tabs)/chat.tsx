@@ -1,16 +1,31 @@
 import ChatListItem from "@/components/Chat/ChatListItem";
-import SafeScreen from "@/components/Shared/SafeScreen";
 import { Image } from "expo-image";
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { ScrollView, Text, TextInput, View } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Chat = () => {
   const [search, setSearch] = useState("");
+  const insets = useSafeAreaInsets();
 
   return (
-    <SafeScreen>
-      <StatusBar style="dark" />
+    <SafeAreaView
+      className="flex-1 bg-gray-50"
+      style={[
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+        },
+      ]}
+    >
+      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
 
       <View className="px-5 bg-white py-3">
         {/* title and search */}
@@ -50,7 +65,7 @@ const Chat = () => {
 
         <ChatListItem />
       </ScrollView>
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 

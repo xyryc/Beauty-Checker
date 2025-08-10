@@ -58,7 +58,7 @@ const PendingCards = () => {
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <CommonCard
-          onPress={() => router.push("/booked/BookedDetailsScreen")}
+          onPress={() => router.push("/customer-booking/BookedDetailsScreen")}
           item={item}
         />
       )}
