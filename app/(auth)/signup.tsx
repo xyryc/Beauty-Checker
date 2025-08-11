@@ -25,6 +25,7 @@ const SignUp = () => {
     name: "",
     email: "",
     phone: "",
+    company: "",
     password: "",
     confirmPassword: "",
   });
@@ -73,8 +74,11 @@ const SignUp = () => {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
+        company: formData?.company,
         role: selectedRole,
       };
+
+      console.log(userData);
 
       // In a real app, you would call authService.register() here
       // For now, we'll mock the registration process
@@ -100,6 +104,7 @@ const SignUp = () => {
           {
             paddingTop: insets.top,
             paddingBottom: insets.bottom,
+            backgroundColor: "#ffffff",
           },
         ]}
       >
@@ -195,6 +200,29 @@ const SignUp = () => {
                   onChangeText={(text) => handleInputChange("phone", text)}
                 />
               </View>
+
+              {/* company name */}
+              {selectedRole === "provider" ? (
+                <View className="mb-6">
+                  <Text
+                    className="text-lg font-medium mb-2 text-primary"
+                    style={{ fontFamily: "Poppins" }}
+                  >
+                    Company Name
+                  </Text>
+                  <TextInput
+                    className={`py-[18px] px-4 border-[0.5px] border-[#A1A1A1] rounded-lg placeholder:text-accent bg-white ${
+                      Platform.OS === "ios" ? "shadow-ios" : "shadow-android"
+                    }`}
+                    style={{ fontFamily: "Poppins" }}
+                    placeholder="Enter Your Company Name"
+                    value={formData.company}
+                    onChangeText={(text) => handleInputChange("company", text)}
+                    multiline={false}
+                    scrollEnabled={false}
+                  />
+                </View>
+              ) : null}
 
               {/* password */}
               <View className="mb-6">
