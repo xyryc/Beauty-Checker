@@ -50,7 +50,7 @@ const ProviderBookingScreen = () => {
 
   return (
     <SafeAreaView
-      className="flex-1"
+      className="flex-1 bg-[#FEFEFE]"
       style={[
         {
           paddingTop: insets.top,
@@ -58,7 +58,7 @@ const ProviderBookingScreen = () => {
         },
       ]}
     >
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+      <StatusBar barStyle="dark-content" backgroundColor="#FEFEFE" />
 
       {/* Header */}
       <View

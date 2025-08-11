@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  StatusBar,
   Text,
   TextInput,
   TouchableOpacity,
@@ -29,9 +30,12 @@ const ChatScreen = () => {
         {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
+          backgroundColor: "#FEFEFE",
         },
       ]}
     >
+      <StatusBar barStyle="dark-content" backgroundColor="#FEFEFE" />
+
       <View className="px-5 h-full">
         {/* Header */}
         <View className="flex-row justify-between items-center mb-4">

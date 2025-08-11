@@ -11,6 +11,8 @@ import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   FlatList,
+  Modal,
+  Pressable,
   StatusBar,
   Text,
   TouchableOpacity,
@@ -26,6 +28,7 @@ const ProviderProfile = () => {
   const [activeTab, setActiveTab] = useState("Services");
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const [showAddModal, setShowAddModal] = useState(false);
 
   const renderTab = (tab: string) => {
     const isActive = activeTab === tab;
@@ -56,6 +59,38 @@ const ProviderProfile = () => {
         )}
       </TouchableOpacity>
     );
+  };
+
+  const addOptions = [
+    {
+      id: 1,
+      title: "Add Services",
+      icon: "briefcase",
+      description: "Add new services to your profile",
+      route: "/provider-profile/AddServiceScreen",
+      color: "#612AC3",
+    },
+    {
+      id: 2,
+      title: "Add Photo Post",
+      icon: "camera",
+      description: "Share a new photo with your followers",
+      route: "/provider-profile/AddPhotoScreen",
+      color: "#612AC3",
+    },
+    {
+      id: 3,
+      title: "Add Video Post",
+      icon: "video-camera",
+      description: "Upload a video to showcase your work",
+      route: "/provider-profile/AddVideoScreen",
+      color: "#612AC3",
+    },
+  ];
+
+  const handleAddOptionPress = (route: string) => {
+    setShowAddModal(false);
+    router.push(route);
   };
 
   return (
@@ -231,25 +266,115 @@ const ProviderProfile = () => {
         )}
       />
 
-      {/* add icon */}
+      {/* Floating Add Button */}
       <TouchableOpacity
-        onPress={() => router.push("/provider-profile/AddPost")}
+        onPress={() => setShowAddModal(true)}
+        className="absolute bottom-36 right-5 w-16 h-16 bg-purple-600 rounded-full items-center justify-center shadow-lg"
+        style={{ elevation: 8 }}
+        activeOpacity={0.8}
       >
         <Image
           style={{
             width: 70,
             height: 70,
-            position: "absolute",
-            bottom: 100,
-            right: 5,
-            zIndex: 20,
           }}
           source={require("@/assets/images/add.png")}
-          cachePolicy="memory-disk"
           placeholder={{ blurhash }}
           contentFit="cover"
+          transition={100}
+          cachePolicy="memory-disk"
         />
       </TouchableOpacity>
+
+      {/* Add Options Modal */}
+      <Modal
+        visible={showAddModal}
+        transparent={true}
+        animationType="fade"
+        onRequestClose={() => setShowAddModal(false)}
+      >
+        <Pressable
+          className="flex-1 bg-black/60 justify-center items-center"
+          onPress={() => setShowAddModal(false)}
+        >
+          <Pressable
+            className="bg-white rounded-3xl mx-6 w-[85%] overflow-hidden"
+            onPress={() => {}} // Prevent modal close when tapping inside
+          >
+            {/* Modal Header */}
+            <View className="p-6 border-b border-gray-100">
+              <Text
+                className="text-xl text-primary text-center"
+                style={{
+                  fontFamily: "Poppins-SemiBold",
+                }}
+              >
+                Create New Content
+              </Text>
+              <Text
+                className="text-lg text-accent text-center mt-1"
+                style={{
+                  fontFamily: "Poppins",
+                }}
+              >
+                Choose what you'd like to add
+              </Text>
+            </View>
+
+            {/* Options List */}
+            <View className="py-2">
+              {addOptions.map((option, index) => (
+                <TouchableOpacity
+                  key={option.id}
+                  onPress={() => handleAddOptionPress(option.route)}
+                  className="flex-row items-center px-6 py-4 active:bg-gray-50"
+                  activeOpacity={0.7}
+                >
+                  <View
+                    className="w-12 h-12 rounded-full items-center justify-center mr-4"
+                    style={{ backgroundColor: `${option.color}15` }}
+                  >
+                    <FontAwesome
+                      name={option.icon as any}
+                      size={20}
+                      color={option.color}
+                    />
+                  </View>
+
+                  <View className="flex-1">
+                    <Text
+                      className="text-lg font-semibold text-gray-900"
+                      style={{
+                        fontFamily: "Poppins-Medium",
+                      }}
+                    >
+                      {option.title}
+                    </Text>
+                    <Text
+                      className="text-sm text-gray-500 mt-1"
+                      style={{
+                        fontFamily: "Poppins",
+                      }}
+                    >
+                      {option.description}
+                    </Text>
+                  </View>
+
+                  <FontAwesome name="chevron-right" size={16} color="#9CA3AF" />
+                </TouchableOpacity>
+              ))}
+            </View>
+
+            {/* Cancel Button */}
+            <View className="p-4 border-t border-gray-100 items-center">
+              <ButtonSmallOutline
+                text="Cancel"
+                onPress={() => setShowAddModal(false)}
+              />
+            </View>
+          </Pressable>
+        </Pressable>
+      </Modal>
     </View>
   );
 };

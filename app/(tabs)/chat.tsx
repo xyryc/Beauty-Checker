@@ -17,7 +17,7 @@ const Chat = () => {
 
   return (
     <SafeAreaView
-      className="flex-1 bg-gray-50"
+      className="flex-1 bg-[#FEFEFE]"
       style={[
         {
           paddingTop: insets.top,
@@ -25,7 +25,7 @@ const Chat = () => {
         },
       ]}
     >
-      <StatusBar barStyle="dark-content" backgroundColor="#ffffff" />
+      <StatusBar barStyle="dark-content" backgroundColor="#FEFEFE" />
 
       <View className="px-5 bg-white py-3">
         {/* title and search */}

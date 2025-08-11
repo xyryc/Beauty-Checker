@@ -16,13 +16,10 @@ import {
   View,
 } from "react-native";
 
-const AddPostScreen = () => {
+const AddVideoScreen = () => {
   const [description, setDescription] = useState("");
   const [selectedImages, setSelectedImages] = useState([
     "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg",
-    "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg",
-    "https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg",
-    "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
   ]);
   const router = useRouter();
 
@@ -155,4 +152,4 @@ const AddPostScreen = () => {
   );
 };
 
-export default AddPostScreen;
+export default AddVideoScreen;

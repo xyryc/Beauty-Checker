@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  StatusBar,
   Text,
   TextInput,
   View,
@@ -19,6 +20,8 @@ const EditProfileScreen = () => {
 
   return (
     <SafeScreen>
+      <StatusBar barStyle="dark-content" backgroundColor="#FEFEFE" />
+
       <Header text="Edit Profile" />
 
       <KeyboardAvoidingView
