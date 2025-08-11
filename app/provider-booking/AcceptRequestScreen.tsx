@@ -1,14 +1,20 @@
 import bookingRequests from "@/assets/data/bookingRequests.json";
 import BookingStatus from "@/components/Booking/BookingStatus";
+import CancelModal from "@/components/Shared/CancelModal";
 import Header from "@/components/Shared/Header";
 import { useRouter } from "expo-router";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { FlatList, SafeAreaView, StatusBar, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const AcceptRequestScreen = () => {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const [cancelReason, setCancelReason] = useState("");
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [selectedRequestId, setSelectedRequestId] = useState<string | null>(
+    null
+  );
 
   // Filter appointments by date
   const { todaysAppointments, upcomingAppointments } = useMemo(() => {
@@ -65,7 +71,15 @@ const AcceptRequestScreen = () => {
   };
 
   const handleCancel = (requestId: string) => {
-    console.log("Cancel request:", requestId);
+    setSelectedRequestId(requestId);
+    setShowCancelModal(true);
+  };
+
+  const confirmCancel = () => {
+    console.log("Cancel request:", selectedRequestId, "Reason:", cancelReason);
+    setShowCancelModal(false);
+    setCancelReason("");
+    setSelectedRequestId(null);
   };
 
   // Combine both lists for FlatList
@@ -162,6 +176,15 @@ const AcceptRequestScreen = () => {
           </Text>
         </View>
       )}
+
+      {/* Cancel Modal */}
+      <CancelModal
+        showCancelModal={showCancelModal}
+        setShowCancelModal={setShowCancelModal}
+        cancelReason={cancelReason}
+        setCancelReason={setCancelReason}
+        confirmCancel={confirmCancel}
+      />
     </SafeAreaView>
   );
 };

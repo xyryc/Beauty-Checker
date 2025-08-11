@@ -81,10 +81,11 @@ const CustomerBookingScreen = () => {
         {
           paddingTop: insets.top,
           paddingBottom: insets.bottom,
+          backgroundColor: "#fefefe",
         },
       ]}
     >
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+      <StatusBar barStyle="dark-content" backgroundColor="#fefefe" />
 
       <View className="bg-white">
         {/* header */}
