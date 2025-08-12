@@ -68,7 +68,7 @@ const AddPhotoScreen = () => {
       <StatusBar barStyle="dark-content" backgroundColor="#FEFEFE" />
 
       {/* Header */}
-      <Header text="Add Post" />
+      <Header text="Add Photo" />
 
       <ScrollView className="flex-1 px-4" showsVerticalScrollIndicator={false}>
         {/* Description Section */}
