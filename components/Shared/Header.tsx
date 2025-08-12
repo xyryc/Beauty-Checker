@@ -9,7 +9,7 @@ const Header = ({ text }: HeaderProps) => {
 
   return (
     <View
-      className="flex-row items-center px-5 py-3 bg-[#fefefe]"
+      className="flex-row items-center px-5 py-2 bg-[#fefefe]"
       style={{
         shadowColor: "3F4F4426", // slightly darker for natural shadow
         shadowOffset: {
@@ -22,7 +22,7 @@ const Header = ({ text }: HeaderProps) => {
         zIndex: 1,
       }}
     >
-      <TouchableOpacity onPress={() => router.back()} className="z-10">
+      <TouchableOpacity onPress={() => router.back()} className="z-10 p-3.5">
         <Ionicons name="arrow-back" size={24} color="black" />
       </TouchableOpacity>
 

@@ -75,7 +75,9 @@ const ProviderBookingScreen = () => {
           zIndex: 1,
         }}
       >
-        <Text className="text-xl font-semibold text-gray-900">Name</Text>
+        <Text className="text-xl font-semibold text-gray-900">
+          Julian Assange
+        </Text>
         <Image
           source={{
             uri: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
@@ -86,7 +88,6 @@ const ProviderBookingScreen = () => {
       </View>
 
       <ScrollView
-        contentContainerClassName="py-4"
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
           paddingBottom: 80,

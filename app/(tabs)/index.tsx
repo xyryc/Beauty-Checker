@@ -3,6 +3,7 @@ import CommentModal from "@/components/Discover/CommentModal";
 import ImagePost from "@/components/Shared/ImagePost";
 import ShareModal from "@/components/Shared/ShareModal";
 import VideoPost from "@/components/Shared/VideoPost";
+import { authService } from "@/services/auth";
 import {
   Entypo,
   FontAwesome,
@@ -11,10 +12,11 @@ import {
 } from "@expo/vector-icons";
 import { useNavigation, useRouter } from "expo-router";
 import { useVideoPlayer } from "expo-video";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Dimensions,
   Modal,
+  Platform,
   Pressable,
   SafeAreaView,
   ScrollView,
@@ -36,11 +38,24 @@ const Discover = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const [role, setRole] = useState<"customer" | "provider" | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleNavigate = (screen: string) => {
     setVisible(false);
     navigation.navigate(screen);
   };
+
+  useEffect(() => {
+    const checkRole = async () => {
+      const authStatus = await authService.checkAuthStatus();
+      if (authStatus.isAuthenticated && authStatus.user) {
+        setRole(authStatus.user.role); // Assuming role is stored in user object
+      }
+      setLoading(false);
+    };
+    checkRole();
+  }, []);
 
   return (
     <SafeAreaView
@@ -52,13 +67,17 @@ const Discover = () => {
         },
       ]}
     >
-      <StatusBar barStyle="default" backgroundColor="#000000" />
+      <StatusBar barStyle="light-content" backgroundColor="#000000" />
 
       {/* Top Bar */}
       <View className="bg-[#000000] px-5 py-5 flex-row justify-between">
         <TouchableOpacity onPress={() => setVisible(true)}>
           <View className="flex-row items-center gap-2">
-            <FontAwesome6 name="bars" size={24} color="white" />
+            <FontAwesome6
+              name={`${visible === false ? "bars" : "xmark"}`}
+              size={24}
+              color="white"
+            />
             <Text
               className="text-white text-xl font-medium"
               style={{ fontFamily: "Poppins" }}
@@ -68,17 +87,31 @@ const Discover = () => {
           </View>
         </TouchableOpacity>
 
-        <MaterialCommunityIcons
-          name="bell-badge-outline"
-          size={24}
-          color="white"
-        />
+        <TouchableOpacity
+          onPress={() => {
+            if (role === "customer") {
+              router.push("/discover/CustomerNotificationScreen");
+            } else {
+              router.push("/discover/ProviderNotificationScreen");
+            }
+          }}
+        >
+          <MaterialCommunityIcons
+            name="bell-badge-outline"
+            size={24}
+            color="white"
+          />
+        </TouchableOpacity>
       </View>
 
       {/* For You Modal */}
-      <Modal transparent visible={visible} animationType="fade">
+      <Modal transparent visible={visible} animationType="none">
         <Pressable className="flex-1" onPress={() => setVisible(false)}>
-          <View className="absolute top-16 left-5 w-48 bg-white/60 rounded-2xl p-4 space-y-4">
+          <View
+            className={`absolute left-5 w-48 bg-white/60 rounded-2xl p-4 space-y-4 ${
+              Platform.OS === "ios" ? "top-32" : "top-16"
+            }`}
+          >
             {/* For You */}
             <TouchableOpacity className="flex-row items-center space-x-1">
               <View className="p-2.5">
@@ -92,25 +125,15 @@ const Discover = () => {
             {/* Saved */}
             <TouchableOpacity
               className="flex-row items-center space-x-1"
-              onPress={() => router.push("/discover/SavedScreen")}
+              onPress={() => {
+                router.push("/discover/SavedScreen");
+                setVisible(false);
+              }}
             >
               <View className="p-2.5">
                 <FontAwesome name="bookmark" size={16} color="#111" />
               </View>
               <Text className="text-base font-semibold text-black">Saved</Text>
-            </TouchableOpacity>
-
-            {/* History */}
-            <TouchableOpacity
-              className="flex-row items-center space-x-1"
-              onPress={() => handleNavigate("history")}
-            >
-              <View className="p-2.5">
-                <FontAwesome6 name="clock-rotate-left" size={16} color="#111" />
-              </View>
-              <Text className="text-base font-semibold text-black">
-                History
-              </Text>
             </TouchableOpacity>
           </View>
         </Pressable>

@@ -1,7 +1,6 @@
 import ButtonPrimary from "@/components/Shared/ButtonPrimary";
 import Header from "@/components/Shared/Header";
-import { Ionicons } from "@expo/vector-icons";
-import { Picker } from "@react-native-picker/picker";
+import { Feather, Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
 import { useRouter } from "expo-router";
@@ -16,17 +15,25 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Dropdown } from "react-native-element-dropdown";
 
 const AddServiceScreen = () => {
   const [service, setService] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState<string | null>(null);
   const [selectedImages, setSelectedImages] = useState([
     "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg",
     "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg",
     "https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg",
     "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg",
   ]);
+  const [price, setPrice] = useState<number>(0);
+  const data = [
+    { label: "Haircut", value: "haircut" },
+    { label: "Makeup", value: "makeup" },
+    { label: "Massage", value: "massage" },
+  ];
+
   const router = useRouter();
 
   // Check permissions when component mounts
@@ -95,33 +102,6 @@ const AddServiceScreen = () => {
           />
         </View>
 
-        {/* select category */}
-        <View className="mt-6">
-          <Text
-            className="text-primary mb-1.5 text-xl"
-            style={{ fontFamily: "Poppins-Medium" }}
-          >
-            Select Category
-          </Text>
-
-          <Picker
-            selectedValue={category}
-            onValueChange={(itemValue) => setCategory(itemValue)}
-            dropdownIconColor="#6366F1" // Purple icon
-          >
-            <Picker.Item
-              label="Facial Treatment"
-              value="Facial Treatment"
-              enabled={false}
-            />
-            <Picker.Item
-              label="Deep Cleansing Facial"
-              value="Deep Cleansing Facial"
-            />
-            <Picker.Item label="Hydrating Facial" value="Hydrating Facial" />
-          </Picker>
-        </View>
-
         {/* Description Section */}
         <View className="mt-6">
           <Text
@@ -144,6 +124,65 @@ const AddServiceScreen = () => {
               minHeight: 120,
             }}
             placeholderTextColor="#9CA3AF"
+          />
+        </View>
+
+        {/* select category */}
+        <View className="mt-6">
+          <Text
+            className="text-primary mb-1.5 text-xl"
+            style={{ fontFamily: "Poppins-Medium" }}
+          >
+            Select Category
+          </Text>
+
+          <Dropdown
+            data={data}
+            labelField="label"
+            valueField="value"
+            placeholder="Choose a category"
+            value={category}
+            onChange={(item) => setCategory(item.value)}
+            style={{
+              borderWidth: 0.5,
+              borderColor: "#767676",
+              borderRadius: 12,
+              paddingHorizontal: 12,
+              paddingVertical: 14,
+            }}
+            placeholderStyle={{
+              color: "#767676",
+              fontFamily: "Poppins",
+            }}
+            selectedTextStyle={{
+              color: "#333333",
+              fontFamily: "Poppins",
+            }}
+            iconStyle={{ width: 24, height: 24 }}
+            renderRightIcon={() => (
+              <Feather name="chevron-down" size={20} color="#767676" />
+            )}
+            containerStyle={{
+              backgroundColor: "#fff",
+            }}
+          />
+        </View>
+
+        {/* price */}
+        <View className="mt-6">
+          <Text
+            className="text-primary mb-1.5 text-xl"
+            style={{ fontFamily: "Poppins-Medium" }}
+          >
+            Price
+          </Text>
+
+          <TextInput
+            value={price.toString()}
+            onChangeText={(text) => setPrice(Number(text) || 0)}
+            className="border-[0.5px] border-accent rounded-xl p-4 text-accent"
+            style={{ fontFamily: "Poppins" }}
+            placeholderTextColor="#767676"
           />
         </View>
 

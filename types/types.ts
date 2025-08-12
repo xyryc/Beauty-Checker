@@ -76,3 +76,15 @@ export interface BookingStatusProps {
   onComplete?: (id: string) => void;
   onReschedule?: (id: string) => void;
 }
+
+export interface CustomerNotification {
+  id: string;
+  type: "chat" | "booking";
+  title: string;
+  message: string;
+  time: string;
+  isRead: boolean;
+  providerName: string;
+  providerImage: string;
+  bookingStatus?: "confirmed" | "cancelled" | "completed" | "reminder";
+}
