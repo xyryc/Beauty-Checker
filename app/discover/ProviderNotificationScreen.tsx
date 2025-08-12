@@ -1,3 +1,4 @@
+import { ProviderNotification } from "@/types/types";
 import { FontAwesome5, Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
@@ -11,26 +12,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-
-interface ProviderNotification {
-  id: string;
-  type: "chat" | "booking" | "payment" | "review";
-  title: string;
-  message: string;
-  time: string;
-  isRead: boolean;
-  clientName: string;
-  clientImage: string;
-  bookingStatus?:
-    | "new_request"
-    | "accepted"
-    | "cancelled"
-    | "completed"
-    | "rescheduled";
-  actionRequired?: boolean;
-  amount?: number;
-  rating?: number;
-}
 
 const ProviderNotificationScreen = () => {
   const router = useRouter();

@@ -88,3 +88,23 @@ export interface CustomerNotification {
   providerImage: string;
   bookingStatus?: "confirmed" | "cancelled" | "completed" | "reminder";
 }
+
+export interface ProviderNotification {
+  id: string;
+  type: "chat" | "booking" | "payment" | "review";
+  title: string;
+  message: string;
+  time: string;
+  isRead: boolean;
+  clientName: string;
+  clientImage: string;
+  bookingStatus?:
+    | "new_request"
+    | "accepted"
+    | "cancelled"
+    | "completed"
+    | "rescheduled";
+  actionRequired?: boolean;
+  amount?: number;
+  rating?: number;
+}

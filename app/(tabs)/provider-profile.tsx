@@ -7,6 +7,7 @@ import RenderVideosCard from "@/components/Shared/RenderVideosCard";
 import { FontAwesome, FontAwesome5, Octicons } from "@expo/vector-icons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { Image } from "expo-image";
+import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -173,22 +174,45 @@ const ProviderProfile = () => {
               </Text>
 
               {/* stats */}
-              <View className="flex flex-row items-center gap-2 my-2">
-                <Octicons name="people" size={20} color="#333333" />
-                <View>
-                  <Text
-                    className="text-primary"
-                    style={{ fontFamily: "Poppins" }}
-                  >
-                    15k{" "}
+              <View className="flex-row gap-4 items-center my-2">
+                {/* follower */}
+                <View className="flex flex-row items-center gap-2">
+                  <Octicons name="people" size={20} color="#333333" />
+                  <View>
                     <Text
-                      className="text-accent"
+                      className="text-primary"
                       style={{ fontFamily: "Poppins" }}
                     >
-                      Followers
+                      15k{" "}
+                      <Text
+                        className="text-accent"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        Followers
+                      </Text>
                     </Text>
-                  </Text>
+                  </View>
                 </View>
+
+                {/* reviews */}
+                <TouchableOpacity
+                  onPress={() => router.push("/search/service-review/[id]")}
+                  className="rounded-md overflow-hidden"
+                >
+                  <LinearGradient
+                    colors={["#B78AF7", "#612AC3"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                  >
+                    <View className="flex-row items-center px-2 py-0.5">
+                      <Text className="mr-1 text-white">4.6</Text>
+
+                      <FontAwesome name="star" size={10} color="#fff" />
+
+                      <Text className="text-white ml-1">(450 People)</Text>
+                    </View>
+                  </LinearGradient>
+                </TouchableOpacity>
               </View>
 
               {/* buttons */}
@@ -213,7 +237,7 @@ const ProviderProfile = () => {
                   Omnis, cumque. Lorem ipsum dolor sit amet consectetur
                   adipisicing elit. Velit modi vero temporibus...
                   <Text
-                    className="text-purpleAccent"
+                    className="text-purplePrimary"
                     style={{ fontFamily: "Poppins" }}
                   >
                     See More
@@ -222,7 +246,7 @@ const ProviderProfile = () => {
               </View>
 
               {/* location */}
-              <View className="mt-4 mb-8 flex-row items-center gap-2.5">
+              <View className="mt-4 mb-8 flex-row items-center gap-2.5 pr-10">
                 <View className="h-8 w-8 rounded-full bg-[#F7F0F8] justify-center items-center">
                   <SimpleLineIcons
                     name="location-pin"
@@ -230,8 +254,12 @@ const ProviderProfile = () => {
                     color="black"
                   />
                 </View>
-                <Text className="text-primary">
-                  3517 W. Gray St. Utica, Pennsylvania 57867
+                <Text
+                  className="text-primary"
+                  style={{ fontFamily: "Poppins" }}
+                  numberOfLines={1}
+                >
+                  3517 W. Gray St. Utica, Pennsylvania 57867, USA
                 </Text>
               </View>
             </View>

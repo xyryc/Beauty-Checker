@@ -1,5 +1,6 @@
 import Header from "@/components/Shared/Header";
 import ImageSlider from "@/components/Shared/ImageSlider";
+import { FontAwesome } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import React from "react";
 import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
@@ -10,7 +11,7 @@ const ServiceReview = () => {
 
   return (
     <SafeAreaView
-      className="flex-1"
+      className="flex-1 bg-white"
       style={{
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
@@ -41,9 +42,23 @@ const ServiceReview = () => {
                 >
                   Julian Assange
                 </Text>
-                <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
-                  4.5
-                </Text>
+
+                <View className="flex-row items-center gap-2">
+                  <Text
+                    className="text-accent"
+                    style={{ fontFamily: "Poppins" }}
+                  >
+                    4.5
+                  </Text>
+
+                  <View className="flex-row gap-1">
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                  </View>
+                </View>
               </View>
             </View>
 
@@ -84,9 +99,23 @@ const ServiceReview = () => {
                 >
                   Julian Assange
                 </Text>
-                <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
-                  4.5
-                </Text>
+
+                <View className="flex-row items-center gap-2">
+                  <Text
+                    className="text-accent"
+                    style={{ fontFamily: "Poppins" }}
+                  >
+                    4.5
+                  </Text>
+
+                  <View className="flex-row gap-1">
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                    <FontAwesome name="star" size={14} color="#612AC3" />
+                  </View>
+                </View>
               </View>
             </View>
 
