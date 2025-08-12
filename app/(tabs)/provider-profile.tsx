@@ -90,7 +90,7 @@ const ProviderProfile = () => {
 
   const handleAddOptionPress = (route: string) => {
     setShowAddModal(false);
-    router.push(route);
+    router.push(route as any);
   };
 
   return (
