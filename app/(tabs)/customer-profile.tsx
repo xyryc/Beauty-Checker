@@ -1,12 +1,13 @@
 import ProfileHeader from "@/components/Profile/ProfileHeader";
 import SavedServices from "@/components/Profile/SavedServices";
-import SafeScreen from "@/components/Shared/SafeScreen";
 import React from "react";
-import { FlatList } from "react-native";
+import { FlatList, SafeAreaView, StatusBar } from "react-native";
 
 const Profile = () => {
   return (
-    <SafeScreen>
+    <SafeAreaView>
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
       <FlatList
         data={[]}
         renderItem={() => null}
@@ -18,7 +19,7 @@ const Profile = () => {
         )}
         ListFooterComponent={() => <SavedServices />}
       />
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 

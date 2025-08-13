@@ -1,16 +1,37 @@
 import Header from "@/components/Shared/Header";
-import SafeScreen from "@/components/Shared/SafeScreen";
-import { Feather, MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
+import LogoutModal from "@/components/Shared/LogoutModal";
+import {
+  Feather,
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Octicons,
+} from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const SettingsActivityScreen = () => {
   const router = useRouter();
+  const [showLogoutModal, setShowLogoutModal] = React.useState(false);
+
+  const handleLogout = () => {
+    // Add your logout logic here
+    console.log("User logged out");
+    // Clear storage, navigate to login, etc.
+  };
 
   return (
-    <SafeScreen>
+    <SafeAreaView className="bg-white">
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+
       <Header text="Settings & Activity" />
 
       {/* menu */}
@@ -94,8 +115,30 @@ const SettingsActivityScreen = () => {
             <Feather name="chevron-right" size={24} color="#767676" />
           </TouchableOpacity>
         </View>
+
+        {/* logout */}
+        <View className=" border-b-[0.5px] border-primary py-4">
+          <TouchableOpacity
+            onPress={() => setShowLogoutModal(true)}
+            className="flex-row justify-between items-center"
+          >
+            <View className="flex-row items-center gap-4">
+              <MaterialIcons name="logout" size={24} color="#612AC3" />
+              <Text className="text-accent">Logout</Text>
+            </View>
+
+            <Feather name="chevron-right" size={24} color="#767676" />
+          </TouchableOpacity>
+        </View>
       </ScrollView>
-    </SafeScreen>
+
+      {/* logout */}
+      <LogoutModal
+        visible={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onLogout={handleLogout}
+      />
+    </SafeAreaView>
   );
 };
 

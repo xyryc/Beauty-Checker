@@ -1,5 +1,11 @@
 import Header from "@/components/Shared/Header";
-import { Feather, MaterialCommunityIcons, Octicons } from "@expo/vector-icons";
+import LogoutModal from "@/components/Shared/LogoutModal";
+import {
+  Feather,
+  MaterialCommunityIcons,
+  MaterialIcons,
+  Octicons,
+} from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -15,6 +21,13 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 const SettingsActivityScreen = () => {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const [showLogoutModal, setShowLogoutModal] = React.useState(false);
+
+  const handleLogout = () => {
+    // Add your logout logic here
+    console.log("User logged out");
+    // Clear storage, navigate to login, etc.
+  };
 
   return (
     <SafeAreaView
@@ -84,7 +97,30 @@ const SettingsActivityScreen = () => {
             <Feather name="chevron-right" size={24} color="#767676" />
           </TouchableOpacity>
         </View>
+
+        {/* logout */}
+        <View className=" border-b-[0.5px] border-primary py-4">
+          <TouchableOpacity
+            onPress={() => setShowLogoutModal(true)}
+            className="flex-row justify-between items-center"
+          >
+            <View className="flex-row items-center gap-4">
+              <MaterialIcons name="logout" size={24} color="#612AC3" />
+
+              <Text className="text-accent">Logout</Text>
+            </View>
+
+            <Feather name="chevron-right" size={24} color="#767676" />
+          </TouchableOpacity>
+        </View>
       </ScrollView>
+
+      {/* logout */}
+      <LogoutModal
+        visible={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onLogout={handleLogout}
+      />
     </SafeAreaView>
   );
 };

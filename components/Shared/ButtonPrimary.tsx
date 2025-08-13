@@ -2,9 +2,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
-const ButtonPrimary = ({ text, onPress }: any) => {
+const ButtonPrimary = ({ text, onPress, className }: any) => {
   return (
-    <TouchableOpacity onPress={onPress} className="rounded-2xl overflow-hidden">
+    <TouchableOpacity
+      onPress={onPress}
+      className={`rounded-2xl overflow-hidden`}
+    >
       <LinearGradient
         colors={["#B78AF7", "#612AC3"]}
         start={{ x: 0, y: 0 }}

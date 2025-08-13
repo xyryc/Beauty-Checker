@@ -2,11 +2,16 @@ import { ButtonSmallProps } from "@/types/types";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 
-const ButtonCancel = ({ icon, text, onPress }: ButtonSmallProps) => {
+const ButtonCancel = ({
+  icon,
+  text,
+  onPress,
+  className = "rounded-2xl",
+}: ButtonSmallProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="rounded-[4px] overflow-hidden w-[48%] border border-[#CE0D0D]"
+      className={` overflow-hidden w-[48%] border border-[#CE0D0D] ${className}`}
     >
       <View className="flex-row items-center justify-center gap-2.5 py-2">
         {icon && icon}

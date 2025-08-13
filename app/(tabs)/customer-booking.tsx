@@ -75,17 +75,8 @@ const CustomerBookingScreen = () => {
   };
 
   return (
-    <SafeAreaView
-      className="flex-1"
-      style={[
-        {
-          paddingTop: insets.top,
-          paddingBottom: insets.bottom,
-          backgroundColor: "#fefefe",
-        },
-      ]}
-    >
-      <StatusBar barStyle="dark-content" backgroundColor="#fefefe" />
+    <SafeAreaView className="bg-white">
+      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
 
       <View className="bg-white">
         {/* header */}
@@ -95,12 +86,11 @@ const CustomerBookingScreen = () => {
             shadowColor: "#111111",
             shadowOffset: {
               width: 0,
-              height: 4,
+              height: 20,
             },
             shadowOpacity: 0.15,
             shadowRadius: 10,
             elevation: 5,
-            backgroundColor: "white",
           }}
         >
           {/* title and search */}
