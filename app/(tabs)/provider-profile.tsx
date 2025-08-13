@@ -95,7 +95,7 @@ const ProviderProfile = () => {
   };
 
   return (
-    <View className="bg-white flex-1">
+    <View className="bg-white">
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
@@ -113,11 +113,11 @@ const ProviderProfile = () => {
             {/* profile section top */}
             <View
               className="relative w-full"
-              style={{ paddingTop: insets.top + 140 }}
+              // style={{ paddingTop: insets.top + 140 }}
             >
               {/* settings icon */}
               <TouchableOpacity
-                className="absolute bottom-24 right-5 z-10"
+                className="absolute bottom-36 right-5 z-10"
                 onPress={() =>
                   router.push("/provider-profile/SettingsActivityScreen")
                 }
@@ -131,18 +131,35 @@ const ProviderProfile = () => {
               </TouchableOpacity>
 
               {/* cover image */}
-              <Image
-                style={{
-                  width: "100%",
-                  height: 200,
-                  position: "absolute",
-                }}
-                source={{
-                  uri: "https://images.pexels.com/photos/31776332/pexels-photo-31776332.jpeg",
-                }}
-                placeholder={{ blurhash }}
-                contentFit="cover"
-              />
+              <View
+                style={{ position: "relative", width: "100%", height: 230 }}
+              >
+                {/* Image */}
+                <Image
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    position: "absolute",
+                  }}
+                  source={{
+                    uri: "https://images.pexels.com/photos/31776332/pexels-photo-31776332.jpeg",
+                  }}
+                  placeholder={{ blurhash }}
+                  contentFit="cover"
+                />
+
+                {/* White gradient overlay at bottom */}
+                <LinearGradient
+                  colors={["transparent", "white"]}
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: 80,
+                  }}
+                />
+              </View>
 
               {/* profile image */}
               <Image
@@ -150,7 +167,7 @@ const ProviderProfile = () => {
                   width: 150,
                   height: 150,
                   position: "absolute",
-                  bottom: -45,
+                  bottom: -25,
                   left: "22%",
                   transform: [{ translateX: -75 }],
                   borderRadius: 75,
@@ -165,7 +182,7 @@ const ProviderProfile = () => {
             </View>
 
             {/* profile name, stats, bio */}
-            <View className="pt-16 px-5">
+            <View className="pt-14 px-5">
               <Text
                 className="text-primary font-medium text-2xl"
                 style={{ fontFamily: "Poppins" }}
@@ -205,11 +222,21 @@ const ProviderProfile = () => {
                     end={{ x: 1, y: 0 }}
                   >
                     <View className="flex-row items-center px-2 py-0.5">
-                      <Text className="mr-1 text-white">4.6</Text>
+                      <Text
+                        className="mr-1 text-white text-sm"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        4.6
+                      </Text>
 
                       <FontAwesome name="star" size={10} color="#fff" />
 
-                      <Text className="text-white ml-1">(450 People)</Text>
+                      <Text
+                        className="text-white ml-1 text-sm"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        (450 People)
+                      </Text>
                     </View>
                   </LinearGradient>
                 </TouchableOpacity>

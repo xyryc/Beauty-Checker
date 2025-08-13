@@ -4,7 +4,7 @@ import SafeScreen from "@/components/Shared/SafeScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 
 const BookedDetailsScreen = () => {
   return (
@@ -35,18 +35,5 @@ const BookedDetailsScreen = () => {
     </SafeScreen>
   );
 };
-
-const styles = StyleSheet.create({
-  thumbnail: {
-    width: 60,
-    height: 60,
-    borderRadius: 6,
-    marginHorizontal: 5,
-  },
-  selectedThumbnail: {
-    borderWidth: 2,
-    borderColor: "#9333ea", // purple
-  },
-});
 
 export default BookedDetailsScreen;

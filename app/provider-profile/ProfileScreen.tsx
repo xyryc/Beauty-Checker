@@ -60,7 +60,7 @@ const ProviderProfile = () => {
   };
 
   return (
-    <View style={{ marginTop: offset }} className="bg-white">
+    <View className="bg-white">
       <StatusBar barStyle="light-content" />
 
       <FlatList
@@ -70,13 +70,13 @@ const ProviderProfile = () => {
         ListHeaderComponent={
           <>
             {/* profile section top */}
-            <View className="relative w-full h-[248px]">
+            <View className="relative w-full">
               {/* settings icon */}
               <TouchableOpacity
                 onPress={() =>
                   router.push("/provider-profile/SettingsActivityScreen")
                 }
-                className="absolute top-20 right-5 z-10"
+                className="absolute bottom-36 right-5 z-10"
               >
                 <FontAwesome
                   className="p-3.5"
@@ -86,36 +86,55 @@ const ProviderProfile = () => {
                 />
               </TouchableOpacity>
 
-              {/* Image Component */}
-              <Image
-                style={{ width: "100%", height: "100%", position: "absolute" }}
-                source={{
-                  uri: "https://thevendry.com/cdn-cgi/image/height=1920,width=1920,fit=contain,metadata=none/https%3A%2F%2Fs3.amazonaws.com%2Fuploads.thevendry.co%2F23052%2F1661181797046_HairMakeUp_08_IMG_7090_1_2_A.jpg",
-                }}
-                placeholder={{ blurhash }}
-                contentFit="cover"
-                transition={100}
-              />
+              <TouchableOpacity
+                onPress={() => router.back()}
+                className="absolute bottom-36 left-5 z-10"
+              >
+                <AntDesign
+                  className="p-3.5"
+                  name="arrowleft"
+                  size={24}
+                  color="white"
+                />
+              </TouchableOpacity>
 
-              {/* Linear Gradient */}
-              <LinearGradient
-                colors={["#000000", "rgba(0, 0, 0, 0)"]}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 0, y: 1 }}
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                }}
-              />
+              {/* Image Component */}
+              <View
+                style={{ position: "relative", width: "100%", height: 230 }}
+              >
+                {/* Image */}
+                <Image
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    position: "absolute",
+                  }}
+                  source={{
+                    uri: "https://images.pexels.com/photos/31776332/pexels-photo-31776332.jpeg",
+                  }}
+                  placeholder={{ blurhash }}
+                  contentFit="cover"
+                />
+
+                {/* White gradient overlay at bottom */}
+                <LinearGradient
+                  colors={["transparent", "white"]}
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    height: 80,
+                  }}
+                />
+              </View>
+
               <Image
                 style={{
                   width: 150,
                   height: 150,
                   position: "absolute",
-                  bottom: -45,
+                  bottom: -25,
                   left: "22%",
                   transform: [{ translateX: -75 }],
                   borderRadius: 75,
@@ -127,14 +146,10 @@ const ProviderProfile = () => {
                 contentFit="cover"
                 transition={100}
               />
-
-              <View className="absolute top-0 left-0 z-20">
-                <AntDesign name="arrowleft" size={24} color="white" />
-              </View>
             </View>
 
             {/* profile name, stats, bio */}
-            <View className="pt-16 px-5">
+            <View className="pt-14 px-5">
               <Text
                 className="text-primary font-medium text-2xl"
                 style={{ fontFamily: "Poppins" }}
@@ -143,22 +158,55 @@ const ProviderProfile = () => {
               </Text>
 
               {/* stats */}
-              <View className="flex flex-row items-center gap-2 my-2">
-                <Octicons name="people" size={20} color="#333333" />
-                <View>
-                  <Text
-                    className="text-primary"
-                    style={{ fontFamily: "Poppins" }}
-                  >
-                    15k{" "}
+              <View className="flex-row gap-4 items-center my-2">
+                {/* follower */}
+                <View className="flex flex-row items-center gap-2">
+                  <Octicons name="people" size={20} color="#333333" />
+                  <View>
                     <Text
-                      className="text-accent"
+                      className="text-primary"
                       style={{ fontFamily: "Poppins" }}
                     >
-                      Followers
+                      15k{" "}
+                      <Text
+                        className="text-accent"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        Followers
+                      </Text>
                     </Text>
-                  </Text>
+                  </View>
                 </View>
+
+                {/* reviews */}
+                <TouchableOpacity
+                  onPress={() => router.push("/search/service-review/[id]")}
+                  className="rounded-md overflow-hidden"
+                >
+                  <LinearGradient
+                    colors={["#B78AF7", "#612AC3"]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                  >
+                    <View className="flex-row items-center px-2 py-0.5">
+                      <Text
+                        className="mr-1 text-white text-sm"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        4.6
+                      </Text>
+
+                      <FontAwesome name="star" size={10} color="#fff" />
+
+                      <Text
+                        className="text-white ml-1 text-sm"
+                        style={{ fontFamily: "Poppins" }}
+                      >
+                        (450 People)
+                      </Text>
+                    </View>
+                  </LinearGradient>
+                </TouchableOpacity>
               </View>
 
               {/* buttons */}
