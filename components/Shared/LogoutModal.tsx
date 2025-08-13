@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React, { useEffect, useRef } from "react";
 import { Animated, Modal, Pressable, Text, View } from "react-native";
 import ButtonCancel from "./ButtonCancel";
@@ -17,6 +18,7 @@ const LogoutModal: React.FC<LogoutModalProps> = ({
 }) => {
   const scaleAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const router = useRouter();
 
   useEffect(() => {
     if (visible) {
@@ -54,6 +56,7 @@ const LogoutModal: React.FC<LogoutModalProps> = ({
   const handleLogout = () => {
     onLogout();
     onClose();
+    router.replace("/onboarding");
   };
 
   return (
@@ -104,7 +107,9 @@ const LogoutModal: React.FC<LogoutModalProps> = ({
               />
 
               <ButtonCancel
-                onPress={onClose}
+                onPress={() => {
+                  onClose();
+                }}
                 text="Cancel"
                 className="w-full py-2 rounded-2xl"
               />
