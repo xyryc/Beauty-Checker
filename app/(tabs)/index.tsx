@@ -1,197 +1,513 @@
-import posts from "@/assets/data/posts.json";
-import CommentModal from "@/components/Discover/CommentModal";
-import ImagePost from "@/components/Shared/ImagePost";
-import ShareModal from "@/components/Shared/ShareModal";
-import VideoPost from "@/components/Shared/VideoPost";
-import { authService } from "@/services/auth";
-import {
-  Entypo,
-  FontAwesome,
-  FontAwesome6,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
-import { useNavigation, useRouter } from "expo-router";
-import { useVideoPlayer } from "expo-video";
-import React, { useEffect, useState } from "react";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { ResizeMode, Video } from "expo-av";
+import { Image } from "expo-image";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import {
   Dimensions,
-  Modal,
-  Platform,
-  Pressable,
-  SafeAreaView,
-  ScrollView,
+  FlatList,
   StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-const { height } = Dimensions.get("window");
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-const POST_HEIGHT = (height * 77) / 100;
+interface Post {
+  id: number;
+  type: "video" | "image";
+  url: string[];
+  username: string;
+  userImage: string;
+  caption: string;
+  likes: number;
+  comments: number;
+  shares: number;
+}
 
-const Discover = () => {
-  const [visible, setVisible] = useState<boolean>(false);
-  const navigation = useNavigation<any>();
-  const [commentVisible, setCommentVisible] = useState<boolean>(false);
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
-  const router = useRouter();
-  const insets = useSafeAreaInsets();
-  const [role, setRole] = useState<"customer" | "provider" | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+const TikTokStyleFeed = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const flatListRef = useRef<FlatList>(null);
 
-  const handleNavigate = (screen: string) => {
-    setVisible(false);
-    navigation.navigate(screen);
-  };
+  // Low quality, compressed media URLs
+  const posts: Post[] = useMemo(
+    () => [
+      {
+        id: 1,
+        type: "video",
+        url: [
+          "https://www.pexels.com/download/video/8131886/?fps=25.0&h=2048&w=1080",
+        ], // Low quality video
+        username: "Motin Mia",
+        userImage:
+          "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100&h=100", // Compressed thumbnail
+        caption: "Lorem Ipsum...",
+        likes: 26,
+        comments: 27,
+        shares: 27,
+      },
+      {
+        id: 2,
+        type: "image",
+        url: [
+          "https://images.pexels.com/photos/2533038/pexels-photo-2533038.jpeg?auto=compress&cs=tinysrgb&w=480&h=640", // Low quality image
+          "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg?auto=compress&cs=tinysrgb&w=480&h=640",
+        ],
+        username: "Sarah Beauty",
+        userImage:
+          "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=100&h=100",
+        caption: "Beauty transformation...",
+        likes: 45,
+        comments: 12,
+        shares: 8,
+      },
+      {
+        id: 3,
+        type: "video",
+        url: [
+          "https://www.pexels.com/download/video/8131887/?fps=25.0&h=960&w=506",
+        ], // Low quality video
+        username: "Emma Styles",
+        userImage:
+          "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=100&h=100",
+        caption: "Hair styling tips...",
+        likes: 89,
+        comments: 34,
+        shares: 15,
+      },
+    ],
+    []
+  );
 
-  useEffect(() => {
-    const checkRole = async () => {
-      const authStatus = await authService.checkAuthStatus();
-      if (authStatus.isAuthenticated && authStatus.user) {
-        setRole(authStatus.user.role); // Assuming role is stored in user object
-      }
-      setLoading(false);
-    };
-    checkRole();
-  }, []);
+  // Ultra simple photo carousel
+  const PhotoCarousel = React.memo(({ urls }: { urls: string[] }) => {
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
-  return (
-    <SafeAreaView
-      className="bg-[#000000]"
-      style={[
-        {
-          paddingTop: insets.top,
-          paddingBottom: insets.bottom,
-        },
-      ]}
-    >
-      <StatusBar barStyle="light-content" backgroundColor="#000000" />
-
-      {/* Top Bar */}
-      <View className="bg-[#000000] px-5 py-5 flex-row justify-between">
-        <TouchableOpacity onPress={() => setVisible(true)}>
-          <View className="flex-row items-center gap-2">
-            <FontAwesome6
-              name={`${visible === false ? "bars" : "xmark"}`}
-              size={24}
-              color="white"
+    return (
+      <View style={{ flex: 1 }}>
+        <FlatList
+          data={urls}
+          horizontal
+          pagingEnabled
+          showsHorizontalScrollIndicator={false}
+          onMomentumScrollEnd={(event) => {
+            const index = Math.round(
+              event.nativeEvent.contentOffset.x / SCREEN_WIDTH
+            );
+            setCurrentPhotoIndex(index);
+          }}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item }) => (
+            <Image
+              source={{ uri: item }}
+              style={{
+                width: SCREEN_WIDTH,
+                height: SCREEN_HEIGHT,
+              }}
+              contentFit="cover"
+              transition={0}
+              cachePolicy="memory"
             />
-            <Text
-              className="text-white text-xl font-medium"
-              style={{ fontFamily: "Poppins" }}
-            >
-              For You
-            </Text>
-          </View>
-        </TouchableOpacity>
+          )}
+          initialNumToRender={1}
+          maxToRenderPerBatch={1}
+          windowSize={2}
+          removeClippedSubviews={true}
+        />
 
+        {urls.length > 1 && (
+          <View
+            style={{
+              position: "absolute",
+              bottom: 120,
+              alignSelf: "center",
+              flexDirection: "row",
+            }}
+          >
+            {urls.map((_, index) => (
+              <View
+                key={index}
+                style={{
+                  width: 6,
+                  height: 6,
+                  borderRadius: 3,
+                  marginHorizontal: 2,
+                  backgroundColor:
+                    index === currentPhotoIndex
+                      ? "white"
+                      : "rgba(255,255,255,0.4)",
+                }}
+              />
+            ))}
+          </View>
+        )}
+      </View>
+    );
+  });
+
+  // Optimized video player - starts paused, plays when in view
+  const VideoPlayer = React.memo(
+    ({ url, isActive }: { url: string; isActive: boolean }) => {
+      const [isPlaying, setIsPlaying] = useState(false);
+      const [hasStarted, setHasStarted] = useState(false);
+      const videoRef = useRef<Video>(null);
+
+      // Auto-play when comes into view
+      React.useEffect(() => {
+        if (isActive && !hasStarted) {
+          setHasStarted(true);
+          setTimeout(() => {
+            videoRef.current?.playAsync();
+            setIsPlaying(true);
+          }, 300); // Small delay for smooth transition
+        } else if (!isActive) {
+          videoRef.current?.pauseAsync();
+          setIsPlaying(false);
+        }
+      }, [isActive, hasStarted]);
+
+      const togglePlayback = useCallback(() => {
+        if (isPlaying) {
+          videoRef.current?.pauseAsync();
+          setIsPlaying(false);
+        } else {
+          videoRef.current?.playAsync();
+          setIsPlaying(true);
+        }
+      }, [isPlaying]);
+
+      return (
         <TouchableOpacity
-          onPress={() => {
-            if (role === "customer") {
-              router.push("/discover/CustomerNotificationScreen");
-            } else {
-              router.push("/discover/ProviderNotificationScreen");
-            }
+          style={{ flex: 1 }}
+          onPress={togglePlayback}
+          activeOpacity={1}
+        >
+          <Video
+            ref={videoRef}
+            source={{ uri: url }}
+            style={{
+              width: SCREEN_WIDTH,
+              height: SCREEN_HEIGHT,
+            }}
+            resizeMode={ResizeMode.COVER}
+            shouldPlay={false} // Always start paused
+            isLooping
+            isMuted={false}
+            useNativeControls={false}
+          />
+
+          {/* Play button overlay */}
+          {!isPlaying && (
+            <View
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                justifyContent: "center",
+                alignItems: "center",
+                backgroundColor: "rgba(0,0,0,0.1)",
+              }}
+            >
+              <View
+                style={{
+                  width: 70,
+                  height: 70,
+                  borderRadius: 35,
+                  backgroundColor: "rgba(0,0,0,0.6)",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Ionicons name="play" size={35} color="white" />
+              </View>
+            </View>
+          )}
+        </TouchableOpacity>
+      );
+    }
+  );
+
+  // Minimal action buttons
+  const PostActions = React.memo(({ post }: { post: Post }) => (
+    <View
+      style={{
+        position: "absolute",
+        right: 12,
+        bottom: 140,
+        alignItems: "center",
+      }}
+    >
+      {/* Like */}
+      <TouchableOpacity
+        style={{
+          alignItems: "center",
+          marginBottom: 16,
+          backgroundColor: "rgba(0,0,0,0.3)",
+          borderRadius: 20,
+          padding: 8,
+        }}
+      >
+        <Ionicons name="heart" size={22} color="white" />
+        <Text
+          style={{
+            color: "white",
+            fontSize: 11,
+            fontWeight: "600",
+            marginTop: 2,
           }}
         >
-          <MaterialCommunityIcons
-            name="bell-badge-outline"
-            size={24}
-            color="white"
+          {post.likes}
+        </Text>
+      </TouchableOpacity>
+
+      {/* Comment */}
+      <TouchableOpacity
+        style={{
+          alignItems: "center",
+          marginBottom: 16,
+          backgroundColor: "rgba(0,0,0,0.3)",
+          borderRadius: 20,
+          padding: 8,
+        }}
+      >
+        <Ionicons name="chatbubble" size={22} color="white" />
+        <Text
+          style={{
+            color: "white",
+            fontSize: 11,
+            fontWeight: "600",
+            marginTop: 2,
+          }}
+        >
+          {post.comments}
+        </Text>
+      </TouchableOpacity>
+
+      {/* Share */}
+      <TouchableOpacity
+        style={{
+          alignItems: "center",
+          marginBottom: 16,
+          backgroundColor: "rgba(0,0,0,0.3)",
+          borderRadius: 20,
+          padding: 8,
+        }}
+      >
+        <Ionicons name="share" size={22} color="white" />
+        <Text
+          style={{
+            color: "white",
+            fontSize: 11,
+            fontWeight: "600",
+            marginTop: 2,
+          }}
+        >
+          {post.shares}
+        </Text>
+      </TouchableOpacity>
+
+      {/* Bookmark */}
+      <TouchableOpacity
+        style={{
+          backgroundColor: "rgba(0,0,0,0.3)",
+          borderRadius: 20,
+          padding: 8,
+        }}
+      >
+        <Ionicons name="bookmark" size={22} color="white" />
+      </TouchableOpacity>
+    </View>
+  ));
+
+  // Simple bottom info
+  const PostInfo = React.memo(({ post }: { post: Post }) => (
+    <View
+      style={{
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: "rgba(0,0,0,0.6)",
+        padding: 12,
+      }}
+    >
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          marginBottom: 8,
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            flex: 1,
+          }}
+        >
+          <Image
+            source={{ uri: post.userImage }}
+            style={{
+              width: 35,
+              height: 35,
+              borderRadius: 17.5,
+              marginRight: 10,
+            }}
+            transition={0}
+            cachePolicy="memory"
           />
+          <Text
+            style={{
+              color: "white",
+              fontSize: 15,
+              fontWeight: "600",
+            }}
+          >
+            {post.username}
+          </Text>
+        </View>
+
+        <TouchableOpacity
+          style={{
+            backgroundColor: "#374151",
+            paddingHorizontal: 20,
+            paddingVertical: 6,
+            borderRadius: 6,
+          }}
+        >
+          <Text
+            style={{
+              color: "white",
+              fontSize: 14,
+              fontWeight: "500",
+            }}
+          >
+            Book
+          </Text>
         </TouchableOpacity>
       </View>
 
-      {/* For You Modal */}
-      <Modal transparent visible={visible} animationType="none">
-        <Pressable className="flex-1" onPress={() => setVisible(false)}>
-          <View
-            className={`absolute left-5 w-48 bg-white/60 rounded-2xl p-4 space-y-4 ${
-              Platform.OS === "ios" ? "top-32" : "top-16"
-            }`}
-          >
-            {/* For You */}
-            <TouchableOpacity className="flex-row items-center space-x-1">
-              <View className="p-2.5">
-                <Entypo name="video" size={16} color="#9333EA" />
-              </View>
-              <Text className="text-base font-semibold text-[#9333EA]">
-                For You
-              </Text>
-            </TouchableOpacity>
+      <Text
+        style={{
+          color: "white",
+          fontSize: 13,
+          lineHeight: 18,
+        }}
+      >
+        {post.caption}
+        <Text style={{ color: "#60A5FA" }}> See More</Text>
+      </Text>
+    </View>
+  ));
 
-            {/* Saved */}
-            <TouchableOpacity
-              className="flex-row items-center space-x-1"
-              onPress={() => {
-                router.push("/discover/SavedScreen");
-                setVisible(false);
-              }}
-            >
-              <View className="p-2.5">
-                <FontAwesome name="bookmark" size={16} color="#111" />
-              </View>
-              <Text className="text-base font-semibold text-black">Saved</Text>
-            </TouchableOpacity>
-          </View>
-        </Pressable>
-      </Modal>
+  // Simple header
+  const Header = React.memo(() => (
+    <View
+      style={{
+        position: "absolute",
+        top: 44,
+        left: 0,
+        right: 0,
+        zIndex: 10,
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+      }}
+    >
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <TouchableOpacity>
+          <FontAwesome name="bars" size={22} color="white" />
+        </TouchableOpacity>
 
-      {/* Posts */}
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {posts.map((post, index) => {
-          const isVideo = post.type === "video";
-          const player = isVideo
-            ? useVideoPlayer(post.url[0], (player) => {
-                player.loop = true;
-                // player.pause();
-                player.play();
-              })
-            : null;
+        <Text
+          style={{
+            color: "white",
+            fontSize: 17,
+            fontWeight: "600",
+          }}
+        >
+          For You
+        </Text>
 
-          return (
-            <View
-              key={index}
-              style={{ height: POST_HEIGHT, width: "100%", overflow: "hidden" }}
-            >
-              {isVideo ? (
-                <>
-                  <VideoPost
-                    post={post}
-                    player={player}
-                    commentVisible={commentVisible}
-                    setCommentVisible={setCommentVisible}
-                    modalVisible={modalVisible}
-                    setModalVisible={setModalVisible}
-                  />
-                </>
-              ) : (
-                <>
-                  <ImagePost
-                    post={post}
-                    setCommentVisible={setCommentVisible}
-                    setModalVisible={setModalVisible}
-                  />
-                </>
-              )}
-            </View>
-          );
+        <TouchableOpacity>
+          <Ionicons name="refresh" size={22} color="white" />
+        </TouchableOpacity>
+      </View>
+    </View>
+  ));
+
+  const renderPost = useCallback(
+    ({ item, index }: { item: Post; index: number }) => {
+      const isActive = index === currentIndex;
+
+      return (
+        <View style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT }}>
+          {item.type === "video" ? (
+            <VideoPlayer url={item.url[0]} isActive={isActive} />
+          ) : (
+            <PhotoCarousel urls={item.url} />
+          )}
+
+          <PostActions post={item} />
+          <PostInfo post={item} />
+        </View>
+      );
+    },
+    [currentIndex]
+  );
+
+  const onViewableItemsChanged = useRef(({ viewableItems }: any) => {
+    if (viewableItems.length > 0) {
+      setCurrentIndex(viewableItems[0].index || 0);
+    }
+  }).current;
+
+  return (
+    <View style={{ flex: 1, backgroundColor: "black" }}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+
+      <FlatList
+        ref={flatListRef}
+        data={posts}
+        renderItem={renderPost}
+        keyExtractor={(item) => item.id.toString()}
+        pagingEnabled
+        showsVerticalScrollIndicator={false}
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={{
+          itemVisiblePercentThreshold: 80,
+          waitForInteraction: false,
+        }}
+        getItemLayout={(data, index) => ({
+          length: SCREEN_HEIGHT,
+          offset: SCREEN_HEIGHT * index,
+          index,
         })}
-      </ScrollView>
-
-      <ShareModal
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
+        removeClippedSubviews={true}
+        initialNumToRender={1}
+        maxToRenderPerBatch={1}
+        windowSize={2}
+        scrollEventThrottle={50}
+        decelerationRate="fast"
+        bounces={false}
+        disableIntervalMomentum={true}
       />
 
-      <CommentModal
-        visible={commentVisible}
-        onClose={() => setCommentVisible(false)}
-      />
-    </SafeAreaView>
+      <Header />
+    </View>
   );
 };
 
-export default Discover;
+export default TikTokStyleFeed;

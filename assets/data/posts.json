@@ -6,10 +6,12 @@
       "https://videos.pexels.com/video-files/3971844/3971844-hd_1920_1080_25fps.mp4"
     ],
     "username": "Adam",
-    "userImage":
-      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    "userImage": "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     "caption": "Enjoying the vibes!",
-    "time": "2 hours ago"
+    "time": "2 hours ago",
+    "likes": 26,
+    "comments": 27,
+    "shares": 27
   },
   {
     "id": 2,
@@ -19,10 +21,12 @@
       "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg"
     ],
     "username": "Joseph",
-    "userImage":
-      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    "userImage": "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     "caption": "Nature is healing 🌿",
-    "time": "5 hours ago"
+    "time": "5 hours ago",
+    "likes": 26,
+    "comments": 27,
+    "shares": 27
   },
   {
     "id": 3,
@@ -31,10 +35,12 @@
       "https://videos.pexels.com/video-files/7525920/7525920-hd_1080_1920_30fps.mp4"
     ],
     "username": "David",
-    "userImage":
-      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    "userImage": "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     "caption": "Enjoying the vibes!",
-    "time": "3 hours ago"
+    "time": "3 hours ago",
+    "likes": 26,
+    "comments": 27,
+    "shares": 27
   },
   {
     "id": 4,
@@ -44,39 +50,53 @@
       "https://images.pexels.com/photos/9218727/pexels-photo-9218727.jpeg"
     ],
     "username": "Joseph",
-    "userImage":
-      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    "userImage": "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     "caption": "Nature is healing 🌿",
-    "time": "5 hours ago"
+    "time": "5 hours ago",
+    "likes": 26,
+    "comments": 27,
+    "shares": 27
   },
   {
     "id": 5,
     "type": "image",
-    "url": ["https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg"],
+    "url": [
+      "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg"
+    ],
     "username": "Joseph",
-    "userImage":
-      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    "userImage": "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     "caption": "Nature is healing 🌿",
-    "time": "5 hours ago"
+    "time": "5 hours ago",
+    "likes": 26,
+    "comments": 27,
+    "shares": 27
   },
   {
     "id": 6,
     "type": "image",
-    "url": ["https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg"],
+    "url": [
+      "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg"
+    ],
     "username": "Joseph",
-    "userImage":
-      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    "userImage": "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     "caption": "Nature is healing 🌿",
-    "time": "5 hours ago"
+    "time": "5 hours ago",
+    "likes": 26,
+    "comments": 27,
+    "shares": 27
   },
   {
     "id": 7,
     "type": "image",
-    "url": ["https://images.pexels.com/photos/9218727/pexels-photo-9218727.jpeg"],
+    "url": [
+      "https://images.pexels.com/photos/9218727/pexels-photo-9218727.jpeg"
+    ],
     "username": "Joseph",
-    "userImage":
-      "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+    "userImage": "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
     "caption": "Nature is healing 🌿",
-    "time": "5 hours ago"
+    "time": "5 hours ago",
+    "likes": 26,
+    "comments": 27,
+    "shares": 27
   }
 ]
