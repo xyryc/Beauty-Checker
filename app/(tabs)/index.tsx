@@ -1,9 +1,11 @@
 import postData from "@/assets/data/posts.json";
+import CommentModal from "@/components/Discover/CommentModal";
 import DiscoverHeader from "@/components/Discover/DiscoverHeader";
 import PhotoCarousel from "@/components/Discover/PhotoCarousel";
 import PostActions from "@/components/Discover/PostActions";
 import PostInfo from "@/components/Discover/PostInfo";
 import VideoPlayer from "@/components/Discover/VideoPlayer";
+import ShareModal from "@/components/Shared/ShareModal";
 import { Post } from "@/types/types";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { Dimensions, FlatList, StatusBar, View } from "react-native";
@@ -13,6 +15,8 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 const Discover = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
+  const [commentVisible, setCommentVisible] = useState<boolean>(false);
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
 
   const posts: Post[] = useMemo(() => {
     return (postData as Post[]).map((post) => ({
@@ -35,7 +39,12 @@ const Discover = () => {
             <PhotoCarousel urls={item.url} />
           )}
 
-          <PostActions post={item} />
+          <PostActions
+            post={item}
+            onCommentPress={() => setCommentVisible(true)}
+            onSharePress={() => setModalVisible(true)}
+          />
+
           <PostInfo post={item} />
         </View>
       );
@@ -85,6 +94,17 @@ const Discover = () => {
       />
 
       <DiscoverHeader />
+
+      {/* Modals - Rendered at component level */}
+      <ShareModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+      />
+
+      <CommentModal
+        visible={commentVisible}
+        onClose={() => setCommentVisible(false)}
+      />
     </View>
   );
 };
