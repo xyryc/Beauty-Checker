@@ -1,3 +1,5 @@
+import postData from "@/assets/data/posts.json";
+import { Post } from "@/types/types";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { ResizeMode, Video } from "expo-av";
 import { Image } from "expo-image";
@@ -13,71 +15,18 @@ import {
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
 
-interface Post {
-  id: number;
-  type: "video" | "image";
-  url: string[];
-  username: string;
-  userImage: string;
-  caption: string;
-  likes: number;
-  comments: number;
-  shares: number;
-}
-
 const TikTokStyleFeed = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
 
-  // Low quality, compressed media URLs
-  const posts: Post[] = useMemo(
-    () => [
-      {
-        id: 1,
-        type: "video",
-        url: [
-          "https://www.pexels.com/download/video/8131886/?fps=25.0&h=2048&w=1080",
-        ], // Low quality video
-        username: "Motin Mia",
-        userImage:
-          "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=100&h=100", // Compressed thumbnail
-        caption: "Lorem Ipsum...",
-        likes: 26,
-        comments: 27,
-        shares: 27,
-      },
-      {
-        id: 2,
-        type: "image",
-        url: [
-          "https://images.pexels.com/photos/2533038/pexels-photo-2533038.jpeg?auto=compress&cs=tinysrgb&w=480&h=640", // Low quality image
-          "https://images.pexels.com/photos/9218724/pexels-photo-9218724.jpeg?auto=compress&cs=tinysrgb&w=480&h=640",
-        ],
-        username: "Sarah Beauty",
-        userImage:
-          "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=100&h=100",
-        caption: "Beauty transformation...",
-        likes: 45,
-        comments: 12,
-        shares: 8,
-      },
-      {
-        id: 3,
-        type: "video",
-        url: [
-          "https://www.pexels.com/download/video/8131887/?fps=25.0&h=960&w=506",
-        ], // Low quality video
-        username: "Emma Styles",
-        userImage:
-          "https://images.pexels.com/photos/1065084/pexels-photo-1065084.jpeg?auto=compress&cs=tinysrgb&w=100&h=100",
-        caption: "Hair styling tips...",
-        likes: 89,
-        comments: 34,
-        shares: 15,
-      },
-    ],
-    []
-  );
+  const posts: Post[] = useMemo(() => {
+    return (postData as Post[]).map((post) => ({
+      ...post,
+      likes: post.likes || Math.floor(Math.random() * 100) + 10,
+      comments: post.comments || Math.floor(Math.random() * 50) + 5,
+      shares: post.shares || Math.floor(Math.random() * 20) + 2,
+    }));
+  }, []);
 
   // Ultra simple photo carousel
   const PhotoCarousel = React.memo(({ urls }: { urls: string[] }) => {

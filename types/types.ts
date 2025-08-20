@@ -39,7 +39,9 @@ export interface Post {
   username: string;
   userImage: string;
   caption: string;
-  time: string;
+  likes: number;
+  comments: number;
+  shares: number;
 }
 
 export interface PostProps {
