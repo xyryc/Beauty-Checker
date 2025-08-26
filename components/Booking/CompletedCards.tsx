@@ -59,7 +59,16 @@ const CompletedCards = () => {
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <CommonCard
-          onPress={() => router.push("/booked/BookedDetailsScreen")}
+          status="completed"
+          onPress={() => {
+            router.push({
+              pathname: "/customer-booking/BookedDetailsScreen",
+              params: {
+                status: "completed",
+                itemId: item.id,
+              },
+            });
+          }}
           item={item}
         />
       )}

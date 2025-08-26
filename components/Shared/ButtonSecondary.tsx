@@ -2,7 +2,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
-const ButtonSecondary = ({ title = "Details", onPress, className }) => {
+const ButtonSecondary = ({ title = "Details", onPress, className }: any) => {
   return (
     <TouchableOpacity
       onPress={onPress}

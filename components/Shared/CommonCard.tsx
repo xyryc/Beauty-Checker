@@ -6,7 +6,7 @@ import React from "react";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 import ButtonSecondary from "./ButtonSecondary";
 
-const CommonCard = ({ item, onPress }: CommonCardProps) => {
+const CommonCard = ({ status, item, onPress }: CommonCardProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
@@ -91,7 +91,7 @@ const CommonCard = ({ item, onPress }: CommonCardProps) => {
           </Text>
 
           <View className="mt-2 ">
-            <ButtonSecondary />
+            <ButtonSecondary onPress={onPress} />
           </View>
         </View>
       </View>

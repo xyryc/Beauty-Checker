@@ -15,7 +15,7 @@
     "clientName": "Liam Johnson",
     "clientImage": "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg",
     "service": "Hair Styling",
-    "dateTime": "2025-08-12T14:00:00.000Z",
+    "dateTime": "2025-08-28T14:00:00.000Z",
     "amount": 450,
     "status": "new"
   },
@@ -45,7 +45,37 @@
     "clientName": "Ava Martinez",
     "clientImage": "https://images.pexels.com/photos/33272044/pexels-photo-33272044.jpeg",
     "service": "Hair Coloring",
+    "dateTime": "2025-08-27T10:00:00.000Z",
+    "amount": 950,
+    "status": "new"
+  },
+  {
+    "id": "6",
+    "clientId": "5",
+    "clientName": "Ava Martinez",
+    "clientImage": "https://images.pexels.com/photos/33272044/pexels-photo-33272044.jpeg",
+    "service": "Hair Coloring",
     "dateTime": "2025-08-14T10:00:00.000Z",
+    "amount": 950,
+    "status": "new"
+  },
+  {
+    "id": "7",
+    "clientId": "5",
+    "clientName": "Ava Martinez",
+    "clientImage": "https://images.pexels.com/photos/33272044/pexels-photo-33272044.jpeg",
+    "service": "Hair Coloring",
+    "dateTime": "2025-08-27T10:00:00.000Z",
+    "amount": 950,
+    "status": "new"
+  },
+  {
+    "id": "8",
+    "clientId": "5",
+    "clientName": "Ava Martinez",
+    "clientImage": "https://images.pexels.com/photos/33272044/pexels-photo-33272044.jpeg",
+    "service": "Hair Coloring",
+    "dateTime": "2025-08-28T10:00:00.000Z",
     "amount": 950,
     "status": "new"
   }

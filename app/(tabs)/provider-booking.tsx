@@ -105,7 +105,7 @@ const ProviderBookingScreen = () => {
                 <Ionicons name="document-text" size={20} color="white" />
               </View>
               <Text
-                className="text-primary text-lg mb-3"
+                className="text-primary text-xl mb-3"
                 style={{ fontFamily: "Poppins-Medium" }}
               >
                 New Request
@@ -126,10 +126,11 @@ const ProviderBookingScreen = () => {
                 <Ionicons name="checkmark-circle" size={20} color="white" />
               </View>
               <Text
-                className="text-primary text-lg mb-3"
+                className="text-primary text-xl mb-3"
                 style={{ fontFamily: "Poppins-Medium" }}
               >
-                Accepted
+                {/* Accepted */}
+                Appointments
               </Text>
               <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
                 05 ($5200)
@@ -145,7 +146,7 @@ const ProviderBookingScreen = () => {
                 <Ionicons name="checkmark-done" size={20} color="white" />
               </View>
               <Text
-                className="text-primary text-lg mb-3"
+                className="text-primary text-xl mb-3"
                 style={{ fontFamily: "Poppins-Medium" }}
               >
                 Completed
@@ -164,10 +165,10 @@ const ProviderBookingScreen = () => {
                 <Ionicons name="close-circle" size={20} color="white" />
               </View>
               <Text
-                className="text-primary text-lg mb-3"
+                className="text-primary text-xl mb-3"
                 style={{ fontFamily: "Poppins-Medium" }}
               >
-                Canceled
+                Cancelled
               </Text>
               <Text className="text-accent" style={{ fontFamily: "Poppins" }}>
                 05 ($5200)

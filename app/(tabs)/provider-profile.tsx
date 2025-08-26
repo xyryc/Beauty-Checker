@@ -4,7 +4,12 @@ import ButtonSmall from "@/components/Shared/ButtonSmall";
 import ButtonSmallOutline from "@/components/Shared/ButtonSmallOutline";
 import RenderPhotosCard from "@/components/Shared/RenderPhotosCard";
 import RenderVideosCard from "@/components/Shared/RenderVideosCard";
-import { FontAwesome, FontAwesome5, Octicons } from "@expo/vector-icons";
+import {
+  FontAwesome,
+  FontAwesome5,
+  Ionicons,
+  Octicons,
+} from "@expo/vector-icons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -222,6 +227,8 @@ const ProviderProfile = () => {
                     end={{ x: 1, y: 0 }}
                   >
                     <View className="flex-row items-center px-2 py-0.5">
+                      <Ionicons name="arrow-forward" size={14} color="white" />
+
                       <Text
                         className="mr-1 text-white text-sm"
                         style={{ fontFamily: "Poppins" }}

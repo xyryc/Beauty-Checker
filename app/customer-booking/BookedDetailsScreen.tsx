@@ -2,11 +2,15 @@ import Header from "@/components/Shared/Header";
 import ImageSliderAndService from "@/components/Shared/ImageSliderAndService";
 import SafeScreen from "@/components/Shared/SafeScreen";
 import { LinearGradient } from "expo-linear-gradient";
+import { useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Text, TouchableOpacity } from "react-native";
 
 const BookedDetailsScreen = () => {
+  const { status, itemId } = useLocalSearchParams();
+  console.log("BookedDetailsScreen rendered", status, itemId);
+
   return (
     <SafeScreen>
       <StatusBar style="dark" />
@@ -17,21 +21,23 @@ const BookedDetailsScreen = () => {
       {/* Main Content */}
       <ImageSliderAndService />
 
-      <TouchableOpacity className="rounded-2xl overflow-hidden mx-5 mt-8">
-        <LinearGradient
-          colors={["#B78AF7", "#612AC3"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          className="rounded-2xl flex-row items-center justify-center"
-        >
-          <Text
-            className="text-white py-[14.5px] text-lg font-medium text-center"
-            style={{ fontFamily: "Poppins" }}
+      {status === "completed" && (
+        <TouchableOpacity className="rounded-2xl overflow-hidden mx-5 mt-8">
+          <LinearGradient
+            colors={["#B78AF7", "#612AC3"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            className="rounded-2xl flex-row items-center justify-center"
           >
-            Give A Review
-          </Text>
-        </LinearGradient>
-      </TouchableOpacity>
+            <Text
+              className="text-white py-[14.5px] text-lg font-medium text-center"
+              style={{ fontFamily: "Poppins" }}
+            >
+              Give A Review
+            </Text>
+          </LinearGradient>
+        </TouchableOpacity>
+      )}
     </SafeScreen>
   );
 };

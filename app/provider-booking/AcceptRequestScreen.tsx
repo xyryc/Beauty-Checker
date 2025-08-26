@@ -153,7 +153,7 @@ const AcceptRequestScreen = () => {
       <StatusBar barStyle="dark-content" backgroundColor="#f9fafb" />
 
       {/* Header */}
-      <Header text="Accepted" />
+      <Header text="Appointments" />
 
       {/* Appointments list */}
       {combinedData.length > 0 ? (
