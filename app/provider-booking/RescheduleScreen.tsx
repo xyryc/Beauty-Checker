@@ -1,16 +1,10 @@
 import ButtonPrimary from "@/components/Shared/ButtonPrimary";
+import DateTimeSlot from "@/components/Shared/DateTimeSlot";
 import Header from "@/components/Shared/Header";
 import { Image } from "expo-image";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const RescheduleScreen = () => {
@@ -80,7 +74,7 @@ const RescheduleScreen = () => {
 
   return (
     <SafeAreaView
-      className="flex-1"
+      className="flex-1 bg-white"
       style={[
         {
           paddingTop: insets.top,
@@ -140,92 +134,15 @@ const RescheduleScreen = () => {
             </Text>
           </View>
 
-          {/* Calendar Section */}
-          <View className="mt-4">
-            <Text
-              className="text-primary text-lg mb-2"
-              style={{ fontFamily: "Poppins-Medium" }}
-            >
-              February 2025
-            </Text>
-
-            <View className="flex-row justify-between mb-6">
-              {calendarDays.map((item) => {
-                const isSelected = item.date === selectedDate;
-                const isDisabled = item.disabled;
-
-                return (
-                  <TouchableOpacity
-                    key={item.date}
-                    onPress={() => !isDisabled && setSelectedDate(item.date)}
-                    disabled={isDisabled}
-                    className={`flex-1 mx-1 rounded-xl py-3 items-center ${
-                      isSelected
-                        ? "bg-purple-600"
-                        : isDisabled
-                        ? "bg-gray-100"
-                        : "bg-white border border-gray-200"
-                    }`}
-                    activeOpacity={isDisabled ? 1 : 0.7}
-                  >
-                    <Text
-                      className={`text-lg font-semibold ${
-                        isSelected
-                          ? "text-white"
-                          : isDisabled
-                          ? "text-gray-400"
-                          : "text-gray-900"
-                      }`}
-                    >
-                      {item.date.toString().padStart(2, "0")}
-                    </Text>
-
-                    <Text
-                      className={`text-xs mb-1 ${
-                        isSelected
-                          ? "text-white"
-                          : isDisabled
-                          ? "text-gray-400"
-                          : "text-gray-600"
-                      }`}
-                    >
-                      {item.day}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </View>
-
-          {/* Time Slots Section */}
-          <View className="mb-4">
-            <View className="flex-row flex-wrap justify-between">
-              {timeSlots.map((time, index) => {
-                const isSelected = selectedTimeSlot === `${time}-${index}`;
-
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => setSelectedTimeSlot(`${time}-${index}`)}
-                    className={`w-[48%] rounded-xl py-4 px-3 mb-3 border ${
-                      isSelected
-                        ? "bg-purple-600 border-purple-600"
-                        : "bg-white border-gray-200"
-                    }`}
-                    activeOpacity={0.8}
-                  >
-                    <Text
-                      className={`text-center font-medium ${
-                        isSelected ? "text-white" : "text-gray-700"
-                      }`}
-                    >
-                      {time}
-                    </Text>
-                  </TouchableOpacity>
-                );
-              })}
-            </View>
-          </View>
+          {/* date & time slot */}
+          <DateTimeSlot
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
+            selectedTimeSlot={selectedTimeSlot}
+            setSelectedTimeSlot={setSelectedTimeSlot}
+            calendarDays={calendarDays}
+            timeSlots={timeSlots}
+          />
 
           {/* reschedule button */}
           <ButtonPrimary text="Reschedule" onPress={handleReschedule} />

@@ -1,19 +1,45 @@
-import { FontAwesome6 } from "@expo/vector-icons";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import { Platform, Text, TouchableOpacity, View } from "react-native";
+import { Platform, View } from "react-native";
+import ButtonPrimary from "../Shared/ButtonPrimary";
+import DateTimeSlot from "../Shared/DateTimeSlot";
 
 const BookingSection = () => {
   const [bookingStarted, setBookingStarted] = useState(false);
   const [date, setDate] = useState(new Date());
-  const [showPicker, setShowPicker] = useState(false);
+  const [showSlots, setShowSlots] = useState(false);
   const router = useRouter();
+
+  // timeslot
+  const [selectedDate, setSelectedDate] = useState(4); // Thursday is selected
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
+
+  const calendarDays = [
+    { date: 1, day: "Mon", disabled: true },
+    { date: 2, day: "Tue", disabled: true },
+    { date: 3, day: "Wed", disabled: false },
+    { date: 4, day: "Thu", disabled: false },
+    { date: 5, day: "Fri", disabled: false },
+    { date: 6, day: "Sat", disabled: false },
+  ];
+
+  // Available time slots
+  const timeSlots = [
+    "10.00 Pm",
+    "11.00 Pm",
+    "12.00 Pm",
+    "13.00 Pm",
+    "14.00 Pm",
+    "15.00 Pm",
+    "16.00 Pm",
+    "17.00 Pm",
+    "18.00 Pm",
+    "19.00 Pm",
+  ];
 
   const handleBookNow = () => {
     setBookingStarted(true);
-    setShowPicker(true);
+    setShowSlots(true);
   };
 
   const handleConfirm = () => {
@@ -22,70 +48,34 @@ const BookingSection = () => {
   };
 
   const onChange = (_event: any, selectedDate?: Date) => {
-    if (Platform.OS === "android") setShowPicker(false);
+    if (Platform.OS === "android") setShowSlots(false);
     if (selectedDate) setDate(selectedDate);
   };
 
   return (
-    <View className="mt-4">
+    <View className="mt-4 px-5">
       {!bookingStarted ? (
-        <TouchableOpacity
-          onPress={handleBookNow}
-          className="rounded-2xl overflow-hidden mx-5 mt-8"
-        >
-          <LinearGradient
-            colors={["#B78AF7", "#612AC3"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            className="rounded-2xl flex-row items-center justify-center"
-          >
-            <View className="flex-row justify-center items-center gap-4">
-              <FontAwesome6 name="calendar-days" size={24} color="#fff" />
-              <Text
-                className="text-white py-[14.5px] text-lg font-medium text-center"
-                style={{ fontFamily: "Poppins" }}
-              >
-                Book Now
-              </Text>
-            </View>
-          </LinearGradient>
-        </TouchableOpacity>
+        <ButtonPrimary text="Book Now" onPress={handleBookNow} />
       ) : (
         <View>
-          {showPicker && (
-            <View className="items-center">
-              <DateTimePicker
-                value={date}
-                mode="datetime"
-                display="default"
-                onChange={onChange}
-                minimumDate={new Date()}
-              />
-            </View>
+          {showSlots && (
+            <DateTimeSlot
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              selectedTimeSlot={selectedTimeSlot}
+              setSelectedTimeSlot={setSelectedTimeSlot}
+              calendarDays={calendarDays}
+              timeSlots={timeSlots}
+            />
           )}
 
-          {/* confirm */}
-          <TouchableOpacity
+          <ButtonPrimary
+            text="Confirm"
             onPress={() => {
               handleConfirm();
               router.push("/search/stripe");
             }}
-            className="rounded-2xl overflow-hidden mx-5 mt-4"
-          >
-            <LinearGradient
-              colors={["#B78AF7", "#612AC3"]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
-              className="rounded-2xl flex-row items-center justify-center"
-            >
-              <Text
-                className="text-white py-[14.5px] text-lg font-medium text-center"
-                style={{ fontFamily: "Poppins" }}
-              >
-                Confirm
-              </Text>
-            </LinearGradient>
-          </TouchableOpacity>
+          />
         </View>
       )}
     </View>

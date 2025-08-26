@@ -4,6 +4,7 @@ import ImageSliderAndService from "@/components/Shared/ImageSliderAndService";
 import SafeScreen from "@/components/Shared/SafeScreen";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import { ScrollView } from "react-native";
 
 const ServiceDetailsScreen = () => {
   return (
@@ -13,10 +14,15 @@ const ServiceDetailsScreen = () => {
       {/* header */}
       <Header text="Service Details" />
 
-      {/* slider and service details */}
-      <ImageSliderAndService />
+      <ScrollView
+        contentContainerClassName="pb-32"
+        showsVerticalScrollIndicator={false}
+      >
+        {/* slider and service details */}
+        <ImageSliderAndService />
 
-      <BookingSection />
+        <BookingSection />
+      </ScrollView>
     </SafeScreen>
   );
 };
