@@ -6,7 +6,7 @@ const ButtonPrimary = ({ text, onPress, className }: any) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className={`rounded-2xl overflow-hidden`}
+      className={`rounded-2xl overflow-hidden ${className}`}
     >
       <LinearGradient
         colors={["#B78AF7", "#612AC3"]}

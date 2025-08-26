@@ -6,7 +6,7 @@ import React from "react";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 import ButtonSecondary from "./ButtonSecondary";
 
-const CommonCard = ({ status, item, onPress }: CommonCardProps) => {
+const CommonCard = ({ item, onPress }: CommonCardProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}

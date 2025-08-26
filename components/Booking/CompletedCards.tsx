@@ -59,13 +59,12 @@ const CompletedCards = () => {
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <CommonCard
-          status="completed"
           onPress={() => {
             router.push({
               pathname: "/customer-booking/BookedDetailsScreen",
               params: {
                 status: "completed",
-                itemId: item.id,
+                item: JSON.stringify(item),
               },
             });
           }}
