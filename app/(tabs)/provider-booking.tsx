@@ -120,9 +120,9 @@ const ProviderBookingScreen = () => {
               onPress={() =>
                 router.push("/provider-booking/AcceptRequestScreen")
               }
-              className="bg-gray-100 rounded-2xl p-4 mb-4 w-[48%]"
+              className="bg-green-100 rounded-2xl p-4 mb-4 w-[48%]"
             >
-              <View className="bg-gray-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
+              <View className="bg-green-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
                 <Ionicons name="checkmark-circle" size={20} color="white" />
               </View>
               <Text
@@ -139,9 +139,9 @@ const ProviderBookingScreen = () => {
             {/* Completed */}
             <TouchableOpacity
               onPress={() => router.push("/provider-booking/CompletedScreen")}
-              className="bg-green-100 rounded-2xl p-4 mb-4 w-[48%]"
+              className=" bg-gray-100 rounded-2xl p-4 mb-4 w-[48%]"
             >
-              <View className="bg-green-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
+              <View className="bg-gray-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
                 <Ionicons name="checkmark-done" size={20} color="white" />
               </View>
               <Text

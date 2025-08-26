@@ -36,9 +36,9 @@ const ScheduleScreen = () => {
       {/* Main Content Container */}
       <View className="flex-1 mx-5 mt-8">
         {/* Schedule Container */}
-        <View className="bg-purple-100 rounded-2xl">
+        <View className="bg-[#ccaffc9c] rounded-2xl">
           {/* Table Header */}
-          <View className="flex-row bg-purple-[#EFE6FD] px-4 py-4 rounded-t-2xl border-b-[0.5px] border-[#CEB0FA]">
+          <View className="flex-row bg-[#622ac356] px-4 py-4 rounded-t-2xl border-b-[0.5px] border-[#CEB0FA]">
             <Text
               style={{ fontFamily: "Poppins-Medium" }}
               className="flex-1 text-xl text-gray-primary"
