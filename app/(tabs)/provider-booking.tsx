@@ -23,6 +23,7 @@ const ProviderBookingScreen = () => {
   ]);
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const [notificationCount, setNotificationCount] = useState(3);
 
   // Calendar data for July 2025
   const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -233,6 +234,13 @@ const ProviderBookingScreen = () => {
             </View>
           </View>
         </View>
+
+        <Text
+          style={{ fontFamily: "Poppins-Medium" }}
+          className="text-xl text-primary mb-4 mx-5"
+        >
+          Total Bookings: 12
+        </Text>
 
         {/* Time Slots Section */}
         <View className="mx-5 mb-8">
