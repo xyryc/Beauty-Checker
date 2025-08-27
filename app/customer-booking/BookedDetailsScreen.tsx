@@ -25,7 +25,7 @@ const BookedDetailsScreen = () => {
   // Parse the item back to object
   const item = itemString ? JSON.parse(itemString as string) : null;
 
-  console.log("BookedDetailsScreen rendered", status, item);
+  // console.log("BookedDetailsScreen rendered", status, item);
 
   // Modal state
   const [modalVisible, setModalVisible] = useState(false);

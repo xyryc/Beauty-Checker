@@ -14,10 +14,7 @@ const ServiceDetailsScreen = () => {
       {/* header */}
       <Header text="Service Details" />
 
-      <ScrollView
-        contentContainerClassName="pb-32"
-        showsVerticalScrollIndicator={false}
-      >
+      <ScrollView showsVerticalScrollIndicator={false}>
         {/* slider and service details */}
         <ImageSliderAndService />
 
