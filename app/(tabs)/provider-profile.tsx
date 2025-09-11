@@ -226,11 +226,9 @@ const ProviderProfile = () => {
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 0 }}
                   >
-                    <View className="flex-row items-center px-2 py-0.5">
-                      <Ionicons name="arrow-forward" size={14} color="white" />
-
+                    <View className="flex-row items-center gap-0.5 px-2 py-0.5">
                       <Text
-                        className="mr-1 text-white text-sm"
+                        className="text-white text-sm"
                         style={{ fontFamily: "Poppins" }}
                       >
                         4.6
@@ -239,11 +237,13 @@ const ProviderProfile = () => {
                       <FontAwesome name="star" size={10} color="#fff" />
 
                       <Text
-                        className="text-white ml-1 text-sm"
+                        className="text-white text-sm"
                         style={{ fontFamily: "Poppins" }}
                       >
                         (450 People)
                       </Text>
+
+                      <Ionicons name="arrow-back" size={14} color="white" />
                     </View>
                   </LinearGradient>
                 </TouchableOpacity>
