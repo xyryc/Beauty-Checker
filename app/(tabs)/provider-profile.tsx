@@ -243,7 +243,7 @@ const ProviderProfile = () => {
                         (450 People)
                       </Text>
 
-                      <Ionicons name="arrow-back" size={14} color="white" />
+                      <Ionicons name="arrow-forward" size={14} color="white" />
                     </View>
                   </LinearGradient>
                 </TouchableOpacity>
