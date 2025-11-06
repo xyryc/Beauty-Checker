@@ -8,7 +8,7 @@ type CategoryCardProps = {
 
 const CategoryCard = ({ category }: CategoryCardProps) => {
   return (
-    <View className="mr-4 bg-white">
+    <View className="mr-4 items-center shadow-2xl">
       <View
         className={`${
           Platform.OS === "ios"
@@ -17,7 +17,7 @@ const CategoryCard = ({ category }: CategoryCardProps) => {
         }`}
       >
         <Image
-          style={{ width: 80, height: 80, borderRadius: 8 }}
+          style={{ width: 100, height: 100, borderRadius: 8 }}
           source={category.img_url}
           contentFit="cover"
         />
