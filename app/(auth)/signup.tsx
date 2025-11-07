@@ -1,5 +1,6 @@
 import SocialLogin from "@/components/Auth/SocialLogin";
 import { storage } from "@/services/storage";
+import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
@@ -21,6 +22,8 @@ const SignUp = () => {
   const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const insets = useSafeAreaInsets();
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -62,8 +65,22 @@ const SignUp = () => {
       return;
     }
 
+    if (selectedRole === "provider" && !formData.company) {
+      Alert.alert("Error", "Please enter your company name");
+      return;
+    }
+
     if (formData.password !== formData.confirmPassword) {
       Alert.alert("Error", "Passwords do not match");
+      return;
+    }
+
+    // Validate terms and privacy
+    if (!acceptedTerms || !acceptedPrivacy) {
+      Alert.alert(
+        "Error",
+        "Please accept the Terms & Conditions and Privacy Policy"
+      );
       return;
     }
 
@@ -78,15 +95,22 @@ const SignUp = () => {
         role: selectedRole,
       };
 
-      console.log(userData);
+      // console.log(userData);
 
       // In a real app, you would call authService.register() here
-      // For now, we'll mock the registration process
       await storage.setAuthToken("dummy-auth-token");
-      await storage.setUserData(userData);
+      // await storage.setUserData(userData);
 
       // Navigate based on role
-      if (selectedRole) router.replace("/(tabs)");
+      if (selectedRole === "provider") {
+        // Set provider status as pending verification
+        // await storage.setProviderStatus("pending_verification");
+        // Navigate to provider onboarding
+        router.replace("/(auth)/onboarding");
+      } else {
+        // Regular users go straight to app
+        router.replace("/(tabs)");
+      }
     } catch (error) {
       console.error("Signup error:", error);
       Alert.alert("Error", "Registration failed. Please try again.");
@@ -110,7 +134,7 @@ const SignUp = () => {
       >
         <ScrollView
           contentContainerClassName="justify-between px-5 "
-          keyboardShouldPersistTaps="handled" // Key fix!
+          keyboardShouldPersistTaps="handled"
           nestedScrollEnabled={true}
         >
           {/* Top container */}
@@ -245,7 +269,7 @@ const SignUp = () => {
               </View>
 
               {/* confirm password */}
-              <View>
+              <View className="mb-6">
                 <Text
                   className="text-lg font-medium mb-2 text-primary"
                   style={{ fontFamily: "Poppins" }}
@@ -265,6 +289,61 @@ const SignUp = () => {
                   }
                 />
               </View>
+
+              {/* Terms & Privacy Checkboxes */}
+              <View className="mb-4">
+                {/* Terms & Conditions */}
+                <TouchableOpacity
+                  onPress={() => setAcceptedTerms(!acceptedTerms)}
+                  className="flex-row items-center mb-3"
+                >
+                  <View
+                    className={`w-5 h-5 border-2 rounded mr-3 items-center justify-center ${
+                      acceptedTerms
+                        ? "bg-primary border-primary"
+                        : "border-[#A1A1A1]"
+                    }`}
+                  >
+                    {acceptedTerms && (
+                      <Ionicons name="checkmark" size={14} color="white" />
+                    )}
+                  </View>
+                  <Text
+                    className="text-sm flex-1"
+                    style={{ fontFamily: "Poppins" }}
+                  >
+                    I agree to the{" "}
+                    <Text className="text-link underline">
+                      Terms & Conditions
+                    </Text>
+                  </Text>
+                </TouchableOpacity>
+
+                {/* Privacy Policy */}
+                <TouchableOpacity
+                  onPress={() => setAcceptedPrivacy(!acceptedPrivacy)}
+                  className="flex-row items-center"
+                >
+                  <View
+                    className={`w-5 h-5 border-2 rounded mr-3 items-center justify-center ${
+                      acceptedPrivacy
+                        ? "bg-primary border-primary"
+                        : "border-[#A1A1A1]"
+                    }`}
+                  >
+                    {acceptedPrivacy && (
+                      <Ionicons name="checkmark" size={14} color="white" />
+                    )}
+                  </View>
+                  <Text
+                    className="text-sm flex-1"
+                    style={{ fontFamily: "Poppins" }}
+                  >
+                    I agree to the{" "}
+                    <Text className="text-link underline">Privacy Policy</Text>
+                  </Text>
+                </TouchableOpacity>
+              </View>
             </View>
 
             {/* social login */}
@@ -273,11 +352,15 @@ const SignUp = () => {
 
           {/* Bottom container */}
           <View className="pt-16 pb-5">
-            {/* Sign in button */}
+            {/* Sign up button */}
             <TouchableOpacity
               onPress={handleSignUp}
               className="rounded-2xl overflow-hidden"
-              disabled={loading}
+              disabled={loading || !acceptedTerms || !acceptedPrivacy}
+              style={{
+                opacity:
+                  loading || !acceptedTerms || !acceptedPrivacy ? 0.5 : 1,
+              }}
             >
               <LinearGradient
                 colors={["#B78AF7", "#612AC3"]}
@@ -294,7 +377,7 @@ const SignUp = () => {
               </LinearGradient>
             </TouchableOpacity>
 
-            {/* Sign up link */}
+            {/* Sign in link */}
             <View className="flex flex-row mt-6 justify-center gap-1">
               <Text className="text-sm" style={{ fontFamily: "Poppins" }}>
                 Already Have An Account?
