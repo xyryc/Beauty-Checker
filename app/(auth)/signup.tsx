@@ -64,11 +64,6 @@ const SignUp = () => {
       return;
     }
 
-    if (selectedRole === "provider" && !formData.company) {
-      Alert.alert("Error", "Please enter your company name");
-      return;
-    }
-
     if (formData.password !== formData.confirmPassword) {
       Alert.alert("Error", "Passwords do not match");
       return;
