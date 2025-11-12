@@ -2,16 +2,12 @@ import CancelledCards from "@/components/Booking/CancelledCards";
 import CompletedCards from "@/components/Booking/CompletedCards";
 import PendingCards from "@/components/Booking/PendingCards";
 import { Image } from "expo-image";
-
 import React, { useState } from "react";
+import { StatusBar, Text, TouchableOpacity, View } from "react-native";
 import {
   SafeAreaView,
-  StatusBar,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 const TABS = ["Pending", "Completed", "Cancelled"];
 
@@ -75,7 +71,10 @@ const CustomerBookingScreen = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white">
+    <SafeAreaView
+      className="bg-white"
+      edges={["top", "bottom", "left", "right"]}
+    >
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
 
       <View className="bg-white">

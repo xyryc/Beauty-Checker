@@ -3,14 +3,16 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
-  SafeAreaView,
   ScrollView,
   StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 const ProviderBookingScreen = () => {
   const [selectedDate, setSelectedDate] = useState(20);
@@ -52,12 +54,7 @@ const ProviderBookingScreen = () => {
   return (
     <SafeAreaView
       className="flex-1 bg-[#FEFEFE]"
-      style={[
-        {
-          paddingTop: insets.top,
-          paddingBottom: insets.bottom,
-        },
-      ]}
+      edges={["top", "bottom", "left", "right"]}
     >
       <StatusBar barStyle="dark-content" backgroundColor="#FEFEFE" />
 

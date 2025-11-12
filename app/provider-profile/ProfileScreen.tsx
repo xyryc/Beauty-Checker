@@ -4,7 +4,7 @@ import ButtonSmall from "@/components/Shared/ButtonSmall";
 import ButtonSmallOutline from "@/components/Shared/ButtonSmallOutline";
 import RenderPhotosCard from "@/components/Shared/RenderPhotosCard";
 import RenderVideosCard from "@/components/Shared/RenderVideosCard";
-import { AntDesign, Feather, FontAwesome, Octicons } from "@expo/vector-icons";
+import { Feather, FontAwesome, Octicons } from "@expo/vector-icons";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
@@ -90,9 +90,9 @@ const ProviderProfile = () => {
                 onPress={() => router.back()}
                 className="absolute bottom-36 left-5 z-10"
               >
-                <AntDesign
+                <Feather
                   className="p-3.5"
-                  name="arrowleft"
+                  name="arrow-left"
                   size={24}
                   color="white"
                 />

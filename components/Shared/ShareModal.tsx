@@ -6,10 +6,7 @@ import { Modal, Pressable, Text, TouchableOpacity, View } from "react-native";
 const ShareModal: React.FC<ShareModalProps> = ({ visible, onClose }) => {
   return (
     <Modal transparent animationType="fade" visible={visible}>
-      <Pressable
-        className="flex-1 justify-end bg-black/50 rounded-t-[32px]"
-        onPress={onClose}
-      >
+      <Pressable className="flex-1 justify-end bg-black/50" onPress={onClose}>
         <View className="bg-[#444444CC] rounded-t-2xl px-6 pt-4 pb-10">
           {/* Drag Handle */}
           <View className="items-center mb-6">
@@ -21,7 +18,7 @@ const ShareModal: React.FC<ShareModalProps> = ({ visible, onClose }) => {
             className="text-white text-xl font-medium mb-4"
             style={{ fontFamily: "Poppins" }}
           >
-            Share By
+            Shared by
           </Text>
 
           {/* Icons Row */}

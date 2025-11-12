@@ -1,7 +1,8 @@
 import ProfileHeader from "@/components/Profile/ProfileHeader";
 import SavedServices from "@/components/Profile/SavedServices";
 import React from "react";
-import { FlatList, SafeAreaView, StatusBar } from "react-native";
+import { FlatList, StatusBar } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Profile = () => {
   return (

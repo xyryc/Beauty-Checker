@@ -4,7 +4,7 @@ import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
   const isFocused = (index: number) => state.index === index;
@@ -40,7 +40,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
       />
 
       {/* search */}
-      <TouchableOpacity
+      <Pressable
         className="absolute bottom-20 left-1/2 -translate-x-1/2 z-20"
         onPress={() => navigation.navigate("search")}
       >
@@ -50,12 +50,12 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
           contentFit="cover"
           cachePolicy="memory-disk"
         />
-      </TouchableOpacity>
+      </Pressable>
 
       {/* Discover */}
       <View className="absolute bottom-10 z-20 flex-row justify-between w-full px-10">
         <View className="flex-row gap-8 justify-between w-[30%]">
-          <TouchableOpacity
+          <Pressable
             onPress={() => navigation.navigate("index")}
             className="items-center gap-1.5"
           >
@@ -72,9 +72,9 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             >
               Discover
             </Text>
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableOpacity
+          <Pressable
             onPress={() => navigation.navigate("chat")}
             className="items-center gap-1.5 flex"
           >
@@ -91,11 +91,11 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             >
               Chat
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
 
         <View className="flex-row gap-8 justify-between w-[30%]">
-          <TouchableOpacity
+          <Pressable
             onPress={() => {
               if (role === "customer") {
                 router.push("/customer-booking");
@@ -118,9 +118,9 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             >
               Booking
             </Text>
-          </TouchableOpacity>
+          </Pressable>
 
-          <TouchableOpacity
+          <Pressable
             onPress={() => {
               if (role === "customer") {
                 router.push("/customer-profile");
@@ -143,7 +143,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             >
               Profile
             </Text>
-          </TouchableOpacity>
+          </Pressable>
         </View>
       </View>
     </View>

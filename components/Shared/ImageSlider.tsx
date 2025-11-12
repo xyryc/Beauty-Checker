@@ -32,7 +32,11 @@ const ImageSlider = () => {
         contentFit="cover"
       />
 
-      <ScrollView horizontal className="mt-2 mb-4">
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        horizontal
+        className="mt-2 mb-4"
+      >
         {images.map((img, idx) => (
           <TouchableOpacity key={idx} onPress={() => setMainImage(img)}>
             <Image
