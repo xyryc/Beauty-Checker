@@ -10,13 +10,13 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
-  SafeAreaView,
   ScrollView,
   StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SettingsActivityScreen = () => {
   const router = useRouter();
@@ -29,7 +29,10 @@ const SettingsActivityScreen = () => {
   };
 
   return (
-    <SafeAreaView className="bg-white">
+    <SafeAreaView
+      className="bg-white"
+      edges={["top", "bottom", "left", "right"]}
+    >
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
 
       <Header text="Settings & Activity" />
@@ -57,6 +60,25 @@ const SettingsActivityScreen = () => {
               >
                 Account Center
               </Text>
+            </View>
+
+            <Feather name="chevron-right" size={24} color="#767676" />
+          </TouchableOpacity>
+        </View>
+
+        {/* settings */}
+        <View className="border-b-[0.5px] border-primary py-4">
+          <TouchableOpacity
+            onPress={() => router.push("/profile/Rewards")}
+            className="flex-row justify-between items-center"
+          >
+            <View className="flex-row items-center gap-4">
+              <MaterialIcons
+                name="workspace-premium"
+                size={24}
+                color="#612AC3"
+              />
+              <Text className="text-accent">Rewards</Text>
             </View>
 
             <Feather name="chevron-right" size={24} color="#767676" />

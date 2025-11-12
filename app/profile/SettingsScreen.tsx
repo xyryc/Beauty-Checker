@@ -1,17 +1,17 @@
 import Header from "@/components/Shared/Header";
-import SafeScreen from "@/components/Shared/SafeScreen";
 import { Feather, Octicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SettingsScreen = () => {
   return (
-    <SafeScreen>
+    <SafeAreaView className="bg-white flex-1">
       <Header text="Settings" />
 
       {/* menu */}
-      <ScrollView className="px-5 pt-6 h-screen-safe">
+      <ScrollView className="px-5 pt-6">
         {/* notification */}
         <View className="border-b-[0.5px] border-primary py-4">
           <TouchableOpacity
@@ -42,7 +42,7 @@ const SettingsScreen = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </SafeScreen>
+    </SafeAreaView>
   );
 };
 

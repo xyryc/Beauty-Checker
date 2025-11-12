@@ -8,20 +8,7 @@ const Header = ({ text }: HeaderProps) => {
   const router = useRouter();
 
   return (
-    <View
-      className="flex-row items-center px-5 py-2 bg-[#fefefe]"
-      style={{
-        shadowColor: "3F4F4426", // slightly darker for natural shadow
-        shadowOffset: {
-          width: 0,
-          height: 10, // ↓ downwards only
-        },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-        elevation: 2, // Android fallback
-        zIndex: 1,
-      }}
-    >
+    <View className="flex-row items-center px-5 py-2 bg-[#fefefe] border-b border-gray-200">
       <TouchableOpacity onPress={() => router.back()} className="z-10 p-3.5">
         <Ionicons name="arrow-back" size={24} color="black" />
       </TouchableOpacity>

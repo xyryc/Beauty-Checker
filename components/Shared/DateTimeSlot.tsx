@@ -33,7 +33,7 @@ const DateTimeSlot = ({
                   key={item.date}
                   onPress={() => !isDisabled && setSelectedDate(item.date)}
                   disabled={isDisabled}
-                  className={`flex-1 mx-1 rounded-xl py-3 items-center ${
+                  className={`flex-1 mx-1 rounded-md py-2 items-center ${
                     isSelected
                       ? "bg-purple-600"
                       : isDisabled
