@@ -66,7 +66,7 @@ const SettingsActivityScreen = () => {
           </TouchableOpacity>
         </View>
 
-        {/* settings */}
+        {/* rewards */}
         <View className="border-b-[0.5px] border-primary py-4">
           <TouchableOpacity
             onPress={() => router.push("/profile/Rewards")}

@@ -1,7 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import React, { useEffect, useRef } from "react";
-import { Animated, Modal, Pressable, Text, View } from "react-native";
+import React from "react";
+import { Modal, Pressable, Text, View } from "react-native";
+
 import ButtonCancel from "./ButtonCancel";
 import ButtonPrimary from "./ButtonPrimary";
 
@@ -16,42 +17,7 @@ const LogoutModal: React.FC<LogoutModalProps> = ({
   onClose,
   onLogout,
 }) => {
-  const scaleAnim = useRef(new Animated.Value(0)).current;
-  const fadeAnim = useRef(new Animated.Value(0)).current;
   const router = useRouter();
-
-  useEffect(() => {
-    if (visible) {
-      // Animate in
-      Animated.parallel([
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 200,
-          useNativeDriver: true,
-        }),
-        Animated.spring(scaleAnim, {
-          toValue: 1,
-          tension: 100,
-          friction: 8,
-          useNativeDriver: true,
-        }),
-      ]).start();
-    } else {
-      // Animate out
-      Animated.parallel([
-        Animated.timing(fadeAnim, {
-          toValue: 0,
-          duration: 150,
-          useNativeDriver: true,
-        }),
-        Animated.timing(scaleAnim, {
-          toValue: 0,
-          duration: 150,
-          useNativeDriver: true,
-        }),
-      ]).start();
-    }
-  }, [visible]);
 
   const handleLogout = () => {
     onLogout();
@@ -63,59 +29,48 @@ const LogoutModal: React.FC<LogoutModalProps> = ({
     <Modal
       transparent
       visible={visible}
-      animationType="none"
+      animationType="slide" // ← set to "none" if you want *no* animation at all
       onRequestClose={onClose}
     >
+      {/* Dark overlay – tap anywhere outside the dialog to close */}
       <Pressable
-        className="flex-1 bg-black/50 justify-center items-center"
+        className="flex-1 bg-black/20 justify-center items-center"
         onPress={onClose}
       >
-        <Animated.View
-          style={{
-            opacity: fadeAnim,
-            transform: [{ scale: scaleAnim }],
-          }}
+        {/* Dialog container – stop propagation so taps inside don’t close the modal */}
+        <Pressable
+          className="bg-white rounded-3xl mx-6 w-80 overflow-hidden"
+          onPress={(e) => e.stopPropagation()}
         >
-          <Pressable
-            className="bg-white rounded-3xl mx-6 w-80 overflow-hidden"
-            onPress={() => {}} // Prevent closing when tapping inside modal
-          >
-            {/* Icon */}
-            <View className="items-center pt-8 pb-4">
-              <View className="w-16 h-16 bg-red-100 rounded-full items-center justify-center mb-4">
-                <Ionicons name="log-out-outline" size={32} color="#EF4444" />
-              </View>
-
-              {/* Title */}
-              <Text className="text-xl font-bold text-gray-900 mb-2">
-                Logout
-              </Text>
-
-              {/* Message */}
-              <Text className="text-gray-600 text-center px-6 leading-5">
-                Are you sure you want to logout? You'll need to sign in again to
-                access your account.
-              </Text>
+          {/* ---------- Header (icon, title, message) ---------- */}
+          <View className="items-center pt-8 pb-4">
+            <View className="w-16 h-16 bg-red-100 rounded-full items-center justify-center mb-4">
+              <Ionicons name="log-out-outline" size={32} color="#EF4444" />
             </View>
 
-            {/* Buttons */}
-            <View className="p-6 pt-4 flex gap-4">
-              <ButtonPrimary
-                text="Yes, Logout"
-                onPress={handleLogout}
-                className="w-[48%]"
-              />
+            <Text className="text-xl font-bold text-gray-900 mb-2">Logout</Text>
 
-              <ButtonCancel
-                onPress={() => {
-                  onClose();
-                }}
-                text="Cancel"
-                className="w-full py-2 rounded-2xl"
-              />
-            </View>
-          </Pressable>
-        </Animated.View>
+            <Text className="text-gray-600 text-center px-6 leading-5">
+              Are you sure you want to logout? You'll need to sign in again to
+              access your account.
+            </Text>
+          </View>
+
+          {/* ---------- Action buttons ---------- */}
+          <View className="p-6 pt-4 flex-row gap-4">
+            <ButtonPrimary
+              text="Yes, Logout"
+              onPress={handleLogout}
+              className="w-[48%]"
+            />
+
+            <ButtonCancel
+              text="Cancel"
+              onPress={onClose}
+              className="w-[48%] py-2 rounded-2xl"
+            />
+          </View>
+        </Pressable>
       </Pressable>
     </Modal>
   );

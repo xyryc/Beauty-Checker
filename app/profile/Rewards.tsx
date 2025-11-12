@@ -10,18 +10,11 @@ import {
 } from "@/services/pointsService";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const RewardsScreen = () => {
-  const router = useRouter();
-  const insets = useSafeAreaInsets();
-
   // Mock user data (should come from backend/storage)
   const userPoints = 1400;
   const pointsInEuro = pointsToEuro(userPoints);

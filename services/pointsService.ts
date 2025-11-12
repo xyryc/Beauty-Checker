@@ -1,5 +1,3 @@
-// File: services/pointsService.ts
-
 /**
  * Points and Pricing Calculation Service
  * Handles all calculations related to loyalty points, pricing, and fee distribution
