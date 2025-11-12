@@ -14,8 +14,8 @@ const Header = ({ text }: HeaderProps) => {
       </TouchableOpacity>
 
       <Text
-        className="text-xl font-medium absolute left-0 right-0 text-center"
-        style={{ fontFamily: "Poppins" }}
+        className="text-xl absolute left-0 right-0 text-center"
+        style={{ fontFamily: "Poppins-Medium" }}
       >
         {text}
       </Text>

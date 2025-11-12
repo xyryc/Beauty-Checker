@@ -1,9 +1,16 @@
-import { AntDesign } from "@expo/vector-icons";
+import {
+  calculateBookingDetails,
+  formatCurrency,
+  formatPoints,
+  pointsToEuro,
+  validatePointsUsage,
+} from "@/services/pointsService";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import * as Linking from "expo-linking";
 import * as Notifications from "expo-notifications";
 import { useRouter } from "expo-router";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Alert, Platform, Pressable, Text, View } from "react-native";
 import ButtonPrimary from "../Shared/ButtonPrimary";
 import DateTimeSlot from "../Shared/DateTimeSlot";
@@ -16,26 +23,16 @@ const BookingSection = () => {
   const [usePoints, setUsePoints] = useState(false);
   const router = useRouter();
 
-  // Pricing configuration
-  const SERVICE_PRICE = 70; // Original service price in €
-  const APP_FEE_PERCENTAGE = 9; // App fee (can be adjusted)
-  const LOYALTY_POINTS_PERCENTAGE = 2; // Points given to customer
-  const POINTS_TO_EURO_RATE = 1000; // 1 € = 1,000 points
+  // Service and user data (should come from props/backend)
+  const SERVICE_PRICE = 70;
+  const [userPoints, setUserPoints] = useState(1400); // Should come from backend/storage
 
-  // User's current points (this should come from backend/storage)
-  const [userPoints, setUserPoints] = useState(1400); // Example: 1,400 points = €1.40
+  // Calculate booking details using the service
+  const bookingCalculation = useMemo(() => {
+    return calculateBookingDetails(SERVICE_PRICE, usePoints ? userPoints : 0);
+  }, [SERVICE_PRICE, usePoints, userPoints]);
 
-  // Calculate values
-  const pointsInEuro = userPoints / POINTS_TO_EURO_RATE;
-  const discountedPrice = usePoints
-    ? SERVICE_PRICE - pointsInEuro
-    : SERVICE_PRICE;
-  const appFee = (SERVICE_PRICE * APP_FEE_PERCENTAGE) / 100;
-  const loyaltyPointsEuro = (SERVICE_PRICE * LOYALTY_POINTS_PERCENTAGE) / 100;
-  const loyaltyPointsAwarded = Math.round(
-    loyaltyPointsEuro * POINTS_TO_EURO_RATE
-  );
-  const providerReceives = SERVICE_PRICE - appFee - loyaltyPointsEuro;
+  const pointsInEuro = pointsToEuro(userPoints);
 
   // timeslot
   const [selectedDate, setSelectedDate] = useState(4);
@@ -156,28 +153,38 @@ const BookingSection = () => {
       return;
     }
 
+    // Validate points usage
+    if (usePoints) {
+      const validation = validatePointsUsage(
+        SERVICE_PRICE,
+        userPoints,
+        userPoints
+      );
+      if (!validation.valid) {
+        Alert.alert("Points Error", validation.error);
+        return;
+      }
+    }
+
     const canProceed = await handleNotificationPermission();
 
     if (canProceed) {
-      // Calculate final booking details
+      // Prepare booking data with all calculations
       const bookingData = {
-        servicePrice: SERVICE_PRICE,
-        finalPrice: discountedPrice,
-        pointsUsed: usePoints ? userPoints : 0,
-        pointsEarned: loyaltyPointsAwarded,
-        appFee: appFee,
-        providerReceives: providerReceives,
+        ...bookingCalculation,
         date: selectedDate,
         timeSlot: selectedTimeSlot,
+        termsAccepted: acceptedTerms,
       };
 
       console.log("Booking confirmed:", bookingData);
 
-      // Update user points
+      // Update user points after booking
+      // In production, this should be done via API after successful payment
       if (usePoints) {
-        setUserPoints(loyaltyPointsAwarded); // Reset to new earned points
+        setUserPoints(bookingCalculation.loyaltyPointsEarned); // Reset to new earned points
       } else {
-        setUserPoints(userPoints + loyaltyPointsAwarded); // Add to existing
+        setUserPoints(userPoints + bookingCalculation.loyaltyPointsEarned); // Add to existing
       }
 
       await scheduleBookingNotification();
@@ -196,7 +203,9 @@ const BookingSection = () => {
       await Notifications.scheduleNotificationAsync({
         content: {
           title: "Booking Confirmed! 🎉",
-          body: `Your ${selectedTimeSlot} appointment has been confirmed. You earned ${loyaltyPointsAwarded} points!`,
+          body: `Your ${selectedTimeSlot} appointment has been confirmed. You earned ${formatPoints(
+            bookingCalculation.loyaltyPointsEarned
+          )} points!`,
           data: { bookingId: Date.now() },
         },
         trigger: { seconds: 2 },
@@ -285,14 +294,14 @@ const BookingSection = () => {
                     style={{ fontFamily: "Poppins" }}
                     className="text-gray-400 line-through mr-2"
                   >
-                    €{SERVICE_PRICE.toFixed(2)}
+                    {formatCurrency(bookingCalculation.originalPrice)}
                   </Text>
                 )}
                 <Text
                   style={{ fontFamily: "Poppins-Medium" }}
                   className="text-accent text-base"
                 >
-                  €{discountedPrice.toFixed(2)}
+                  {formatCurrency(bookingCalculation.finalPrice)}
                 </Text>
               </View>
             </View>
@@ -306,26 +315,25 @@ const BookingSection = () => {
                 >
                   Your Points Balance
                 </Text>
-                <Pressable onPress={() => router.push("/settings/rewards")}>
-                  <Text
-                    style={{ fontFamily: "Poppins" }}
-                    className="text-link text-sm"
-                  >
-                    View Details
-                  </Text>
+                <Pressable onPress={() => router.push("/profile/Rewards")}>
+                  <Ionicons
+                    name="information-circle-outline"
+                    size={24}
+                    color="#a855f7"
+                  />
                 </Pressable>
               </View>
               <Text
                 style={{ fontFamily: "Poppins-SemiBold" }}
                 className="text-primary text-xl"
               >
-                {userPoints.toLocaleString()} points
+                {formatPoints(userPoints)} points
               </Text>
               <Text
                 style={{ fontFamily: "Poppins" }}
                 className="text-accent text-sm"
               >
-                = €{pointsInEuro.toFixed(2)} discount
+                = {formatCurrency(pointsInEuro)} discount
               </Text>
             </View>
 
@@ -350,32 +358,34 @@ const BookingSection = () => {
                   className="flex-1 text-sm text-gray-700"
                   style={{ fontFamily: "Poppins" }}
                 >
-                  Use {userPoints.toLocaleString()} points (€
-                  {pointsInEuro.toFixed(2)} discount)
+                  Use {formatPoints(userPoints)} points (
+                  {formatCurrency(pointsInEuro)} discount)
                 </Text>
               </Pressable>
             )}
 
             {/* Points to be Earned */}
-            <View className="mb-4 p-3 bg-green-50 rounded-lg border border-green-200">
+            <View className="mb-4 p-3 bg-purple-50 rounded-lg border-hairline border-purple-600">
               <View className="flex-row items-center">
-                <AntDesign name="star" size={20} color="#10B981" />
+                <AntDesign name="star" size={20} color="#a855f7" />
                 <Text
                   style={{ fontFamily: "Poppins-Medium" }}
-                  className="text-green-800 ml-2"
+                  className="text-purpleAccent ml-2"
                 >
-                  You'll earn {loyaltyPointsAwarded.toLocaleString()} points
+                  You'll earn{" "}
+                  {formatPoints(bookingCalculation.loyaltyPointsEarned)} points
                 </Text>
               </View>
               <Text
                 style={{ fontFamily: "Poppins" }}
-                className="text-green-700 text-xs mt-1"
+                className="text-purpleAccent text-xs mt-1"
               >
-                (€{loyaltyPointsEuro.toFixed(2)} worth for your next booking)
+                ({formatCurrency(bookingCalculation.loyaltyPointsAmount)} worth
+                for your next booking)
               </Text>
             </View>
 
-            {/* Breakdown (Optional - can be collapsible) */}
+            {/* Breakdown */}
             <View className="mb-4 p-3 bg-gray-50 rounded-lg">
               <Text
                 style={{ fontFamily: "Poppins-Medium" }}
@@ -395,22 +405,22 @@ const BookingSection = () => {
                     style={{ fontFamily: "Poppins" }}
                     className="text-gray-600 text-sm"
                   >
-                    €{SERVICE_PRICE.toFixed(2)}
+                    {formatCurrency(bookingCalculation.originalPrice)}
                   </Text>
                 </View>
                 {usePoints && (
                   <View className="flex-row justify-between">
                     <Text
                       style={{ fontFamily: "Poppins" }}
-                      className="text-green-600 text-sm"
+                      className="text-purpleAccent text-sm"
                     >
                       Points Discount
                     </Text>
                     <Text
                       style={{ fontFamily: "Poppins" }}
-                      className="text-green-600 text-sm"
+                      className="text-purpleAccent text-sm"
                     >
-                      -€{pointsInEuro.toFixed(2)}
+                      -{formatCurrency(bookingCalculation.pointsDiscount)}
                     </Text>
                   </View>
                 )}
@@ -425,7 +435,7 @@ const BookingSection = () => {
                     style={{ fontFamily: "Poppins-Medium" }}
                     className="text-primary"
                   >
-                    €{discountedPrice.toFixed(2)}
+                    {formatCurrency(bookingCalculation.finalPrice)}
                   </Text>
                 </View>
               </View>

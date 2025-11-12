@@ -1,5 +1,13 @@
 // File: app/settings/rewards.tsx
 import Header from "@/components/Shared/Header";
+import {
+  PRICING_CONFIG,
+  euroToPoints,
+  formatCurrency,
+  formatPoints,
+  getTotalFeePercentage,
+  pointsToEuro,
+} from "@/services/pointsService";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
@@ -14,15 +22,9 @@ const RewardsScreen = () => {
   const router = useRouter();
   const insets = useSafeAreaInsets();
 
-  // Constants (should match BookingSection)
-  const POINTS_TO_EURO_RATE = 1000; // 1 € = 1,000 points
-  const LOYALTY_PERCENTAGE = 2; // 2% of booking goes to points
-  const APP_FEE_PERCENTAGE = 9; // 9% app fee
-  const TOTAL_FEE_PERCENTAGE = APP_FEE_PERCENTAGE + LOYALTY_PERCENTAGE; // 11%
-
   // Mock user data (should come from backend/storage)
   const userPoints = 1400;
-  const pointsInEuro = userPoints / POINTS_TO_EURO_RATE;
+  const pointsInEuro = pointsToEuro(userPoints);
   const totalBookings = 3;
   const totalSpent = 210; // €210
 
@@ -57,8 +59,15 @@ const RewardsScreen = () => {
     },
   ];
 
+  // Example calculation values
+  const exampleBookingAmount = 70;
+  const exampleLoyaltyEuro =
+    (exampleBookingAmount * PRICING_CONFIG.LOYALTY_POINTS_PERCENTAGE) / 100;
+  const exampleLoyaltyPoints = euroToPoints(exampleLoyaltyEuro);
+
   return (
     <SafeAreaView className="flex-1 bg-white">
+      {/* Header */}
       <Header text="Rewards & Points" />
 
       <ScrollView className="flex-1">
@@ -84,7 +93,7 @@ const RewardsScreen = () => {
                 className="text-white text-4xl font-bold mb-1"
                 style={{ fontFamily: "Poppins-Bold" }}
               >
-                {userPoints.toLocaleString()}
+                {formatPoints(userPoints)}
               </Text>
               <Text
                 className="text-white text-base"
@@ -97,7 +106,7 @@ const RewardsScreen = () => {
                   className="text-white text-lg font-medium"
                   style={{ fontFamily: "Poppins-Medium" }}
                 >
-                  = €{pointsInEuro.toFixed(2)} discount
+                  = {formatCurrency(pointsInEuro)} discount
                 </Text>
               </View>
             </View>
@@ -105,7 +114,7 @@ const RewardsScreen = () => {
         </View>
 
         {/* Stats */}
-        <View className="flex-row px-5 mt-6 gap-3">
+        <View className="flex-row px-5 mt-6 gap-3 hidden">
           <View className="flex-1 bg-purple-50 p-4 rounded-lg">
             <Text
               className="text-accent text-sm mb-1"
@@ -131,13 +140,13 @@ const RewardsScreen = () => {
               className="text-primary text-2xl font-semibold"
               style={{ fontFamily: "Poppins-SemiBold" }}
             >
-              €{totalSpent}
+              {formatCurrency(totalSpent)}
             </Text>
           </View>
         </View>
 
         {/* How It Works */}
-        <View className="px-5 mt-8">
+        <View className="px-5 mt-8 mb-8">
           <Text
             className="text-lg font-semibold text-primary mb-4"
             style={{ fontFamily: "Poppins-SemiBold" }}
@@ -153,14 +162,16 @@ const RewardsScreen = () => {
                   className="text-primary font-medium mb-1"
                   style={{ fontFamily: "Poppins-Medium" }}
                 >
-                  Earn {LOYALTY_PERCENTAGE}% on Every Booking
+                  Earn {PRICING_CONFIG.LOYALTY_POINTS_PERCENTAGE}% on Every
+                  Booking
                 </Text>
                 <Text
                   className="text-accent text-sm"
                   style={{ fontFamily: "Poppins" }}
                 >
-                  For every booking you make, you earn {LOYALTY_PERCENTAGE}% of
-                  the booking amount as loyalty points.
+                  For every booking you make, you earn{" "}
+                  {PRICING_CONFIG.LOYALTY_POINTS_PERCENTAGE}% of the booking
+                  amount as loyalty points.
                 </Text>
               </View>
             </View>
@@ -174,15 +185,17 @@ const RewardsScreen = () => {
                   className="text-primary font-medium mb-1"
                   style={{ fontFamily: "Poppins-Medium" }}
                 >
-                  1 € = {POINTS_TO_EURO_RATE.toLocaleString()} Points
+                  1 € = {formatPoints(PRICING_CONFIG.POINTS_TO_EURO_RATE)}{" "}
+                  Points
                 </Text>
                 <Text
                   className="text-accent text-sm"
                   style={{ fontFamily: "Poppins" }}
                 >
                   Points can be redeemed for discounts on your next booking. The
-                  conversion rate is {POINTS_TO_EURO_RATE.toLocaleString()}{" "}
-                  points = €1.
+                  conversion rate is{" "}
+                  {formatPoints(PRICING_CONFIG.POINTS_TO_EURO_RATE)} points =
+                  €1.
                 </Text>
               </View>
             </View>
@@ -202,16 +215,18 @@ const RewardsScreen = () => {
                   className="text-accent text-sm"
                   style={{ fontFamily: "Poppins" }}
                 >
-                  Book a €70 service → Earn {LOYALTY_PERCENTAGE}% = €1.40 → Get{" "}
-                  {(1.4 * POINTS_TO_EURO_RATE).toLocaleString()} points
+                  Book a {formatCurrency(exampleBookingAmount)} service → Earn{" "}
+                  {PRICING_CONFIG.LOYALTY_POINTS_PERCENTAGE}% ={" "}
+                  {formatCurrency(exampleLoyaltyEuro)} → Get{" "}
+                  {formatPoints(exampleLoyaltyPoints)} points
                 </Text>
               </View>
             </View>
           </View>
 
-          <View className="bg-yellow-50 p-4 rounded-lg">
+          <View className="bg-blue-50 p-4 rounded-lg">
             <View className="flex-row items-start">
-              <Ionicons name="information-circle" size={20} color="#F59E0B" />
+              <Ionicons name="information-circle" size={20} color="#3b82f6" />
               <View className="flex-1 ml-3">
                 <Text
                   className="text-primary font-medium mb-1"
@@ -232,7 +247,7 @@ const RewardsScreen = () => {
         </View>
 
         {/* Transaction History */}
-        <View className="px-5 mt-8 mb-8">
+        <View className="px-5 mt-8 mb-8 hidden">
           <Text
             className="text-lg font-semibold text-primary mb-4"
             style={{ fontFamily: "Poppins-SemiBold" }}
@@ -270,7 +285,7 @@ const RewardsScreen = () => {
                     style={{ fontFamily: "Poppins-SemiBold" }}
                   >
                     {transaction.type === "earned" ? "+" : ""}
-                    {transaction.points.toLocaleString()}
+                    {formatPoints(transaction.points)}
                   </Text>
                   <Text
                     className="text-accent text-xs"
@@ -295,7 +310,7 @@ const RewardsScreen = () => {
                   className="text-accent text-xs"
                   style={{ fontFamily: "Poppins" }}
                 >
-                  Booking: €{transaction.amount}
+                  Booking: {formatCurrency(transaction.amount)}
                 </Text>
               </View>
             </View>
@@ -315,7 +330,7 @@ const RewardsScreen = () => {
               className="text-accent text-xs mb-3"
               style={{ fontFamily: "Poppins" }}
             >
-              Total platform fee: {TOTAL_FEE_PERCENTAGE}% per booking
+              Total platform fee: {getTotalFeePercentage()}% per booking
             </Text>
             <View className="space-y-2">
               <View className="flex-row justify-between">
@@ -329,7 +344,7 @@ const RewardsScreen = () => {
                   className="text-accent text-sm"
                   style={{ fontFamily: "Poppins" }}
                 >
-                  {APP_FEE_PERCENTAGE}%
+                  {PRICING_CONFIG.APP_FEE_PERCENTAGE}%
                 </Text>
               </View>
               <View className="flex-row justify-between">
@@ -343,7 +358,21 @@ const RewardsScreen = () => {
                   className="text-green-600 text-sm"
                   style={{ fontFamily: "Poppins" }}
                 >
-                  {LOYALTY_PERCENTAGE}%
+                  {PRICING_CONFIG.LOYALTY_POINTS_PERCENTAGE}%
+                </Text>
+              </View>
+              <View className="flex-row justify-between pt-2 border-t border-gray-200">
+                <Text
+                  className="text-primary text-sm font-medium"
+                  style={{ fontFamily: "Poppins-Medium" }}
+                >
+                  Provider Receives
+                </Text>
+                <Text
+                  className="text-primary text-sm font-medium"
+                  style={{ fontFamily: "Poppins-Medium" }}
+                >
+                  {100 - getTotalFeePercentage()}%
                 </Text>
               </View>
             </View>

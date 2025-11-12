@@ -82,7 +82,7 @@ const ImageSliderAndService = () => {
             className="text-purplePrimary text-lg font-medium"
             style={{ fontFamily: "Poppins" }}
           >
-            $36.00
+            €70.00
           </Text>
         </View>
 
