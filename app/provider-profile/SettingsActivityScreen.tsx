@@ -66,7 +66,7 @@ const SettingsActivityScreen = () => {
                 size={24}
                 color="#612AC3"
               />
-              <Text className="text-accent">Rewards</Text>
+              <Text className="text-accent">Rewards & Points</Text>
             </View>
 
             <Feather name="chevron-right" size={24} color="#767676" />

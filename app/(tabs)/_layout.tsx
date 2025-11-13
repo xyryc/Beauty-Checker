@@ -18,7 +18,7 @@ const TabLayout = () => {
     checkRole();
   }, []);
 
-  console.log(role);
+  // console.log(role);
 
   return (
     <Tabs
