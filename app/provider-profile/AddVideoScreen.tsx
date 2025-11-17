@@ -8,7 +8,6 @@ import * as VideoThumbnails from "expo-video-thumbnails";
 import React, { useEffect, useState } from "react";
 import {
   Alert,
-  SafeAreaView,
   ScrollView,
   StatusBar,
   Text,
@@ -16,6 +15,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const AddVideoScreen = () => {
   const [description, setDescription] = useState("");
