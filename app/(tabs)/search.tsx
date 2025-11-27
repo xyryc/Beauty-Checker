@@ -3,7 +3,7 @@ import TopServices from "@/components/Search/TopServices";
 import ButtonPrimary from "@/components/Shared/ButtonPrimary";
 import CommonCard from "@/components/Shared/CommonCard";
 import SafeScreen from "@/components/Shared/SafeScreen";
-import { FontAwesome, FontAwesome6, MaterialIcons } from "@expo/vector-icons";
+import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
@@ -100,21 +100,28 @@ const Search = () => {
               </Text>
 
               <View className="flex-row gap-4">
-              <View className="flex-row items-center gap-2">
-                  <FontAwesome6 name="crown" size={24} color="#f5b514" />
-                <Text
-                className="text-lg"
-                 style={{ fontFamily: "Poppins-Medium" }}
-                >1400</Text>
-              </View>
+                <View className="flex-row items-center gap-2">
+                  <Image
+                    source={require("@/assets/images/diadem.png")}
+                    style={{ width: 30, height: 30 }}
+                    contentFit="contain"
+                  />
 
-              <Image
-                className="rounded-full"
-                source={{
-                  uri: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
-                }}
-                style={{ width: 40, height: 40, borderRadius: 50 }}
-              />
+                  <Text
+                    className="text-lg"
+                    style={{ fontFamily: "Poppins-Medium" }}
+                  >
+                    1400
+                  </Text>
+                </View>
+
+                <Image
+                  className="rounded-full"
+                  source={{
+                    uri: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+                  }}
+                  style={{ width: 40, height: 40, borderRadius: 50 }}
+                />
               </View>
             </View>
 

@@ -9,6 +9,7 @@ import {
   pointsToEuro,
 } from "@/services/pointsService";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
@@ -73,35 +74,144 @@ const RewardsScreen = () => {
             style={{
               borderRadius: 16,
               padding: 24,
+              position: "relative",
+              overflow: "hidden",
             }}
           >
+            {/* Decorative stars */}
+            <View
+              style={{
+                position: "absolute",
+                top: 20,
+                left: 20,
+                opacity: 0.3,
+              }}
+            >
+              <AntDesign name="star" size={16} color="white" />
+            </View>
+            <View
+              style={{
+                position: "absolute",
+                bottom: 50,
+                left: 30,
+                opacity: 0.3,
+              }}
+            >
+              <AntDesign name="star" size={12} color="white" />
+            </View>
+
+            <View
+              style={{
+                position: "absolute",
+                bottom: 30,
+                right: 30,
+                opacity: 0.25,
+              }}
+            >
+              <AntDesign name="star" size={20} color="white" />
+            </View>
+            <View
+              style={{
+                position: "absolute",
+                top: 20,
+                right: 20,
+                opacity: 0.3,
+              }}
+            >
+              <AntDesign name="star" size={12} color="white" />
+            </View>
+            <View
+              style={{
+                position: "absolute",
+                top: 80,
+                right: 40,
+                opacity: 0.3,
+              }}
+            >
+              <AntDesign name="star" size={16} color="white" />
+            </View>
+
+            <View
+              style={{
+                position: "absolute",
+                top: 80,
+                left: 30,
+                opacity: 0.2,
+              }}
+            >
+              <AntDesign name="star" size={12} color="white" />
+            </View>
+
             <View className="items-center">
-              <Text
-                className="text-white text-sm mb-2"
-                style={{ fontFamily: "Poppins" }}
-              >
-                Your Points Balance
-              </Text>
-              <Text
-                className="text-white text-4xl font-bold mb-1"
-                style={{ fontFamily: "Poppins-Bold" }}
-              >
-                {formatPoints(userPoints)}
-              </Text>
-              <Text
-                className="text-white text-base"
-                style={{ fontFamily: "Poppins" }}
-              >
-                points
-              </Text>
-              <View className="mt-4 bg-white/20 px-4 py-2 rounded-full">
+              {/* Title with crown icon */}
+              <View className="flex-row items-center justify-center mb-3">
+                <Image
+                  source={require("@/assets/images/diadem.png")}
+                  style={{ width: 24, height: 24, marginRight: 8 }}
+                  contentFit="contain"
+                />
                 <Text
-                  className="text-white text-lg font-medium"
+                  className="text-white text-sm"
                   style={{ fontFamily: "Poppins-Medium" }}
                 >
-                  = {formatCurrency(pointsInEuro)} discount
+                  Your Points Balance
                 </Text>
               </View>
+
+              {/* Points number with glow effect */}
+              <View className="relative items-center mb-1">
+                <Text
+                  className="text-white text-5xl font-bold"
+                  style={{
+                    fontFamily: "Poppins-Bold",
+                    textShadowColor: "rgba(255, 255, 255, 0.3)",
+                    textShadowOffset: { width: 0, height: 0 },
+                    textShadowRadius: 15,
+                  }}
+                >
+                  {formatPoints(userPoints)}
+                </Text>
+              </View>
+
+              <Text
+                className="text-white/90 text-base mb-4"
+                style={{ fontFamily: "Poppins" }}
+              >
+                loyalty points
+              </Text>
+
+              {/* Enhanced discount badge */}
+              <View
+                className="mt-2 px-6 py-3 rounded-full flex-row items-center"
+                style={{
+                  backgroundColor: "rgba(255, 255, 255, 0.25)",
+                  shadowColor: "#000",
+                  shadowOffset: { width: 0, height: 2 },
+                  shadowOpacity: 0.1,
+                  shadowRadius: 8,
+                }}
+              >
+                <AntDesign
+                  name="gift"
+                  size={18}
+                  color="white"
+                  style={{ marginRight: 8 }}
+                />
+                <Text
+                  className="text-white text-lg font-semibold"
+                  style={{ fontFamily: "Poppins-SemiBold" }}
+                >
+                  {formatCurrency(pointsInEuro)} discount
+                </Text>
+              </View>
+
+              {/* Small helper text */}
+              <Text
+                className="text-white/70 text-xs mt-3"
+                style={{ fontFamily: "Poppins" }}
+              >
+                Use on your next booking
+              </Text>
             </View>
           </LinearGradient>
         </View>
