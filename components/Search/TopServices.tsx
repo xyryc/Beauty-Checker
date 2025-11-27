@@ -1,4 +1,5 @@
 import { FontAwesome } from "@expo/vector-icons";
+import { useRouter } from "expo-router";
 import React from "react";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import CategoryCard from "./CategoryCard";
@@ -78,6 +79,7 @@ const TopServices = () => {
         "https://images.pexels.com/photos/6953622/pexels-photo-6953622.jpeg",
     },
   ];
+  const router = useRouter();
 
   return (
     <View>
@@ -88,7 +90,11 @@ const TopServices = () => {
         >
           Top Services
         </Text>
-        <TouchableOpacity className="flex-row gap-1.5 items-center">
+
+        <TouchableOpacity
+          onPress={() => router.push("/search/top-services/[id]")}
+          className="flex-row gap-1.5 items-center"
+        >
           <Text
             className="text-sm font-medium text-accent"
             style={{ fontFamily: "Poppins" }}

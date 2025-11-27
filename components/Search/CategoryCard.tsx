@@ -18,7 +18,7 @@ const CategoryCard = ({ category }: CategoryCardProps) => {
       >
         <Image
           style={{ width: 100, height: 100, borderRadius: 8 }}
-          source={category.img_url}
+          source={category?.img_url}
           contentFit="cover"
         />
       </View>
@@ -27,7 +27,7 @@ const CategoryCard = ({ category }: CategoryCardProps) => {
         className="font-medium text-xs text-accent text-center mt-2 shadow-none"
         style={{ fontFamily: "Poppins" }}
       >
-        {category.service_name}
+        {category?.service_name}
       </Text>
     </View>
   );
