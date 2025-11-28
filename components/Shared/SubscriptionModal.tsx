@@ -44,7 +44,7 @@ const SubscriptionModal = ({
               className="text-accent text-center mt-2"
               style={{ fontFamily: "Poppins" }}
             >
-              You've reached your free upload limit
+              Unlock premium features, unlimited uploads and more
             </Text>
           </View>
 
