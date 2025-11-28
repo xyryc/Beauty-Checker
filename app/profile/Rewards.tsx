@@ -161,12 +161,9 @@ const RewardsScreen = () => {
               {/* Points number with glow effect */}
               <View className="relative items-center mb-1">
                 <Text
-                  className="text-white text-5xl font-bold"
+                  className="text-white text-4xl"
                   style={{
                     fontFamily: "Poppins-Bold",
-                    textShadowColor: "rgba(255, 255, 255, 0.3)",
-                    textShadowOffset: { width: 0, height: 0 },
-                    textShadowRadius: 15,
                   }}
                 >
                   {formatPoints(userPoints)}
@@ -174,7 +171,7 @@ const RewardsScreen = () => {
               </View>
 
               <Text
-                className="text-white/90 text-base mb-4"
+                className="text-white/90 text-base mb-2"
                 style={{ fontFamily: "Poppins" }}
               >
                 loyalty points

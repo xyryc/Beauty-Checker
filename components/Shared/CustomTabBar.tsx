@@ -24,7 +24,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
   }, []);
 
   return (
-    <View className="relative shadow-android">
+    <View className="relative shadow-2xl">
       {/* Background Image */}
       <Image
         source={require("@/assets/images/menu.svg")}
@@ -130,8 +130,8 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             }}
             className="items-center gap-1.5 flex"
           >
-            <Ionicons
-              name="person-outline"
+            <Feather
+              name="user"
               size={24}
               color={isFocused(4) ? "#9333EA" : "#999"}
             />

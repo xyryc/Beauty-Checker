@@ -34,10 +34,10 @@ const TabLayout = () => {
       <Tabs.Screen
         name={role === "customer" ? "customer-booking" : "provider-booking"}
       />
-      {/* <Tabs.Screen name="customer-profile" /> */}
 
-      {/* <Tabs.Screen name="provider-booking" /> */}
-      {/* <Tabs.Screen name="provider-profile" /> */}
+      <Tabs.Screen
+        name={role === "customer" ? "customer-profile" : "provider-profile"}
+      />
     </Tabs>
   );
 };
