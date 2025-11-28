@@ -8,7 +8,7 @@ import {
 import { Image } from "expo-image";
 import { VideoView } from "expo-video";
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 const VideoPost = ({
   post,
@@ -21,7 +21,10 @@ const VideoPost = ({
   return (
     <View>
       <VideoView
-        style={styles.video}
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
         player={player!}
         contentFit="cover"
         nativeControls={false}
@@ -123,10 +126,3 @@ const VideoPost = ({
 };
 
 export default VideoPost;
-
-const styles = StyleSheet.create({
-  video: {
-    width: "100%",
-    height: "100%",
-  },
-});

@@ -105,8 +105,8 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             }}
             className="items-center gap-1.5 flex"
           >
-            <Feather
-              name="calendar"
+            <Ionicons
+              name="calendar-outline"
               size={24}
               color={isFocused(3) ? "#9333EA" : "#999"}
             />
