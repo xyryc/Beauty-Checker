@@ -1,7 +1,6 @@
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack } from "expo-router";
+import { SplashScreen, Stack, useSegments } from "expo-router";
 import { useEffect } from "react";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import "./globals.css";
 
 SplashScreen.preventAutoHideAsync();
@@ -18,15 +17,16 @@ export default function RootLayout() {
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded]);
 
+  const segments = useSegments();
+  console.log("From root", segments);
+
   return (
-    <SafeAreaProvider>
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="onboarding" />
-        <Stack.Screen name="role-selection" />
-        <Stack.Screen name="(auth)" />
-        <Stack.Screen name="(tabs)" />
-      </Stack>
-    </SafeAreaProvider>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="splash" />
+      <Stack.Screen name="index" />
+      <Stack.Screen name="role-selection" />
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen name="(tabs)" />
+    </Stack>
   );
 }

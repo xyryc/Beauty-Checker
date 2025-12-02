@@ -1,5 +1,6 @@
 import Header from "@/components/Shared/Header";
 import LogoutModal from "@/components/Shared/LogoutModal";
+import { useAuthStore } from "@/store/authStore";
 import {
   Feather,
   MaterialCommunityIcons,
@@ -10,6 +11,7 @@ import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
+  Alert,
   ScrollView,
   StatusBar,
   Text,
@@ -21,13 +23,21 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const SettingsActivityScreen = () => {
   const router = useRouter();
   const [showLogoutModal, setShowLogoutModal] = React.useState(false);
+  const { user, signOut, revokeAccess, isLoading, isAuthenticated } =
+    useAuthStore();
 
-  const handleLogout = () => {
-    // Add your logout logic here
-    console.log("User logged out");
-    // Clear storage, navigate to login, etc.
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      console.log("✅ User signed out successfully");
+
+      // Navigate to splash screen
+      router.replace("/splash");
+    } catch (error) {
+      console.error("Sign out error:", error);
+      Alert.alert("Error", "Failed to sign out");
+    }
   };
-
   return (
     <SafeAreaView
       className="bg-white"

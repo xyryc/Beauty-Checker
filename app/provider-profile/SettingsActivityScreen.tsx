@@ -1,15 +1,16 @@
 import Header from "@/components/Shared/Header";
 import LogoutModal from "@/components/Shared/LogoutModal";
+import { useAuthStore } from "@/store/authStore";
 import {
   Feather,
   MaterialCommunityIcons,
   MaterialIcons,
   Octicons,
 } from "@expo/vector-icons";
-import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import {
+  Alert,
   ScrollView,
   StatusBar,
   Text,
@@ -20,14 +21,20 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const SettingsActivityScreen = () => {
   const router = useRouter();
-  const [showLogoutModal, setShowLogoutModal] = React.useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const { user, signOut, revokeAccess, isLoading, isAuthenticated } =
+    useAuthStore();
 
   const handleLogout = async () => {
     try {
-      GoogleSignin.signOut();
-      router.replace("/onboarding");
+      await signOut();
+      console.log("✅ User signed out successfully");
+
+      // Navigate to sign-in screen
+      router.replace("/splash");
     } catch (error) {
-      console.error(error);
+      console.error("Sign out error:", error);
+      Alert.alert("Error", "Failed to sign out");
     }
   };
 

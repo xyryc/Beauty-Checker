@@ -18,16 +18,9 @@ export default function Index() {
       // 1. Check authentication status first (restore Google session if exists)
       await checkAuthStatus();
 
-      // 2. Check onboarding status
-      const onboardingCompleted = await storage.getOnboardingStatus();
-
-      if (!onboardingCompleted) {
-        router.replace("/onboarding");
-        return;
-      }
-
       // 3. Check role selection
       const selectedRole = await storage.getSelectedRole();
+      console.log("from index", isAuthenticated, selectedRole);
 
       if (!selectedRole) {
         router.replace("/role-selection");
@@ -41,11 +34,11 @@ export default function Index() {
         return;
       }
 
-      // Navigate to tabs
+      // 5. Navigate to tabs
       if (selectedRole) router.replace("/(tabs)");
     } catch (error) {
       console.error("Error checking app state:", error);
-      router.replace("/onboarding");
+      router.replace("/splash");
     } finally {
       setIsLoading(false);
     }

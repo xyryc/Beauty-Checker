@@ -1,13 +1,21 @@
+import { storage } from "@/services/storage";
 import { useAuthStore } from "@/store/authStore";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
+import { useState } from "react";
 import { Platform, Text, TouchableOpacity, View } from "react-native";
 
 const SocialLogin = () => {
+  const router = useRouter();
+  const [selectedRole, setSelectedRole] = useState<string | null>(null);
   const { isAuthenticated, user, signInWithGoogle, error, clearError } =
     useAuthStore();
 
   const handleGoogleSignIn = async () => {
     await signInWithGoogle();
+    const role = await storage.getSelectedRole();
+    setSelectedRole(role);
+    router.replace("/(tabs)");
   };
 
   return (

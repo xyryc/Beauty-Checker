@@ -1,24 +1,25 @@
 import CustomTabBar from "@/components/Shared/CustomTabBar";
-import { authService } from "@/services/auth";
+import { storage } from "@/services/storage";
+import { useAuthStore } from "@/store/authStore";
 import { Tabs } from "expo-router";
 import React, { useEffect, useState } from "react";
 
 const TabLayout = () => {
-  const [role, setRole] = useState<"customer" | "provider" | null>(null);
+  const [role, setRole] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const { isAuthenticated, user } = useAuthStore();
 
   useEffect(() => {
     const checkRole = async () => {
-      const authStatus = await authService.checkAuthStatus();
-      if (authStatus.isAuthenticated && authStatus.user) {
-        setRole(authStatus.user.role); // Assuming role is stored in user object
+      const selectedRole = await storage.getSelectedRole();
+
+      if (isAuthenticated && user) {
+        setRole(selectedRole);
       }
       setLoading(false);
     };
     checkRole();
   }, []);
-
-  // console.log(role);
 
   return (
     <Tabs
