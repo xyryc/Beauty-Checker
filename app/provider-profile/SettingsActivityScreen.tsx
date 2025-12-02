@@ -6,6 +6,7 @@ import {
   MaterialIcons,
   Octicons,
 } from "@expo/vector-icons";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useRouter } from "expo-router";
 import React from "react";
 import {
@@ -15,20 +16,19 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SettingsActivityScreen = () => {
   const router = useRouter();
-  const insets = useSafeAreaInsets();
   const [showLogoutModal, setShowLogoutModal] = React.useState(false);
 
-  const handleLogout = () => {
-    // Add your logout logic here
-    console.log("User logged out");
-    // Clear storage, navigate to login, etc.
+  const handleLogout = async () => {
+    try {
+      GoogleSignin.signOut();
+      router.replace("/onboarding");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

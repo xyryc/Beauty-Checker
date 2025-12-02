@@ -2,7 +2,7 @@ export const VIDEO_CONFIG = {
   FREE_VIDEO_LIMIT: 5, // Free videos allowed
   MAX_VIDEO_DURATION: 60, // seconds
   MAX_VIDEO_SIZE: 100, // MB
-  SUBSCRIPTION_PRICE: 9.99, // Monthly subscription price
+  SUBSCRIPTION_PRICE: 14.99, // Monthly subscription price
 };
 
 export interface VideoUploadQuota {

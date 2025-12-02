@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import "./globals.css";
 
-// Prevent auto hiding
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {

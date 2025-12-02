@@ -1,20 +1,24 @@
-import { authService } from "@/services/auth";
 import { storage } from "@/services/storage";
+import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 
 export default function Index() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const { isAuthenticated, checkAuthStatus, user } = useAuthStore();
 
   useEffect(() => {
-    checkAppState();
+    initializeApp();
   }, []);
 
-  const checkAppState = async () => {
+  const initializeApp = async () => {
     try {
-      // Check onboarding status
+      // 1. Check authentication status first (restore Google session if exists)
+      await checkAuthStatus();
+
+      // 2. Check onboarding status
       const onboardingCompleted = await storage.getOnboardingStatus();
 
       if (!onboardingCompleted) {
@@ -22,7 +26,7 @@ export default function Index() {
         return;
       }
 
-      // Check role selection
+      // 3. Check role selection
       const selectedRole = await storage.getSelectedRole();
 
       if (!selectedRole) {
@@ -30,15 +34,14 @@ export default function Index() {
         return;
       }
 
-      // Check authentication
-      const { isAuthenticated } = await authService.checkAuthStatus();
-
+      // 4. Check authentication (from Zustand store)
       if (!isAuthenticated) {
+        // Not authenticated, go to login
         router.replace("/(auth)/login");
         return;
       }
 
-      // Navigate to role-specific home
+      // Navigate to tabs
       if (selectedRole) router.replace("/(tabs)");
     } catch (error) {
       console.error("Error checking app state:", error);
@@ -51,7 +54,7 @@ export default function Index() {
   if (isLoading) {
     return (
       <View className="flex-1 items-center justify-center bg-white">
-        <Text>Loading...</Text>
+        <ActivityIndicator size="large" color="#6200EE" />
       </View>
     );
   }

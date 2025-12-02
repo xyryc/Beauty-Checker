@@ -1,6 +1,9 @@
-{
+import 'dotenv/config';
+
+export default {
   "expo": {
     "name": "Beauty-Checker",
+    "owner": "xyryc",
     "slug": "Beauty-Checker",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,6 +11,7 @@
     "scheme": "beautychecker",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "platforms": ["ios", "android"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.xyryc.beautychecker",
@@ -39,11 +43,16 @@
           "backgroundColor": "#ffffff"
         }
       ],
+      [
+        "@react-native-google-signin/google-signin", 
+        {
+          "iosUrlScheme": process.env.GOOGLE_IOS_URL_SCHEME
+        }
+      ],
       "expo-font",
       [
         "expo-video"
-      ],
-      "expo-web-browser"
+      ]
     ],
     "experiments": {
       "typedRoutes": true

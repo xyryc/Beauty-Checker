@@ -1,5 +1,4 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useRouter } from "expo-router";
 import React from "react";
 import { Modal, Pressable, Text, View } from "react-native";
 
@@ -17,12 +16,9 @@ const LogoutModal: React.FC<LogoutModalProps> = ({
   onClose,
   onLogout,
 }) => {
-  const router = useRouter();
-
   const handleLogout = () => {
     onLogout();
     onClose();
-    router.replace("/onboarding");
   };
 
   return (
