@@ -1,5 +1,5 @@
 import { useFonts } from "expo-font";
-import { SplashScreen, Stack, useSegments } from "expo-router";
+import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import "./globals.css";
 
@@ -17,8 +17,8 @@ export default function RootLayout() {
     if (fontsLoaded) SplashScreen.hideAsync();
   }, [fontsLoaded]);
 
-  const segments = useSegments();
-  console.log("From root", segments);
+  // const segments = useSegments();
+  // console.log("From root", segments);
 
   return (
     <Stack screenOptions={{ headerShown: false }}>

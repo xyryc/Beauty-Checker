@@ -13,13 +13,15 @@ const TabLayout = () => {
     const checkRole = async () => {
       const selectedRole = await storage.getSelectedRole();
 
-      if (isAuthenticated && user) {
-        setRole(selectedRole);
-      }
+      // if (isAuthenticated && user) {
+      setRole(selectedRole);
+      // }
       setLoading(false);
     };
     checkRole();
   }, []);
+
+  // console.log("role", role);
 
   return (
     <Tabs

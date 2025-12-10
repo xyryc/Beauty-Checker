@@ -17,12 +17,14 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
     const checkRole = async () => {
       const selectedRole = await storage.getSelectedRole();
 
-      if (isAuthenticated && user) {
-        setRole(selectedRole);
-      }
+      // if (isAuthenticated && user) {
+      setRole(selectedRole);
+      // }
     };
     checkRole();
   }, []);
+
+  console.log("role", role);
 
   return (
     <View className="relative shadow-2xl">
@@ -56,6 +58,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
       {/* Discover */}
       <View className="absolute bottom-10 z-20 flex-row justify-between w-full px-10">
         <View className="flex-row gap-8 justify-between w-[30%]">
+          {/* discover */}
           <Pressable
             onPress={() => navigation.navigate("index")}
             className="items-center gap-1.5"
@@ -75,6 +78,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             </Text>
           </Pressable>
 
+          {/* chat */}
           <Pressable
             onPress={() => navigation.navigate("chat")}
             className="items-center gap-1.5 flex"
@@ -96,6 +100,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
         </View>
 
         <View className="flex-row gap-8 justify-between w-[30%]">
+          {/* booking */}
           <Pressable
             onPress={() => {
               if (role === "customer") {
@@ -121,6 +126,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
             </Text>
           </Pressable>
 
+          {/* profile */}
           <Pressable
             onPress={() => {
               if (role === "customer") {
