@@ -1,4 +1,4 @@
-import { storage } from "@/services/storage";
+import { storage } from "@/services/storageService";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Text, TouchableOpacity, View } from "react-native";

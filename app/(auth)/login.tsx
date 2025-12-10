@@ -1,5 +1,5 @@
 import SocialLogin from "@/components/Auth/SocialLogin";
-import { storage } from "@/services/storage";
+import { storage } from "@/services/storageService";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";

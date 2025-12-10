@@ -1,5 +1,5 @@
 import { AuthResponse, LoginRequest, RegisterRequest } from "@/types/auth";
-import { MOCK_USERS } from "@/utils/constants";
+import { MOCK_USERS } from "@/lib/constants";
 
 // Mock API service - replace with real API calls later
 export const apiService = {

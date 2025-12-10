@@ -1,4 +1,4 @@
-import { storage } from "@/services/storage";
+import { storage } from "@/services/storageService";
 import { useAuthStore } from "@/store/authStore";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";

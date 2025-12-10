@@ -74,7 +74,7 @@ const ProviderProfile = () => {
               {/* settings icon */}
               <TouchableOpacity
                 onPress={() =>
-                  router.push("/provider-profile/SettingsActivityScreen")
+                  router.push("/provider-profile/settings-activity")
                 }
                 className="absolute bottom-36 right-5 z-10"
               >

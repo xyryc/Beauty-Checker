@@ -59,7 +59,7 @@ const CancelledCards = () => {
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <CommonCard
-          onPress={() => router.push("/customer-booking/BookedDetailsScreen")}
+          onPress={() => router.push("/customer-booking/booked-details")}
           item={item}
         />
       )}

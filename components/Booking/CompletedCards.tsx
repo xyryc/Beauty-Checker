@@ -61,7 +61,7 @@ const CompletedCards = () => {
         <CommonCard
           onPress={() => {
             router.push({
-              pathname: "/customer-booking/BookedDetailsScreen",
+              pathname: "/customer-booking/booked-details",
               params: {
                 status: "completed",
                 item: JSON.stringify(item),

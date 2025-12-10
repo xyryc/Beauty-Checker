@@ -1,6 +1,6 @@
 import { LoginRequest, RegisterRequest, User } from "@/types/auth";
-import { apiService } from "./api";
-import { storage } from "./storage";
+import { apiService } from "./apiService";
+import { storage } from "./storageService";
 
 export const authService = {
   async login(

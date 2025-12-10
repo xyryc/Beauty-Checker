@@ -65,7 +65,7 @@ const DiscoverHeader: React.FC = React.memo(() => {
               <TouchableOpacity
                 className="flex-row items-center space-x-1"
                 onPress={() => {
-                  router.push("/discover/SavedScreen");
+                  router.push("/discover/saved");
                   setVisible(false);
                 }}
               >

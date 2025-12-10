@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
-import { ResizeMode, Video } from "expo-av";
-import React, { useCallback, useRef, useState } from "react";
+import { useVideoPlayer, VideoView } from "expo-video";
+import React, { useCallback, useEffect, useState } from "react";
 import { Dimensions, TouchableOpacity, View } from "react-native";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get("window");
@@ -14,31 +14,36 @@ const VideoPlayer: React.FC<VideoPlayerProps> = React.memo(
   ({ url, isActive }) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [hasStarted, setHasStarted] = useState(false);
-    const videoRef = useRef<Video>(null);
+
+    // Create video player
+    const player = useVideoPlayer(url, (player) => {
+      player.loop = true;
+      player.muted = false;
+    });
 
     // Auto-play when comes into view
-    React.useEffect(() => {
+    useEffect(() => {
       if (isActive && !hasStarted) {
         setHasStarted(true);
         setTimeout(() => {
-          videoRef.current?.playAsync();
+          player.play();
           setIsPlaying(true);
         }, 300); // Small delay for smooth transition
       } else if (!isActive) {
-        videoRef.current?.pauseAsync();
+        player.pause();
         setIsPlaying(false);
       }
-    }, [isActive, hasStarted]);
+    }, [isActive, hasStarted, player]);
 
     const togglePlayback = useCallback(() => {
       if (isPlaying) {
-        videoRef.current?.pauseAsync();
+        player.pause();
         setIsPlaying(false);
       } else {
-        videoRef.current?.playAsync();
+        player.play();
         setIsPlaying(true);
       }
-    }, [isPlaying]);
+    }, [isPlaying, player]);
 
     return (
       <TouchableOpacity
@@ -46,18 +51,14 @@ const VideoPlayer: React.FC<VideoPlayerProps> = React.memo(
         onPress={togglePlayback}
         activeOpacity={1}
       >
-        <Video
-          ref={videoRef}
-          source={{ uri: url }}
+        <VideoView
           style={{
             width: SCREEN_WIDTH,
             height: SCREEN_HEIGHT,
           }}
-          resizeMode={ResizeMode.COVER}
-          shouldPlay={false} // Always start paused
-          isLooping
-          isMuted={false}
-          useNativeControls={false}
+          player={player}
+          contentFit="cover"
+          nativeControls={false}
         />
 
         {/* Play button overlay */}

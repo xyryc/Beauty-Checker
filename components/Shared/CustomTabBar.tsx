@@ -1,4 +1,4 @@
-import { storage } from "@/services/storage";
+import { storage } from "@/services/storageService";
 import { useAuthStore } from "@/store/authStore";
 import { Feather, FontAwesome, Ionicons } from "@expo/vector-icons";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
@@ -24,7 +24,7 @@ const CustomTabBar = ({ state, navigation }: BottomTabBarProps) => {
     checkRole();
   }, []);
 
-  console.log("role", role);
+  // console.log("role", role);
 
   return (
     <View className="relative shadow-2xl">

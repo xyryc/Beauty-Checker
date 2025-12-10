@@ -124,7 +124,7 @@ const ProviderBookingScreen = () => {
           <View className="flex-row flex-wrap justify-between">
             {/* New Request */}
             <TouchableOpacity
-              onPress={() => router.push("/provider-booking/NewRequestScreen")}
+              onPress={() => router.push("/provider-booking/new-request")}
               className="bg-purple-100 rounded-2xl p-4 mb-4 w-[48%]"
             >
               <View className="bg-purple-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
@@ -144,7 +144,7 @@ const ProviderBookingScreen = () => {
             {/* Accepted */}
             <TouchableOpacity
               onPress={() =>
-                router.push("/provider-booking/AcceptRequestScreen")
+                router.push("/provider-booking/accept-request")
               }
               className="bg-green-100 rounded-2xl p-4 mb-4 w-[48%]"
             >
@@ -164,7 +164,7 @@ const ProviderBookingScreen = () => {
 
             {/* Completed */}
             <TouchableOpacity
-              onPress={() => router.push("/provider-booking/CompletedScreen")}
+              onPress={() => router.push("/provider-booking/completed")}
               className="bg-gray-100 rounded-2xl p-4 mb-4 w-[48%]"
             >
               <View className="bg-gray-600 w-10 h-10 rounded-xl items-center justify-center mb-3">
@@ -183,7 +183,7 @@ const ProviderBookingScreen = () => {
 
             {/* Cancelled */}
             <TouchableOpacity
-              onPress={() => router.push("/provider-booking/CancelledScreen")}
+              onPress={() => router.push("/provider-booking/cancelled")}
               className="bg-red-100 rounded-2xl p-4 mb-4 w-[48%]"
             >
               <View className="bg-red-600 w-10 h-10 rounded-xl items-center justify-center mb-3">

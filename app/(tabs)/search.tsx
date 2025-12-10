@@ -261,7 +261,7 @@ const Search = () => {
         renderItem={({ item }) =>
           toggle ? (
             <CommonCard
-              onPress={() => router.push("/search/ServiceDetailsScreen")}
+              onPress={() => router.push("/search/service-details")}
               item={item}
             />
           ) : // render nearby service or keep blank
@@ -314,7 +314,7 @@ const Search = () => {
                 <View className="mt-6">
                   <ButtonPrimary
                     text="See The Results"
-                    onPress={() => router.push("/search/SearchResultScreen")}
+                    onPress={() => router.push("/search/search-result")}
                   />
                 </View>
               </View>

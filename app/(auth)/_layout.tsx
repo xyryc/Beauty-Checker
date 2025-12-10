@@ -1,4 +1,4 @@
-import { storage } from "@/services/storage";
+import { storage } from "@/services/storageService";
 import { Stack } from "expo-router";
 import { useEffect, useState } from "react";
 import { Text, View } from "react-native";

@@ -315,7 +315,7 @@ const BookingSection = () => {
                 >
                   Your Points Balance
                 </Text>
-                <Pressable onPress={() => router.push("/profile/Rewards")}>
+                <Pressable onPress={() => router.push("/profile/rewards")}>
                   <Ionicons
                     name="information-circle-outline"
                     size={24}

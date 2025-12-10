@@ -73,7 +73,7 @@ const ProviderProfile = () => {
       title: "Add Services",
       icon: "briefcase",
       description: "Add new services to your profile",
-      route: "/provider-profile/AddServiceScreen",
+      route: "/provider-profile/add-service",
       color: "#612AC3",
     },
     {
@@ -81,7 +81,7 @@ const ProviderProfile = () => {
       title: "Add Photo Post",
       icon: "camera",
       description: "Share a new photo with your followers",
-      route: "/provider-profile/AddPhotoScreen",
+      route: "/provider-profile/add-photo",
       color: "#612AC3",
     },
     {
@@ -89,7 +89,7 @@ const ProviderProfile = () => {
       title: "Add Video Post",
       icon: "video-camera",
       description: "Upload a video to showcase your work",
-      route: "/provider-profile/AddVideoScreen",
+      route: "/provider-profile/add-video",
       color: "#612AC3",
     },
   ];
@@ -124,7 +124,7 @@ const ProviderProfile = () => {
               <TouchableOpacity
                 className="absolute bottom-36 right-5 z-10"
                 onPress={() =>
-                  router.push("/provider-profile/SettingsActivityScreen")
+                  router.push("/provider-profile/settings-activity")
                 }
               >
                 <FontAwesome
@@ -253,7 +253,7 @@ const ProviderProfile = () => {
               <View className="mb-2 mr-5 flex-row justify-between gap-4 items-center">
                 <ButtonSmall
                   onPress={() =>
-                    router.push("/provider-profile/EditProfileScreen")
+                    router.push("/provider-profile/edit-profile")
                   }
                   icon={<FontAwesome5 name="edit" size={16} color="white" />}
                   text="Edit Profile"

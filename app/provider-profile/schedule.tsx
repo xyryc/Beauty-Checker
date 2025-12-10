@@ -283,7 +283,7 @@ const ScheduleScreen = () => {
       <View className="mx-5 mb-4">
         <ButtonPrimary
           text="Change Time"
-          onPress={() => router.push("/provider-profile/EditScheduleScreen")}
+          onPress={() => router.push("/provider-profile/edit-schedule")}
         />
       </View>
     </SafeAreaView>

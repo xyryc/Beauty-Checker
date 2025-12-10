@@ -1,5 +1,5 @@
 import SocialLogin from "@/components/Auth/SocialLogin";
-import { storage } from "@/services/storage";
+import { storage } from "@/services/storageService";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
@@ -99,7 +99,7 @@ const SignUp = () => {
         // Set provider status as pending verification
         // await storage.setProviderStatus("pending_verification");
         // Navigate to provider onboarding
-        router.replace("/(auth)/onboarding");
+        router.replace("/onboarding");
       } else {
         // Regular users go straight to app
         router.replace("/(tabs)");

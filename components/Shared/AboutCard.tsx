@@ -16,7 +16,7 @@ const AboutCard = () => {
         />
 
         <TouchableOpacity
-          onPress={() => router.push("/provider-profile/ScheduleScreen")}
+          onPress={() => router.push("/provider-profile/schedule")}
         >
           <Text className="text-primary mb-1" style={{ fontFamily: "Poppins" }}>
             Opening & Closing Time

@@ -1,4 +1,4 @@
-import { storage } from "@/services/storage";
+import { storage } from "@/services/storageService";
 import { useAuthStore } from "@/store/authStore";
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";

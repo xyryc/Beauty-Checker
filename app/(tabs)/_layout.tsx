@@ -1,5 +1,5 @@
 import CustomTabBar from "@/components/Shared/CustomTabBar";
-import { storage } from "@/services/storage";
+import { storage } from "@/services/storageService";
 import { useAuthStore } from "@/store/authStore";
 import { Tabs } from "expo-router";
 import React, { useEffect, useState } from "react";

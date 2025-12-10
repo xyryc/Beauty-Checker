@@ -15,7 +15,7 @@ const SettingsScreen = () => {
         {/* notification */}
         <View className="border-b-[0.5px] border-primary py-4">
           <TouchableOpacity
-            onPress={() => router.push("/profile/NotificationScreen")}
+            onPress={() => router.push("/profile/notification")}
             className="flex-row justify-between items-center"
           >
             <View className="flex-row items-center gap-4">
@@ -30,7 +30,7 @@ const SettingsScreen = () => {
         {/* password */}
         <View className="border-b-[0.5px] border-primary py-4">
           <TouchableOpacity
-            onPress={() => router.push("/profile/ProfilePasswordChange")}
+            onPress={() => router.push("/profile/password-change")}
             className="flex-row justify-between items-center"
           >
             <View className="flex-row items-center gap-4">

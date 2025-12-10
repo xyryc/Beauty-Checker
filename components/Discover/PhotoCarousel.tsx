@@ -46,11 +46,11 @@ const PhotoCarousel: React.FC<PhotoCarouselProps> = React.memo(({ urls }) => {
       />
 
       {urls.length > 1 && (
-        <View className="absolute bottom-30 self-center flex-row">
+        <View className="absolute bottom-40 self-center flex-row">
           {urls.map((_, index) => (
             <View
               key={index}
-              className={`w-1.5 h-1.5 rounded-full mx-0.5 ${
+              className={`w-2 h-2 rounded-full mx-1 ${
                 index === currentPhotoIndex ? "bg-white" : "bg-white/40"
               }`}
             />

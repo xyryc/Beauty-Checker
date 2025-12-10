@@ -26,7 +26,7 @@ const BookingStatus = ({
           <Pressable
             onPress={() =>
               router.push(
-                `/provider-booking/ClientProfileScreen?clientId=${item.clientId}`
+                `/provider-booking/client-profile?clientId=${item.clientId}`
               )
             }
           >

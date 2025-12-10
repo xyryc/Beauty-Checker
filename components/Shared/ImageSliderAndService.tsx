@@ -19,7 +19,7 @@ const ImageSliderAndService = () => {
       <View className="flex-row items-center justify-between">
         <View className="flex-row items-center gap-[10px]">
           <TouchableOpacity
-            onPress={() => router.push("/provider-profile/ProfileScreen")}
+            onPress={() => router.push("/provider-profile/profile")}
           >
             <Image
               source="https://images.pexels.com/photos/2661256/pexels-photo-2661256.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -29,7 +29,7 @@ const ImageSliderAndService = () => {
 
           <View className="flex mt-1">
             <TouchableOpacity
-              onPress={() => router.push("/provider-profile/ProfileScreen")}
+              onPress={() => router.push("/provider-profile/profile")}
             >
               <Text
                 className="text-lg font-medium"
