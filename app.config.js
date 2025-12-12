@@ -49,6 +49,12 @@ export default {
           "iosUrlScheme": process.env.GOOGLE_IOS_URL_SCHEME
         }
       ],
+      [
+        "@rnmapbox/maps",
+        {
+          "RNMapboxMapsDownloadToken": process.env.EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN
+        }
+      ],
       "expo-font",
       [
         "expo-video"

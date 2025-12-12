@@ -144,30 +144,31 @@ const RewardsScreen = () => {
 
             <View className="items-center">
               {/* Title with crown icon */}
-              <View className="flex-row items-center justify-center mb-3">
-                <Image
-                  source={require("@/assets/images/diadem.png")}
-                  style={{ width: 24, height: 24, marginRight: 8 }}
-                  contentFit="contain"
-                />
-                <Text
-                  className="text-white text-sm"
-                  style={{ fontFamily: "Poppins-Medium" }}
-                >
-                  Your Points Balance
-                </Text>
-              </View>
+              <Text
+                className="text-white text-sm mb-3"
+                style={{ fontFamily: "Poppins-Medium" }}
+              >
+                Your Points Balance
+              </Text>
 
               {/* Points number with glow effect */}
               <View className="relative items-center mb-1">
-                <Text
-                  className="text-white text-4xl"
-                  style={{
-                    fontFamily: "Poppins-Bold",
-                  }}
-                >
-                  {formatPoints(userPoints)}
-                </Text>
+                <View className="flex-row items-center">
+                  <Image
+                    source={require("@/assets/images/diadem.png")}
+                    style={{ width: 26, height: 26, marginRight: 8 }}
+                    contentFit="contain"
+                  />
+
+                  <Text
+                    className="text-white text-4xl"
+                    style={{
+                      fontFamily: "Poppins-Bold",
+                    }}
+                  >
+                    {formatPoints(userPoints)}
+                  </Text>
+                </View>
               </View>
 
               <Text

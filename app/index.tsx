@@ -20,7 +20,7 @@ export default function Index() {
 
       // 3. Check role selection
       const selectedRole = await storage.getSelectedRole();
-      console.log("from index", isAuthenticated, selectedRole);
+      // console.log("from index", isAuthenticated, selectedRole);
 
       if (!selectedRole) {
         router.replace("/role-selection");
