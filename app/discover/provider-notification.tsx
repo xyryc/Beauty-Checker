@@ -6,12 +6,12 @@ import React, { useState } from "react";
 import {
   Alert,
   FlatList,
-  SafeAreaView,
   StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProviderNotificationScreen = () => {
   const router = useRouter();

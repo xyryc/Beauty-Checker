@@ -5,12 +5,12 @@ import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import {
   FlatList,
-  SafeAreaView,
   StatusBar,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const CustomerNotificationScreen = () => {
   const router = useRouter();

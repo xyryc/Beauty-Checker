@@ -42,7 +42,7 @@ const SavedScreen = () => {
         </Text>
       </View>
 
-      <ScrollView className="border bg-customBlack h-screen pt-6">
+      <ScrollView className="border bg-customBlack h-screen">
         {/* Content */}
         <View className="flex-row justify-center items-center gap-2.5 p-4 border-b border-[#A1A1A1]">
           <Image
