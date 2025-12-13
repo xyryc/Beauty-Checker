@@ -1,3 +1,5 @@
+import { getFCMToken, requestFCMPermission } from "@/services/fcm";
+import messaging from "@react-native-firebase/messaging";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
@@ -19,6 +21,36 @@ export default function RootLayout() {
 
   // const segments = useSegments();
   // console.log("From root", segments);
+
+  useEffect(() => {
+    async function setup() {
+      const granted = await requestFCMPermission();
+      if (!granted) return;
+
+      const token = await getFCMToken();
+      console.log("fcm token from main", token);
+
+      // await fetch('https://your-api.com/save-token', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ token }),
+      // });
+    }
+
+    setup();
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+      console.log("📬 Foreground notification:", remoteMessage);
+    });
+
+    return unsubscribe;
+  }, []);
+
+  messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+    console.log("📦 Background message:", remoteMessage);
+  });
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
