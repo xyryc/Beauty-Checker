@@ -1,7 +1,12 @@
 import { getFCMToken, requestFCMPermission } from "@/services/fcm";
 import { createNotificationChannel } from "@/services/notificationChannel";
 import notifee, { EventType } from "@notifee/react-native";
-import messaging from "@react-native-firebase/messaging";
+import {
+  getInitialNotification,
+  getMessaging,
+  onMessage,
+  onNotificationOpenedApp,
+} from "@react-native-firebase/messaging";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack, useRouter } from "expo-router";
 import { useEffect } from "react";
@@ -52,7 +57,8 @@ export default function RootLayout() {
 
   // ✅ Handle foreground notifications (when app is open and visible)
   useEffect(() => {
-    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+    const messaging = getMessaging();
+    const unsubscribe = onMessage(messaging, async (remoteMessage) => {
       console.log("📬 Foreground notification received:", remoteMessage);
 
       // Store in Zustand (uncomment when ready)
@@ -118,7 +124,8 @@ export default function RootLayout() {
   // ✅ Handle notification tap when app was in background/quit state
   useEffect(() => {
     // Handle notification opened from background state
-    const unsubscribe = messaging().onNotificationOpenedApp((remoteMessage) => {
+    const messaging = getMessaging();
+    const unsubscribe = onNotificationOpenedApp(messaging, (remoteMessage) => {
       console.log("🚀 Notification opened app from background:", remoteMessage);
 
       // Store in Zustand (uncomment when ready)
@@ -138,34 +145,32 @@ export default function RootLayout() {
     });
 
     // Handle notification opened from quit state (app was completely closed)
-    messaging()
-      .getInitialNotification()
-      .then((remoteMessage) => {
-        if (remoteMessage) {
-          console.log(
-            "🚀 App opened from quit state via notification:",
-            remoteMessage
+    getInitialNotification(messaging).then((remoteMessage) => {
+      if (remoteMessage) {
+        console.log(
+          "🚀 App opened from quit state via notification:",
+          remoteMessage
+        );
+
+        // Store in Zustand (uncomment when ready)
+        // addNotification({
+        //   title: remoteMessage.notification?.title || 'Notification',
+        //   body: remoteMessage.notification?.body || '',
+        //   data: remoteMessage.data,
+        // });
+
+        // Navigate based on notification data
+        const screen = remoteMessage.data?.screen;
+        if (screen) {
+          setTimeout(() => router.push(screen as any), 1000);
+        } else {
+          setTimeout(
+            () => router.push("/discover/customer-notification"),
+            1000
           );
-
-          // Store in Zustand (uncomment when ready)
-          // addNotification({
-          //   title: remoteMessage.notification?.title || 'Notification',
-          //   body: remoteMessage.notification?.body || '',
-          //   data: remoteMessage.data,
-          // });
-
-          // Navigate based on notification data
-          const screen = remoteMessage.data?.screen;
-          if (screen) {
-            setTimeout(() => router.push(screen as any), 1000);
-          } else {
-            setTimeout(
-              () => router.push("/discover/customer-notification"),
-              1000
-            );
-          }
         }
-      });
+      }
+    });
 
     return unsubscribe;
   }, [router]);

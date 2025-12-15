@@ -1,14 +1,10 @@
-/**
- * Root index file for Expo Router
- * CRITICAL: Background handlers MUST be registered here before app initialization
- */
 import notifee, { EventType } from '@notifee/react-native';
-import messaging from '@react-native-firebase/messaging';
+import { setBackgroundMessageHandler } from '@react-native-firebase/messaging';
 import 'expo-router/entry';
 
-// ✅ CRITICAL: Background message handler MUST be registered at top level
+// Background message handler registered at top level
 // This allows FCM to handle messages when app is in background/quit state
-messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+setBackgroundMessageHandler(async (remoteMessage) => {
   console.log('📦 Background FCM message received:', remoteMessage);
 
   try {
@@ -37,15 +33,15 @@ messaging().setBackgroundMessageHandler(async (remoteMessage) => {
       data: remoteMessage.data,
     });
   } catch (error) {
-    console.error('❌ Error displaying background notification:', error);
+    console.error('Error displaying background notification:', error);
   }
 
 
 });
 
-  // ✅ Background event handler for Notifee (when user taps notification)
+  // Background event handler for Notifee (when user taps notification)
 notifee.onBackgroundEvent(async ({ type, detail }) => {
-    console.log('📱 Notifee background event:', type, detail);
+    console.log('Notifee background event:', type, detail);
 
     if (type === EventType.PRESS) {
       console.log('User pressed notification in background:', detail.notification);

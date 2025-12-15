@@ -1,21 +1,28 @@
 import notifee from "@notifee/react-native";
-import messaging from "@react-native-firebase/messaging";
+import {
+  AuthorizationStatus,
+  getMessaging,
+  getToken,
+  requestPermission,
+} from "@react-native-firebase/messaging";
 
 export async function requestFCMPermission() {
   // Request Notifee permission first (for Android 13+)
+  const messaging = getMessaging();
   await notifee.requestPermission();
 
   //  request FCM permission
-  const authStatus = await messaging().requestPermission();
+  const authStatus = await requestPermission(messaging);
   const enabled =
-    authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
-    authStatus === messaging.AuthorizationStatus.PROVISIONAL;
+    authStatus === AuthorizationStatus.AUTHORIZED ||
+    authStatus === AuthorizationStatus.PROVISIONAL;
 
   return enabled;
 }
 
 export async function getFCMToken() {
-  const token = await messaging().getToken();
+  const messaging = getMessaging();
+  const token = await getToken(messaging);
   console.log("📱 FCM Token:", token);
   return token;
 }
