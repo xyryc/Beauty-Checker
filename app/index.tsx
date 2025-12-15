@@ -9,6 +9,9 @@ export default function Index() {
   const [isLoading, setIsLoading] = useState(true);
   const { isAuthenticated, checkAuthStatus, user } = useAuthStore();
 
+  // ⚠️ Background handlers moved to index.js (root level)
+  // This is required for background/quit state notifications to work properly
+
   useEffect(() => {
     initializeApp();
   }, []);

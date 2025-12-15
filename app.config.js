@@ -72,5 +72,6 @@ export default {
         "projectId": "9c1eea47-9f31-4306-bedb-55f1bd5f120f"
       }
     }
-  }
+  },
+  "entryPoint": "./index.js"
 }
