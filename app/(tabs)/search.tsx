@@ -11,6 +11,7 @@ import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import {
   FlatList,
+  Pressable,
   Text,
   TextInput,
   TouchableOpacity,
@@ -73,98 +74,113 @@ const Search = () => {
       <StatusBar style="dark" />
 
       {/* header */}
-      <View
+      <LinearGradient
+        className="overflow-hidden"
+        colors={["rgba(97, 42, 195, 0.5)", "#FFFFFF"]}
+        start={{ x: 0, y: 1 }}
+        end={{ x: 0, y: 0 }}
         style={{
-          borderRadius: 16,
-          overflow: "hidden",
+          borderBottomLeftRadius: 16,
+          borderBottomRightRadius: 16,
         }}
       >
-        <LinearGradient
-          className="overflow-hidden"
-          colors={["rgba(97, 42, 195, 0.5)", "#FFFFFF"]}
-          start={{ x: 0, y: 1 }}
-          end={{ x: 0, y: 0 }}
-          style={{
-            borderBottomLeftRadius: 16,
-            borderBottomRightRadius: 16,
-          }}
-        >
-          <View className="px-5">
-            {/* name and profile */}
-            <View className="py-3 flex-row justify-between items-center">
-              <Text
-                className="text-xl font-medium"
-                style={{ fontFamily: "Poppins" }}
-              >
-                Julian Assange
-              </Text>
+        <View className="px-5">
+          {/* name and profile */}
+          <View className="py-3 flex-row justify-between items-center">
+            <Text
+              className="text-xl font-medium"
+              style={{ fontFamily: "Poppins" }}
+            >
+              Julian Assange
+            </Text>
 
-              <View className="flex-row gap-4">
-                <View className="flex-row items-center gap-2">
-                  <Image
-                    source={require("@/assets/images/diadem.png")}
-                    style={{ width: 30, height: 30 }}
-                    contentFit="contain"
-                  />
-
-                  <Text
-                    className="text-lg"
-                    style={{ fontFamily: "Poppins-Medium" }}
-                  >
-                    1400
-                  </Text>
-                </View>
-
+            <View className="flex-row gap-4">
+              <View className="flex-row items-center gap-2">
                 <Image
-                  className="rounded-full"
-                  source={{
-                    uri: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
-                  }}
-                  style={{ width: 40, height: 40, borderRadius: 50 }}
+                  source={require("@/assets/images/diadem.png")}
+                  style={{ width: 30, height: 30 }}
+                  contentFit="contain"
                 />
+
+                <Text
+                  className="text-lg"
+                  style={{ fontFamily: "Poppins-Medium" }}
+                >
+                  1400
+                </Text>
               </View>
+
+              <Image
+                className="rounded-full"
+                source={{
+                  uri: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg",
+                }}
+                style={{ width: 40, height: 40, borderRadius: 50 }}
+              />
             </View>
+          </View>
+
+          {/* search bar */}
+          <View className="flex-row justify-start gap-4 mt-4 mb-3">
+            {/* toggle button */}
+            <Pressable
+              onPress={() => {
+                setToggle(!toggle);
+              }}
+            >
+              {toggle ? (
+                <LinearGradient
+                  colors={["#B78AF7", "#612AC3"]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={{ padding: 10, borderRadius: 8 }}
+                >
+                  <MaterialIcons
+                    name="keyboard-arrow-down"
+                    size={20}
+                    color="white"
+                  />
+                </LinearGradient>
+              ) : (
+                <LinearGradient
+                  colors={["#B78AF7", "#612AC3"]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={{ padding: 10, borderRadius: 8 }}
+                >
+                  <MaterialIcons
+                    name="keyboard-arrow-up"
+                    size={20}
+                    color="white"
+                  />
+                </LinearGradient>
+              )}
+            </Pressable>
 
             {/* search bar */}
-            <View className="flex-row justify-start gap-4 mt-4 mb-3">
-              {/* toggle button */}
-              <TouchableOpacity
-                onPress={() => {
-                  setToggle(!toggle);
-                }}
-              >
-                {toggle ? (
-                  <LinearGradient
-                    colors={["#B78AF7", "#612AC3"]}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    style={{ padding: 10, borderRadius: 8 }}
-                  >
-                    <MaterialIcons
-                      name="keyboard-arrow-down"
-                      size={20}
-                      color="white"
-                    />
-                  </LinearGradient>
-                ) : (
-                  <LinearGradient
-                    colors={["#B78AF7", "#612AC3"]}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 0 }}
-                    style={{ padding: 10, borderRadius: 8 }}
-                  >
-                    <MaterialIcons
-                      name="keyboard-arrow-up"
-                      size={20}
-                      color="white"
-                    />
-                  </LinearGradient>
-                )}
-              </TouchableOpacity>
+            {toggle ? (
+              <View className="w-[85%] flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
+                <Image
+                  source={require("@/assets/images/search_purple.svg")}
+                  style={{ width: 20, height: 20 }}
+                  contentFit="cover"
+                />
 
-              {/* search bar */}
-              {toggle ? (
-                <View className="w-[85%] flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
+                <TextInput
+                  placeholder="Which beauty service do you need?"
+                  className="ml-2 placeholder:text-sm sm:placeholder:text-sm placeholder:text-accent"
+                  style={{
+                    paddingVertical: 0,
+                    marginTop: 0,
+                    textAlignVertical: "center",
+                    fontFamily: "Poppins",
+                  }}
+                />
+              </View>
+            ) : (
+              <View className="w-[85%]">
+                {/* searchbar */}
+                <View className="flex-row w-full items-center border border-gray-300 rounded-lg px-4 py-2 mb-2 bg-white">
                   <Image
                     source={require("@/assets/images/search_purple.svg")}
                     style={{ width: 20, height: 20 }}
@@ -172,8 +188,9 @@ const Search = () => {
                   />
 
                   <TextInput
-                    placeholder="Which beauty service do you need?"
-                    className="ml-2 placeholder:text-sm sm:placeholder:text-sm placeholder:text-accent"
+                    placeholder="What are you looking for?"
+                    placeholderTextColor="#888"
+                    className="ml-2 text-accent"
                     style={{
                       paddingVertical: 0,
                       marginTop: 0,
@@ -182,80 +199,56 @@ const Search = () => {
                     }}
                   />
                 </View>
-              ) : (
-                <View className="w-[85%]">
-                  {/* searchbar */}
-                  <View className="flex-row w-full items-center border border-gray-300 rounded-lg px-4 py-2 mb-2 bg-white">
-                    <Image
-                      source={require("@/assets/images/search_purple.svg")}
-                      style={{ width: 20, height: 20 }}
-                      contentFit="cover"
-                    />
 
-                    <TextInput
-                      placeholder="What are you looking for?"
-                      placeholderTextColor="#888"
-                      className="ml-2 text-accent"
-                      style={{
-                        paddingVertical: 0,
-                        marginTop: 0,
-                        textAlignVertical: "center",
-                        fontFamily: "Poppins",
-                      }}
-                    />
-                  </View>
+                {/* price search */}
+                <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 mb-2 bg-white">
+                  <Image
+                    source={require("@/assets/images/price.svg")}
+                    style={{ width: 20, height: 20 }}
+                    contentFit="cover"
+                  />
 
-                  {/* price search */}
-                  <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 mb-2 bg-white">
-                    <Image
-                      source={require("@/assets/images/price.svg")}
-                      style={{ width: 20, height: 20 }}
-                      contentFit="cover"
-                    />
-
-                    <TextInput
-                      keyboardType="numeric"
-                      placeholder="Price"
-                      placeholderTextColor="#888"
-                      className="ml-2 text-base text-accent"
-                      style={{
-                        paddingVertical: 0,
-                        marginTop: 0,
-                        textAlignVertical: "center",
-                        fontFamily: "Poppins",
-                      }}
-                    />
-                  </View>
-
-                  {/* location search */}
-                  <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
-                    <Image
-                      source={require("@/assets/images/location2.svg")}
-                      style={{ width: 20, height: 20 }}
-                      contentFit="cover"
-                    />
-
-                    <TextInput
-                      placeholder="Location"
-                      placeholderTextColor="#888"
-                      className="ml-2 text-base text-accent"
-                      style={{
-                        paddingVertical: 0,
-                        marginTop: 0,
-                        textAlignVertical: "center",
-                        fontFamily: "Poppins",
-                      }}
-                    />
-                  </View>
+                  <TextInput
+                    keyboardType="numeric"
+                    placeholder="Price"
+                    placeholderTextColor="#888"
+                    className="ml-2 text-base text-accent"
+                    style={{
+                      paddingVertical: 0,
+                      marginTop: 0,
+                      textAlignVertical: "center",
+                      fontFamily: "Poppins",
+                    }}
+                  />
                 </View>
-              )}
-            </View>
+
+                {/* location search */}
+                <View className="flex-row items-center border border-gray-300 rounded-lg px-4 py-2 bg-white">
+                  <Image
+                    source={require("@/assets/images/location2.svg")}
+                    style={{ width: 20, height: 20 }}
+                    contentFit="cover"
+                  />
+
+                  <TextInput
+                    placeholder="Location"
+                    placeholderTextColor="#888"
+                    className="ml-2 text-base text-accent"
+                    style={{
+                      paddingVertical: 0,
+                      marginTop: 0,
+                      textAlignVertical: "center",
+                      fontFamily: "Poppins",
+                    }}
+                  />
+                </View>
+              </View>
+            )}
           </View>
-        </LinearGradient>
-      </View>
+        </View>
+      </LinearGradient>
 
       <FlatList
-        className="bg-white"
         data={data}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) =>
@@ -271,6 +264,9 @@ const Search = () => {
         columnWrapperStyle={{
           justifyContent: "space-between",
           paddingHorizontal: 16,
+        }}
+        contentContainerStyle={{
+          paddingBottom: 400,
         }}
         showsVerticalScrollIndicator={false}
         ListHeaderComponent={
@@ -321,7 +317,6 @@ const Search = () => {
             )}
           </>
         }
-        contentContainerStyle={{ paddingBottom: 120 }}
       />
     </SafeScreen>
   );

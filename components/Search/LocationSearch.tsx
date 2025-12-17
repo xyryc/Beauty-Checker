@@ -1,85 +1,87 @@
-// import Slider from "@react-native-community/slider";
-// import { LinearGradient } from "expo-linear-gradient";
-// import * as Location from "expo-location";
-// import React, { useEffect, useState } from "react";
-// import { Dimensions, Text, View, StyleSheet } from "react-native";
-// import MapboxGL from "@rnmapbox/maps";
-
-import { View } from "react-native";
+import Slider from "@react-native-community/slider";
+import MapboxGL from "@rnmapbox/maps";
+import { LinearGradient } from "expo-linear-gradient";
+import * as Location from "expo-location";
+import React, { useEffect, useState } from "react";
+import { Dimensions, Text, View } from "react-native";
 
 // Initialize Mapbox with your access token
-// MapboxGL.setAccessToken(process.env.EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN || "");
+MapboxGL.setAccessToken(process.env.EXPO_PUBLIC_MAPBOX_ACCESS_TOKEN || "");
 
 const LocationSearch = () => {
-  // const [radius, setRadius] = useState(100); // in km
-  // const { width } = Dimensions.get("window");
-  // const [center, setCenter] = useState<[number, number]>([90, 23]); // [longitude, latitude]
-  // const [zoomLevel, setZoomLevel] = useState(8);
+  const [radius, setRadius] = useState(100); // in km
+  const { width } = Dimensions.get("window");
+  const [center, setCenter] = useState<[number, number]>([90, 23]); // [longitude, latitude]
+  const [zoomLevel, setZoomLevel] = useState(8);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const { status } = await Location.requestForegroundPermissionsAsync();
-  //     if (status !== "granted") return;
+  // console.log("Selected radius:", radius, center);
 
-  //     const location = await Location.getCurrentPositionAsync({});
-  //     const { latitude, longitude } = location.coords;
-  //     setCenter([longitude, latitude]); // Mapbox uses [longitude, latitude]
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") return;
 
-  // // When radius changes, update the map zoom
-  // useEffect(() => {
-  //   const zoom = getZoomFromRadius(radius);
-  //   setZoomLevel(zoom);
-  // }, [radius]);
+      const location = await Location.getCurrentPositionAsync({});
+      const { latitude, longitude } = location.coords;
+      setCenter([longitude, latitude]); // Mapbox uses [longitude, latitude]
+    })();
+  }, []);
 
-  // const getZoomFromRadius = (radiusInKm: number) => {
-  //   // Mapbox zoom formula: zoom = log2(worldSize / (radius * metersPerPixel))
-  //   // Simplified approximation for better UX
-  //   if (radiusInKm <= 5) return 12;
-  //   if (radiusInKm <= 10) return 11;
-  //   if (radiusInKm <= 20) return 10;
-  //   if (radiusInKm <= 50) return 9;
-  //   if (radiusInKm <= 100) return 8;
-  //   return 7;
-  // };
+  // When radius changes, update the map zoom
+  useEffect(() => {
+    const zoom = getZoomFromRadius(radius);
+    setZoomLevel(zoom);
+  }, [radius]);
 
-  // // Helper function to create a circle GeoJSON
-  // const createCircleGeoJSON = (
-  //   centerCoords: [number, number],
-  //   radiusInKm: number
-  // ) => {
-  //   const points = 64;
-  //   const coords = [];
-  //   const distanceX = radiusInKm / (111.32 * Math.cos((centerCoords[1] * Math.PI) / 180));
-  //   const distanceY = radiusInKm / 111.32;
+  const getZoomFromRadius = (radiusInKm: number) => {
+    // Mapbox zoom formula: zoom = log2(worldSize / (radius * metersPerPixel))
+    // Simplified approximation for better UX
+    if (radiusInKm <= 5) return 13;
+    if (radiusInKm <= 10) return 10;
+    if (radiusInKm <= 20) return 9;
+    if (radiusInKm <= 50) return 8;
+    if (radiusInKm <= 90) return 7;
+    if (radiusInKm <= 100) return 5;
+    return 7;
+  };
 
-  //   for (let i = 0; i < points; i++) {
-  //     const theta = (i / points) * (2 * Math.PI);
-  //     const x = distanceX * Math.cos(theta);
-  //     const y = distanceY * Math.sin(theta);
-  //     coords.push([centerCoords[0] + x, centerCoords[1] + y]);
-  //   }
-  //   coords.push(coords[0]); // Close the circle
+  // Helper function to create a circle GeoJSON
+  const createCircleGeoJSON = (
+    centerCoords: [number, number],
+    radiusInKm: number
+  ) => {
+    const points = 64;
+    const coords = [];
+    const distanceX =
+      radiusInKm / (111.32 * Math.cos((centerCoords[1] * Math.PI) / 180));
+    const distanceY = radiusInKm / 111.32;
 
-  //   return {
-  //     type: "Feature",
-  //     geometry: {
-  //       type: "Polygon",
-  //       coordinates: [coords],
-  //     },
-  //     properties: {},
-  //   };
-  // };
+    for (let i = 0; i < points; i++) {
+      const theta = (i / points) * (2 * Math.PI);
+      const x = distanceX * Math.cos(theta);
+      const y = distanceY * Math.sin(theta);
+      coords.push([centerCoords[0] + x, centerCoords[1] + y]);
+    }
+    coords.push(coords[0]); // Close the circle
+
+    return {
+      type: "Feature",
+      geometry: {
+        type: "Polygon",
+        coordinates: [coords],
+      },
+      properties: {},
+    };
+  };
 
   return (
     <View className="items-center pt-10">
-      {/* <View
+      <View
         className="rounded-3xl overflow-hidden border"
         style={{ width: width - 30, backgroundColor: "#fff" }}
-      > */}
-      {/* Radius Slider Container */}
-      {/* <LinearGradient colors={["#e0c9ff", "#f4e8ff"]}>
+      >
+        {/* Radius Slider Container */}
+        <LinearGradient colors={["#e0c9ff", "#f4e8ff"]}>
           <View className="px-4 py-3">
             <View className="flex-row justify-between mb-2">
               <Text className="text-purple-700 font-semibold text-base">
@@ -100,10 +102,10 @@ const LocationSearch = () => {
               thumbTintColor="#B78AF7"
             />
           </View>
-        </LinearGradient> */}
+        </LinearGradient>
 
-      {/* Map */}
-      {/* <MapboxGL.MapView
+        {/* Map */}
+        <MapboxGL.MapView
           style={{ height: 350, width: "100%" }}
           styleURL={MapboxGL.StyleURL.Street}
         >
@@ -111,13 +113,13 @@ const LocationSearch = () => {
             zoomLevel={zoomLevel}
             centerCoordinate={center}
             animationDuration={500}
-          /> */}
+          />
 
-      {/* Marker at center */}
-      {/* <MapboxGL.PointAnnotation id="centerMarker" coordinate={center} /> */}
+          {/* Marker at center */}
+          <MapboxGL.PointAnnotation id="centerMarker" coordinate={center} />
 
-      {/* Circle showing radius */}
-      {/* <MapboxGL.ShapeSource
+          {/* Circle showing radius */}
+          <MapboxGL.ShapeSource
             id="radiusCircle"
             shape={createCircleGeoJSON(center, radius)}
           >
@@ -136,8 +138,8 @@ const LocationSearch = () => {
               }}
             />
           </MapboxGL.ShapeSource>
-        </MapboxGL.MapView> */}
-      {/* </View> */}
+        </MapboxGL.MapView>
+      </View>
     </View>
   );
 };
