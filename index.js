@@ -1,53 +1,32 @@
-import notifee, { EventType } from '@notifee/react-native';
-import { setBackgroundMessageHandler } from '@react-native-firebase/messaging';
+import firebase from '@react-native-firebase/app';
+                                                                                         
+  // Initialize Firebase (only if not already initialized)                               
+  if (!firebase.apps.length) {                                                           
+    firebase.initializeApp();                                                            
+  }                                                                                      
+                                                                                         
+  import { setBackgroundMessageHandler } from '@react-native-firebase/messaging';
+import * as Notifications from 'expo-notifications';
 import 'expo-router/entry';
-
-// Background message handler registered at top level
-// This allows FCM to handle messages when app is in background/quit state
-setBackgroundMessageHandler(async (remoteMessage) => {
-  console.log('📦 Background FCM message received:', remoteMessage);
-
-  try {
-    // Display notification using Notifee when app is in background
-    await notifee.displayNotification({
-      title: remoteMessage.notification?.title || 'New Notification',
-      body: remoteMessage.notification?.body || '',
-      android: {
-        channelId: remoteMessage.data?.channelId || 'default',
-        pressAction: {
-          id: 'default',
-        },
-        importance: 4, // HIGH
-        smallIcon: 'ic_launcher',
-        color: '#612AC3',
-        sound: 'default',
-      },
-      ios: {
-        sound: 'default',
-        foregroundPresentationOptions: {
-          alert: true,
-          badge: true,
-          sound: true,
-        },
-      },
-      data: remoteMessage.data,
-    });
-  } catch (error) {
-    console.error('Error displaying background notification:', error);
-  }
-
-
-});
-
-  // Background event handler for Notifee (when user taps notification)
-notifee.onBackgroundEvent(async ({ type, detail }) => {
-    console.log('Notifee background event:', type, detail);
-
-    if (type === EventType.PRESS) {
-      console.log('User pressed notification in background:', detail.notification);
-      // Navigation will be handled in _layout.tsx via onNotificationOpenedApp
-    }
-
-    return Promise.resolve(); 
-  });
-
+                                                                                         
+  // Background message handler registered at top level                                  
+  // This allows FCM to handle messages when app is in background/quit state             
+  setBackgroundMessageHandler(async (remoteMessage) => {                                 
+    console.log('📦 Background FCM message received:', remoteMessage);                   
+                                                                                         
+    try {                                                                                
+      // Display notification using expo-notifications                                   
+      await Notifications.scheduleNotificationAsync({                                    
+        content: {                                                                       
+          title: remoteMessage.notification?.title || 'New Notification',                
+          body: remoteMessage.notification?.body || '',                                  
+          data: remoteMessage.data,                                                      
+          sound: 'default',                                                              
+        },                                                                               
+        trigger: null, // Show immediately                                               
+      });                                                                                
+    } catch (error) {                                                                    
+      console.error('Error displaying background notification:', error);                 
+    }                                                                                    
+  });                                                                                    
+     

@@ -27,7 +27,7 @@ export default {
       },
       "edgeToEdgeEnabled": true,
       "package": "com.xyryc.beautychecker",
-      "googleServicesFile": "./android/app/google-services.json"
+      "googleServicesFile": "./google-services.json"
     },
     "web": {
       "bundler": "metro",

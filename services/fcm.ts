@@ -1,15 +1,15 @@
-import notifee from "@notifee/react-native";
 import {
   AuthorizationStatus,
   getMessaging,
   getToken,
   requestPermission,
 } from "@react-native-firebase/messaging";
+import * as Notifications from "expo-notifications";
 
 export async function requestFCMPermission() {
-  // Request Notifee permission first (for Android 13+)
+  // Request notification permission (for Android 13+)
   const messaging = getMessaging();
-  await notifee.requestPermission();
+  await Notifications.requestPermissionsAsync();
 
   //  request FCM permission
   const authStatus = await requestPermission(messaging);
