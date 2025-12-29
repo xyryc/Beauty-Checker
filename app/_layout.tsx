@@ -1,6 +1,6 @@
 import { getFCMToken, requestFCMPermission } from "@/services/fcm";
 import { createNotificationChannel } from "@/services/notificationChannel";
-import firebase from "@react-native-firebase/app";
+import { getApps, initializeApp } from "@react-native-firebase/app";
 import {
   getInitialNotification,
   getMessaging,
@@ -22,9 +22,9 @@ import "react-native-reanimated";
 import { useColorScheme } from "react-native";
 import "./globals.css";
 
-// Initialize Firebase at the top level
-if (!firebase.apps.length) {
-  firebase.initializeApp();
+// Initialize Firebase at the top level (using modern API)
+if (getApps().length === 0) {
+  initializeApp();
 }
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
