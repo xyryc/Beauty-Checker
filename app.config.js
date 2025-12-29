@@ -20,6 +20,7 @@ export default {
       }
     },
     "android": {
+      "minSdkVersion": 24,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
