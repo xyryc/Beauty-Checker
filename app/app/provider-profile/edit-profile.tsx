@@ -133,7 +133,7 @@ const EditProfileScreen = () => {
               className="border-[0.5px] border-[#767676] rounded-xl px-6 py-4 placeholder:text-accent"
               value={company}
               onChangeText={(newText) => setCompany(newText)}
-              placeholder="Beauty Checker International"
+              placeholder="Glow Haus International"
             />
           </View>
 

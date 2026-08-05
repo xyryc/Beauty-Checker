@@ -93,7 +93,7 @@ const AboutCard = () => {
 
         <View>
           <Text className="text-primary mb-1" style={{ fontFamily: "Poppins" }}>
-            beautychecker.app
+            glowhaus.app
           </Text>
           <Text
             className="text-primary text-[10px]"

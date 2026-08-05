@@ -23,8 +23,8 @@ const TermsConditionsScreen = () => {
         >
           <Text className="font-bold">1. Introduction</Text>
           {"\n\n"}
-          Welcome to **Beauty Checker**! By accessing or using the
-          Beauty Checker app (the “App”), you agree to be bound by these Terms
+          Welcome to **Glow Haus**! By accessing or using the
+          Glow Haus app (the “App”), you agree to be bound by these Terms
           and Conditions (the “Terms”). If you do not agree with any part of the
           Terms, you must not use the App.
           {"\n\n"}
@@ -79,10 +79,10 @@ const TermsConditionsScreen = () => {
         >
           <Text className="font-bold">4. Services Provided</Text>
           {"\n\n"}
-          Beauty Checker is a marketplace that connects customers with
+          Glow Haus is a marketplace that connects customers with
           independent beauty‑service providers (the “Salons”). The Salons are
           independent contractors and are solely responsible for delivering the
-          booked services. Beauty Checker does not guarantee the quality,
+          booked services. Glow Haus does not guarantee the quality,
           performance or timing of any service.
         </Text>
 
@@ -98,7 +98,7 @@ const TermsConditionsScreen = () => {
           **5.1 Booking fee** – For every booking a **total fee of 11 %** is
           applied to the gross amount charged by the Salon. The fee is split as
           follows:
-          {"\n"}- **9 %** is retained by Beauty Checker as a service fee.
+          {"\n"}- **9 %** is retained by Glow Haus as a service fee.
           {"\n"}- **2 %** is converted into Loyalty Points for the customer
           (1 € = 1 000 points).
           {"\n\n"}
@@ -110,7 +110,7 @@ const TermsConditionsScreen = () => {
           the original price struck‑through together with the discounted price.
           {"\n\n"}
           **5.3 Adjustable fee** – The total fee may be increased by
-          Beauty Checker at any time, provided that:
+          Glow Haus at any time, provided that:
           {"\n"}- The new fee (up to a maximum of **13 %**) is clearly disclosed
           in the updated Terms & Conditions.
           {"\n"}- The change is communicated to both Salons and customers via
@@ -120,7 +120,7 @@ const TermsConditionsScreen = () => {
           {"\n\n"}
           **5.4 Payment processing** – All payments are processed through the
           App’s integrated payment gateway. By providing payment details you
-          authorize Beauty Checker to charge the applicable amount (service
+          authorize Glow Haus to charge the applicable amount (service
           price + applicable fee) and to remit the appropriate portions to the
           Salon and to the Loyalty‑Points account.
         </Text>
@@ -148,7 +148,7 @@ const TermsConditionsScreen = () => {
         >
           <Text className="font-bold">7. Limitation of Liability</Text>
           {"\n\n"}
-          To the fullest extent permitted by law, Beauty Checker shall not be
+          To the fullest extent permitted by law, Glow Haus shall not be
           liable for:
           {"\n"}- Any direct, indirect, incidental, special or consequential
           damages arising from your use or inability to use the App.
@@ -167,7 +167,7 @@ const TermsConditionsScreen = () => {
         >
           <Text className="font-bold">8. Termination of Use</Text>
           {"\n\n"}
-          Beauty Checker may suspend or terminate your account at its sole
+          Glow Haus may suspend or terminate your account at its sole
           discretion if you:
           {"\n"}- Violate any provision of these Terms.
           {"\n"}- Engage in conduct that harms other users or the App’s
@@ -184,7 +184,7 @@ const TermsConditionsScreen = () => {
         >
           <Text className="font-bold">9. Changes to Terms</Text>
           {"\n\n"}
-          Beauty Checker reserves the right to modify, amend or replace any part
+          Glow Haus reserves the right to modify, amend or replace any part
           of these Terms at any time. Changes will be posted within the App and
           the “Last Updated” date at the top of this page will be amended.
           Continued use of the App after such changes constitutes acceptance of
@@ -234,7 +234,7 @@ const TermsConditionsScreen = () => {
         >
           <Text className="font-bold">12. Acceptance of Terms</Text>
           {"\n\n"}
-          By using the Beauty Checker app, you acknowledge that you have read,
+          By using the Glow Haus app, you acknowledge that you have read,
           understood and agree to be bound by these Terms and Conditions.
         </Text>
       </ScrollView>

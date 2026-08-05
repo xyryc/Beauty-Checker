@@ -1,9 +1,7 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
 # dependencies
 node_modules/
 
-# Expo
+# Expo & Build outputs
 .expo/
 dist/
 web-build/
@@ -26,19 +24,20 @@ npm-debug.*
 yarn-debug.*
 yarn-error.*
 
-# macOS
+# macOS & System
 .DS_Store
 *.pem
 
-# local env files
+# Environment & Credentials
 .env*.local
 .env
-
-# typescript
-*.tsbuildinfo
-
-app-example
-android
-
 credentials.json
 google-services.json
+
+# Typescript
+*.tsbuildinfo
+
+# Subpackage builds
+backend/dist/
+app/dist/
+app/.expo/

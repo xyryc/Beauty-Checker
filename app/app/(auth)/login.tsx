@@ -65,7 +65,7 @@ const SignIn = () => {
                 className="text-sm text-accent"
                 style={{ fontFamily: "Poppins" }}
               >
-                Welcome Back To BEAUTYCHECKER
+                Welcome Back To GLOW HAUS
               </Text>
               <Text
                 className="text-sm text-accent"

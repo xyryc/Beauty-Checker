@@ -26,11 +26,11 @@ const PrivacyPolicyScreen = () => {
           Introduction
         </Text>
         <Text className="text-base text-accent mb-4">
-          Welcome to Beauty Checker, a service booking app ("we," "our," or
+          Welcome to Glow Haus, a service booking app ("we," "our," or
           "us"). We respect your privacy and are committed to protecting your
           personal data. This Privacy Policy explains how we collect, use,
           disclose, and safeguard your information when you use our mobile
-          application ("Beauty Checker" or "the App"). Please read this policy
+          application ("Glow Haus" or "the App"). Please read this policy
           carefully to understand how we handle your personal data.
         </Text>
 
@@ -38,8 +38,8 @@ const PrivacyPolicyScreen = () => {
           Information We Collect
         </Text>
         <Text className="text-base text-accent mb-4">
-          We collect the following types of information when you use the Beauty
-          Checker app:
+          We collect the following types of information when you use the Glow
+          Haus app:
         </Text>
         <Text className="text-base text-accent mb-2">
           1. <Text className="font-semibold">Personal Information</Text>: When
@@ -109,7 +109,7 @@ const PrivacyPolicyScreen = () => {
         </Text>
         <Text className="text-base text-accent mb-4">
           If you have any questions, please contact us at
-          contact@beautychecker.com.
+          contact@glowhaus.com.
         </Text>
       </ScrollView>
     </SafeAreaView>

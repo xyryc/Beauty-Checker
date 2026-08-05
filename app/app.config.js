@@ -2,19 +2,19 @@ import 'dotenv/config';
 
 export default {
   "expo": {
-    "name": "Beauty-Checker",
+    "name": "Glow Haus",
     "owner": "xyryc",
-    "slug": "Beauty-Checker",
+    "slug": "glow-haus",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "beautychecker",
+    "scheme": "glowhaus",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "platforms": ["ios", "android"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.xyryc.beautychecker",
+      "bundleIdentifier": "com.xyryc.glowhaus",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -26,7 +26,7 @@ export default {
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.xyryc.beautychecker",
+      "package": "com.xyryc.glowhaus",
       "googleServicesFile": "./google-services.json"
     },
     "web": {
